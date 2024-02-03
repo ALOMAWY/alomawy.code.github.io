@@ -1193,7 +1193,8 @@ filtersProjects.forEach((fil) => {
   });
 });
 
-setTimeout(() => {
+
+window.addEventListener("load", () => {
   responsiveCardsWithGrid(
     projectsBox,
     [...document.querySelectorAll(".project-card")].length,
@@ -1201,7 +1202,8 @@ setTimeout(() => {
     1,
     1
   );
-}, 200);
+  console.log([...document.querySelectorAll(".project-card")]);
+});
 
 let portfolioPrevBtn = document.getElementById("portfolio-prev");
 
@@ -1418,7 +1420,7 @@ async function RequestSocialMediaData(link) {
 }
 RequestSocialMediaData("api/social-media.json");
 
-setTimeout(() => {
+window.addEventListener("load", () => {
   responsiveCardsWithGrid(
     socialMediaBox,
     document.querySelectorAll(".social-card").length,
@@ -1426,7 +1428,8 @@ setTimeout(() => {
     2,
     1
   );
-}, 200);
+});
+
 
 // Apply Function
 
