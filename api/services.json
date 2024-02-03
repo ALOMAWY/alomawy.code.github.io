@@ -1,0 +1,42 @@
+[
+  {
+    "service": "Clean Code",
+    "explain": "It is used to improve performance It also allows for ease of modification in the future",
+    "icon": "<i class=\"fa-solid fa-shield-halved\" style=\"color: ${mainTextColor};\"></i>"
+  },
+  {
+    "service": "Web Development",
+    "explain": "Developing large and small websites using modern technologies and a dynamic manner",
+    "icon": "<i class=\"fa-solid fa-code\" style=\"color: ${mainTextColor};\"></i>"
+  },
+  {
+    "service": "Performance Application",
+    "explain": "Ensuring the best possible performance",
+    "icon": "<i class=\"fa-solid fa-fire\" style=\"color: ${mainTextColor};\"></i>"
+  },
+  {
+    "service": "Responsive Design",
+    "explain": "It works on all screens such as computers, tablets, mobile phones, and TV's ",
+    "icon": "<i class=\"fa-solid fa-desktop\" style=\"color: ${mainTextColor};\"></i>"
+  },
+  {
+    "service": "Offers",
+    "explain": "Offers continue throughout the year Depending on the type of service",
+    "icon": "<i class=\"fa-solid fa-circle-dollar-to-slot\" style=\"color: ${mainTextColor};\"></i>"
+  },
+  {
+    "service": "Web Design",
+    "explain": "Modern website designs with some tips Easy to browse with users",
+    "icon": "<i class=\"fa-solid fa-brush\" style=\"color: ${mainTextColor};\"></i>"
+  },
+  {
+    "service": "customers service",
+    "explain": "We respond to requests we receive as quickly as possible",
+    "icon": "<i class=\"fa-solid fa-person-breastfeeding\" style=\"color: ${mainTextColor};\"></i>"
+  },
+  {
+    "service": "Upload To Server",
+    "explain": "Uploading websites online at low cost He often has offers",
+    "icon": "<i class=\"fa-solid fa-server\" style=\"color: ${mainTextColor};\"></i>"
+  }
+]

@@ -1,0 +1,130 @@
+[
+  {
+    "status": "active",
+    "appName": "Facebook",
+    "color": {
+      "type": "white",
+      "color": "#3b5998"
+    },
+    "content": "Programing",
+    "logo": "./imgs/social-media-logos/facebook.png",
+    "userName": "Abdalrahman ALDABBAS",
+    "posts": "0",
+    "people": {
+      "type": "friends",
+      "friends": "3",
+      "folowers": "20"
+    },
+    "link": "https://www.facebook.com/profile.php?id=100082501930282"
+  },
+  {
+    "status": "active",
+    "appName": "instagram",
+    "color": {
+      "type": "white",
+      "color": "#e90a54"
+    },
+    "content": "Programing",
+    "logo": "./imgs/social-media-logos/instagram.png",
+    "userName": "Abdalrahman ALDABBAS",
+    "posts": "5",
+    "people": {
+      "type": "folowers",
+      "friends": "3",
+      "folowers": "20"
+    },
+
+    "link": "https://www.instagram.com/alomawy.code.99/"
+  },
+  {
+    "status": "active",
+    "appName": "Linkedin",
+    "color": {
+      "type": "white",
+      "color": "#176cad"
+    },
+    "content": "Programing",
+    "logo": "./imgs/social-media-logos/linkedin.png",
+    "userName": "abdalrahman aldabbas",
+    "posts": "0",
+    "people": {
+      "type": "folowers",
+      "friends": "3",
+      "folowers": "20"
+    },
+    "link": "https://www.linkedin.com/in/abdalrahman-aldabbas-50a7a4242/"
+  },
+  {
+    "status": "active",
+    "appName": "youtube",
+    "color": {
+      "type": "white",
+      "color": "#cd201f"
+    },
+    "folowers": "80",
+    "content": "Programing",
+    "logo": "./imgs/social-media-logos/youtube.png",
+    "userName": "@alomawy.code.99",
+    "posts": "0",
+    "people": {
+      "type": "folowers",
+      "friends": "3",
+      "folowers": "20"
+    },
+    "link": "https://www.youtube.com/@alomawy.code.99"
+  },
+  {
+    "status": "active",
+    "appName": "GitHub",
+    "color": {
+      "type": "dark",
+      "color": "#181616"
+    },
+    "content": "Programing",
+    "logo": "./imgs/social-media-logos/github.png",
+    "userName": "alomawy.code.99",
+    "posts": "0",
+    "people": {
+      "type": "folowers",
+      "friends": "3",
+      "folowers": "20"
+    },
+    "link": "https://github.com/ALOMAWY"
+  },
+  {
+    "status": "active",
+    "appName": "whatsapp",
+    "color": {
+      "type": "white",
+      "color": "#36b05e"
+    },
+    "content": "Programing",
+    "logo": "./imgs/social-media-logos/whatsapp.png",
+    "userName": "alomawy.code.99",
+    "posts": "0",
+    "people": {
+      "type": "folowers",
+      "friends": "3",
+      "folowers": "20"
+    },
+    "link": "https://wa.me/+9005526427352"
+  },
+  {
+    "status": "active",
+    "appName": "Twitter",
+    "color": {
+      "type": "white",
+      "color": "#00a7ec"
+    },
+    "content": "Programing",
+    "logo": "./imgs/social-media-logos/twitter.png",
+    "userName": "@alomawy_code_99",
+    "posts": "0",
+    "people": {
+      "type": "folowers",
+      "friends": "3",
+      "folowers": "20"
+    },
+    "link": "https://twitter.com/alomawy_code_99"
+  }
+]

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0" />
+    <title>OMAWY_WQS</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Acme&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.15.0/css/all.chromecss"
+    />
+
+     <!-- Contact Section Send Email Api  -->
+
+     <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("RkGCf9TL__yfqoAYs");
+   })();
+</script>
+  </head>
+  <body>
+    <div id="lock-page" class="lockpage-cover cover" style="display: none">
+      <div class="lockpage-container container">
+        <div class="lockpage">
+          <h3 id="unlock-text" class="unlock-text">
+            Hover In Empty Area To Unlock Pages
+          </h3>
+          <span class="arrow">
+            <i class="fa-solid fa-arrow-down fa-beat-fade"></i>
+          </span>
+          <div id="draw-area" class="draw-area"></div>
+          <span class="arrow">
+            <i class="fa-solid fa-arrow-down fa-beat-fade"></i>
+          </span>
+          <div id="range" class="range-counter"></div>
+
+          <div class="the-lock">
+            <div class="lock-head"></div>
+            <div class="lock-body"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="home" class="main-container">
+      <ul class="taps select">
+        <li class="nav-link"><a href="#home">Home</a></li>
+        <li class="nav-link"><a href="#services">Services</a></li>
+        <li class="nav-link"><a href="#portfolio">Portfolio</a></li>
+        <li class="nav-link"><a href="#social_media">Social Media</a></li>
+        <li class="nav-link"><a href="#contact">Contact</a></li>
+        <li class="nav-link"><a href="#about">About</a></li>
+        <li class="nav-link"><a href="#roadmap">RoadMap</a></li>
+      </ul>
+
+      <ul class="select-themes select">
+        <li id="red" class="li-theme">
+          <button class="theme-btn"></button>
+        </li>
+        <li id="green" class="li-theme">
+          <button class="theme-btn"></button>
+        </li>
+        <li id="blue" class="li-theme">
+          <button class="theme-btn"></button>
+        </li>
+        <li id="purple" class="li-theme">
+          <button class="theme-btn"></button>
+        </li>
+        <li id="orange" class="li-theme">
+          <button class="theme-btn"></button>
+        </li>
+        <li id="dark" class="li-theme">
+          <button class="theme-btn"></button>
+        </li>
+      </ul>
+
+      <ul class="select-language select">
+        <li id="arabic" class="li-lang">
+          <button class="lang"></button>
+        </li>
+        <li id="english" class="li-lang">
+          <button class="lang"></button>
+        </li>
+      </ul>
+
+      <ul class="select-download select">
+        <li id="cv" class="li-d-file">
+          <button class="d-file"></button>
+        </li>
+        <li id="code" class="li-d-file">
+          <button class="d-file"></button>
+        </li>
+      </ul>
+      <ul class="select-info select">
+        <li id="news" class="li-info">
+          <button class="info"></button>
+        </li>
+        <li id="after-set" class="li-d-file">
+          <button class="info"></button>
+        </li>
+      </ul>
+      <div class="header-container container">
+        <header id="header" class="header">
+          <h2 id="logo-text" class="logo-text">LOGO TEXT</h2>
+          <nav id="header-icons" class="header-icons">
+            <div class="show-icons"></div>
+            <button id="change-mode" class="header-icon">
+              <i class="fa-solid fa-brush"></i>
+            </button>
+            <button id="change-language" class="header-icon">
+              <i class="fa-solid fa-language"></i>
+            </button>
+            <button id="download-btn" class="header-icon">
+              <i class="fa-solid fa-download"></i>
+            </button>
+            <button id="get-info" class="header-icon">
+              <i class="fa-solid fa-circle-info"></i>
+            </button>
+            <button id="menu-btn" class="header-icon">
+              <div id="menu" class="menu">
+                <span id="first-row" class="menu-row"></span>
+                <span id="secound-row" class="menu-row"></span>
+                <span id="last-row" class="menu-row"></span>
+              </div>
+            </button>
+          </nav>
+        </header>
+      </div>
+      <div id="home" class="landing-cover cover">
+        <div class="landing-container container">
+          <div class="textarea">
+            <p class="discripton">
+              Hello Everyone<br />
+              I am Abdalrahman Aldabbas <br />
+              I work as a front-end developer <br />
+              I am From Syria Damascus <br />
+              This Is A Simple Personal Website <br />
+              I developed it in JavaScript only <br />
+              Techniques I worked with
+            </p>
+            <ul id="my-skills" class="skills"></ul>
+          </div>
+          <div class="logo-section">
+            <h1 class="my-name">Abdalrahman Aldabbas</h1>
+            <div class="image-logo-container">
+              <img src="./imgs/logos/newLogo.jpg" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="services" class="services-cover cover">
+        <button id="serv-prev" class="prev-btn scroll-btns">
+          <i class="fa-solid fa-left-long fa-fade"></i>
+        </button>
+        <button id="serv-next" class="next-btn scroll-btns">
+          <i class="fa-solid fa-right-long fa-fade"></i>
+        </button>
+        <div class="services-container container" id="services-container">
+          <div class="services-head">
+            <span class="split-span"></span>
+            <h3 class="section-title">Services</h3>
+          </div>
+          <div class="services-body content-scroller box"></div>
+        </div>
+      </div>
+      <div id="portfolio" class="portfolio-cover cover">
+        <button id="portfolio-prev" class="prev-btn scroll-btns">
+          <i class="fa-solid fa-left-long fa-fade"></i>
+        </button>
+        <button id="portfolio-next" class="next-btn scroll-btns">
+          <i class="fa-solid fa-right-long fa-fade"></i>
+        </button>
+        <div class="portfolio-container container">
+          <div class="portfolio-head">
+            <span class="split-span"></span>
+            <h3 class="section-title">Portfolio</h3>
+            <div class="p-type">
+              <form action="p-type">
+                <div>
+                  <input id="all" type="radio" name="p-type" value="all"
+                  checked/ >
+                  <label for="all">All</label>
+                </div>
+                <div>
+                  <input id="website" type="radio" name="p-type"
+                  value="website"/ >
+                  <label for="website">Website</label>
+                </div>
+                <div>
+                  <input id="games" type="radio" name="p-type" value="game"/ >
+                  <label for="games">Games</label>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div
+            id="projects-box"
+            class="portfolio-body content-scroller box"
+          ></div>
+        </div>
+      </div>
+      <div id="social_media" class="social-media-cover cover">
+        <button id="social-prev" class="prev-btn scroll-btns">
+          <i class="fa-solid fa-left-long fa-fade"></i>
+        </button>
+        <button id="social-next" class="next-btn scroll-btns">
+          <i class="fa-solid fa-right-long fa-fade"></i>
+        </button>
+        <div class="social-media-container container">
+          <div class="social-media-header">
+            <span class="split-span"></span>
+            <h3 class="section-title">Social Media</h3>
+          </div>
+          <div
+            id="social-media-box"
+            class="cards-box content-scroller box"
+          ></div>
+        </div>
+      </div>
+      <div id="contact" class="contact-cover cover">
+        <!-- <button id="contact-prev" class="prev-btn scroll-btns">
+          <i class="fa-solid fa-left-long fa-fade"></i>
+        </button>
+        <button id="contact-next" class="next-btn scroll-btns">
+          <i class="fa-solid fa-right-long fa-fade"></i>
+        </button> -->
+        <div class="contact-container container">
+          <div class="contact-header">
+            <span class="split-span"></span>
+            <h3 class="section-title">Contact Us</h3>
+          </div>
+          <div id="contact-box" class="cards-box content-scrollerbox">
+            <div class="email-tap">
+              <form action="send-massage">
+                <div>
+                  <label for="name"><i class="fa-solid fa-user"></i></label>
+                  <input id="name" type="text" placeholder="Name" />
+                </div>
+                <div>
+                  <label for="email"
+                    ><i class="fa-solid fa-envelope"></i
+                  ></label>
+                  <input id="email" type="email" placeholder="Email" />
+                </div>
+                <textarea
+                  name="massage"
+                  id="massage-area"
+                  placeholder="Your Massage..."
+                  cols="30"
+                  rows="6"
+                  minlength="10"
+                  maxlength="500"
+                ></textarea>
+                <button type="submit" onsubmit="sendEmail()" id="send-massage">Send Massage</button>
+              </form>
+              <div class="draw-container" id="contact-popups-box">
+                <div class="circle">
+                  <div class="text">
+                    <i class="fa-solid fa-laptop"></i>
+                    <span>Contact Us</span>
+                  </div>
+                  <div class="star-1 c-w">
+                    <i class="fa-regular fa-star"></i>
+                  </div>
+                  <div class="wifi c-c"><i class="fa-solid fa-wifi"></i></div>
+                  <div class="massage c-w">
+                    <i class="fa-regular fa-message"></i>
+                  </div>
+                  <div class="sms c-w">
+                    <i class="fa-solid fa-comment-sms"></i>
+                  </div>
+                  <div class="internet c-w">
+                    <i class="fa-solid fa-globe"></i>
+                  </div>
+                  <div class="location c-w">
+                    <i class="fa-solid fa-location-dot"></i>
+                  </div>
+                  <div class="star c-w"><i class="fa-regular fa-star"></i></div>
+                  <div class="love c-w">
+                    <i class="fa-regular fa-heart"></i>
+                  </div>
+                  <div class="setting c-w">
+                    <i class="fa-solid fa-gears"></i>
+                  </div>
+                  <div class="phone c-c">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                  </div>
+                  <div class="star c-w"><i class="fa-regular fa-star"></i></div>
+                  <div class="email c-c">
+                    <i class="fa-regular fa-envelope"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="about" class="about-cover cover">
+        <button id="about-prev" class="prev-btn scroll-btns">
+          <i class="fa-solid fa-left-long fa-fade"></i>
+        </button>
+        <button id="about-next" class="next-btn scroll-btns">
+          <i class="fa-solid fa-right-long fa-fade"></i>
+        </button>
+        <div class="about-container container">
+          <div class="social-media-header">
+            <span class="split-span"></span>
+            <h3 class="section-title">About</h3>
+          </div>
+          <div id="about-box" class="cards-box content-scroller box"></div>
+        </div>
+      </div>
+      <div id="road-map" class="road-map-cover cover">
+        <button id="road-map-prev" class="prev-btn scroll-btns">
+          <i class="fa-solid fa-left-long fa-fade"></i>
+        </button>
+        <button id="road-map-next" class="next-btn scroll-btns">
+          <i class="fa-solid fa-right-long fa-fade"></i>
+        </button>
+        <div class="road-map-container container">
+          <div class="road-map-header">
+            <span class="split-span"></span>
+            <h3 class="section-title">Road Map</h3>
+          </div>
+          <div id="road-map-box" class="cards-box content-scroller"></div>
+        </div>
+      </div>
+    </div>
+
+    <audio
+      id="unlock-sound"
+      src="./sounds/short-success-sound-glockenspiel-treasure-video-game-6346.mp3"
+    ></audio>
+    <script src="./app.js"></script>
+  </body>
+</html>
