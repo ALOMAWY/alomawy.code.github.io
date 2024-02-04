@@ -126,5 +126,23 @@
       "folowers": "20"
     },
     "link": "https://twitter.com/alomawy_code_99"
+  },
+  {
+    "status": "active",
+    "appName": "Reddit",
+    "color": {
+      "type": "white",
+      "color": "#ff3725"
+    },
+    "content": "Programing",
+    "logo": "./imgs/social-media-logos/reddit.png",
+    "userName": "@alomawy_code_99",
+    "posts": "2",
+    "people": {
+      "type": "friends",
+      "friends": "3",
+      "folowers": "20"
+    },
+    "link": "https://www.reddit.com/user/abdalrahman_ds/"
   }
 ]

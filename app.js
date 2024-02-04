@@ -1478,11 +1478,17 @@ let sendMassageBtn = document.getElementById("send-massage"),
 
 console.log(sendMassageBtn);
 
-sendMassageBtn.onclick = (e) => {
+sendMassageBtn.parentNode.onsubmit = (e) => {
   e.preventDefault();
   sendEmail();
 };
 
+sendMassageBtn.addEventListener("click", () => {
+  massege("adewqeqwewsaed");
+});
+sendMassageBtn.addEventListener("click", () => {
+  massege("adewqeqwewsaed");
+});
 // function sendEmail() {
 //   let params = {
 //     from_name: nameInput.value,
