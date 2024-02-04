@@ -1831,7 +1831,8 @@ header .header-icons {
         gap: 20px;
         padding: 10px;
         border: 1px dashed var(--background-main-color);
-
+        backdrop-filter: blur(5px);
+    box-shadow: 0 0 16px -3px var(--background-main-color);
         div {
           display: flex;
           align-items: center;
