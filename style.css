@@ -83,6 +83,11 @@ body::-webkit-scrollbar-thumb:hover {
   box-shadow: 0 0 5px 5px var(--main-color) inset;
 }
 
+
+.dn{
+  display: none;
+}
+
 .content-scroller::-webkit-scrollbar {
   height: 9px;
 }
@@ -1722,7 +1727,6 @@ header .header-icons {
     display: flex;
     flex-direction: column;
 
-
     .cards-box {
       .social-card {
         display: flex;
@@ -2056,6 +2060,12 @@ header .header-icons {
 /* Start About Section */
 
 .about-cover {
+  .about-header {
+    i {
+      width: 100%;
+      text-align: center;
+    }
+  }
   .about-container {
     display: flex;
     flex-direction: column;
@@ -2133,7 +2143,8 @@ header .header-icons {
           li::before {
             font-weight: bold;
             font-family: "Font Awesome 5 Free";
-            list-style: inside;            position: absolute;
+            list-style: inside;
+            position: absolute;
             left: 10px;
             top: 50%;
             transform: translateY(-50%);
@@ -2144,8 +2155,6 @@ header .header-icons {
           }
           .age::before {
             content: "\f0f1";
-
-            
           }
           /* .age::before {
             content: "\30";
@@ -2284,7 +2293,37 @@ header .header-icons {
 @media (max-width: 1300px) {
 }
 @media (max-width: 1000px) {
+  .about-cover {
+
+      .about-header{
+    i{
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+  }
+    .about-container {
+      .cards-box {
+        flex-direction: column;
+
+        .information {
+          width: 90%;
+        }
+
+        .animation-area {
+          width: 30%;
+          height: 30%;
+          position: relative;
+
+          .animation-ball {
+            position: absolute;
+          }
+        }
+      }
+    }
+  }
 }
+
 @media (max-width: 900px) {
 }
 @media (max-width: 800px) {
@@ -2293,8 +2332,8 @@ header .header-icons {
       .cards-box {
         flex-direction: column;
 
-        .information{
-          margin: 0 25px ;
+        .information {
+          margin: 0 25px;
         }
 
         .animation-area {
