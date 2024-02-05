@@ -2411,10 +2411,8 @@ header .header-icons {
     .about-container {
       .cards-box {
         flex-direction: column-reverse;
-
         .information {
           width: 90%;
-
           gap: 20px;
           .text-container {
             li {
@@ -2452,8 +2450,6 @@ header .header-icons {
   .about-cover {
     .about-container {
       .cards-box {
-        flex-direction: column;
-
         .information {
           margin: 0 25px;
         }
