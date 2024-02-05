@@ -1193,7 +1193,6 @@ filtersProjects.forEach((fil) => {
   });
 });
 
-
 window.addEventListener("load", () => {
   responsiveCardsWithGrid(
     projectsBox,
@@ -1430,7 +1429,6 @@ window.addEventListener("load", () => {
   );
 });
 
-
 // Apply Function
 
 socialNextBtn.addEventListener("click", () => {
@@ -1529,7 +1527,7 @@ function sendEmail() {
 
 let contactUsPopupsBox = document.getElementById("contact-popups-box");
 
-contactUsPopupsBox.style.height = contactUsPopupsBox.clientWidth+ "px"
+contactUsPopupsBox.style.height = contactUsPopupsBox.clientWidth + "px";
 
 setTimeout(() => {}, 1412);
 let responsiveStyle = document.createElement("style");
@@ -1538,21 +1536,83 @@ responsiveStyle.id = "respownsive-JS";
 
 HEAD.appendChild(responsiveStyle);
 
-
-
-
 // About Section
+
+// let year = ;
+
+function getAge(YourDate, type) {
+  let myDate = new Date(YourDate).getTime();
+
+  let nowDate = new Date(Date.now()).getTime();
+
+  let diff = new Date(nowDate - myDate);
+
+  let startDate = new Date(0);
+
+  console.log(myDate);
+
+  console.log(nowDate);
+
+  console.log(diff.getUTCFullYear() - startDate.getUTCFullYear());
+
+  return type == "year"
+    ? diff.getUTCFullYear() - 1970
+    : type == "month"
+    ? getAge(YourDate, "year") * 12
+    : type == "day"
+    ? getAge(YourDate, "month") * 30
+    : "";
+}
+
+let ageLabel = document.querySelector(
+  ".information .text-container .age span "
+);
+console.log(ageLabel);
+
+ageLabel.innerHTML = `Years : ${getAge(
+  "06/22/2005",
+  "year"
+)} , Months : ${getAge("06/22/2005", "month")} , Days : ${getAge(
+  "06/22/2005",
+  "day"
+)} `;
+
+let skillsLabel = document.querySelector(
+  ".information .text-container .skills-container p"
+);
+
+let skillsArray = [
+  "HTML",
+  "CSS",
+  "JAVASCRIPT",
+  "OOP",
+  "SASS",
+  "TYPESCRIPT",
+  "Git & GitHub",
+  "commandline",
+];
+
+skillsArray.forEach((skill) => {
+  let skills = document.createElement("span");
+
+  skills.classList.add("skill");
+
+  let skillText = document.createTextNode(skill);
+
+  skills.appendChild(skillText);
+
+  skillsLabel.appendChild(skills);
+});
 
 let animationArea = document.querySelector(".animation-area");
 
-console.log(animationArea)
+console.log(animationArea);
 
-if (animationArea.clientHeight > animationArea.clientWidth){
-  animationArea.style.width = animationArea.clientHeight+ "px"
-}else if (animationArea.clientWidth > animationArea.clientHeight) {
-  animationArea.style.height = animationArea.clientWidth+ "px"
+if (animationArea.clientHeight > animationArea.clientWidth) {
+  animationArea.style.width = animationArea.clientHeight + "px";
+} else if (animationArea.clientWidth > animationArea.clientHeight) {
+  animationArea.style.height = animationArea.clientWidth + "px";
 }
-
 
 // let animationBall = document.querySelector(".animation-ball");
 
@@ -1562,25 +1622,25 @@ if (animationArea.clientHeight > animationArea.clientWidth){
 //   animationBall.style.height = animationBall.clientWidth + "px";
 // }
 
-  function responsiveCardsWithGrid(
-    target,
-    cardsLength,
-    max_1450,
-    max_600,
-    max_450
-  ) {
-    cardsLength = cardsLength;
+function responsiveCardsWithGrid(
+  target,
+  cardsLength,
+  max_1450,
+  max_600,
+  max_450
+) {
+  cardsLength = cardsLength;
 
-    if (document_width <= 1450 && document_width > 600) {
-      target.style.gridTemplateColumns = `repeat(${cardsLength},calc(100% / ${max_1450} - ${
-        parseInt(StylePackage(target).gap) / 2
-      }px) )`;
-    } else if (document_width <= 600 && document_width > 450) {
-      target.style.gridTemplateColumns = `repeat(${cardsLength},calc(100% / ${max_600} )`;
-    } else if (document_width <= 450) {
-      target.style.gridTemplateColumns = `repeat(${cardsLength},calc(100% / ${max_450} )`;
-    }
+  if (document_width <= 1450 && document_width > 600) {
+    target.style.gridTemplateColumns = `repeat(${cardsLength},calc(100% / ${max_1450} - ${
+      parseInt(StylePackage(target).gap) / 2
+    }px) )`;
+  } else if (document_width <= 600 && document_width > 450) {
+    target.style.gridTemplateColumns = `repeat(${cardsLength},calc(100% / ${max_600} )`;
+  } else if (document_width <= 450) {
+    target.style.gridTemplateColumns = `repeat(${cardsLength},calc(100% / ${max_450} )`;
   }
+}
 
 portfolioNextBtn.onclick = () => {
   scrollFunc(
@@ -1808,4 +1868,3 @@ function exit(target) {
 }
 
 //
-
