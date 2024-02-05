@@ -241,7 +241,7 @@ body::-webkit-scrollbar-thumb:hover {
     border: 3px solid transparent;
     transition: 0.3s;
 
-    a{
+    a {
       width: 100%;
       height: 100%;
       /* background-color: red; */
@@ -249,11 +249,10 @@ body::-webkit-scrollbar-thumb:hover {
       position: absolute;
     }
   }
-  div:hover{
+  div:hover {
     transform: translate(-50%, -50%) scale(1.1);
     z-index: 12321311;
     border-color: var(--main-color);
-    
   }
 
   .text {
@@ -356,9 +355,7 @@ body::-webkit-scrollbar-thumb:hover {
   }
 }
 
-
 /* End Styling Ball Popups */
-
 
 /* Style Massege */
 
@@ -590,15 +587,13 @@ body::-webkit-scrollbar-thumb:hover {
   }
 }
 @media (max-width: 800px) {
-  .close-btn{
+  .close-btn {
     right: 25px;
     top: 25px;
   }
 }
 
 @media (max-width: 700px) {
-
-  
 }
 
 @media (max-width: 650px) {
@@ -652,8 +647,6 @@ body::-webkit-scrollbar-thumb:hover {
  */
 
 /* Start Lock Page Style */
-
-
 
 /* .lockpage-cover {
 } */
@@ -1076,8 +1069,8 @@ header .header-icons {
   right: 0;
 }
 
-.select-language {
-}
+/* .select-language {
+} */
 
 .select {
   height: 100%;
@@ -1728,13 +1721,7 @@ header .header-icons {
   .social-media-container {
     display: flex;
     flex-direction: column;
-    .social-media-header {
-      .split-span {
-      }
 
-      .section-title {
-      }
-    }
 
     .cards-box {
       .social-card {
@@ -1810,7 +1797,6 @@ header .header-icons {
         animation: rotating 5s linear infinite;
       }
 
-      
       .social-card:hover {
         transform: scale(1.03);
       }
@@ -1818,18 +1804,16 @@ header .header-icons {
   }
 }
 
-
 /* animation */
 
 @keyframes rotating {
-  0%{
+  0% {
     transform: rotate(0deg);
   }
-  100%{
+  100% {
     transform: rotate(360deg);
   }
 }
-
 
 /* End Social Media Section */
 
@@ -1864,7 +1848,7 @@ header .header-icons {
         border: 1px dashed var(--background-main-color);
         backdrop-filter: blur(5px);
         background-color: #1e386721;
-    box-shadow: 0 0 16px -3px var(--background-main-color);
+        box-shadow: 0 0 16px -3px var(--background-main-color);
         div {
           display: flex;
           align-items: center;
@@ -1946,8 +1930,6 @@ header .header-icons {
           border-left: 1px solid var(--background-main-color);
         }
 
-
-    
         div input:hover,
         #massage-area:hover,
         #send-massage:hover {
@@ -1971,7 +1953,6 @@ header .header-icons {
           opacity: 0.4;
         }
       }
-    
 
       .draw-container {
         width: 500px;
@@ -1982,79 +1963,63 @@ header .header-icons {
   }
 }
 
-
-
 /* Media Of Initialized Style Start */
 
 @media (max-width: 1600px) {
-
 }
 
 @media (max-width: 1300px) {
-
 }
 
 @media (max-width: 1200px) {
-
 }
 
 @media (max-width: 1100px) {
+  .contact-cover {
+    .contact-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
 
+      .contact-header {
+        position: static;
+      }
 
-.contact-cover {
-  .contact-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    .contact-header {
-      position: static;
-    }
-
-    & .cards-box {
-      flex:1;
-      .email-tap{
-        flex-direction: column-reverse;
-        align-items: center;
-        justify-content: space-evenly;
-        form{
-          width: 80%;
-          flex: 0;
+      & .cards-box {
+        flex: 1;
+        .email-tap {
+          flex-direction: column-reverse;
+          align-items: center;
+          justify-content: space-evenly;
+          form {
+            width: 80%;
+            flex: 0;
+          }
         }
       }
     }
   }
 }
 
-
-
-}
-
 @media (max-width: 1000px) {
-
 }
 
 @media (max-width: 900px) {
-
 }
 
-@media  (max-width: 768px) {
-
+@media (max-width: 768px) {
 }
 
 @media (max-width: 800px) {
-
-  #contact-popups-box{
+  #contact-popups-box {
     width: 90%;
   }
-
 }
 
 @media (max-width: 700px) {
 }
 
 @media (max-width: 650px) {
-
 }
 
 @media (max-width: 500px) {
@@ -2087,5 +2052,273 @@ header .header-icons {
  */
 
 /* End Contact Us Section */
+
+/* Start About Section */
+
+.about-cover {
+  .about-container {
+    display: flex;
+    flex-direction: column;
+
+    .cards-box {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      overflow: hidden;
+
+      .information {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        margin-left: 25px;
+        .image-container {
+          width: 90px;
+          height: 90px;
+          border: 2px solid var(--main-color);
+          border-radius: 50%;
+          margin: 0 auto;
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+          }
+        }
+        .text-container {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          width: 100%;
+          position: relative;
+
+          li {
+            padding: 10px;
+            padding-left: 40px;
+            color: var(--secoundary-color);
+            list-style-position: inside;
+            position: relative;
+            display: flex;
+            gap: 10px;
+            background-image: linear-gradient(
+              to right,
+              var(--background-main-color),
+              var(--main-color)
+            );
+            background-size: 200%;
+            box-shadow: 0 0 5px var(--main-color);
+            animation: background-rotate 10s linear infinite;
+
+            .val {
+              color: var(--secoundary-color);
+            }
+
+            span {
+              font-weight: lighter;
+              display: flex;
+              align-items: center;
+              gap: 5px;
+              .typeOfTime {
+                font-size: 0.6rem;
+                color: var(--secoundary-color);
+                text-transform: uppercase;
+              }
+            }
+          }
+
+          li:hover {
+            transform: scale(1.07);
+            box-shadow: 0 0 10px var(--main-color);
+          }
+
+          li::before {
+            font-weight: bold;
+            font-family: "Font Awesome 5 Free";
+            list-style: inside;            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.6rem;
+          }
+          .name::before {
+            content: "\f5b7";
+          }
+          .age::before {
+            content: "\f0f1";
+
+            
+          }
+          /* .age::before {
+            content: "\30";
+            filter: drop-shadow(10px 0px var(--secoundary-color)) ;
+            border-bottom: 3px solid var(--main-color);
+            padding-bottom: 3px ;
+            
+          } */
+          .work::before {
+            content: "\f0b1";
+          }
+          .status::before {
+            content: "\f542";
+          }
+          .exp::before {
+            content: "\e473";
+          }
+          .skills-container::before {
+            content: "\f44b";
+          }
+
+          .skills-container {
+            p {
+              color: var(--secoundary-color);
+            }
+          }
+        }
+
+        .text-container::before {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          left: 0;
+          top: 0;
+          background-color: #186ca4;
+        }
+      }
+      .animation-area {
+        width: 50%;
+        flex: 1;
+        position: relative;
+        .animation-ball {
+          width: 60%;
+          height: 60%;
+          border-radius: 50%;
+          background-image: linear-gradient(
+            120deg,
+            var(--main-color),
+            var(--background-main-color)
+          );
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          opacity: 0.8;
+          box-shadow: 0 0 20px var(--background-main-color);
+          animation: ball-animation 10s linear infinite;
+        }
+      }
+    }
+  }
+}
+
+/* Animation */
+
+/* List Background Animation */
+
+@keyframes background-rotate {
+  0%,
+  100% {
+    background-position-x: 0%;
+  }
+  25% {
+    background-position-x: 33%;
+  }
+  50% {
+    background-position-x: 66%;
+  }
+  75% {
+    background-position-x: 99%;
+  }
+}
+
+/* Ball Animation */
+
+@keyframes ball-animation {
+  0%,
+  100% {
+    border-radius: 20% 30% 50% 70% / 70% 50%30% 20%;
+    transform: translate(-50%, -50%) rotate(10deg);
+  }
+  10% {
+    border-radius: 70% 50% 30% 20% / 20% 30%50% 70%;
+  }
+  20% {
+    border-radius: 10% 40% 70% 100% / 90% 20% 10% 40%;
+    transform: translate(-50%, -50%) rotate(30deg);
+  }
+  30% {
+    width: 66.66%;
+    border-radius: 100% 70% 40% 10% / 40% 10% 20% 90%;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+  40% {
+    width: 100%;
+    width: 100%;
+    border-radius: 43% 65% 21% 81% / 81% 21% 65% 43%;
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg);
+    border-radius: 10% 90% 50% 44% / 44% 50% 90% 10%;
+  }
+  60% {
+    border-radius: 90% 40% 30% 60% / 60% 30% 40% 90%;
+  }
+  70% {
+    border-radius: 50% 20% 90% 10% / 10% 20% 90% 40%;
+    height: 33.33%;
+    transform: translate(-50%, -50%) rotate(280deg);
+  }
+  80% {
+    border-radius: 10% 90% 50% 30% / 30% 50% 90% 10%;
+  }
+  90% {
+    height: 100%;
+    border-radius: 24% 65% 25% 72% / 78% 25% 64% 27%;
+  }
+}
+
+@media (max-width: 1600px) {
+}
+@media (max-width: 1500px) {
+}
+@media (max-width: 1400px) {
+}
+@media (max-width: 1300px) {
+}
+@media (max-width: 1000px) {
+}
+@media (max-width: 900px) {
+}
+@media (max-width: 800px) {
+  .about-cover {
+    .about-container {
+      .cards-box {
+        flex-direction: column;
+
+        .information{
+          margin: 0 25px ;
+        }
+
+        .animation-area {
+          width: 30%;
+          height: 30%;
+          position: relative;
+
+          .animation-ball {
+            position: absolute;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 700px) {
+}
+@media (max-width: 650px) {
+}
+@media (max-width: 500px) {
+}
+@media (max-width: 400px) {
+}
+
+/* End About Section */
 
 /* testing */

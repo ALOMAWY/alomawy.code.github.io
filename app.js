@@ -1538,25 +1538,49 @@ responsiveStyle.id = "respownsive-JS";
 
 HEAD.appendChild(responsiveStyle);
 
-function responsiveCardsWithGrid(
-  target,
-  cardsLength,
-  max_1450,
-  max_600,
-  max_450
-) {
-  cardsLength = cardsLength;
 
-  if (document_width <= 1450 && document_width > 600) {
-    target.style.gridTemplateColumns = `repeat(${cardsLength},calc(100% / ${max_1450} - ${
-      parseInt(StylePackage(target).gap) / 2
-    }px) )`;
-  } else if (document_width <= 600 && document_width > 450) {
-    target.style.gridTemplateColumns = `repeat(${cardsLength},calc(100% / ${max_600} )`;
-  } else if (document_width <= 450) {
-    target.style.gridTemplateColumns = `repeat(${cardsLength},calc(100% / ${max_450} )`;
-  }
+
+
+// About Section
+
+let animationArea = document.querySelector(".animation-area");
+
+console.log(animationArea)
+
+if (animationArea.clientHeight > animationArea.clientWidth){
+  animationArea.style.width = animationArea.clientHeight+ "px"
+}else if (animationArea.clientWidth > animationArea.clientHeight) {
+  animationArea.style.height = animationArea.clientWidth+ "px"
 }
+
+
+// let animationBall = document.querySelector(".animation-ball");
+
+// if (animationBall.clientHeight > animationBall.clientWidth) {
+//   animationBall.style.width = animationBall.clientHeight + "px";
+// } else if (animationBall.clientWidth > animationBall.clientHeight) {
+//   animationBall.style.height = animationBall.clientWidth + "px";
+// }
+
+  function responsiveCardsWithGrid(
+    target,
+    cardsLength,
+    max_1450,
+    max_600,
+    max_450
+  ) {
+    cardsLength = cardsLength;
+
+    if (document_width <= 1450 && document_width > 600) {
+      target.style.gridTemplateColumns = `repeat(${cardsLength},calc(100% / ${max_1450} - ${
+        parseInt(StylePackage(target).gap) / 2
+      }px) )`;
+    } else if (document_width <= 600 && document_width > 450) {
+      target.style.gridTemplateColumns = `repeat(${cardsLength},calc(100% / ${max_600} )`;
+    } else if (document_width <= 450) {
+      target.style.gridTemplateColumns = `repeat(${cardsLength},calc(100% / ${max_450} )`;
+    }
+  }
 
 portfolioNextBtn.onclick = () => {
   scrollFunc(
