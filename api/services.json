@@ -1,42 +1,90 @@
 [
   {
-    "service": "Clean Code",
-    "explain": "It is used to improve performance It also allows for ease of modification in the future",
+    "service": {
+      "en": "Clean Code",
+      "ar": "الكود النظيف"
+    },
+    "explain": {
+      "en": "It is used to improve performance It also allows for ease of modification in the future",
+      "ar": "يستخدم لتحسين الأداء كما يتيح سهولة التعديل في المستقبل"
+    },
     "icon": "<i class=\"fa-solid fa-shield-halved\" style=\"color: ${mainTextColor};\"></i>"
   },
   {
-    "service": "Web Development",
-    "explain": "Developing large and small websites using modern technologies and a dynamic manner",
+    "service": {
+      "en": "Web Development",
+      "ar": "تطوير المواقع الإلكترونية"
+    },
+    "explain": {
+      "en": "Developing large and small websites using modern technologies and a dynamic manner",
+      "ar": "تطوير مواقع الويب الكبيرة والصغيرة باستخدام التقنيات الحديثة وبأسلوب ديناميكي"
+    },
     "icon": "<i class=\"fa-solid fa-code\" style=\"color: ${mainTextColor};\"></i>"
   },
   {
-    "service": "Performance Application",
-    "explain": "Ensuring the best possible performance",
+    "service": {
+      "en": "Performance Application",
+      "ar": "تطبيق الأداء"
+    },
+    "explain": {
+      "en": "Ensuring the best possible performance",
+      "ar": "ضمان أفضل أداء ممكن"
+    },
     "icon": "<i class=\"fa-solid fa-fire\" style=\"color: ${mainTextColor};\"></i>"
   },
   {
-    "service": "Responsive Design",
-    "explain": "It works on all screens such as computers, tablets, mobile phones, and TV's ",
+    "service": {
+      "en": "Responsive Design",
+      "ar": "تصميم متجاوب"
+    },
+    "explain": {
+      "en": "It works on all screens such as computers, tablets, mobile phones, and TV's ",
+      "ar": "يعمل على جميع الشاشات مثل الكمبيوترات والأجهزة اللوحية والهواتف المحمولة والتلفزيونات"
+    },
     "icon": "<i class=\"fa-solid fa-desktop\" style=\"color: ${mainTextColor};\"></i>"
   },
   {
-    "service": "Offers",
-    "explain": "Offers continue throughout the year Depending on the type of service",
+    "service": {
+      "en": "Offers",
+      "ar": "العروض"
+    },
+    "explain": {
+      "en": "Offers continue throughout the year Depending on the type of service",
+      "ar": "العروض مستمرة طوال العام اعتمادًا على نوع الخدمة"
+    },
     "icon": "<i class=\"fa-solid fa-circle-dollar-to-slot\" style=\"color: ${mainTextColor};\"></i>"
   },
   {
-    "service": "Web Design",
-    "explain": "Modern website designs with some tips Easy to browse with users",
+    "service": {
+      "en": "Web Design",
+      "ar": "تصميم مواقع الويب"
+    },
+    "explain": {
+      "en": "Modern website designs with some tips Easy to browse with users",
+      "ar": "تصاميم مواقع ويب حديثة مع بعض النصائح سهلة التصفح مع المستخدمين"
+    },
     "icon": "<i class=\"fa-solid fa-brush\" style=\"color: ${mainTextColor};\"></i>"
   },
   {
-    "service": "customers service",
-    "explain": "We respond to requests we receive as quickly as possible",
+    "service": {
+      "en": "customers service",
+      "ar": "خدمة العملاء"
+    },
+    "explain": {
+      "en": "We respond to requests we receive as quickly as possible",
+      "ar": "نستجيب للطلبات التي نتلقاها بأسرع ما يمكن"
+    },
     "icon": "<i class=\"fa-solid fa-person-breastfeeding\" style=\"color: ${mainTextColor};\"></i>"
   },
   {
-    "service": "Upload To Server",
-    "explain": "Uploading websites online at low cost He often has offers",
+    "service": {
+      "en": "Upload To Server",
+      "ar": "تحميل على الخادم"
+    },
+    "explain": {
+      "en": "Uploading websites online at low cost He often has offers",
+      "ar": "تحميل مواقع الويب عبر الإنترنت بتكلفة منخفضة لديه غالبا عروض"
+    },
     "icon": "<i class=\"fa-solid fa-server\" style=\"color: ${mainTextColor};\"></i>"
   }
 ]

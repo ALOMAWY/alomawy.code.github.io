@@ -1,77 +1,213 @@
 [
   {
-    "id": 1,
-    "name": "Leon Template",
-    "type": "website",
-    "discription": "Simple Template Used : HTML CSS",
+    "id": {
+      "ar": "١",
+      "en": "1"
+    },
+    "name": {
+      "ar": "قالب ليون",
+      "en": "Leon Template"
+    },
+    "type": {
+      "ar": "موقع الكتروني",
+      "en": "Website"
+    },
+    "description": {
+      "ar": "قالب بسيط يستخدم: HTML CSS",
+      "en": "Simple Template Used: HTML CSS"
+    },
     "technologies": "HTML CSS",
-    "rete": "1 / 5",
+    "rate": {
+      "num": 1,
+      "from": 5
+    },
     "color": "blue",
     "url": "https://alomawy.github.io/Leon-Design.github.io-index.html/",
-    "hosting": "github",
-    "developer": "Abdalrhman Aldabbas",
-    "source": "Elzero Web School",
-    "language": "English",
+    "hosting": {
+      "ar": "جيت هاب",
+      "en": "github"
+    },
+    "developer": {
+      "ar": "عبدالرحمن الدباس",
+      "en": "Abdalrhman Aldabbas"
+    },
+    "source": {
+      "ar": "مدرسة الزيرو لتعليم الويب",
+      "en": "Elzero Web School"
+    },
+    "language": {
+      "ar": "إنجليزي",
+      "en": "En"
+    },
     "picture": "./imgs/template_imags/leonTemplate.png"
   },
   {
-    "id": 2,
-    "name": "Kasper Template",
-    "type": "website",
-    "discription": "Simple Template Used : HTML CSS",
+    "id": {
+      "ar": "٢",
+      "en": "2"
+    },
+    "name": {
+      "ar": "قالب كاسبر",
+      "en": "Kasper Template"
+    },
+    "type": {
+      "ar": "موقع الكتروني",
+      "en": "Website"
+    },
+    "description": {
+      "ar": "قالب بسيط يستخدم: HTML CSS",
+      "en": "Simple Template Used: HTML CSS"
+    },
     "technologies": "HTML CSS",
-    "rete": "2 / 5",
+    "rate": {
+      "num": 2,
+      "from": 5
+    },
     "color": "green",
     "url": "https://alomawy.github.io/New-Kasper-Design.github.io/",
-    "hosting": "github",
-    "developer": "Abdalrhman Aldabbas",
-    "source": "Elzero Web School",
-    "language": "English",
+    "hosting": {
+      "ar": "جيت هاب",
+      "en": "github"
+    },
+    "developer": {
+      "ar": "عبدالرحمن الدباس",
+      "en": "Abdalrhman Aldabbas"
+    },
+    "source": {
+      "ar": "مدرسة الزيرو لتعليم الويب",
+      "en": "Elzero Web School"
+    },
+    "language": {
+      "ar": "إنجليزي",
+      "en": "English"
+    },
     "picture": "./imgs/template_imags/kasperTemplate.png"
   },
   {
-    "id": 3,
-    "name": "Elzero Template",
-    "type": "website",
-    "discription": "Advance CSS Template Used : HTML CSS ",
+    "id": {
+      "ar": "٣",
+      "en": "3"
+    },
+    "name": {
+      "ar": "قالب الزيرو",
+      "en": "Elzero Template"
+    },
+    "type": {
+      "ar": "موقع الكتروني",
+      "en": "Website"
+    },
+    "description": {
+      "ar": "قالب CSS متقدم يستخدم: HTML CSS",
+      "en": "Advance CSS Template Used: HTML CSS"
+    },
     "technologies": "HTML CSS",
-    "rete": "3 / 5",
+    "rate": {
+      "num": 3,
+      "from": 5
+    },
     "color": "purple",
     "url": "https://alomawy.github.io/Abdalrahman-Aldabbas-Elzero-Template.github.io/",
-    "hosting": "github",
-    "developer": "Abdalrhman Aldabbas",
-    "source": "Elzero Web School",
-    "language": "English",
+    "hosting": {
+      "ar": "جيت هاب",
+      "en": "github"
+    },
+    "developer": {
+      "ar": "عبدالرحمن الدباس",
+      "en": "Abdalrhman Aldabbas"
+    },
+    "source": {
+      "ar": "مدرسة الزيرو لتعليم الويب",
+      "en": "Elzero Web School"
+    },
+    "language": {
+      "ar": "إنجليزي",
+      "en": "English"
+    },
     "picture": "./imgs/template_imags/elzeroTemplate.png"
   },
   {
-    "id": 4,
-    "name": "Elzero Dashboard",
-    "type": "Dashboard",
-    "discription": "Advance CSS Template Used : HTML CSS And CTM_FRAMEWORK",
+    "id": {
+      "ar": "٤",
+      "en": "4"
+    },
+    "name": {
+      "ar": "لوحة تحكم الزيرو",
+      "en": "Elzero Dashboard"
+    },
+    "type": {
+      "ar": "لوحة تحكم",
+      "en": "Dashboard"
+    },
+    "description": {
+      "ar": "قالب CSS متقدم يستخدم: HTML CSS وCTM_FRAMEWORK",
+      "en": "Advance CSS Template Used: HTML CSS And CTM_FRAMEWORK"
+    },
     "technologies": "HTML CSS CTM_FRAMEWORK",
-    "rete": "4 / 5",
+
+    "rate": {
+      "num": 4,
+      "from": 5
+    },
     "color": "red",
     "url": "https://alomawy.github.io/Abdalrahman_Aldabbas-Elzero-Dashboard.github.io/",
-    "hosting": "github",
-    "developer": "Abdalrhman Aldabbas",
-    "source": "Elzero Web School",
-    "language": "English",
+    "hosting": {
+      "ar": "جيت هاب",
+      "en": "github"
+    },
+    "developer": {
+      "ar": "عبدالرحمن الدباس",
+      "en": "Abdalrhman Aldabbas"
+    },
+    "source": {
+      "ar": "مدرسة الزيرو لتعليم الويب",
+      "en": "Elzero Web School"
+    },
+    "language": {
+      "ar": "إنجليزي",
+      "en": "English"
+    },
     "picture": "./imgs/template_imags/elzeroDashboardTemplate.png"
   },
   {
-    "id": 5,
-    "name": "Master Guesser",
-    "type": "Game",
-    "discription": "Word Guessing Game Has More Then One Word Types",
+    "id": {
+      "ar": "٥",
+      "en": "5"
+    },
+    "name": {
+      "ar": "لعبة مخمن الماستر",
+      "en": "Master Guesser"
+    },
+    "type": {
+      "ar": "لعبة",
+      "en": "Game"
+    },
+    "description": {
+      "ar": "لعبة تخمين الكلمات تحتوي على أنواع أكثر من نوع للكلمات",
+      "en": "Word Guessing Game Has More Than One Word Types"
+    },
     "technologies": "HTML CSS JAVASCRIPT",
-    "rete": "5 / 7",
+    "rate": {
+      "num": 3,
+      "from": 7
+    },
     "color": "orange",
     "url": "https://alomawy.github.io/ALOMAWY-master_guesser_ult-mate.github.io/",
-    "hosting": "github",
-    "developer": "Abdalrhman Aldabbas",
-    "source": "Elzero Web School",
-    "language": "Arabic English",
+    "hosting": {
+      "ar": "جيت هاب",
+      "en": "github"
+    },
+    "developer": {
+      "ar": "عبدالرحمن الدباس",
+      "en": "Abdalrhman Aldabbas"
+    },
+    "source": {
+      "ar": "مدرسة الزيرو لتعليم الويب",
+      "en": "Elzero Web School"
+    },
+    "language": {
+      "ar": "عربي إنجليزي",
+      "en": "Arabic English"
+    },
     "picture": "./imgs/template_imags/hangmanGame.png"
   }
 ]

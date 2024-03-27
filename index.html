@@ -8,14 +8,31 @@
       content="width=device-width, initial-scale=1, maximum-scale=1"
     />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0" />
-    <title>OMAWY_WQS</title>
+    <title data-lang="applicationTitle">OMAWY_WQS</title>
+
+    <!-- Start Web Icon -->
+
+    <link rel="icon" href="./imgs/web-icon/newLogo.ico" type="image/x-icon" />
+
+    <!-- End Web Icon -->
+
     <link rel="stylesheet" href="style.css" />
+    <!-- <link rel="stylesheet" href="old.css" /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- <link
+      href="https://fonts.googleapis.com/css2?family=Acme&display=swap"
+      rel="stylesheet"
+    /> -->
+
+    <!-- New Font Test S -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Acme&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Anta&display=swap"
       rel="stylesheet"
     />
+    <!-- New Font Test E -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -27,6 +44,25 @@
       rel="stylesheet"
       href="https://pro.fontawesome.com/releases/v5.15.0/css/all.chromecss"
     />
+
+    <!-- Section Titles Font Start -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Section Titles Font End -->
+
+    <!-- Start Get Arabic Font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Kode+Mono:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- End Get Arabic Font  -->
 
     <!-- Contact Section Send Email Api  -->
 
@@ -65,105 +101,293 @@
     </div>
 
     <div id="home" class="main-container">
-      <ul class="taps select">
-        <li class="nav-link"><a href="#home">Home</a></li>
-        <li class="nav-link"><a href="#services">Services</a></li>
-        <li class="nav-link"><a href="#portfolio">Portfolio</a></li>
-        <li class="nav-link"><a href="#social_media">Social Media</a></li>
-        <li class="nav-link"><a href="#contact">Contact</a></li>
-        <li class="nav-link"><a href="#about">About</a></li>
-        <li class="nav-link"><a href="#roadmap">RoadMap</a></li>
+      <ul class="taps select" id="select-section">
+        <li class="nav-link">
+          <a
+            class="section-btn"
+            href="#home"
+            data-content="Home"
+            data-lang="home"
+          ></a>
+        </li>
+        <li class="nav-link">
+          <a
+            class="section-btn"
+            href="#services"
+            data-content="Services"
+            data-lang="services"
+          ></a>
+        </li>
+        <li class="nav-link">
+          <a
+            class="section-btn"
+            href="#portfolio"
+            data-content="Portfolio"
+            data-lang="portfolio"
+          ></a>
+        </li>
+
+        <li class="nav-link">
+          <a
+            class="section-btn"
+            href="#social_media"
+            data-content="Social Media"
+            data-lang="social_media"
+          ></a>
+        </li>
+        <li class="nav-link">
+          <a
+            class="section-btn"
+            href="#contact"
+            data-content="Contact"
+            data-lang="contact_us"
+          ></a>
+        </li>
+        <li class="nav-link">
+          <a
+            class="section-btn"
+            href="#about"
+            data-content="About"
+            data-lang="about_us"
+          ></a>
+        </li>
+        <li class="nav-link">
+          <a
+            class="section-btn"
+            href="#road-map"
+            data-content="RoadMap"
+            data-lang="road_map"
+          ></a>
+        </li>
       </ul>
 
-      <ul class="select-themes select">
-        <li id="red" class="li-theme">
-          <button class="theme-btn"></button>
+      <!-- <ul class="select-themes select" id="select-theme">
+        <li class="li-theme">
+          <button class="theme-btn" data-content="red" data-lang="red"></button>
         </li>
-        <li id="green" class="li-theme">
-          <button class="theme-btn"></button>
+        <li class="li-theme">
+          <button
+            class="theme-btn"
+            data-content="green"
+            data-lang="green"
+          ></button>
         </li>
-        <li id="blue" class="li-theme">
-          <button class="theme-btn"></button>
+        <li class="li-theme">
+          <button
+            class="theme-btn"
+            data-content="blue"
+            data-lang="blue"
+          ></button>
         </li>
-        <li id="purple" class="li-theme">
-          <button class="theme-btn"></button>
+        <li class="li-theme">
+          <button
+            class="theme-btn"
+            data-content="purple"
+            data-lang="purple"
+          ></button>
         </li>
-        <li id="orange" class="li-theme">
-          <button class="theme-btn"></button>
-        </li>
-        <li id="dark" class="li-theme">
-          <button class="theme-btn"></button>
+        <li class="li-theme">
+          <button
+            class="theme-btn"
+            data-content="orange"
+            data-lang="orange"
+          ></button>
         </li>
       </ul>
 
-      <ul class="select-language select">
-        <li id="arabic" class="li-lang">
-          <button class="lang"></button>
+      <ul class="select-language select" id="select-lang">
+        <li class="li-lang">
+          <button
+            class="lang-btn"
+            data-content="arabic"
+            data-lang="arabicLang"
+          ></button>
         </li>
-        <li id="english" class="li-lang">
-          <button class="lang"></button>
+        <li class="li-lang">
+          <button
+            class="lang-btn"
+            data-content="english"
+            data-lang="englishLang"
+          ></button>
         </li>
       </ul>
 
-      <ul class="select-download select">
-        <li id="cv" class="li-d-file">
-          <button class="d-file"></button>
+      <ul class="select-download select" id="select-d-file">
+        <li class="li-d-file">
+          <button class="d-btn" data-content="cv" data-lang="cv"></button>
         </li>
-        <li id="code" class="li-d-file">
-          <button class="d-file"></button>
+        <li class="li-d-file">
+          <button class="d-btn" data-content="code" data-lang="code"></button>
         </li>
       </ul>
-      <ul class="select-info select">
-        <li id="news" class="li-info">
-          <button class="info"></button>
+      <ul class="select-info select" id="select-info">
+        <li class="li-info">
+          <button
+            class="info-btn"
+            data-content="news"
+            data-lang="news"
+          ></button>
         </li>
-        <li id="after-set" class="li-d-file">
-          <button class="info"></button>
+        <li class="li-info">
+          <button
+            class="info-btn"
+            data-content="after-set"
+            data-lang="afterSet"
+          ></button>
+        </li>
+      </ul> -->
+      <ul class="select-themes select" id="select-theme">
+        <li class="li-theme">
+          <button
+            class="theme-btn"
+            data-content="red"
+            data-lang="red"
+            data-action="red"
+          ></button>
+        </li>
+        <li class="li-theme">
+          <button
+            class="theme-btn"
+            data-content="green"
+            data-lang="green"
+            data-action="green"
+          ></button>
+        </li>
+        <li class="li-theme">
+          <button
+            class="theme-btn"
+            data-content="blue"
+            data-lang="blue"
+            data-action="blue"
+          ></button>
+        </li>
+        <li class="li-theme">
+          <button
+            class="theme-btn"
+            data-content="purple"
+            data-lang="purple"
+            data-action="purple"
+          ></button>
+        </li>
+        <li class="li-theme">
+          <button
+            class="theme-btn"
+            data-content="orange"
+            data-lang="orange"
+            data-action="orange"
+          ></button>
+        </li>
+      </ul>
+
+      <ul class="select-language select" id="select-lang">
+        <li class="li-lang">
+          <button
+            class="lang-btn"
+            data-content="arabic"
+            data-lang="arabicLang"
+            data-action="arabic"
+          ></button>
+        </li>
+        <li class="li-lang">
+          <button
+            class="lang-btn"
+            data-content="english"
+            data-lang="englishLang"
+            data-action="english"
+          ></button>
+        </li>
+      </ul>
+
+      <ul class="select-download select" id="select-d-file">
+        <li class="li-d-file">
+          <button
+            class="d-btn"
+            data-content="cv"
+            data-lang="cv"
+            data-action="cv"
+          ></button>
+        </li>
+        <li class="li-d-file">
+          <button
+            class="d-btn"
+            data-content="code"
+            data-lang="code"
+            data-action="code"
+          ></button>
+        </li>
+      </ul>
+
+      <ul class="select-info select" id="select-info">
+        <li class="li-info">
+          <button
+            class="info-btn"
+            data-content="news"
+            data-lang="news"
+            data-action="news"
+          ></button>
+        </li>
+        <li class="li-info">
+          <button
+            class="info-btn"
+            data-content="after-set"
+            data-lang="afterSet"
+            data-action="after-set"
+          ></button>
         </li>
       </ul>
       <div class="header-container container">
         <header id="header" class="header">
           <h2 id="logo-text" class="logo-text">LOGO TEXT</h2>
-          <nav id="header-icons" class="header-icons">
-            <div class="show-icons"></div>
-            <button id="change-mode" class="header-icon">
-              <i class="fa-solid fa-brush"></i>
-            </button>
-            <button id="change-language" class="header-icon">
-              <i class="fa-solid fa-language"></i>
-            </button>
-            <button id="download-btn" class="header-icon">
-              <i class="fa-solid fa-download"></i>
-            </button>
-            <button id="get-info" class="header-icon">
-              <i class="fa-solid fa-circle-info"></i>
-            </button>
-            <button id="menu-btn" class="header-icon">
-              <div id="menu" class="menu">
-                <span id="first-row" class="menu-row"></span>
-                <span id="secound-row" class="menu-row"></span>
-                <span id="last-row" class="menu-row"></span>
-              </div>
-            </button>
-          </nav>
+          <marquee
+            class="Page-Title"
+            contextmenu="RkGCf9TL__yfqoAYs"
+            behavior="smooth"
+            direction="right"
+            data-lang="webTitle"
+            >FRONT END DEVELOPER</marquee
+          >
         </header>
       </div>
+      <nav id="header-icons" class="header-icons">
+        <div class="show-icons"></div>
+        <button id="change-mode" class="header-icon">
+          <i class="fa-solid fa-brush"></i>
+        </button>
+        <button id="change-language" class="header-icon">
+          <i class="fa-solid fa-language"></i>
+        </button>
+        <button id="download-btn" class="header-icon">
+          <i class="fa-solid fa-download"></i>
+        </button>
+        <button id="get-info" class="header-icon">
+          <i class="fa-solid fa-circle-info"></i>
+        </button>
+        <button id="menu-btn" class="header-icon">
+          <div id="menu" class="menu">
+            <span id="first-row" class="menu-row"></span>
+            <span id="secound-row" class="menu-row"></span>
+            <span id="last-row" class="menu-row"></span>
+          </div>
+        </button>
+      </nav>
       <div id="home" class="landing-cover cover">
         <div class="landing-container container">
           <div class="textarea">
-            <p class="discripton">
-              Hello Everyone<br />
-              I am Abdalrahman Aldabbas <br />
-              I work as a front-end developer <br />
-              I am From Syria Damascus <br />
-              This Is A Simple Personal Website <br />
-              I developed it in JavaScript only <br />
+            <article
+              class="discripton dir-lang-en l-change"
+              data-lang="aboutMeInfos"
+            >
+              <h2 class="sey-hello" data-lang="seyHello">Hello Everyone</h2>
+              I am Abdalrahman
+              <span class="last-name" data-lang="lName">ALDABBAS</span> . I work
+              as a front-end developer . I am From Syria Damascus . This Is A
+              Simple Personal Website . I developed it in JavaScript only .
               Techniques I worked with
-            </p>
+            </article>
             <ul id="my-skills" class="skills"></ul>
           </div>
-          <div class="logo-section">
-            <h1 class="my-name">Abdalrahman Aldabbas</h1>
+          <div class="logo-section dir-lang-en l-change">
+            <h1 class="my-name" data-lang="fullName">Abdalrahman Aldabbas</h1>
             <div class="image-logo-container">
               <img src="./imgs/logos/newLogo.jpg" alt="" />
             </div>
@@ -172,49 +396,68 @@
       </div>
       <div id="services" class="services-cover cover">
         <button id="serv-prev" class="prev-btn scroll-btns">
-          <i class="fa-solid fa-left-long fa-fade"></i>
+          <i class="fa-solid fa-caret-left"></i>
         </button>
         <button id="serv-next" class="next-btn scroll-btns">
-          <i class="fa-solid fa-right-long fa-fade"></i>
+          <i class="fa-solid fa-caret-right"></i>
         </button>
         <div class="services-container container" id="services-container">
-          <div class="services-head">
-            <span class="split-span"></span>
-            <h3 class="section-title">Services</h3>
+          <div class="header-title">
+            <div class="services-head section-head">
+              <span class="split-span"></span>
+              <h3
+                class="section-title dir-lang-en l-change"
+                data-lang="servicesTitle"
+              >
+                Services
+              </h3>
+            </div>
           </div>
-          <div class="services-body content-scroller box"></div>
+          <div
+            class="services-body content-scroller l-change dir-lang-en"
+          ></div>
         </div>
       </div>
       <div id="portfolio" class="portfolio-cover cover">
         <button id="portfolio-prev" class="prev-btn scroll-btns">
-          <i class="fa-solid fa-left-long fa-fade"></i>
+          <i class="fa-solid fa-caret-left"></i>
         </button>
         <button id="portfolio-next" class="next-btn scroll-btns">
-          <i class="fa-solid fa-right-long fa-fade"></i>
+          <i class="fa-solid fa-caret-right"></i>
         </button>
         <div class="portfolio-container container">
-          <div class="portfolio-head">
-            <span class="split-span"></span>
-            <h3 class="section-title">Portfolio</h3>
-            <div class="p-type">
-              <form action="p-type">
-                <div>
-                  <input id="all" type="radio" name="p-type" value="all"
-                  checked/ >
-                  <label for="all">All</label>
-                </div>
-                <div>
-                  <input id="website" type="radio" name="p-type"
-                  value="website"/ >
-                  <label for="website">Website</label>
-                </div>
-                <div>
-                  <input id="games" type="radio" name="p-type" value="game"/ >
-                  <label for="games">Games</label>
-                </div>
-              </form>
+          <div class="header-title">
+            <div class="portfolio-head section-head">
+              <span class="split-span"></span>
+              <h3
+                class="section-title dir-lang-en l-change"
+                data-lang="portfolioTitle"
+              >
+                Portfolio
+              </h3>
+              <div class="p-type">
+                <form action="p-type" class="dir-lang-en l-change">
+                  <div>
+                    <input id="all" type="radio" name="p-type" value="all"
+                    checked/ >
+                    <label data-lang="catagoryAll" for="all">All</label>
+                  </div>
+                  <div>
+                    <input id="website" type="radio" name="p-type"
+                    value="website"/ >
+                    <label data-lang="catagoryWebsites" for="website"
+                      >Website</label
+                    >
+                  </div>
+                  <div>
+                    <input id="games" type="radio" name="p-type" value="game"/ >
+                    <label data-lang="catagoryGames" for="games">Games</label>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
+
           <div
             id="projects-box"
             class="portfolio-body content-scroller box"
@@ -223,15 +466,22 @@
       </div>
       <div id="social_media" class="social-media-cover cover">
         <button id="social-prev" class="prev-btn scroll-btns">
-          <i class="fa-solid fa-left-long fa-fade"></i>
+          <i class="fa-solid fa-caret-left"></i>
         </button>
         <button id="social-next" class="next-btn scroll-btns">
-          <i class="fa-solid fa-right-long fa-fade"></i>
+          <i class="fa-solid fa-caret-right"></i>
         </button>
         <div class="social-media-container container">
-          <div class="social-media-header">
-            <span class="split-span"></span>
-            <h3 class="section-title">Social Media</h3>
+          <div class="header-title">
+            <div class="social-media-header section-head">
+              <span class="split-span"></span>
+              <h3
+                class="section-title dir-lang-en l-change"
+                data-lang="socialMediaTitle"
+              >
+                Social Media
+              </h3>
+            </div>
           </div>
           <div
             id="social-media-box"
@@ -247,39 +497,59 @@
           <i class="fa-solid fa-right-long fa-fade"></i>
         </button> -->
         <div class="contact-container container">
-          <div class="contact-header">
-            <span class="split-span"></span>
-            <h3 class="section-title">Contact Us</h3>
+          <div class="header-title">
+            <div class="contact-header section-head">
+              <span class="split-span"></span>
+              <h3
+                class="section-title dir-lang-en l-change"
+                data-lang="contactUsTitle"
+              >
+                Contact Us
+              </h3>
+            </div>
           </div>
           <div id="contact-box" class="cards-box content-scrollerbox">
             <div class="email-tap">
               <form action="send-massage">
-                <div>
+                <div class="input-container">
                   <label for="name"><i class="fa-solid fa-user"></i></label>
-                  <input id="name" type="text" placeholder="Name" />
+                  <input
+                    id="name"
+                    type="text"
+                    placeholder="Name"
+                    data-lang-placeholder="inputName"
+                  />
                 </div>
-                <div>
+                <div class="input-container">
                   <label for="email"
                     ><i class="fa-solid fa-envelope"></i
                   ></label>
-                  <input id="email" type="email" placeholder="Email" />
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="Email"
+                    data-lang-placeholder="inputEmail"
+                  />
                 </div>
                 <textarea
                   name="massage"
                   id="massage-area"
                   placeholder="Your Massage..."
+                  data-lang-placeholder="textAreaPlaceholder"
                   cols="30"
                   rows="6"
                   minlength="10"
                   maxlength="500"
                 ></textarea>
-                <button type="submit" id="send-massage">Send Massage</button>
+                <button type="submit" id="send-massage" data-lang="sendMassege">
+                  Send Massage
+                </button>
               </form>
               <div class="draw-container" id="contact-popups-box">
                 <div class="circle">
                   <div class="text">
                     <i class="fa-solid fa-laptop"></i>
-                    <span>Contact Us</span>
+                    <span data-lang="contactUsPopup">Contact Us</span>
                   </div>
                   <div class="star-1 c-w">
                     <i class="fa-regular fa-star"></i>
@@ -321,58 +591,300 @@
       </div>
       <div id="about" class="about-cover cover">
         <div class="about-container container">
-          <div class="about-header">
-            <span class="split-span"></span>
-            <h3 class="section-title">About</h3>
-            <i class="fa-solid fa-caret-down"></i>
+          <div class="header-title">
+            <div class="about-header section-head">
+              <span class="split-span"></span>
+              <h3
+                class="section-title dir-lang-en l-change"
+                data-lang="aboutTitle"
+              >
+                About
+              </h3>
+              <i class="fa-solid fa-caret-down"></i>
+            </div>
           </div>
-          <div id="about-box" class="cards-box content-scroller box">
+
+          <div id="about-box" class="cards-box content-scroller">
             <div class="information">
               <div class="image-container">
                 <img src="./imgs/logos/newLogo.jpg" alt="" />
               </div>
               <ul class="text-container">
                 <li class="name">
-                  Full Name : <span class="val">Abdalrahman Aldabbas</span>
+                  <p class="p-title" data-lang="fullNameText">
+                    <i class="fa-solid fa-signature"></i> Full Name :
+                  </p>
+                  <p class="val" data-lang="fullName">Abdalrahman Aldabbas</p>
                 </li>
-                <li class="age">Age : <span class="val">63</span></li>
+                <li class="age">
+                  <p class="p-title" data-lang="ageText">
+                    <i class="fa-solid fa-heart-pulse"></i> Age :
+                  </p>
+                  <p
+                    class="val content-scroller"
+                    id="my-age-about"
+                    data-lang="age"
+                  >
+                    63
+                  </p>
+                </li>
                 <li class="work">
-                  Currunt Work : <span class="val">Front End Developer Junior</span>
+                  <p class="p-title" data-lang="cWorkText">
+                    <i class="fa-solid fa-briefcase"></i> Currunt Work :
+                  </p>
+                  <p class="val" data-lang="cWork">
+                    Front End Developer Junior
+                  </p>
                 </li>
                 <li class="status">
-                  Status : <span class="val">Available To Work</span>
+                  <p class="p-title" data-lang="statusText">
+                    <i class="fa-solid fa-diagram-project"></i>
+                    Status :
+                  </p>
+                  <p class="val" data-lang="status">Available To Work</p>
                 </li>
                 <li class="exp">
-                  Experiance :
-                  <span class="val"
-                    >1.5 <sup class="typeOfTime">year</sup> In Learning</span
-                  >
+                  <p class="p-title" data-lang="expText">
+                    <i class="fa-solid fa-chart-simple"></i> Experiance :
+                  </p>
+                  <p class="val" id="my-exp-about" data-lang="exp">
+                    1.5 <sup class="typeOfTime">year</sup> In Learning
+                  </p>
                 </li>
-                <li class="skills-container">
-                  Skills :
-                  <p class="skills content-scroller"></p>
+
+                <li class="skills-container dir-lang-en l-change">
+                  <p class="p-title" data-lang="skills">Skills :</p>
+                  <p class="about-skills content-scroller"></p>
                 </li>
               </ul>
             </div>
             <div class="animation-area">
               <div class="animation-ball b-blur"></div>
+
+              <!-- <div class="coding-area"> -->
+              <!-- <pre> -->
+              <!-- <code> -->
+              <!-- <p>
+                  <span class="var">let</span>
+                  <span class="v-name">First_Name</span>
+                  <span class="m">=</span>
+                  <span class="v-value">'Abdalrahman'</span>
+                  <span class="m">;</span>
+                </p>
+                <p>
+                  <span class="var">let</span>
+                  <span class="v-name">Last_Name</span>
+                  <span class="m">=</span>
+                  <span class="v-value">'Aldabbas'</span>
+                  <span class="m">;</span>
+                </p>
+                <p>
+                  <span class="var">function</span>
+                  <span class="v-name">nameConcat</span>
+                  <span class="m">(</span>
+                  <span class="v-name">f_Name</span>
+                  <span class="mm">,</span>
+                  <span class="v-name">l_Name</span>
+                  <span class="m">)</span>
+                  <span class="m">{</span>
+
+                  <span class="var">return</span>
+                  <span class="v-value">`</span>
+                  <span class="o-bows">$</span>
+                  <span class="o-bows">{</span>
+                  <span class="v-name">First_Name</span>
+                  <span class="o-bows">}</span>
+                  <span class="space"> </span>
+                  <span class="o-bows">$</span>
+                  <span class="o-bows">{</span>
+                  <span class="v-name">Last_Name</span>
+                  <span class="o-bows">}</span>
+                  <span class="space"> </span>
+                  <span class="emoji">🩵</span>
+                  <span class="v-value">`</span>
+                  <span class="m">;</span>
+                  <span class="m">}</span>
+                </p>
+
+                <p>
+                  <span class="v-name">nameConcat</span>
+                  <span class="o-bows-f">(</span>
+                  <span class="v-name">First_Name</span>
+                  <span class="space"> </span>
+                  <span class="mm">, </span>
+                  <span class="v-name">Last_Name</span>
+                  <span class="o-bows-f">)</span>
+                </p>
+
+                <p>
+                  <span class="v-value">'Abdalrahman Aldabbas 🩵'</span>
+                </p> -->
+              <!-- </code> -->
+              <!-- </pre> -->
+              <!-- </div> -->
             </div>
           </div>
         </div>
       </div>
       <div id="road-map" class="road-map-cover cover">
-        <button id="road-map-prev" class="prev-btn scroll-btns">
+        <!-- <button id="road-map-prev" class="prev-btn scroll-btns">
           <i class="fa-solid fa-left-long fa-fade"></i>
         </button>
         <button id="road-map-next" class="next-btn scroll-btns">
           <i class="fa-solid fa-right-long fa-fade"></i>
-        </button>
+        </button> -->
         <div class="road-map-container container">
-          <div class="road-map-header">
-            <span class="split-span"></span>
-            <h3 class="section-title">Road Map</h3>
+          <div class="header-title">
+            <div class="road-map-header section-head">
+              <span class="split-span"></span>
+              <h3
+                class="section-title dir-lang-en l-change"
+                data-lang="roadMapTitle"
+              >
+                Road Map
+              </h3>
+            </div>
           </div>
-          <div id="road-map-box" class="cards-box content-scroller"></div>
+
+          <div class="content-box box">
+            <div class="rm-cover">
+              <button class="rm-btns show-rm" data-lang="showRm">
+                Show Road Map
+              </button>
+              <button class="rm-btns control-rm" data-lang="controlCar">
+                Lets Driving The Car
+              </button>
+            </div>
+            <div class="popup">
+              <!-- <button id="car-controler" class="lets-start">
+                Start Control
+              </button> -->
+            </div>
+            <div class="car">
+              <img src="./imgs/assets/ad_.png" alt="car_photo" />
+            </div>
+            <h4 class="t-of-rm" data-lang="mapTitle">Front End Road Map</h4>
+
+            <div class="h-road start-road-h r-1"></div>
+            <div class="corner b-l-c c-1">
+              <div class="info-b info">
+                <img src="./imgs/tech-icons/html.png" alt="logo" />
+              </div>
+            </div>
+            <div class="v-road r-2"></div>
+            <div class="corner t-r-c c-2">
+              <div class="info-b info">
+                <img src="./imgs/tech-icons/css.png" alt="logo" />
+              </div>
+            </div>
+            <div class="h-road r-3"></div>
+            <div class="corner t-l-c c-3">
+              <div class="info-l info">
+                <img src="./imgs/tech-icons/git.png" alt="logo" />
+              </div>
+            </div>
+            <div class="v-road r-4"></div>
+            <div class="corner b-l-c c-4">
+              <div class="info-b info">
+                <img src="./imgs/tech-icons/github.png" alt="logo" />
+              </div>
+            </div>
+            <div class="h-road r-5"></div>
+            <div class="corner t-r-c c-5">
+              <div class="info-b info">
+                <img src="./imgs/tech-icons/practice.png" alt="logo" />
+              </div>
+            </div>
+            <div class="v-road r-6"></div>
+            <div class="corner b-r-c c-6">
+              <div class="info-b info">
+                <img src="./imgs/tech-icons/js.png" alt="logo" />
+              </div>
+            </div>
+            <div class="h-road r-7"></div>
+            <div class="corner b-l-c c-7">
+              <div class="info-l info im-here">
+                <img src="./imgs/tech-icons/practice.png" alt="logo" />
+              </div>
+            </div>
+            <div class="v-road r-8"></div>
+            <div class="corner t-l-c c-8">
+              <div class="info-l info">
+                <img src="./imgs/tech-icons/bootstrap.png" alt="logo" />
+              </div>
+            </div>
+            <div class="h-road r-9"></div>
+            <div class="corner t-r-c c-9">
+              <div class="info-b info">
+                <img src="./imgs/tech-icons/sass.png" alt="logo" />
+              </div>
+            </div>
+            <div class="v-road r-10"></div>
+            <div class="corner b-r-c c-10">
+              <div class="info-t info">
+                <img src="./imgs/tech-icons/typescript.png" alt="logo" />
+              </div>
+            </div>
+            <div class="h-road r-11"></div>
+            <div class="corner b-l-c c-11">
+              <!-- <div class="info-t info">
+                <img src="./imgs/tech-icons/gulp-js.png" alt="logo" />
+              </div> -->
+            </div>
+            <div class="v-road r-12"></div>
+            <div class="corner t-r-c c-12">
+              <div class="info-b info">
+                <img src="./imgs/tech-icons/pug-js.png" alt="logo" />
+              </div>
+            </div>
+            <div class="h-road r-13"></div>
+            <div class="corner t-l-c c-13">
+              <div class="info-b info">
+                <img src="./imgs/tech-icons/jest-js.png" alt="logo" />
+              </div>
+            </div>
+            <div class="v-road r-14"></div>
+            <div class="corner b-l-c c-14">
+              <div class="info-t info">
+                <img src="./imgs/tech-icons/cmd-terminal.png" alt="logo" />
+              </div>
+            </div>
+            <div class="h-road r-15"></div>
+            <div class="corner b-r-c c-15">
+              <div class="info-t info">
+                <img src="./imgs/tech-icons/npm.png" alt="logo" />
+              </div>
+            </div>
+            <div class="v-road r-16"></div>
+            <div class="corner t-r-c c-16">
+              <div class="info-m-v info-b h-row">
+                <img src="./imgs/tech-icons/vue.png" alt="logo" />
+                <img src="./imgs/tech-icons/physics.png" alt="logo" />
+                <img src="./imgs/tech-icons/angular.png" alt="logo" />
+              </div>
+            </div>
+            <div class="h-road r-17"></div>
+            <div class="corner t-l-c c-17">
+              <div class="info-r info">
+                <img src="./imgs/tech-icons/practice.png" alt="logo" />
+              </div>
+            </div>
+            <div class="v-road r-18"></div>
+            <div class="corner b-l-c c-18">
+              <div class="info-l info">
+                <img src="./imgs/tech-icons/structureDSA.png" alt="logo" />
+              </div>
+            </div>
+            <div class="h-road r-19"></div>
+            <div class="corner b-r-c c-19"></div>
+            <div class="v-road r-20">
+              <div class="info-m-v info-r">
+                <img src="./imgs/tech-icons/php.png" alt="logo" />
+                <img src="./imgs/tech-icons/node.png" alt="logo" />
+                <img src="./imgs/tech-icons/dot-net.png" alt="logo" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -384,3 +896,234 @@
     <script src="./app.js"></script>
   </body>
 </html>
+
+<!-- <div class="start-road v-road">
+              <dir class="info info-l">
+                <img src="./imgs/tech-icons/html-5.png" alt="" />
+              </dir>
+              <div class="corner corner-1 b-r-c f-c">
+                <div class="info info-r">
+                  <img src="./imgs/tech-icons/css-3.png" alt="" />
+                </div>
+                <div class="h-road">
+                  <div class="corner corner-2 t-l-c">
+                    <div class="info info-l">
+                      <img src="./imgs/tech-icons/github.png" alt="" />
+                    </div>
+                    <div class="info info-t">
+                      <img src="./imgs/tech-icons/git.png" alt="" />
+                    </div>
+                    <div class="v-road">
+                      <div class="corner corner-3 b-r-c">
+                        <div class="info info-r">
+                          <img src="./imgs/tech-icons/js.png" alt="" />
+                        </div>
+                        <div class="h-road">
+                          <div class="corner corner-4 t-l-c">
+                            <div class="info-m-v info-l">
+                              <img
+                                src="./imgs/tech-icons/bootstrap.png"
+                                alt=""
+                              />
+                              <img
+                                src="./imgs/tech-icons/tailwind.png"
+                                alt=""
+                              />
+                            </div>
+                            <div class="v-road">
+                              <div class="corner corner-5 b-r-c f-c">
+                                <div class="info info-r">
+                                  <img
+                                    src="./imgs/tech-icons/typescript.png"
+                                    alt=""
+                                  />
+                                </div>
+                                <div class="h-road">
+                                  <div class="corner corner-6 b-l-c">
+                                    <div class="info info-l">
+                                      <img
+                                        src="./imgs/tech-icons/sass.png"
+                                        alt=""
+                                      />
+                                    </div>
+                                    <div class="v-road">
+                                      <div class="corner corner-7 t-r-c">
+                                        <div class="info info-r">
+                                          <img
+                                            src="./imgs/tech-icons/gulp-js.png"
+                                            alt=""
+                                          />
+                                        </div>
+                                        <div class="h-road">
+                                          <div class="corner corner-8 b-l-c">
+                                            <div class="info info-l">
+                                              <img
+                                                src="./imgs/tech-icons/pug-js.png"
+                                                alt=""
+                                              />
+                                            </div>
+                                            <div class="v-road">
+                                              <div
+                                                class="corner corner-9 t-r-c"
+                                              >
+                                                <div class="info-m-v info-r">
+                                                  <img
+                                                    src="./imgs/tech-icons/physics.png"
+                                                    alt=""
+                                                  />
+                                                  <img
+                                                    src="./imgs/tech-icons/angular.png"
+                                                    alt=""
+                                                  />
+                                                  <img
+                                                    src="./imgs/tech-icons/vue.png"
+                                                    alt=""
+                                                  />
+                                                </div>
+                                                <div class="h-road">
+                                                  <div
+                                                    class="corner corner-10 b-l-c"
+                                                  >
+                                                    <div class="v-road">
+                                                      <div
+                                                        class="info-r info-m-h"
+                                                      >
+                                                        <img
+                                                          src="./imgs/tech-icons/node.png"
+                                                          alt=""
+                                                        />
+                                                        <img
+                                                          src="./imgs/tech-icons/php.png"
+                                                          alt=""
+                                                        />
+                                                        <img
+                                                          src="./imgs/tech-icons/database-storage.png"
+                                                          alt=""
+                                                        />
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+ -->
+
+<!-- .start-road {
+        height: var(--w-h);
+        position: absolute;
+        bottom: 0;
+        left: 15%;
+        transform: translateX(-50%);
+        border-right: 5px solid var(--secoundary-color);
+
+        .corner {
+          position: absolute;
+          bottom: 100%;
+          left: -5px;
+
+          .h-road {
+            position: absolute;
+            left: 99%;
+            width: var(--w-h);
+            top: -5px;
+
+            .corner {
+              position: absolute;
+              left: 100%;
+              bottom: -5px;
+
+              .v-road {
+                position: absolute;
+                bottom: 100%;
+                height: var(--w-h);
+
+                .corner {
+                  position: absolute;
+                  bottom: 100%;
+                  left: -5px;
+
+                  .h-road {
+                    width: var(--w-h);
+
+                    .corner {
+                      left: 100%;
+                      bottom: -5px;
+
+                      .v-road {
+                        .corner {
+                          bottom: 100%;
+                          left: -5px;
+
+                          .h-road {
+                            width: 300px;
+                            .corner {
+                              left: 100%;
+                              top: -5px;
+
+                              .v-road {
+                                top: 100%;
+                                .corner {
+                                  top: 100%;
+                                  left: -5px;
+
+                                  .h-road {
+                                    position: absolute;
+                                    width: var(--w-h);
+                                    top: 0;
+
+                                    .corner {
+                                      /* position: absolute; */
+                                      left: 100%;
+                                      top: -5px;
+
+                                      .v-road {
+                                        .corner {
+                                          left: -5px;
+                                          top: 100%;
+
+                                          .h-road {
+                                            .corner {
+                                              left: 100%;
+                                              top: -5px;
+
+                                              .start-road {
+                                                position: absolute;
+                                                /* left: 0; */
+                                                right: 100%;
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      } -->

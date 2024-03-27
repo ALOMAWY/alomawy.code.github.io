@@ -20,6 +20,17 @@ let mainTextColor = `#fff`;
 
 let mainSecondaryColor = `#186ca4`;
 
+let sectionTitle = document.querySelectorAll(".header-title");
+
+sectionTitle.forEach((title, index) => {
+  title.style.height =
+    parseInt(
+      StylePackage(document.querySelectorAll(".section-head")[index]).height
+    ) +
+    30 +
+    "px";
+});
+
 // Background Colors
 
 const background_White_Color = `rgba(255 , 255 , 255 , 0.7 )`;
@@ -94,184 +105,286 @@ function addStyleToPsoudoElement(style, file) {
 }
 
 // Reset Elements Positions
-let = webLangWords = new Object({
+let languages = {
   arabic: {
-    header: {
-      animationNames: [
-        "مصمم واجهات امامية",
+    applicationTitle: "امبراطورية الأموي",
+    // Start Header
+    // Navgation Bar
+    webTitle: "عبدالرحمن الدباس",
+    home: "الرئيسية",
+    services: "الخدمات",
+    portfolio: "المعرض",
+    social_media: "التواصل الاجتماعي",
+    contact_us: "اتصل بنا",
+    about_us: "عنا",
+    road_map: "خريطة التعلم",
 
-        "ألاموي المكود",
+    // Skills
 
-        "سوريا حرا",
+    // Colors
+    red: "أحمر",
+    green: "أخضر",
+    blue: "أزرق",
+    orange: "برتقالي",
+    purple: "بنفسجي",
 
-        "صانع محتوي",
+    // Languages
+    arabicLang: "العربية",
+    englishLang: "الانجليزية",
 
-        "عبدالرحمن الدباس",
-      ],
-      mainName: "عبدالرحمن الدباس",
+    // Download Files
+    cv: "ملفي",
+    code: "الكود",
 
-      themesColors: ["أحمر", "أخضر", "أزرق", "بنفسجي", "برتقالي", "داكن"],
+    // Infos
+    news: "الجديد",
 
-      languages: ["أجنبي", "عربي"],
+    // End Header
 
-      downloadFiles: [],
+    // Start Landing Page
 
-      information: [],
+    seyHello: "السلام عليكم",
+    aboutMeInfos:
+      "<h2 class='sey-hello' data-lang='seyHello'>السلام عليكم</h2>مرحبا انا عبدالرحمن الدباس . أعمل  كمطور واجهات أمامية لمواقع الانترنت .أنا من سوريا دمشق . هذا موقع شخصي بسيط قمت بتطويره ب  'Java Script' . فقط",
 
-      directoris: [
-        "الرئيسية",
-        "الخدمات",
-        "المعرض",
-        "وسائل التواصل الاجتماعي",
-        "اتصل بنا",
-        "عنا",
-        "خارطة الطريق",
-      ],
-    },
-    landing: {
-      disc: `مرحبًا بالجميع<br>
-أنا عبد الرحمن الدباس<br>
-أعمل كمطوّر واجهة أمامية<br>
-أنا من سوريا دمشق<br>
-هذا موقع شخصي بسيط<br>
-قمت بتطويره باستخدام JavaScript فقط<br>
-`,
-      arabicNumbersForLooping: [
-        "٠",
-        "١",
-        "٢",
-        "٣",
-        "٤",
-        "٥",
-        "٦",
-        "٧",
-        "٨",
-        "٩",
-        "١٠",
-        "١١",
-        "١٢",
-        "١٣",
-        "١٤",
-        "١٥",
-        "١٦",
-        "١٧",
-        "١٨",
-        "١٩",
-        "٢٠",
-        "٢١",
-        "٢٢",
-        "٢٣",
-        "٢٤",
-        "٢٥",
-        "٢٦",
-        "٢٧",
-        "٢٨",
-        "٢٩",
-        "٣٠",
-        "٣١",
-        "٣٢",
-        "٣٣",
-        "٣٤",
-        "٣٥",
-        "٣٦",
-        "٣٧",
-        "٣٨",
-        "٣٩",
-        "٤٠",
-        "٤١",
-        "٤٢",
-        "٤٣",
-        "٤٤",
-        "٤٥",
-        "٤٦",
-        "٤٧",
-        "٤٨",
-        "٤٩",
-        "٥٠",
-        "٥١",
-        "٥٢",
-        "٥٣",
-        "٥٤",
-        "٥٥",
-        "٥٦",
-        "٥٧",
-        "٥٨",
-        "٥٩",
-        "٦٠",
-        "٦١",
-        "٦٢",
-        "٦٣",
-        "٦٤",
-        "٦٥",
-        "٦٦",
-        "٦٧",
-        "٦٨",
-        "٦٩",
-        "٧٠",
-        "٧١",
-        "٧٢",
-        "٧٣",
-        "٧٤",
-        "٧٥",
-        "٧٦",
-        "٧٧",
-        "٧٨",
-        "٧٩",
-        "٨٠",
-        "٨١",
-        "٨٢",
-        "٨٣",
-        "٨٤",
-        "٨٥",
-        "٨٦",
-        "٨٧",
-        "٨٨",
-        "٨٩",
-        "٩٠",
-        "٩١",
-        "٩٢",
-        "٩٣",
-        "٩٤",
-        "٩٥",
-        "٩٦",
-        "٩٧",
-        "٩٨",
-        "٩٩",
-        "١٠٠",
-      ],
-    },
-    services: {},
-    portfolio: {
-      types: ["الــكل", "المـــواقع", "الألــعاب"],
-      card: {
-        dev: "تطوير",
-        typeOfProject: "نوع المشــروع",
-        technologies: "التقنيات",
-        hosting: "الاستضافة",
-        language: "اللغة",
-        sourceIdea: "مصدر الفكرة",
-        rete: "التصنيف",
-        discription: "الوصف",
-      },
-    },
+    fullName: "عبدالرحمن الدباس",
+
+    // End Landing Page
+
+    // Start Services Page
+
+    servicesTitle: "الخدمات",
+
+    // End Services Page
+
+    // Start Portfolio Page
+
+    portfolioTitle: "المعرض",
+
+    // Filter List
+    catagoryAll: "الكل",
+    catagoryWebsites: "المواقع",
+    catagoryGames: "الألعاب",
+
+    // End Portfolio Page
+
+    // Start social Media
+
+    socialMediaTitle: "التواصل الاجتماعي",
+
+    // End social Media
+
+    // Start ContactUs Page
+    contactUsTitle: "تواصل معنا",
+    contactUsName: "الاسم",
+
+    contactUsPopup: "تواصل معنا",
+
+    // Form Inputs
+    inputName: "الاسم",
+    inputEmail: "البريد الالكتروني",
+    textAreaPlaceholder: "اكتب رسالتك",
+
+    sendMassege: "ارسل رسالتك",
+
+    // End ContactUs Page
+
+    // Start About Page
+
+    aboutTitle: "تفاصيل",
+    fullNameText: `<i class="fa-solid fa-signature"></i> الاسم :`,
+    ageText: `<i class="fa-solid fa-heart-pulse"></i> العمر :`,
+    cWorkText: `<i class="fa-solid fa-briefcase"></i> العمل :`,
+    statusText: `<i class="fa-solid fa-diagram-project"></i> الحالة :`,
+    expText: `<i class="fa-solid fa-chart-simple"></i> الخبرة :`,
+    skills: `المهارات :`,
+
+    age: "العمر",
+    cWork: "مطور واجهات أمامية",
+    status: "متاح للعمل",
+    exp: toArabicNumber(getExpYears("02/22/2022")),
+
+    // End About Page
+
+    // Start Project Card
+
+    pDevTitleText: "المطور :",
+
+    pTypeTitleText: "النوع :",
+
+    pTechTitleText: "التقنيات :",
+
+    pHostTitleText: "الاستضافة :",
+
+    pLangTitleText: "اللغات :",
+
+    pSrcTitleText: "مصدر الفكرة :",
+
+    pRateTitleText: "التقييم :",
+
+    pDiscTitleText: "الوصف :",
+
+    visitLinkText: "زيارة",
+
+    // End Project Card
+
+    // Start Social Card
+
+    socialFollowersTitle: "المتابعين",
+
+    socialFriendsTitle: "الأصدقاء",
+
+    socialPostsTitle: "المنشورات",
+
+    socialUserNameTitle: "اسم المستخدم",
+
+    socialContentTitle: "المحتوى",
+    // End Social Card
+
+    // Start Road Map Page
+
+    roadMapTitle: "خريطة التعلم",
+    showRm: "رؤية الخريطة",
+    controlCar: "قيادة السيارة",
+    mapTitle: "تطوير الواجهات الأمامية",
+
+    // End Road Map Page
   },
-});
+  english: {},
+};
 
-function massege(msg) {
+let arNums = [
+  "٠",
+  "١",
+  "٢",
+  "٣",
+  "٤",
+  "٥",
+  "٦",
+  "٧",
+  "٨",
+  "٩",
+  "١٠",
+  "١١",
+  "١٢",
+  "١٣",
+  "١٤",
+  "١٥",
+  "١٦",
+  "١٧",
+  "١٨",
+  "١٩",
+  "٢٠",
+  "٢١",
+  "٢٢",
+  "٢٣",
+  "٢٤",
+  "٢٥",
+  "٢٦",
+  "٢٧",
+  "٢٨",
+  "٢٩",
+  "٣٠",
+  "٣١",
+  "٣٢",
+  "٣٣",
+  "٣٤",
+  "٣٥",
+  "٣٦",
+  "٣٧",
+  "٣٨",
+  "٣٩",
+  "٤٠",
+  "٤١",
+  "٤٢",
+  "٤٣",
+  "٤٤",
+  "٤٥",
+  "٤٦",
+  "٤٧",
+  "٤٨",
+  "٤٩",
+  "٥٠",
+  "٥١",
+  "٥٢",
+  "٥٣",
+  "٥٤",
+  "٥٥",
+  "٥٦",
+  "٥٧",
+  "٥٨",
+  "٥٩",
+  "٦٠",
+  "٦١",
+  "٦٢",
+  "٦٣",
+  "٦٤",
+  "٦٥",
+  "٦٦",
+  "٦٧",
+  "٦٨",
+  "٦٩",
+  "٧٠",
+  "٧١",
+  "٧٢",
+  "٧٣",
+  "٧٤",
+  "٧٥",
+  "٧٦",
+  "٧٧",
+  "٧٨",
+  "٧٩",
+  "٨٠",
+  "٨١",
+  "٨٢",
+  "٨٣",
+  "٨٤",
+  "٨٥",
+  "٨٦",
+  "٨٧",
+  "٨٨",
+  "٨٩",
+  "٩٠",
+  "٩١",
+  "٩٢",
+  "٩٣",
+  "٩٤",
+  "٩٥",
+  "٩٦",
+  "٩٧",
+  "٩٨",
+  "٩٩",
+  "١٠٠",
+];
+
+function massege(msg, timing = 3) {
   if (document.querySelector(".massege-box")) {
     document.querySelector(".massege-box").remove();
+
+    let massegeBox = document.createElement("div");
+
+    let textNode = document.createTextNode(msg);
+
+    massegeBox.appendChild(textNode);
+
+    massegeBox.classList.add("massege-box");
+
+    BODY.prepend(massegeBox);
+
+    massegeBox.style.animation = `${timing}s ease-in-out 0s 1 normal backwards running msg`;
+  } else {
+    let massegeBox = document.createElement("div");
+
+    let textNode = document.createTextNode(msg);
+
+    massegeBox.appendChild(textNode);
+
+    massegeBox.classList.add("massege-box");
+
+    BODY.prepend(massegeBox);
+
+    massegeBox.style.animation = `${timing}s ease-in-out 0s 1 normal backwards running msg`;
   }
-  let massegeBox = document.createElement("div");
-
-  let textNode = document.createTextNode(msg);
-
-  massegeBox.appendChild(textNode);
-
-  massegeBox.classList.add("massege-box");
-
-  BODY.prepend(massegeBox);
-
-  massegeBox.style.animation = `msg 3s ease-in-out 1 backwards`;
 }
 
 const lockPageDiv = document.getElementById("lock-page");
@@ -316,8 +429,6 @@ drawArea.addEventListener("mouseover", () => {
     content:'${unlockStatus}%';}`;
       }, 0);
 
-      console.log(unlockStatus);
-
       if (unlockStatus >= 100) {
         clearInterval(counterToUnlock);
 
@@ -333,7 +444,7 @@ drawArea.addEventListener("mouseover", () => {
         setTimeout(() => {
           lockPageDiv.remove();
 
-          HEADER.style.top = "0";
+          header.style.top = "0";
         }, 1000);
       }
     }, 10);
@@ -366,198 +477,188 @@ drawArea.addEventListener("mouseout", () => {
   clearInterval(counterToUnlock);
 });
 
-let headerNames = [
-  "FRONT END DEVELOPER",
+let header = document.getElementById("header");
 
-  "ALOMAWY CODER",
+let headerParent = header.parentNode;
 
-  "FREE SYRIA",
+document.addEventListener("DOMContentLoaded", () => {
+  if (document_width < 1100) {
+    header.style.width = "100%";
 
-  "CONTENT CREATEOR",
+    headerParent.style.height = StylePackage(header).height;
 
-  "ABDALRAHMAN ALDABBAS",
-];
+    headerParent.style.paddingLeft = "0";
 
-const HEADER = document.getElementById("header");
+    headerParent.style.paddingRight = "0";
+
+    headerParent.style.borderRadius = "0";
+
+    header.style.padding = " 7px 15px ";
+
+    let headerAllHeight = parseInt(StylePackage(header).height);
+
+    if (headerAllHeight == parseInt(StylePackage(header).height)) {
+      setTimeout(() => {
+        headerParent.style.height = StylePackage(header).height;
+      }, 500);
+    }
+  } else {
+    header.style.width = headerParent.getFullWidth() + "px";
+
+    headerParent.style.height = StylePackage(header).height;
+
+    headerParent.style.paddingLeft = StylePackage(header).paddingLeft;
+
+    headerParent.style.paddingRight = StylePackage(header).paddingRight;
+
+    initializeEnglishLanguageObject();
+  }
+});
+
+let V_scroll = 0;
+
+window.addEventListener("scroll", () => {
+  if (scrollY > parseInt(StylePackage(header).height)) {
+    header.style.backgroundColor = "var(--background-main-color)";
+
+    header.style.backdropFilter = "blur(10px)";
+
+    header.style.boxShadow = "0 0 20px var(--main-color)";
+
+    header.style.top = "-200px";
+
+    if (scrollY < V_scroll) {
+      header.style.top = "0";
+    }
+  }
+
+  if (scrollY == 0) {
+    header.style.top = "0";
+
+    header.style.backgroundColor = "transparent";
+
+    header.style.backdropFilter = "blur(0px)";
+
+    header.style.boxShadow = "none";
+
+    header.style.borderRadius = " 0 ";
+  }
+});
+window.addEventListener("scrollend", (e) => {
+  V_scroll = window.scrollY;
+});
+
+let navgationBar = document.getElementsByTagName("nav")[0];
+
+if (document_width < 800) {
+  navgationBar.remove();
+
+  BODY.prepend(navgationBar);
+} else {
+  navgationBar.remove();
+
+  header.appendChild(navgationBar);
+}
 
 // Header Styling
 
 let landing = document.querySelector(".landing-cover");
 
 landing.style.minHeight = `calc(100vh - ${parseInt(
-  StylePackage(HEADER).height
+  StylePackage(header).height
 )}PX)`;
 
 // Styling Website Logo Text Psoudo Element
 
-let logoText = document.getElementById("logo-text");
-
-logoText.innerText = "FREE PALESTINE 🏴";
-
-let animationFile = document.createElement("style");
-
-animationFile.id = "animation-style";
-
-animationFile.innerHTML = `
-@keyframes typing {
-  60%,
-  70% {
-    left: 100%;
-  }
-  0%  , 100%{
-    left: 0%;
-  }
-}
-
-
-@keyframes cursor-typing {
-  10%,
-  20%,
-  30%,
-  40%,
-  50%,
-  60%,
-  70%,
-  80%,
-  90%,
-  100% {
-    opacity: 1;
-  }
-  0%,
-  5%,
-  15%,
-  25%,
-  35%,
-  45%,
-  55%,
-  65%,
-  75%,
-  85%,
-  95% {
-    opacity: 0;
-  }
-
-  60%,
-  70% {
-    left: 100%;
-  }
-  100% {
-    left: 0%;
-    opacity: 1;
-  }
-}
-
-#logo-text::before{
-  content:"";
-  animation:typing 5s steps(${logoText.innerHTML.length}) infinite;
-  z-index:99998;
-}
-#logo-text::after{
-  content:'';
-  animation:cursor-typing 5s steps(${logoText.innerHTML.length}) infinite;
-
-}
-`;
-
-HEAD.appendChild(animationFile);
-
-function changeName() {
-  let count = 0;
-
-  setInterval(() => {
-    logoText.innerHTML = headerNames[count];
-    animationFile.innerHTML += `#logo-text::before{
-  content:"";
-  animation:typing 5s steps(${logoText.innerHTML.length}) infinite;
-  z-index:99998;
-}
-#logo-text::after{
-  content:'';
-  animation:cursor-typing 5s steps(${logoText.innerHTML.length}) infinite;
-
-}`;
-
-    HEAD.appendChild(animationFile);
-
-    headerNames[count] != headerNames[headerNames.length - 1]
-      ? count++
-      : (count = 0);
-  }, 5100);
-
-  let typingAnimation_CSS = ` 
-
-    @keyframes typing {
-  60%,
-  70% {
-    left: 100%;
-  }
-  0% , 100% {
-    left: 0%;
-  }
-}
-
-
-@keyframes cursor-typing {
-  10%,
-  20%,
-  30%,
-  40%,
-  50%,
-  60%,
-  70%,
-  80%,
-  90%,
-  100% {
-    opacity: 1;
-  }
-  0%,
-  5%,
-  15%,
-  25%,
-  35%,
-  45%,
-  55%,
-  65%,
-  75%,
-  85%,
-  95% {
-    opacity: 0;
-  }
-
-  60%,
-  70% {
-    left: 100%;
-  }
-  100% {
-    left: 0%;
-    opacity: 1;
-  }
-}
-
-#logo-text::before{
-  content:"";
-  animation:typing 5s steps(${logoText.innerHTML.length}) infinite;
-  z-index:99998;
-}
-#logo-text::after{
-  content:'';
-  animation:cursor-typing 5s steps(${logoText.innerHTML.length}) infinite;
-
-}
-`;
-
-  animationFile.innerHTML = typingAnimation_CSS;
-}
-
-changeName();
-
 // Onload Actions
+
+let currentLanguge = localStorage.getItem("language");
 
 window.addEventListener("load", () => {
   // It Is Set The Select Theme If The User Changed The Default Theme
   localStorage.getItem("theme")
     ? applyTheme(localStorage.getItem("theme"))
     : applyTheme("blue");
+
+  initializeEnglishLanguageObject();
+
+  applyButtons(currentLanguge);
+
+  currentLanguge ? applyLanguage(currentLanguge) : applyLanguage("english");
+
+  if (currentLanguge != "arabic") {
+    createButtonAction(
+      changeThemeContainer,
+      changeTheme,
+      colorName,
+      applyTheme,
+      "Theme Changed To"
+    );
+
+    createButtonAction(
+      languagesContainer,
+      changeLanguageBtn,
+      languageNames,
+      applyLanguage,
+      "language Changed To"
+    );
+
+    createButtonAction(
+      selectDownloadContainer,
+      selectFileBtn,
+      fileNames,
+      test,
+      "Downloading File"
+    );
+
+    createButtonAction(infoContainer, infoBtn, infoNames, test, "Show");
+
+    createButtonAction(menuContainer, menu, tapNames, test, "Going To");
+  } else if (currentLanguge === "arabic") {
+    createButtonAction(
+      changeThemeContainer,
+      changeTheme,
+      colorName,
+      applyTheme,
+      `تم تغيير الثمة الى اللون `
+    );
+
+    createButtonAction(
+      languagesContainer,
+      changeLanguageBtn,
+      languageNames,
+      applyLanguage,
+      "تم تغيير اللغة الى"
+    );
+
+    createButtonAction(
+      selectDownloadContainer,
+      selectFileBtn,
+      fileNames,
+      test,
+      "جار تنزيل"
+    );
+
+    createButtonAction(infoContainer, infoBtn, infoNames, test, "اظهار");
+
+    createButtonAction(menuContainer, menu, tapNames, test, "الذهاب الى");
+  }
+
+  responsiveCardsWithGrid(
+    projectsBox,
+    [...document.querySelectorAll(".project-card")].length,
+    2,
+    1,
+    1
+  );
+
+  responsiveCardsWithGrid(
+    socialMediaBox,
+    document.querySelectorAll(".social-card").length,
+    3,
+    2,
+    1
+  );
 });
 
 // jS Editing Style
@@ -568,8 +669,6 @@ js_StyleFile.id = "js-file";
 
 HEAD.appendChild(js_StyleFile);
 
-// }`;
-
 // Create Theme CSS File &  Add Theme To File
 
 let themeStyleFile = document.createElement("style");
@@ -578,36 +677,52 @@ themeStyleFile.id = "theme-js";
 
 HEAD.appendChild(themeStyleFile);
 
+let closeOldTaps = () => {
+  let taps = Array.from(document.querySelectorAll(".taps"));
+  taps.forEach((e) => {
+    close(e);
+  });
+};
+
+function createButtonAction(
+  listContainer,
+  button,
+  childs,
+  callbackFunction,
+  msg
+) {
+  button.addEventListener("click", (e) => {
+    close();
+
+    listContainer.style.right = "0";
+
+    let tapsLis = Array.from(listContainer.children);
+
+    onOpenPopup(tapsLis);
+  });
+
+  closeButton(listContainer);
+
+  childs.forEach((e) => {
+    e.innerHTML = e.dataset.content;
+
+    let child = e.dataset.action;
+
+    e.addEventListener("click", () => {
+      massege(`${msg} '${e.dataset.content}'`);
+      callbackFunction(child);
+      exit(languagesContainer);
+    });
+  });
+}
+
 // Changr Theme Code
-const changeMode = document.getElementById("change-mode");
 
-changeMode.addEventListener("click", (e) => {
-  changeThemeContainer.style.right = "0";
-
-  let tapsLis = Array.from(changeThemeContainer.children);
-
-  onOpenPopup(tapsLis);
-});
+let changeTheme = document.getElementById("change-mode");
 
 let changeThemeContainer = document.querySelector(".select-themes");
 
-let themeBtn = Array.from(document.querySelectorAll(".theme-btn"));
-
-themeBtn.forEach((e) => {
-  e.innerHTML = e.parentNode.id;
-
-  e.addEventListener("click", () => {
-    let color = e.parentNode.id;
-
-    applyTheme(color);
-
-    massege(`Theme Changed to '${color}'`);
-
-    exit(changeThemeContainer);
-  });
-});
-
-close(changeThemeContainer);
+let colorName = Array.from(document.querySelectorAll(".theme-btn"));
 
 //  Change Language Code
 
@@ -615,47 +730,19 @@ let changeLanguageBtn = document.getElementById("change-language");
 
 let languagesContainer = document.querySelector(".select-language");
 
-changeLanguageBtn.addEventListener("click", () => {
-  languagesContainer.style.right = "0";
-
-  onOpenPopup([...languagesContainer.children]);
-});
-
-[...languagesContainer.children].forEach((e) => {
-  e.children[0].innerHTML = e.id;
-
-  let language = e.id;
-  e.addEventListener("click", () => {
-    applyLanguage(language);
-    massege(`Language Changed to '${language}'`);
-    exit(languagesContainer);
-  });
-});
-
-close(languagesContainer);
+let languageNames = Array.from(document.querySelectorAll(".lang-btn"));
 
 //  Downloads Code
 
-let selectDownloadFileBtn = document.getElementById("download-btn");
+let selectFileBtn = document.getElementById("download-btn");
 
 let selectDownloadContainer = document.querySelector(".select-download");
 
-selectDownloadFileBtn.addEventListener("click", () => {
-  selectDownloadContainer.style.right = "0";
+let fileNames = Array.from(document.querySelectorAll(".d-btn"));
 
-  onOpenPopup(Array.from(selectDownloadContainer.children));
-});
-
-[...selectDownloadContainer.children].forEach((e) => {
-  e.children[0].innerHTML = e.id;
-
-  e.addEventListener("click", () => {
-    exit(selectDownloadContainer);
-    massege(`جار تنزيل الملف ${e.innerText.toUpperCase()}`);
-  });
-});
-
-close(selectDownloadContainer);
+let test = (arg) => {
+  console.log(arg);
+};
 
 // Info Section Code
 
@@ -663,64 +750,35 @@ let infoBtn = document.getElementById("get-info");
 
 let infoContainer = document.querySelector(".select-info");
 
-infoBtn.addEventListener("click", (clc) => {
-  infoContainer.style.right = "0";
-
-  onOpenPopup([...infoContainer.children]);
-});
-
-[...infoContainer.children].forEach((e) => {
-  e.children[0].innerHTML = e.id;
-
-  e.addEventListener("click", () => {
-    exit(infoContainer);
-    massege(`جار احضار الملف ${e.innerText.toUpperCase()}`);
-  });
-});
-
-close(infoContainer);
+let infoNames = Array.from(document.querySelectorAll(".info-btn"));
 
 // Menu Code
 
 const menu = document.getElementById("menu-btn");
 
+let menuContainer = document.querySelector(".taps");
+
+let tapNames = Array.from(document.querySelectorAll(".section-btn"));
+
 let showIcons = document.querySelector(".show-icons");
 
 let headIconsContainer = document.querySelector(".header-icons");
 
+let headerIcons = Array.from(headIconsContainer.children);
+
 if (document_width < 800) {
   menu.remove();
 
-  HEADER.appendChild(menu);
+  header.appendChild(menu);
 
   menu.style.width = "40px";
 
   menu.style.height = "40px";
 
-  js_StyleFile.innerHTML += `
-  #menu-btn {
-    width:40px;
-    height:40px;
-    position:absolute;
-    right:20px;
-    top:50%;
-    transform:translateY(-50%);
-  }
-  
-  // .header-icons {
-  //   left:-${StylePackage(headIconsContainer).width} ;
-  // }
-  
-  .left-side{
-    left:0 !important;
-  }`;
+  menu.style.marginRight = "15px";
 
   headIconsContainer.style.left = `-${StylePackage(headIconsContainer).width}`;
 }
-
-showIcons.addEventListener("click", () => {
-  headIconsContainer.classList.toggle("left-side");
-});
 
 const menuRow = document.querySelector("menu-row");
 
@@ -728,31 +786,7 @@ const firstRow = document.getElementById("menu-row-1"),
   secondaryRow = document.getElementById("menu-row-2"),
   lastRow = document.getElementById("menu-row-3");
 
-menu.addEventListener("click", () => {
-  let tapsStyle = window.getComputedStyle(menuTaps);
-
-  if (tapsStyle.right != "0px") {
-    menuTaps.style.right = "0px";
-  }
-
-  let lis = Array.from(document.querySelectorAll(".nav-link"));
-
-  lis.forEach((e, i) => {
-    let time = 200;
-
-    let liPosition = StylePackage(e).right;
-
-    let timer = setTimeout(() => {
-      if (liPosition != "0px") {
-        e.style.right = "0px";
-      }
-    }, i * (time / 2));
-  });
-});
-
 const menuTaps = document.querySelector(".taps");
-
-close(document.querySelector(".taps"));
 
 const landingSkills = document.getElementById("my-skills");
 
@@ -765,9 +799,23 @@ mySkills.forEach((skill, index) => {
 
   mySkill.classList.add("my-skill");
 
+  mySkill.setAttribute("data-lang", `${skill.toLowerCase()}`);
+
+  languages.arabic[skill.toLowerCase()] = `${arNums[index + 1]}- ${skill}`;
+
   mySkill.innerHTML = `${index + 1} - ${skill}`;
 
   landingSkills.appendChild(mySkill);
+});
+
+showIcons.addEventListener("click", () => {
+  let navigationLinks = showIcons.parentNode;
+
+  let position = parseInt(StylePackage(navigationLinks).left);
+
+  position < 0
+    ? (navigationLinks.style.left = "0px")
+    : (navigationLinks.style.left = "-" + navigationLinks.clientWidth + "px");
 });
 
 // Start Services Section
@@ -813,29 +861,37 @@ async function requestServices() {
 
       const CRT_cardTitle = new ELEMENT(
         "h2",
-        "serv-title",
+        `servTitle${index + 1}`,
         "serv-title",
         ServicesCard,
-        card["service"]
+        card["service"]["en"]
       );
 
       CRT_cardTitle.createElement();
 
       const cardTitle = CRT_cardTitle.getCreatedElement();
 
+      cardTitle.dataset.lang = `servTitleValue${index + 1}`;
+
+      languages.arabic[`servTitleValue${index + 1}`] = card["service"]["ar"];
+
       // Create Discription Container
 
       const CRT_cardDiscription = new ELEMENT(
         "span",
-        "serv-dis",
+        `servDisc${index + 1}`,
         "serv-disc",
         ServicesCard,
-        card["explain"]
+        card["explain"]["en"]
       );
 
       CRT_cardDiscription.createElement();
 
       const cardDiscription = CRT_cardDiscription.getCreatedElement();
+
+      cardDiscription.dataset.lang = `servDiscValue${index + 1}`;
+
+      languages.arabic[`servDiscValue${index + 1}`] = card["explain"]["ar"];
     });
   } catch (Error) {}
 }
@@ -844,39 +900,17 @@ requestServices();
 
 // Request Servidawces Data
 
-let servPrevBtn = document.getElementById("serv-prev");
+let servLeftBtn = document.getElementById("serv-prev");
 
-let servNextBtn = document.getElementById("serv-next");
+let servRightBtn = document.getElementById("serv-next");
 
 let servicesContainer = document.querySelector(".services-body");
 
 if (servicesContainer.clientWidth >= servicesContainer.scrollWidth) {
-  servPrevBtn.style.display = "none";
+  servLeftBtn.style.display = "none";
 
-  servNextBtn.style.display = "none";
+  servRightBtn.style.display = "none";
 }
-
-servNextBtn.onclick = () => {
-  scrollFunc(
-    servicesContainer,
-    "next",
-    20
-    // servPrevBtn
-  );
-};
-servPrevBtn.onclick = () => {
-  scrollFunc(
-    servicesContainer,
-    "prev",
-    0
-    // ,
-    // servPrevBtn
-  );
-};
-
-hideBtns(servicesContainer, servPrevBtn, servNextBtn);
-
-hidePrevBtn(servicesContainer, servPrevBtn);
 // End Services Section
 
 // Scrolling Buttons Start
@@ -920,12 +954,11 @@ async function RequestProjectsData(link) {
       }
       let colorOpacity = color + "20";
 
-      let projectDataStyle = `font-size:.70rem;
-        color:${color}; text-shadow:0 0 20px ${color};`;
+      let projectDataStyle = `color:${color}; text-shadow:0 0 20px ${color};`;
 
       const CRT_projectCard = new ELEMENT(
         "div",
-        `project-${data[i]["id"]}`,
+        `project-${data[i]["id"]["en"]}`,
         "project-card",
         projectsBox,
         "",
@@ -935,8 +968,8 @@ async function RequestProjectsData(link) {
         background-color: ${colorOpacity};        
         `,
         `
-       #project-${data[i]["id"]}:hover{
-          box-shadow:-7px -7px 0  ${color};
+       #project-${data[i]["id"]["en"]}:hover{
+          box-shadow:-7px 0 0  ${color};
         }`,
         styleFile
       );
@@ -945,9 +978,9 @@ async function RequestProjectsData(link) {
 
       const projectCard = CRT_projectCard.getCreatedElement();
 
-      projectCard.dataset = data[i]["type"];
+      projectCard.dataset.type = data[i]["type"]["en"];
 
-      projectCard.setAttribute("datatype", data[i]["type"].toLowerCase());
+      projectCard.setAttribute("datatype", data[i]["type"]["en"].toLowerCase());
 
       const CRT_card_head = new ELEMENT(
         "div",
@@ -965,26 +998,33 @@ async function RequestProjectsData(link) {
         `title-${i + 1}`,
         `title`,
         card_head,
-        data[i]["name"],
-        `color:${color};
-        text-shadow:0 0 20px ${color};`
+        data[i]["name"]["en"],
+        projectDataStyle
       );
       CRT_cardTitle.createElement();
 
-      const cardTitle = CRT_cardTitle.getCreatedElement();
+      const projectCardTitle = CRT_cardTitle.getCreatedElement();
+
+      projectCardTitle.setAttribute("data-lang", `projectCardTitle${i + 1}`);
+
+      languages.arabic[`projectCardTitle${i + 1}`] = data[i]["name"]["ar"];
 
       const CRT_projectId = new ELEMENT(
         "p",
         `project-id`,
         "project-id",
         card_head,
-        data[i]["id"],
-        `color:${color};`
+        data[i]["id"]["en"],
+        projectDataStyle
       );
 
       CRT_projectId.createElement();
 
       const projectId = CRT_projectId.getCreatedElement();
+
+      projectId.setAttribute("data-lang", `projectCardId${i + 1}`);
+
+      languages.arabic[`projectCardId${i + 1}`] = data[i]["id"]["ar"];
 
       const CRT_cardPicture = new ELEMENT(
         "img",
@@ -1017,104 +1057,306 @@ async function RequestProjectsData(link) {
       const projectInfo = CRT_project_Info.getCreatedElement();
 
       const CRT_project_Developer = new ELEMENT(
-        "p",
-        `project-developer`,
-        "project-developer",
-        projectInfo,
-        `Developed By : <span style="${projectDataStyle}">${data[i]["developer"]}</span>`
+        "div",
+        `project-developer-${i + 1}`,
+        "project-developer detail",
+        projectInfo
       );
 
       CRT_project_Developer.createElement();
 
       const project_Developer = CRT_project_Developer.getCreatedElement();
 
-      const CRT_project_Type = new ELEMENT(
+      const CRT_devTitle = new ELEMENT(
         "p",
-        `wordType-${i}`,
-        "wordType",
-        projectInfo,
-        `Type  :<span style="${projectDataStyle}">${data[i]["type"]}</span>`
+        `devTit-${i + 1}`,
+        "devleoper-title",
+        project_Developer,
+        "Develeoper :",
+        projectDataStyle
+      );
+
+      CRT_devTitle.createElement();
+
+      const devTitle = CRT_devTitle.getCreatedElement();
+
+      devTitle.dataset.lang = "pDevTitleText";
+
+      const CRT_devValue = new ELEMENT(
+        "p",
+        `devVal-${i + 1}`,
+        "developer-value",
+        project_Developer,
+        data[i]["developer"]["en"]
+      );
+
+      CRT_devValue.createElement();
+
+      const devValue = CRT_devValue.getCreatedElement();
+
+      devValue.dataset.lang = `devVal${i + 1}`;
+
+      languages.arabic[`devVal${i + 1}`] = data[i]["developer"]["ar"];
+
+      const CRT_project_Type = new ELEMENT(
+        "div",
+        `programTitle${i}`,
+        "program-title detail",
+        projectInfo
       );
 
       CRT_project_Type.createElement();
 
       const project_Type = CRT_project_Type.getCreatedElement();
 
+      const CRT_typeTitle = new ELEMENT(
+        "p",
+        `typeTitle${i + 1}`,
+        "type-title",
+        project_Type,
+        "Type :",
+        projectDataStyle
+      );
+
+      CRT_typeTitle.createElement();
+
+      const typeTitle = CRT_typeTitle.getCreatedElement();
+
+      typeTitle.dataset.lang = "pTypeTitleText";
+
+      const CRT_typeValue = new ELEMENT(
+        "p",
+        `typeValue${i + 1}`,
+        "type-value",
+        project_Type,
+        data[i]["type"]["en"]
+      );
+
+      CRT_typeValue.createElement();
+
+      const typeValue = CRT_typeValue.getCreatedElement();
+
+      typeValue.dataset.lang = `pTypeValue${i + 1}`;
+
+      languages.arabic[`pTypeValue${i + 1}`] = data[i]["type"]["ar"];
+
       const CRT_projectTechnolojes = new ELEMENT(
-        "P",
-        "technolojes",
-        "technolojes",
-        projectInfo,
-        `technologies : <span style="${projectDataStyle}">${data[i]["technologies"]}</span>`
+        "div",
+        `technolojes${i + 1}`,
+        "technolojes detail",
+        projectInfo
       );
 
       CRT_projectTechnolojes.createElement();
 
       const projectTechnolojes = CRT_projectTechnolojes.getCreatedElement();
 
+      const CRT_techTitle = new ELEMENT(
+        "p",
+        `techTitle${i + 1}`,
+        "tech-title",
+        projectTechnolojes,
+        "Technolojes :",
+        projectDataStyle
+      );
+
+      CRT_techTitle.createElement();
+
+      const techTitle = CRT_techTitle.getCreatedElement();
+
+      techTitle.dataset.lang = "pTechTitleText";
+
+      const CRT_techValue = new ELEMENT(
+        "p",
+        `techValue${i + 1}`,
+        "tech-value",
+        projectTechnolojes,
+        data[i]["technologies"]
+      );
+
+      CRT_techValue.createElement();
+
+      const techValue = CRT_techValue.getCreatedElement();
+
       const CRT_projectHosting = new ELEMENT(
-        "P",
-        "project-hosting",
-        "project-hosting",
-        projectInfo,
-        `Hosting : <span style="${projectDataStyle}">${data[i]["hosting"]}</span>`
+        "div",
+        `projectTech${i + 1}`,
+        "project-hosting detail",
+        projectInfo
       );
 
       CRT_projectHosting.createElement();
 
       const projectHosting = CRT_projectHosting.getCreatedElement();
 
+      const CRT_hostingTitle = new ELEMENT(
+        "p",
+        `hostingTitle${i + 1}`,
+        "hosting-title",
+        projectHosting,
+        "Hosting :",
+        projectDataStyle
+      );
+
+      CRT_hostingTitle.createElement();
+
+      const hostingTitle = CRT_hostingTitle.getCreatedElement();
+
+      hostingTitle.dataset.lang = "pHostTitleText";
+
+      const CRT_hostingValue = new ELEMENT(
+        "p",
+        `hostingValue${i + 1}`,
+        "hosting-value",
+        projectHosting,
+        data[i]["hosting"]["en"]
+      );
+
+      CRT_hostingValue.createElement();
+
+      const hostingValue = CRT_hostingValue.getCreatedElement();
+
+      hostingValue.dataset.lang = `pHostingValue${i + 1}`;
+
+      languages.arabic[`pHostingValue${i + 1}`] = data[i]["hosting"]["ar"];
+
       const CRT_projectLanguage = new ELEMENT(
-        "P",
-        "project-languages",
-        "project-languages",
-        projectInfo,
-        `Languages : <span style="${projectDataStyle}">${data[i]["language"]}</span>`
+        "div",
+        `projectLanguages${i + 1}`,
+        "project-languages detail",
+        projectInfo
       );
 
       CRT_projectLanguage.createElement();
 
       const projectLanguage = CRT_projectLanguage.getCreatedElement();
 
+      const CRT_langTitle = new ELEMENT(
+        "p",
+        `langTitle${i + 1}`,
+        "lang-title",
+        projectLanguage,
+        "Languages :",
+        projectDataStyle
+      );
+
+      CRT_langTitle.createElement();
+
+      const langTitle = CRT_langTitle.getCreatedElement();
+
+      langTitle.dataset.lang = "pLangTitleText";
+
+      const CRT_langValue = new ELEMENT(
+        "p",
+        `langValue${i + 1}`,
+        "lang-value",
+        projectLanguage,
+        data[i]["language"]["en"]
+      );
+
+      CRT_langValue.createElement();
+
+      const langValue = CRT_langValue.getCreatedElement();
+
+      langValue.dataset.lang = `pLangValue${i + 1}`;
+
+      languages.arabic[`pLangValue${i + 1}`] = data[i]["language"]["ar"];
+
       const CRT_projectsource = new ELEMENT(
-        "P",
-        "project-source",
-        "project-source",
-        projectInfo,
-        `Idea Source : <span style="${projectDataStyle}">${data[i]["source"]}</span>`
+        "div",
+        `projectSource${i + 1}`,
+        "project-source detail",
+        projectInfo
       );
 
       CRT_projectsource.createElement();
 
       const projectsource = CRT_projectsource.getCreatedElement();
 
-      // Create Reteing Container
+      const CRT_sourceTitle = new ELEMENT(
+        "p",
+        `sourceTitle${i + 1}`,
+        "source-title",
+        projectsource,
+        "Idea Source :",
+        projectDataStyle
+      );
+
+      CRT_sourceTitle.createElement();
+
+      const sourceTitle = CRT_sourceTitle.getCreatedElement();
+
+      sourceTitle.dataset.lang = "pSrcTitleText";
+
+      const CRT_sourceValue = new ELEMENT(
+        "p",
+        `sourceValue${i + 1}`,
+        "source-value",
+        projectsource,
+        data[i]["source"]["en"]
+      );
+
+      CRT_sourceValue.createElement();
+
+      const sourceValue = CRT_sourceValue.getCreatedElement();
+
+      sourceValue.dataset.lang = `pSrcValue${i + 1}`;
+
+      languages.arabic[`pSrcValue${i + 1}`] = data[i]["source"]["ar"];
+
+      // Create Reteing System
 
       let retingStars = `<i class="fa-solid fa-star fa-xs" style="color:#fff;"></i>`;
 
       const CRT_projectRete = new ELEMENT(
-        "p",
+        "div",
         "project-rete",
-        "project-rete",
-        projectInfo,
-        `Rete Is : <span id="project-rate${i}" style="${projectDataStyle}">${retingStars.repeat(
-          data[i]["rete"].slice(-1)
-        )}</span>`
+        "project-rete detail",
+        projectInfo
       );
 
       CRT_projectRete.createElement();
 
       const projectRete = CRT_projectRete.getCreatedElement();
 
-      [...document.getElementById(`project-rate${i}`).children].forEach(
-        (star, index) => {
-          if (index > data[i]["rete"].slice(0, 1)) {
-            star;
-          } else {
-            star.style.color = color;
-          }
-        }
+      const CRT_reteTitle = new ELEMENT(
+        "p",
+        `reteTitle${i + 1}`,
+        "rete-title",
+        projectRete,
+        "Rate :",
+        projectDataStyle
       );
+
+      CRT_reteTitle.createElement();
+
+      const reteTitle = CRT_reteTitle.getCreatedElement();
+
+      reteTitle.dataset.lang = "pRateTitleText";
+
+      const CRT_reteValue = new ELEMENT(
+        "p",
+        `reteValue${i + 1}`,
+        "rete-value",
+        projectRete,
+        retingStars.repeat(data[i]["rate"]["from"]),
+        `display:flex; gap:6px;`
+      );
+
+      CRT_reteValue.createElement();
+
+      const reteValue = CRT_reteValue.getCreatedElement();
+
+      [...reteValue.children].forEach((star, index) => {
+        if (data[i]["rate"]["num"] <= index) {
+          star;
+        } else {
+          star.style.cssText = projectDataStyle;
+        }
+      });
+
+      [...reteValue.children].reverse();
+
       styleFile.innerHTML += `
        .project-card:nth-child(${i + 1}) p::-webkit-scrollbar-track {
       background-color: ${colorOpacity};
@@ -1124,31 +1366,72 @@ async function RequestProjectsData(link) {
       }`;
 
       const CRT_projectDiscription = new ELEMENT(
-        "p",
-        "project-discription",
-        "project-discription",
-        projectInfo,
-        `Discription : <span style="${projectDataStyle} font-size: 0.7rem;">${data[i]["discription"]} </span>`
+        "div",
+        `projectDiscription${i + 1}`,
+        "project-discription detail",
+        projectInfo
       );
 
       CRT_projectDiscription.createElement();
 
       const projectDiscription = CRT_projectDiscription.getCreatedElement();
 
-      let activeStars = data[i]["rete"].substr(0, 1);
+      const CRT_discTitle = new ELEMENT(
+        "p",
+        `discTitle${i + 1}`,
+        "disc-title",
+        projectDiscription,
+        "Discription :",
+        projectDataStyle
+      );
+
+      CRT_discTitle.createElement();
+
+      const discTitle = CRT_discTitle.getCreatedElement();
+
+      discTitle.dataset.lang = "pDiscTitleText";
+
+      const CRT_discValue = new ELEMENT(
+        "p",
+        `discValue${i + 1}`,
+        "disc-value content-scroller",
+        projectDiscription,
+        data[i]["description"]["en"]
+      );
+
+      CRT_discValue.createElement();
+
+      const discValue = CRT_discValue.getCreatedElement();
+
+      discValue.dataset.lang = `pDiscValue${i + 1}`;
+
+      languages.arabic[`pDiscValue${i + 1}`] = data[i]["description"]["ar"];
 
       const CRT_projectVisiting = new ELEMENT(
         "button",
+        `projectVisiting${i + 1}`,
         "project-visiting",
-        "project-visiting",
-        projectCard,
-        `<a class="visit-link" href="${data[i]["url"]}" style="color:${mainTextColor}; letter-spacing:4px; text-transform:uppercase;" target="_blank">Visit</a>`,
-        `background-color: ${color};`
+        projectCard
       );
 
       CRT_projectVisiting.createElement();
 
       const projectVisiting = CRT_projectVisiting.getCreatedElement();
+
+      const CRT_visitLink = new ELEMENT(
+        "a",
+        `visitWeb${i + 1}`,
+        "visit-link",
+        projectVisiting,
+        "Visit",
+        `background-color: ${color};`
+      );
+
+      CRT_visitLink.createElement();
+
+      const visitLink = CRT_visitLink.getCreatedElement();
+
+      visitLink.dataset.lang = "visitLinkText";
     }
   } catch {
     console.error(error);
@@ -1157,51 +1440,51 @@ async function RequestProjectsData(link) {
 RequestProjectsData("api/projects.json");
 
 let filtersProjects = Array.from(document.querySelectorAll(`form div input`));
+
+let cardPercent;
+
+setTimeout(() => {
+  let cardsWidth = parseInt(
+    StylePackage(document.querySelector(".project-card")).width
+  );
+
+  let projectsBoxWidth = parseInt(StylePackage(projectsBox).width);
+
+  cardPercent = parseInt(projectsBoxWidth / cardsWidth);
+}, 400);
+
 filtersProjects.forEach((fil) => {
   fil.addEventListener("click", (e) => {
-    let filterType = fil.value;
+    setTimeout(() => {
+      let columnsStyle = `repeat(${hideElementNumber(
+        projectsBox
+      )}, calc(100% / ${cardPercent}`;
+
+      projectsBox.style.gridTemplateColumns = columnsStyle;
+    }, 100);
+
+    let filterType = fil.value.toLowerCase();
+
+    console.log(filterType);
 
     projectsBox.scrollTo({ behavior: "smooth", left: "start" });
 
-    console.log(filterType);
     let projectCards = [...document.querySelectorAll(".project-card")];
-    projectCards.forEach((card) => {
-      console.log(card.getAttribute("datatype"));
-    });
+
     if (filterType == "all") {
       projectCards.forEach((card) => {
         card.style.display = "flex";
-        card.parentNode.classList.remove("no-scroll-bar");
-        controlBtns(portfolioNextBtn, "flex", portfolioPrevBtn, "flex");
       });
     } else {
       projectCards.forEach((card) => {
-        if (card.getAttribute("datatype") == filterType) {
+        if (card.dataset.type.toLowerCase() == filterType) {
           card.style.display = "flex";
         } else {
           card.style.display = "none";
-
-          if (checkNumberOfChildrens(card.parentNode) <= 3) {
-            card.parentNode.classList.add("no-scroll-bar");
-            controlBtns(portfolioNextBtn, "none", portfolioPrevBtn, "none");
-          } else {
-            card.parentNode.classList.remove("no-scroll-bar");
-          }
         }
       });
     }
   });
-});
-
-window.addEventListener("load", () => {
-  responsiveCardsWithGrid(
-    projectsBox,
-    [...document.querySelectorAll(".project-card")].length,
-    2,
-    1,
-    1
-  );
-  console.log([...document.querySelectorAll(".project-card")]);
 });
 
 let portfolioPrevBtn = document.getElementById("portfolio-prev");
@@ -1246,8 +1529,6 @@ async function RequestSocialMediaData(link) {
 
         colorType == "dark" ? (textColor = greyColor) : (textColor = textColor);
 
-        console.log(colorType);
-
         // Add Opacity To Color
 
         // Initialize Style For Titles
@@ -1256,7 +1537,7 @@ async function RequestSocialMediaData(link) {
 
         const CRT_socialCard = new ELEMENT(
           "div",
-          `social-card-${i}`,
+          `socialCard-${i}`,
           "social-card",
           socialMediaBox,
           "",
@@ -1278,7 +1559,7 @@ async function RequestSocialMediaData(link) {
 
         const CRT_card_head = new ELEMENT(
           "div",
-          `card-head`,
+          `cardHead${i + 1}`,
           `card-head`,
           socialCard,
           ""
@@ -1292,12 +1573,16 @@ async function RequestSocialMediaData(link) {
           `title-${i + 1}`,
           `title`,
           card_head,
-          data[i]["appName"],
+          data[i]["appName"]["en"],
           `background-color:${color};`
         );
         CRT_cardTitle.createElement();
 
         const cardTitle = CRT_cardTitle.getCreatedElement();
+
+        cardTitle.dataset.lang = `socialcardTitle${i + 1}`;
+
+        languages.arabic[`socialcardTitle${i + 1}`] = data[i]["appName"]["ar"];
 
         const CRT_cardPicture = new ELEMENT(
           "img",
@@ -1306,6 +1591,7 @@ async function RequestSocialMediaData(link) {
           card_head,
           ""
         );
+
         CRT_cardPicture.createElement();
 
         const cardPicture = CRT_cardPicture.getCreatedElement();
@@ -1332,57 +1618,165 @@ async function RequestSocialMediaData(link) {
           "div",
           `card-people`,
           "card-people",
-          Details_Info,
-          `<span>${
-            data[i]["people"]["type"]
-          }</span> <span style="${socialTitlesStyle}">${
-            data[i]["people"][data[i]["people"]["type"]]
-          }</span>`
+          Details_Info
         );
-
-        console.log(data[i]["people"]["type"]);
 
         CRT_people.createElement();
 
         const people = CRT_people.getCreatedElement();
 
-        const CRT_posts = new ELEMENT(
-          "div",
-          `posts`,
-          "posts",
-          Details_Info,
-          `<span>Posts</span><span style="${socialTitlesStyle}">${data[i]["posts"]}</span>`
+        const CRT_peopleTitle = new ELEMENT(
+          "span",
+          `people-title-${i + 1}`,
+          `people-title`,
+          people,
+          data[i]["people"]["type"]
         );
+
+        CRT_peopleTitle.createElement();
+
+        const peopleTitle = CRT_peopleTitle.getCreatedElement();
+
+        // peopleTitle.setAttribute("data-lang", "people-title");
+
+        peopleTitle.dataset.lang = `social${toCapitalize(
+          peopleTitle.innerText
+        )}Title`;
+
+        const CRT_peopleValue = new ELEMENT(
+          "span",
+          `people-value-${i + 1}`,
+          `people-value`,
+          people,
+          data[i]["people"][data[i]["people"]["type"]],
+          socialTitlesStyle
+        );
+
+        CRT_peopleValue.createElement();
+
+        const peopleValue = CRT_peopleValue.getCreatedElement();
+
+        peopleValue.dataset.lang = `socialPeopleValue${i + 1}`;
+
+        languages.arabic[`socialPeopleValue${i + 1}`] =
+          data[i]["people"][data[i]["people"]["type"]];
+
+        const CRT_posts = new ELEMENT("div", `posts`, "posts", Details_Info);
 
         CRT_posts.createElement();
 
         const posts = CRT_posts.getCreatedElement();
 
+        const CRT_postsTitle = new ELEMENT(
+          "span",
+          `posts-title-${i + 1}`,
+          `posts-title`,
+          posts,
+          "Posts"
+        );
+
+        CRT_postsTitle.createElement();
+
+        const posts_title = CRT_postsTitle.getCreatedElement();
+
+        posts_title.dataset.lang = "socialPostsTitle";
+
+        const CRT_postsValue = new ELEMENT(
+          "span",
+          `posts-value-${i + 1}`,
+          `posts-value`,
+          posts,
+          data[i]["posts"]["en"],
+          socialTitlesStyle
+        );
+
+        CRT_postsValue.createElement();
+
+        const posts_value = CRT_postsValue.getCreatedElement();
+
+        posts_value.dataset.lang = `socialPosts${i + 1}`;
+
+        languages.arabic[`socialPosts${i + 1}`] = data[i]["posts"]["ar"];
+
         const CRT_userName = new ELEMENT(
           "div",
           `user-name-${i}`,
           "user-name",
-          Details_Info,
-          `<span>User Name</span> <span class="user-name" style="${socialTitlesStyle}">${data[i]["userName"]}</span>`
+          Details_Info
         );
 
         CRT_userName.createElement();
 
         const userName = CRT_userName.getCreatedElement();
 
+        const CRT_userNameTitle = new ELEMENT(
+          "span",
+          `un-title-${i + 1}`,
+          `un-title`,
+          userName,
+          "User Name"
+        );
+
+        CRT_userNameTitle.createElement();
+
+        const un_title = CRT_userNameTitle.getCreatedElement();
+
+        un_title.dataset.lang = "socialUserNameTitle";
+
+        const CRT_userNameValue = new ELEMENT(
+          "span",
+          `un-value-${i + 1}`,
+          `un-value`,
+          userName,
+          data[i]["userName"],
+          socialTitlesStyle
+        );
+
+        CRT_userNameValue.createElement();
+
+        const un_value = CRT_userNameValue.getCreatedElement();
+
         const CRT_Content = new ELEMENT(
           "div",
           "content",
           "content",
-          Details_Info,
-          `<span>${"Content"}</span><span style="${socialTitlesStyle}">${
-            data[i]["content"]
-          }</span>`
+          Details_Info
         );
 
         CRT_Content.createElement();
 
         const content = CRT_Content.getCreatedElement();
+
+        const CRT_contentTitle = new ELEMENT(
+          "span",
+          `content-title-${i + 1}`,
+          `content-title`,
+          content,
+          "Content"
+        );
+
+        CRT_contentTitle.createElement();
+
+        const contentTitle = CRT_contentTitle.getCreatedElement();
+
+        contentTitle.dataset.lang = "socialContentTitle";
+
+        const CRT_contentValue = new ELEMENT(
+          "span",
+          `content-value-${i + 1}`,
+          `content-value`,
+          content,
+          data[i]["content"]["en"],
+          socialTitlesStyle
+        );
+
+        CRT_contentValue.createElement();
+
+        const contentValue = CRT_contentValue.getCreatedElement();
+
+        contentValue.dataset.lang = `socialContent${i + 1}`;
+
+        languages.arabic[`socialContent${i + 1}`] = data[i]["content"]["ar"];
 
         // styleFile.innerHTML += `
         //  .project-card:nth-child(${i + 1}) p::-webkit-scrollbar-track {
@@ -1396,7 +1790,7 @@ async function RequestSocialMediaData(link) {
 
         const CRT_Visiting = new ELEMENT(
           "button",
-          "social-visiting",
+          `socialVisiting${i + 1}`,
           "social-visiting",
           socialCard,
           `<a class="visit-link" href="${data[i]["link"]}" style="color:${mainTextColor}; letter-spacing:4px; text-transform:uppercase;" target="_blank">Visit</a>`,
@@ -1409,9 +1803,7 @@ async function RequestSocialMediaData(link) {
       } else {
         numberOfCards--;
       }
-      socialMediaBox.style.gridTemplateColumns = `repeat(${numberOfCards}, calc(100% / 4 - ${parseInt(
-        StylePackage(socialMediaBox).gap
-      )}px )`;
+      socialMediaBox.style.gridTemplateColumns = `repeat(${numberOfCards}, calc(100% / 4 )`;
     }
   } catch {
     console.error(error);
@@ -1419,51 +1811,15 @@ async function RequestSocialMediaData(link) {
 }
 RequestSocialMediaData("api/social-media.json");
 
-window.addEventListener("load", () => {
-  responsiveCardsWithGrid(
-    socialMediaBox,
-    document.querySelectorAll(".social-card").length,
-    3,
-    2,
-    1
-  );
-});
-
 // Apply Function
 
-socialNextBtn.addEventListener("click", () => {
-  scrollFunc(
-    socialMediaBox,
-    "next",
-    parseInt(StylePackage(socialMediaBox).gap) +
-      parseInt(
-        StylePackage(document.querySelector(".social-card")).borderWidth
-      ),
-    socialNextBtn
-  );
-});
+// socialNextBtn.addEventListener("click", () => {
+//   scrollFunc(socialMediaBox, "next", 10, socialNextBtn);
+// });
 
-socialPrevBtn.addEventListener("click", () => {
-  scrollFunc(
-    socialMediaBox,
-    "prev",
-    parseInt(StylePackage(socialMediaBox).gap) +
-      parseInt(
-        StylePackage(document.querySelector(".social-card")).borderWidth
-      ),
-    socialPrevBtn
-  );
-});
-
-// if (socialMediaBox.clientWidth >= socialMediaBox.scrollWidth) {
-//   socialPrevBtn.style.display = "none";
-
-//   socialNextBtn.style.display = "none";
-// }
-
-hideBtns(socialMediaBox, socialPrevBtn, socialNextBtn);
-
-hidePrevBtn(socialMediaBox, socialPrevBtn);
+// socialPrevBtn.addEventListener("click", () => {
+//   scrollFunc(socialMediaBox, "prev", 10, socialPrevBtn);
+// });
 
 /// /// - -d-sa-d-aew--asda-e-we-
 
@@ -1474,34 +1830,10 @@ let sendMassageBtn = document.getElementById("send-massage"),
   emailInput = document.getElementById("email"),
   massageArea = document.getElementById("massage-area");
 
-console.log(sendMassageBtn);
-
 sendMassageBtn.parentNode.onsubmit = (e) => {
   e.preventDefault();
   sendEmail();
 };
-
-sendMassageBtn.addEventListener("click", () => {
-  massege("adewqeqwewsaed");
-});
-sendMassageBtn.addEventListener("click", () => {
-  massege("adewqeqwewsaed");
-});
-// function sendEmail() {
-//   let params = {
-//     from_name: nameInput.value,
-//     email_id: emailInput.value,
-//     massege: massageArea.value,
-//   };
-//   emailjs.send("service_ye55eu7","template_og68n3e",params).then(
-//   res =>{
-//     massege(res.status)
-//     // alert(`Your Massage Has Been Sent Successfully ${res}`);
-//     emailInput.value = ""
-//     nameInput.value = ""
-//     massageArea.value = ""
-// })
-// }
 
 function sendEmail() {
   let params = {
@@ -1510,10 +1842,23 @@ function sendEmail() {
     massege: massageArea.value,
   };
 
+  let sendMassageDone = "Massege Sended";
+
+  let sendMassageHasError = "Error sending email.";
+
+  if (currentLanguge != "arabic") {
+    sendMassageDone = sendMassageDone;
+
+    sendMassageHasError = sendMassageHasError;
+  } else {
+    sendMassageDone = "تم إرسال الرسالة";
+
+    sendMassageHasError = "خطأ في إرسال البريد الإلكتروني.";
+  }
   emailjs
     .send("service_ye55eu7", "template_og68n3e", params)
     .then((res) => {
-      massege(res.status); // Corrected function name
+      massege(sendMassageDone); // Corrected function name
       // alert(`Your Massage Has Been Sent Successfully ${res}`);
       emailInput.value = "";
       nameInput.value = "";
@@ -1521,7 +1866,7 @@ function sendEmail() {
     })
     .catch((error) => {
       console.error("Error sending email:", error);
-      massege("Error sending email."); // You can handle errors in the 'catch' block
+      massege(sendMassageHasError); // You can handle errors in the 'catch' block
     });
 }
 
@@ -1538,48 +1883,124 @@ HEAD.appendChild(responsiveStyle);
 
 // About Section
 
-// let year = ;
+function getAge(YourDate, stringLang) {
+  let date = new Date(YourDate);
 
-function getAge(YourDate, type) {
-  let myDate = new Date(YourDate).getTime();
+  let curruntDate = new Date(Date.now());
 
-  let nowDate = new Date(Date.now()).getTime();
+  let milliSecoundAge = new Date(curruntDate - date).getTime();
 
-  let diff = new Date(nowDate - myDate);
+  let withYearsAge = new Date(milliSecoundAge).getFullYear() - 1970;
 
-  let startDate = new Date(0);
+  let currentMonths = curruntDate.getMonth();
 
-  console.log(myDate);
+  let myDateMonths = date.getMonth() + 1;
 
-  console.log(nowDate);
+  let withMonthsAge = 12 - myDateMonths + currentMonths;
 
-  console.log(diff.getUTCFullYear() - startDate.getUTCFullYear());
+  let monthsAbbreviated = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
 
-  return type == "year"
-    ? diff.getUTCFullYear() - 1970
-    : type == "month"
-    ? getAge(YourDate, "year") * 12
-    : type == "day"
-    ? getAge(YourDate, "month") * 30
-    : "";
+  let setDaysToSuitableMonth = (numberOfMonth) => {
+    let thisDays;
+
+    let month = monthsAbbreviated[numberOfMonth];
+
+    if (
+      month == "Jan" ||
+      month == "Mar" ||
+      month == "May" ||
+      month == "Jul" ||
+      month == "Aug" ||
+      month == "Oct" ||
+      month == "Dec"
+    ) {
+      thisDays = 31;
+    } else if (month == "Feb") {
+      thisDays = 28;
+    } else {
+      thisDays = 30;
+    }
+    return thisDays;
+  };
+
+  let currentDays = curruntDate.getDate();
+
+  let myDataDays = date.getDate();
+
+  let withDaysAge =
+    setDaysToSuitableMonth(curruntDate.getMonth()) - myDataDays + currentDays;
+  return stringLang == "en"
+    ? `My Age Is : '${withYearsAge} Years And ${withMonthsAge} Months And ${withDaysAge} Days'`
+    : "ar"
+    ? `عمري ${toArabicNumber(withYearsAge)} سنة و ${toArabicNumber(
+        withMonthsAge
+      )} أشهر و ${toArabicNumber(withDaysAge)} أيام`
+    : false;
 }
 
-let ageLabel = document.querySelector(
-  ".information .text-container .age span "
-);
-console.log(ageLabel);
+let ageLabel = document.getElementById("my-age-about");
 
-ageLabel.innerHTML = `Years : ${getAge(
-  "06/22/2005",
-  "year"
-)} , Months : ${getAge("06/22/2005", "month")} , Days : ${getAge(
-  "06/22/2005",
-  "day"
-)} `;
+ageLabel.innerText = getAge("06/22/2006", "en");
+languages.arabic.age = getAge("06/22/2006", "ar");
 
-let skillsLabel = document.querySelector(
-  ".information .text-container .skills-container p"
-);
+// Get Exp Label
+
+let expLabel = document.getElementById("my-exp-about");
+
+// Start Calculation
+
+function getExpYears() {
+  let currentDate = new Date();
+
+  let startingPointYear = new Date("05/29/2022");
+
+  // let years = currentDate.getFullYear() - startingPointYear.getFullYear();
+  let years = currentDate.getFullYear() - startingPointYear.getFullYear();
+
+  let months;
+
+  // العدد الكلي
+  let allMonthsNumber = 12;
+
+  let getPersent = (monthNumber) => {
+    let num = monthNumber / allMonthsNumber;
+
+    let parcent = num * 100;
+
+    return parseInt(parcent);
+  };
+
+  // حساب النسبة
+
+  if (startingPointYear.getMonth() < currentDate.getMonth()) {
+    let monthNumber = startingPointYear.getMonth() - currentDate.getMonth();
+
+    years -= 1;
+
+    return +`${years}.${getPersent(-monthNumber)}`;
+  } else {
+    let monthNumber = currentDate.getMonth() - startingPointYear.getMonth();
+
+    return `${years}.${getPersent(-monthNumber)}`;
+  }
+}
+
+expLabel.innerHTML = getExpYears();
+
+let skillsLabel = document.querySelector(".skills-container .about-skills");
 
 let skillsArray = [
   "HTML",
@@ -1591,6 +2012,29 @@ let skillsArray = [
   "Git & GitHub",
   "commandline",
 ];
+
+//
+
+let First_Name = "Abdalrahman";
+let Last_Name = "Aldabbas";
+function nameConcat(f_Name, l_Name) {
+  return;
+  `
+                    $
+                    {
+                    First_Name
+                    }
+                     
+                    $
+                    {
+                      Last_Name
+                      }
+                       
+                    🩵
+                    `;
+}
+//
+nameConcat(First_Name, Last_Name);
 
 skillsArray.forEach((skill) => {
   let skills = document.createElement("span");
@@ -1605,8 +2049,6 @@ skillsArray.forEach((skill) => {
 });
 
 let animationArea = document.querySelector(".animation-area");
-
-console.log(animationArea);
 
 if (animationArea.clientHeight > animationArea.clientWidth) {
   animationArea.style.width = animationArea.clientHeight + "px";
@@ -1632,9 +2074,7 @@ function responsiveCardsWithGrid(
   cardsLength = cardsLength;
 
   if (document_width <= 1450 && document_width > 600) {
-    target.style.gridTemplateColumns = `repeat(${cardsLength},calc(100% / ${max_1450} - ${
-      parseInt(StylePackage(target).gap) / 2
-    }px) )`;
+    target.style.gridTemplateColumns = `repeat(${cardsLength},calc(100% / ${max_1450}) )`;
   } else if (document_width <= 600 && document_width > 450) {
     target.style.gridTemplateColumns = `repeat(${cardsLength},calc(100% / ${max_600} )`;
   } else if (document_width <= 450) {
@@ -1642,48 +2082,449 @@ function responsiveCardsWithGrid(
   }
 }
 
-portfolioNextBtn.onclick = () => {
-  scrollFunc(
-    projectsBox,
-    "next",
-    parseInt(StylePackage(projectsBox).gap) +
-      parseInt(
-        StylePackage(document.querySelector(".project-card")).borderWidth
-      ),
-    portfolioPrevBtn
-  );
-};
-portfolioPrevBtn.onclick = () => {
-  scrollFunc(
-    projectsBox,
-    "prev",
-    parseInt(StylePackage(projectsBox).gap) +
-      parseInt(
-        StylePackage(document.querySelector(".project-card")).borderWidth
-      ),
-    portfolioPrevBtn
-  );
-};
-
 // End Portfolio
 
-hideBtns(projectsBox, portfolioPrevBtn, portfolioNextBtn);
+function applyButtons(lang) {
+  setTimeout(() => {
+    let dir = "en";
 
-hidePrevBtn(projectsBox, portfolioPrevBtn);
+    let next = "right";
+
+    let prev = "left";
+
+    next = "right";
+
+    prev = "left";
+
+    // -/-/-/-/-/-/-/-/-/-/-/
+
+    scrollToRight(servicesContainer, servLeftBtn, servRightBtn);
+
+    scrollToLeft(servicesContainer, servLeftBtn, servRightBtn);
+
+    checking(servicesContainer, servLeftBtn, servRightBtn);
+    // -/-/-/-/-/-/-/-/-/-/-/
+
+    scrollToRight(projectsBox, portfolioPrevBtn, portfolioNextBtn);
+
+    scrollToLeft(projectsBox, portfolioPrevBtn, portfolioNextBtn);
+
+    checking(projectsBox, portfolioPrevBtn, portfolioNextBtn);
+
+    // -/-/-/-/-/-/-/-/-/-/-/
+
+    scrollToRight(socialMediaBox, socialPrevBtn, socialNextBtn);
+
+    scrollToLeft(socialMediaBox, socialPrevBtn, socialNextBtn);
+
+    checking(socialMediaBox, socialPrevBtn, socialNextBtn);
+
+    if (lang == "english") {
+    } else if (lang == "arabic") {
+    }
+  }, 500);
+}
+
+applyButtons(currentLanguge);
+
+// Start Road Map
+
+let roadMapHead = document.querySelector(".road-map-header");
+
+let roadMapContentBox = document.querySelector(
+  ".road-map-container .content-box"
+);
+
+let roadMapContentHeight =
+  roadMapContentBox.parentNode.clientHeight -
+  (roadMapHead.clientHeight +
+    parseInt(StylePackage(document.querySelector(".section-head")).marginTop) +
+    0) +
+  "px";
+
+// roadMapContentBox.style.height = roadMapContentHeight;
+
+let h_road = [...document.querySelectorAll(".h-road")];
+
+let v_road = [...document.querySelectorAll(".v-road")];
+
+// let elementsNums = parseInt(road.clientHeight / 100);
+
+h_road.forEach((road) => {
+  let elementsNums = parseInt(road.clientWidth / 35);
+
+  for (let i = 0; i < elementsNums; i++) {
+    // road.innerHTML += `<span class="h-line"></span>`;
+
+    let span = document.createElement("span");
+
+    span.classList.add("h-line");
+
+    road.prepend(span);
+  }
+});
+v_road.forEach((road) => {
+  let elementsNums = parseInt(road.clientHeight / 35);
+
+  for (let i = 0; i < elementsNums; i++) {
+    let span = document.createElement("span");
+
+    span.classList.add("v-line");
+
+    road.prepend(span);
+  }
+});
+
+let showRmBtn = document.querySelector(".show-rm");
+
+let controlCarBtn = document.querySelector(".control-rm");
+
+let coverRm = showRmBtn.parentNode || controlCarBtn.parentNode;
+
+let opacityLower = (ele) => {
+  ele.style.opacity = "0";
+
+  setTimeout(() => {
+    ele.remove();
+  }, 300);
+};
+
+showRmBtn.addEventListener("click", () => {
+  opacityLower(coverRm);
+});
+
+controlCarBtn.addEventListener("click", () => {
+  opacityLower(coverRm);
+
+  startControl();
+});
+
+let car = document.querySelector(".car");
+
+let startControl = () => {
+  let toUp = (target) => {
+    target.style.top = `${target.offsetTop - 30}px`;
+
+    target.style.transform = "rotate(0deg)";
+  };
+
+  let toDown = (target) => {
+    target.style.top = `${target.offsetTop + 30}px`;
+
+    target.style.transform = "rotate(180deg)";
+  };
+
+  let toRight = (target) => {
+    target.style.left = `${target.offsetLeft + 30}px`;
+
+    target.style.transform = "rotate(90deg)";
+  };
+
+  let toLeft = (target) => {
+    target.style.left = `${target.offsetLeft - 30}px`;
+
+    target.style.transform = "rotate(270deg)";
+  };
+
+  let applyKeys = (target) => {
+    let controlMassege = "Press 'W A S D' To Start Driving";
+
+    let aboutCarMassege =
+      "Don't look at driving a car, I added it to implement an idea I had in mind";
+
+    if (currentLanguge != "arabic") {
+      controlMassege = controlMassege;
+      aboutCarMassege = aboutCarMassege;
+    } else {
+      controlMassege = "اضغط ' W A S D ' لبدء القيادة";
+      aboutCarMassege =
+        "لا تنظر إلى قيادة السيارة، لقد أضفتها لتنفيذ فكرة كانت في ذهني";
+    }
+    document.addEventListener("keydown", (e) => {
+      let eventKey = e.key;
+      switch (eventKey) {
+        case "w":
+          toUp(target);
+          break;
+        case "s":
+          toDown(target);
+          break;
+        case "d":
+          toRight(target);
+          break;
+        case "a":
+          toLeft(target);
+          break;
+        case "W":
+          toUp(target);
+          break;
+        case "S":
+          toDown(target);
+          break;
+        case "D":
+          toRight(target);
+          break;
+        case "A":
+          toLeft(target);
+          break;
+        case "capslock":
+          test("as");
+          break;
+        default:
+          massege(controlMassege);
+      }
+    });
+    massege(controlMassege);
+    setTimeout(() => {
+      massege(aboutCarMassege, 7);
+    }, 5000);
+  };
+
+  let applyBtns = (target) => {
+    let controlMassege = "Control With Buttons";
+
+    let aboutCarMassege =
+      "Don't look at driving a car, I added it to implement an idea I had in mind";
+    if (currentLanguge != "arabic") {
+      controlMassege = controlMassege;
+
+      aboutCarMassege = aboutCarMassege;
+    } else {
+      controlMassege = "التحكم بالأزرار";
+      aboutCarMassege =
+        "لا تنظر إلى قيادة السيارة، لقد أضفتها لتنفيذ فكرة كانت في ذهني";
+    }
+
+    let up = document.querySelector(".to-top");
+
+    let down = document.querySelector(".to-bottom");
+
+    let right = document.querySelector(".to-right");
+
+    let left = document.querySelector(".to-left");
+
+    up.addEventListener("click", () => {
+      toUp(target);
+    });
+
+    down.addEventListener("click", () => {
+      toDown(target);
+    });
+
+    right.addEventListener("click", () => {
+      toRight(target);
+    });
+
+    left.addEventListener("click", () => {
+      toLeft(target);
+    });
+
+    applyBtns(car);
+
+    massege(controlMassege);
+
+    setTimeout(() => {
+      massege(aboutCarMassege, 7);
+    }, 5000);
+  };
+
+  let remoteControlContainer = document.createElement("div");
+
+  car.style.display = "block";
+
+  remoteControlContainer.classList.add("remote-control");
+
+  if (isMobile()) {
+    // Make Top And Bottom Buttons
+
+    let Y_Axis_Buttons = document.createElement("div");
+
+    Y_Axis_Buttons.classList.add("y-area");
+
+    let To_Top_Button = document.createElement("button");
+
+    To_Top_Button.classList.add("to-top");
+
+    Y_Axis_Buttons.prepend(To_Top_Button);
+
+    let To_Bottom_Button = document.createElement("button");
+
+    To_Bottom_Button.classList.add("to-bottom");
+
+    Y_Axis_Buttons.appendChild(To_Bottom_Button);
+
+    remoteControlContainer.appendChild(Y_Axis_Buttons);
+
+    // Make Right And Left Buttons
+
+    let X_Axis_Buttons = document.createElement("div");
+
+    X_Axis_Buttons.classList.add("x-area");
+
+    let To_Left_Button = document.createElement("button");
+
+    To_Left_Button.classList.add("to-left");
+
+    X_Axis_Buttons.prepend(To_Left_Button);
+
+    let To_Right_Button = document.createElement("button");
+
+    To_Right_Button.classList.add("to-right");
+
+    X_Axis_Buttons.appendChild(To_Right_Button);
+
+    remoteControlContainer.appendChild(X_Axis_Buttons);
+
+    let roadMapContainer = document.querySelector(".road-map-container");
+
+    roadMapContainer.appendChild(remoteControlContainer);
+
+    roadMapContentBox.style.height = "570px";
+
+    remoteControlContainer.style.width = roadMapContentBox.clientWidth + "px";
+  } else {
+    applyKeys(car);
+  }
+};
+
+// End Road Map
 
 // Function For Menu & Popups
 
-function close(parent) {
+function toArabicNumber(englishNumber) {
+  let arNums = [
+    "٠",
+    "١",
+    "٢",
+    "٣",
+    "٤",
+    "٥",
+    "٦",
+    "٧",
+    "٨",
+    "٩",
+    "١٠",
+    "١١",
+    "١٢",
+    "١٣",
+    "١٤",
+    "١٥",
+    "١٦",
+    "١٧",
+    "١٨",
+    "١٩",
+    "٢٠",
+    "٢١",
+    "٢٢",
+    "٢٣",
+    "٢٤",
+    "٢٥",
+    "٢٦",
+    "٢٧",
+    "٢٨",
+    "٢٩",
+    "٣٠",
+    "٣١",
+    "٣٢",
+    "٣٣",
+    "٣٤",
+    "٣٥",
+    "٣٦",
+    "٣٧",
+    "٣٨",
+    "٣٩",
+    "٤٠",
+    "٤١",
+    "٤٢",
+    "٤٣",
+    "٤٤",
+    "٤٥",
+    "٤٦",
+    "٤٧",
+    "٤٨",
+    "٤٩",
+    "٥٠",
+    "٥١",
+    "٥٢",
+    "٥٣",
+    "٥٤",
+    "٥٥",
+    "٥٦",
+    "٥٧",
+    "٥٨",
+    "٥٩",
+    "٦٠",
+    "٦١",
+    "٦٢",
+    "٦٣",
+    "٦٤",
+    "٦٥",
+    "٦٦",
+    "٦٧",
+    "٦٨",
+    "٦٩",
+    "٧٠",
+    "٧١",
+    "٧٢",
+    "٧٣",
+    "٧٤",
+    "٧٥",
+    "٧٦",
+    "٧٧",
+    "٧٨",
+    "٧٩",
+    "٨٠",
+    "٨١",
+    "٨٢",
+    "٨٣",
+    "٨٤",
+    "٨٥",
+    "٨٦",
+    "٨٧",
+    "٨٨",
+    "٨٩",
+    "٩٠",
+    "٩١",
+    "٩٢",
+    "٩٣",
+    "٩٤",
+    "٩٥",
+    "٩٦",
+    "٩٧",
+    "٩٨",
+    "٩٩",
+    "١٠٠",
+  ];
+
+  let str = `${englishNumber}`;
+
+  let newNumber = [];
+
+  str.split("").forEach((e, i) => {
+    typeof e == "number"
+      ? newNumber.push(arNums[e])
+      : e == "."
+      ? newNumber.push(".")
+      : "";
+    newNumber.push(arNums[e]);
+  });
+
+  return newNumber.join("");
+}
+
+function closeButton(parent) {
   let closeBtn = document.createElement("button");
 
   closeBtn.innerHTML = `<i class="fa-solid fa-xmark "></i>`;
 
   parent.appendChild(closeBtn);
 
+  let parentId = closeBtn.parentNode.id;
+
   closeBtn.classList.add("close-btn");
 
   closeBtn.addEventListener("click", () => {
-    closeBtn.parentNode.style.right = "-200%";
+    exit(document.getElementById(parentId));
 
     lis.forEach((e) => {
       e.style.right = "-2500px";
@@ -1695,87 +2536,231 @@ function close(parent) {
   );
 }
 
+function close() {
+  let closeBtns = Array.from(document.querySelectorAll(".close-btn"));
+
+  closeBtns.forEach((e) => {
+    exit(e.parentNode);
+  });
+}
+// 5313 8940 5050 0245
+// Check If The Dvice Mobile Or PC
+
+let isMobile = () => {
+  return (
+    window.navigator.maxTouchPoints > 0 ||
+    /(Android|Iphone)/gi.test(window.navigator.userAgent)
+  );
+};
+
+function toCapitalize(word) {
+  return `${word.substr(0, 1).toUpperCase()}${word
+    .toLowerCase()
+    .substr(-word.length + 1)}`;
+}
+
 //  Functions For Btns
 
-function hideBtns(p, btn1, btn2) {
-  p.addEventListener("scroll", () => {
-    if (
-      -5 + p.scrollWidth - p.scrollLeft <= p.clientWidth &&
-      p.scrollWidth - p.scrollLeft >= p.clientWidth
-    ) {
-      controlBtns(btn1, "flex", btn2, "none");
-    } else if (p.scrollLeft <= 5) {
-      controlBtns(btn1, "none", btn2, "flex");
-    } else {
-      controlBtns(btn1, "flex", btn2, "flex");
-    }
+function scrollToLeft(parent, L_Btn, R_Btn) {
+  L_Btn.addEventListener("click", () => {
+    let items = [...parent.children];
+
+    parent.scrollTo({
+      behavior: "smooth",
+      left: parent.scrollLeft - items[0].getFullWidth(),
+    });
+
+    parent.addEventListener("scroll", () => {
+      let checker = setInterval(() => {
+        checking(parent, L_Btn, R_Btn);
+      }, 300);
+
+      parent.addEventListener("scrollend", () => {
+        clearInterval(checker);
+      });
+    });
   });
 }
 
-function controlBtns(btn1, displayType1, btn2, displayType2) {
-  btn1.style.display = displayType1;
-  btn2.style.display = displayType2;
+function scrollToRight(parent, L_Btn, R_Btn) {
+  R_Btn.addEventListener("click", () => {
+    let items = [...parent.children];
+
+    parent.scrollTo({
+      behavior: "smooth",
+      left: parent.scrollLeft + items[0].getFullWidth(),
+    });
+
+    parent.addEventListener("scroll", () => {
+      let checker = setInterval(() => {
+        checking(parent, L_Btn, R_Btn);
+      }, 300);
+
+      parent.addEventListener("scrollend", () => {
+        clearInterval(checker);
+      });
+    });
+
+    checking(parent, L_Btn, R_Btn);
+  });
 }
 
-function scrollFunc(parent, operation, ctnGap, prevBtn) {
-  setTimeout(() => {
-    let cards = [...parent.children];
-    if (operation == "next") {
-      parent.scrollTo({
-        behavior: "smooth",
-        left:
-          cards[
-            parseInt(
-              parent.scrollLeft / parseInt(StylePackage(cards[0]).width)
-            ) + 1
-          ].offsetLeft - ctnGap,
-      });
-      // console.log(p.scrollWidth, p.scrollLeft + p.clientWidth);
-      // console.log(p.scrollWidth - 20, p.scrollLeft + p.clientWidth);
-      // if (
-      //   parent.scrollLeft + parent.clientWidth < parent.scrollWidth &&
-      //   parent.scrollLeft + parent.clientWidth > parent.scrollWidth - 25
-      // ) {
-      //   parent.scrollTo({
-      //     behavior: "smooth",
-      //     left: cards[cards.length - 1].offsetLeft,
-      //   });
-      // }
-    } else if (operation == "prev") {
-      parent.scrollTo({
-        behavior: "smooth",
-        left:
-          cards[
-            parseInt(
-              parent.scrollLeft / parseInt(StylePackage(cards[0]).width)
-            ) - 1
-          ].offsetLeft - ctnGap,
-      });
-      // if (parent.scrollLeft <= 25 && parent.scrollLeft > 0) {
-      //   parent.scrollTo({
-      //     behavior: "smooth",
-      //     left: 0,
-      //   });
-      // }
+function checking(parent, L_Btn, R_Btn) {
+  let scrollLeft = parent.scrollLeft;
+
+  let fullWidth = parent.scrollWidth;
+
+  let clientWidth = parent.clientWidth;
+
+  let mestakeMargin = 15;
+
+  let endedScrolling;
+
+  if (scrollLeft < 0) {
+    endedScrolling = -scrollLeft + clientWidth;
+  } else {
+    endedScrolling = scrollLeft + clientWidth;
+  }
+
+  if (currentLanguge != "arabic") {
+    if (scrollLeft < mestakeMargin) {
+      L_Btn.style.display = "none";
+    } else {
+      L_Btn.style.display = "block";
     }
-
-    hidePrevBtn(parent, prevBtn);
-  }, 50);
-}
-
-function hidePrevBtn(parent, btnPrev) {
-  if (parent.scrollLeft < 10) {
-    btnPrev.style.display = "none";
+  } else if (currentLanguge == "arabic") {
+    if (scrollLeft > -mestakeMargin) {
+      R_Btn.style.display = "none";
+    } else {
+      R_Btn.style.display = "block";
+    }
+  }
+  if (endedScrolling > fullWidth - 20) {
+    currentLanguge == "arabic"
+      ? (L_Btn.style.display = "none")
+      : (R_Btn.style.display = "none");
+  } else {
+    currentLanguge == "arabic"
+      ? (L_Btn.style.display = "block")
+      : (R_Btn.style.display = "block");
   }
 }
 
 // Functions For themes Or Other Actions
 
+// Initialize Englisk Language Object
+
+function initializeEnglishLanguageObject() {
+  document.querySelectorAll("*").forEach((ele) => {
+    if (ele.getAttribute("data-lang")) {
+      languages.english[ele.getAttribute("data-lang")] = ele.innerHTML;
+
+      // console.log(languages.arabic);
+      // console.log(languages.english);
+    }
+
+    if (ele.getAttribute("data-lang-placeholder"))
+      languages.english[ele.getAttribute("data-lang-placeholder")] =
+        ele.placeholder;
+
+    if (ele.dataset.content) {
+      languages.english[ele.dataset.lang] = ele.dataset.content;
+    }
+  });
+}
+
 function applyLanguage(lang) {
   localStorage.setItem("language", lang);
 
+  currentLanguge = localStorage.getItem("language");
+
+  let changeDirection = (direction) => {
+    let changeElementDirection = document.querySelectorAll(".l-change");
+
+    let pageTitle = document.querySelector(".Page-Title");
+
+    pageTitle.removeAttribute("direction");
+
+    if (direction == "rtl") {
+      document.body.style.direction = "rtl";
+
+      pageTitle.direction = "right";
+
+      pageTitle.behavior = "smooth";
+
+      changeElementDirection.forEach((ele) => {
+        ele.classList.remove("dir-lang-en");
+        ele.classList.add("dir-lang-ar");
+      });
+
+      applyButtons("arabic");
+    } else if (direction == "ltr") {
+      document.body.style.direction = "ltr";
+
+      pageTitle.direction = "left";
+
+      changeElementDirection.forEach((ele) => {
+        ele.classList.remove("dir-lang-ar");
+        ele.classList.add("dir-lang-en");
+      });
+
+      applyButtons("english");
+    }
+  };
+
+  // let currentLang = window.localStorage.getItem("language");
+
   if (lang == "arabic") {
-    document.body.style.direction = "rtl";
+    let arabicFont = '"Cairo", sans-serif';
+    changeDirection("rtl");
+
+    document.body.style.fontFamily = arabicFont;
+
+    document.querySelectorAll("*").forEach((ele) => {
+      if (ele.getAttribute("data-lang")) {
+        ele.innerHTML = languages["arabic"][ele.getAttribute("data-lang")];
+      }
+
+      if (ele.getAttribute("data-lang-placeholder"))
+        ele.placeholder =
+          languages["arabic"][ele.getAttribute("data-lang-placeholder")];
+
+      if (ele.dataset.content) {
+        ele.dataset.content = languages.arabic[ele.dataset.lang];
+      }
+    });
+
+    styleFile.innerHTML += `
+
+    ::placeholder,
+    button,span{
+      font-family:${arabicFont};
+      font-size:0.8rem;
+      letter-spaceing
+    }
+
+    
+    `;
+  }
+
+  if (lang == "english") {
+    changeDirection("ltr");
+
+    document.body.style.fontFamily = '"Anta", sans-serif';
+
+    document.querySelectorAll("*").forEach((ele) => {
+      if (ele.getAttribute("data-lang")) {
+        ele.innerHTML = languages["english"][ele.getAttribute("data-lang")];
+      }
+
+      if (ele.getAttribute("data-lang-placeholder"))
+        ele.placeholder =
+          languages["english"][ele.getAttribute("data-lang-placeholder")];
+
+      if (ele.dataset.content) {
+        ele.dataset.content = languages.english[ele.dataset.lang];
+      }
+    });
   }
 }
 
@@ -1784,11 +2769,11 @@ function applyTheme(color) {
   switch (color) {
     case "red":
       themeStyleFile.innerHTML = `:root {
-  --main-color: #ff5722;
-  --secoundary-color: #e7c3c3;
-  --background-main-color:#ff57224e;
-  --background-white-color: #e7c3c37e;
-  --background-color: #000f18;
+--main-color: #ff0000;
+    --secoundary-color: #e7c3c3;
+    --background-main-color: #ff000038;
+    --background-white-color: #e7c3c37e;
+    --background-color: #000f18;
 }`;
       break;
     case "blue":
@@ -1832,39 +2817,61 @@ function applyTheme(color) {
 }`;
       break;
 
-    case "dark":
-      themeStyleFile.innerHTML = `
-    :root {
-  --main-color:#ffffff;
-  --secoundary-color:#000;
-  --background-main-color:#ffffff66;
-  --background-white-color:#ffffff7d;
-  --background-color: #000f18;
-}`;
-      break;
+    //     case "dark":
+    //       themeStyleFile.innerHTML = `
+    //     :root {
+    //   --main-color:#ffffff;
+    //   --secoundary-color:#000;
+    //   --background-main-color:#ffffff66;
+    //   --background-white-color:#ffffff7d;
+    //   --background-color: #000f18;
+    // }`;
+    //       break;
   }
 }
 
-function checkNumberOfChildrens(parent) {
-  return Array.from(parent.children).filter(
-    (e) => StylePackage(e).display != "none"
-  ).length;
+function hideElementNumber(parent) {
+  let elements = Array.from(parent.children);
+
+  return elements.filter((e) => StylePackage(e).display != "none").length;
+
+  // return Array.from(parent.children).filter(
+  // (e) => StylePackage(e).display != "none"
+  // ).length;
 }
 
 function onOpenPopup(taps) {
   count = 0;
 
   let add = setInterval(() => {
-    taps[count].style.position = "relative";
+    if (!taps[count].classList.contains("close-btn")) {
+      taps[count].style.position = "relative";
 
-    taps[count].style.right = 0;
+      taps[count].style.right = 0;
 
-    count == taps.length - 2 ? clearInterval(add) : count++;
+      count == taps.length - 2 ? clearInterval(add) : count++;
+    }
   }, 120);
 }
+
+// taps[count].style.position = "relative";
+
+// taps[count].style.right = 0;
+
+// count == taps.length - 2 ? clearInterval(add) : count++;
 
 function exit(target) {
   target.style.right = "-200%";
 }
 
-//
+HTMLElement.prototype.getFullWidth = function () {
+  return (
+    this.clientWidth +
+    parseInt(StylePackage(this).marginRight) +
+    parseInt(StylePackage(this).marginLeft) +
+    parseInt(StylePackage(this).borderRightWidth) +
+    parseInt(StylePackage(this).borderLeftWidth)
+  );
+};
+
+console.log(BODY.getFullWidth());

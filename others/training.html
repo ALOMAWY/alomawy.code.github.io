@@ -1,0 +1,102 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>rty</title>
+  </head>
+  <body>
+    <button id="hold">Press Hold</button>
+    <script>
+      const holdClick = document.getElementById("hold");
+
+      class holdClicker {
+        constructor(target, callback) {
+          this.target = target;
+          this.callback = callback;
+          this.isHeld = false;
+          this.activeHoldTimeOutId = null;
+
+          ["mousedown", "touchstart"].forEach((type) => {
+            this.target.addEventListener(type, () =>
+              this._onHoldStart.bind(this)()
+            );
+          });
+
+          [
+            "mouseup",
+            "mouseleave",
+            "mouseout",
+            "touchend",
+            "touchcancel",
+          ].forEach((type) => {
+            this.target.addEventListener(type, () =>
+              this._onHoldEnd.bind(this)()
+            );
+          });
+        }
+
+        _onHoldStart() {
+          this.isHeld = true;
+
+          this.activeHoldTimeOutId = setTimeout(() => {
+            if (this.isHeld) {
+              this.callback();
+            }
+          }, 1000);
+        }
+
+        _onHoldEnd() {
+          this.isHeld = false;
+          clearTimeout(this.activeHoldTimeOutId);
+        }
+
+        static onHold() {
+          new holdClicker(this.target, this.callback);
+        }
+      }
+
+      // holdClick, () => console.log("Cl");
+
+      holdClicker.onHold(holdClick, () => {
+        console.log("RlL");
+      });
+    </script>
+
+    <code>html</code>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div
+      class="tg"
+      style="
+        width: 500px;
+        height: 500px;
+        background-color: red;
+        text-align: center;
+        padding: 20px;
+        margin: 20px;
+        border: 5px solid black;
+      "
+    >
+      sdsdsdsdsdsd
+    </div>
+    <script>
+      HTMLElement.prototype.getFullWidth = function () {
+        return this.clientWidth + Styl;
+      };
+
+      let target = document.querySelector(".tg");
+
+      console.log(target.getFullWidth());
+    </script>
+  </body>
+</html>
