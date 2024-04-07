@@ -77,10 +77,10 @@
     </script>
   </head>
   <body>
-    <div id="lock-page" class="lockpage-cover cover" style="display: none">
+    <div id="lock-page" class="lockpage-cover cover">
       <div class="lockpage-container container">
         <div class="lockpage">
-          <h3 id="unlock-text" class="unlock-text">
+          <h3 id="unlock-text" class="unlock-text" data-lang="un_lock_explain">
             Hover In Empty Area To Unlock Pages
           </h3>
           <span class="arrow">
@@ -90,7 +90,11 @@
           <span class="arrow">
             <i class="fa-solid fa-arrow-down fa-beat-fade"></i>
           </span>
-          <div id="range" class="range-counter"></div>
+
+          <div class="range-container">
+            <span class="count-value">0%</span>
+            <div id="range" class="range-counter"></div>
+          </div>
 
           <div class="the-lock">
             <div class="lock-head"></div>
@@ -161,81 +165,6 @@
         </li>
       </ul>
 
-      <!-- <ul class="select-themes select" id="select-theme">
-        <li class="li-theme">
-          <button class="theme-btn" data-content="red" data-lang="red"></button>
-        </li>
-        <li class="li-theme">
-          <button
-            class="theme-btn"
-            data-content="green"
-            data-lang="green"
-          ></button>
-        </li>
-        <li class="li-theme">
-          <button
-            class="theme-btn"
-            data-content="blue"
-            data-lang="blue"
-          ></button>
-        </li>
-        <li class="li-theme">
-          <button
-            class="theme-btn"
-            data-content="purple"
-            data-lang="purple"
-          ></button>
-        </li>
-        <li class="li-theme">
-          <button
-            class="theme-btn"
-            data-content="orange"
-            data-lang="orange"
-          ></button>
-        </li>
-      </ul>
-
-      <ul class="select-language select" id="select-lang">
-        <li class="li-lang">
-          <button
-            class="lang-btn"
-            data-content="arabic"
-            data-lang="arabicLang"
-          ></button>
-        </li>
-        <li class="li-lang">
-          <button
-            class="lang-btn"
-            data-content="english"
-            data-lang="englishLang"
-          ></button>
-        </li>
-      </ul>
-
-      <ul class="select-download select" id="select-d-file">
-        <li class="li-d-file">
-          <button class="d-btn" data-content="cv" data-lang="cv"></button>
-        </li>
-        <li class="li-d-file">
-          <button class="d-btn" data-content="code" data-lang="code"></button>
-        </li>
-      </ul>
-      <ul class="select-info select" id="select-info">
-        <li class="li-info">
-          <button
-            class="info-btn"
-            data-content="news"
-            data-lang="news"
-          ></button>
-        </li>
-        <li class="li-info">
-          <button
-            class="info-btn"
-            data-content="after-set"
-            data-lang="afterSet"
-          ></button>
-        </li>
-      </ul> -->
       <ul class="select-themes select" id="select-theme">
         <li class="li-theme">
           <button

@@ -7,20 +7,27 @@ let StylePackage = (element) => {
   return window.getComputedStyle(element);
 };
 
-let styleFile = document.createElement("style");
+const styleFile = document.createElement("style");
 
 styleFile.id = "main-style";
 
-let changeAndTypingAnimationStylingFile = document.createElement("style");
+const lockPageStyleFile = document.createElement("style");
+
+lockPageStyleFile.className = "Lock Page Style File";
+
+HEAD.appendChild(lockPageStyleFile);
+
+const changeAndTypingAnimationStylingFile = document.createElement("style");
 
 changeAndTypingAnimationStylingFile.id = "name-change-animation-style";
-let dynamicFontSize = "1rem";
 
-let mainTextColor = `#fff`;
+const dynamicFontSize = "1rem";
 
-let mainSecondaryColor = `#186ca4`;
+const mainTextColor = `#fff`;
 
-let sectionTitle = document.querySelectorAll(".header-title");
+const mainSecondaryColor = `#186ca4`;
+
+const sectionTitle = document.querySelectorAll(".header-title");
 
 sectionTitle.forEach((title, index) => {
   title.style.height =
@@ -46,6 +53,61 @@ BODY.style.minHeight = "100vh";
 // BODY.style.backgroundSize = "100% 00vh";
 
 const document_width = document.documentElement.clientWidth;
+
+// Hold Click Event Class
+
+class HOLDER {
+  constructor(target, callbackHold, callbackBlur) {
+    this.target = target;
+    this.callbackHold = callbackHold;
+    this.callbackBlur = callbackBlur;
+    this.isHeld = false;
+    this.activeHoldTimeOutId = null;
+
+    ["mousedown", "touchstart"].forEach((type) => {
+      this.target.addEventListener(type, () => this._onHoldStart.bind(this)());
+    });
+
+    ["mouseup", "mouseleave", "mouseout", "touchend", "touchcancel"].forEach(
+      (type) => {
+        this.target.addEventListener(type, () => this._onHoldEnd.bind(this)());
+      }
+    );
+  }
+
+  _onHoldStart() {
+    this.isHeld = true;
+
+    this.activeHoldTimeOutId = setInterval(() => {
+      if (this.isHeld) {
+        this.callbackHold();
+      }
+    }, 100);
+  }
+
+  _onHoldEnd() {
+    this.isHeld = false;
+    clearTimeout(this.activeHoldTimeOutId);
+    this.callbackBlur();
+  }
+
+  static onHold(target, callbackHold, callbackBlur) {
+    new HOLDER(target, callbackHold, callbackBlur);
+  }
+}
+
+let ss = document.querySelector(".information");
+console.log(ss);
+
+HOLDER.onHold(
+  ss,
+  () => {
+    console.log("sae");
+  },
+  () => {
+    console.log("stoped");
+  }
+);
 
 // Element Genaration Class
 
@@ -108,6 +170,14 @@ function addStyleToPsoudoElement(style, file) {
 let languages = {
   arabic: {
     applicationTitle: "امبراطورية الأموي",
+
+    // Un Lock Page Start
+
+    un_lock_explain:
+      "قم بوضع موشر الفارة على المربع اناه حتى يتم الغاء قفل الموقع",
+
+    // Un Lock Page End
+
     // Start Header
     // Navgation Bar
     webTitle: "عبدالرحمن الدباس",
@@ -387,13 +457,13 @@ function massege(msg, timing = 3) {
   }
 }
 
-const lockPageDiv = document.getElementById("lock-page");
+const mainContainer = document.getElementById("home");
+
+const lockPageContainer = document.getElementById("lock-page");
 
 const ExplainToUnlock = document.getElementById("unlock-text");
 
 const drawArea = document.getElementById("draw-area");
-
-/// - - - - - --- - - - - - -- - - - - -
 
 // Get Sound
 
@@ -402,9 +472,17 @@ const successSound = document.getElementById("unlock-sound");
 successSound.src =
   "./sounds/short-success-sound-glockenspiel-treasure-video-game-6346.mp3";
 
-let counterToUnlock;
+const range = document.getElementById("range");
+
+const rangeValue = document.querySelector(".count-value");
+
+const lockHead = document.querySelector(".the-lock .lock-head");
+
+let counter;
 
 let unlockStatus = 0;
+
+let unlockFullValue = 100;
 
 let minusCounterFunction;
 
@@ -412,59 +490,95 @@ let minusCounter;
 
 let minusToCounter;
 
+function unlocked() {
+  localStorage.setItem("lock", "hide");
+
+  successSound.play();
+
+  mainContainer.style.display = "block";
+
+  unLockAnimation();
+
+  setHeaderParent();
+
+  setTimeout(() => {
+    lockPageContainer.remove();
+  }, 1000);
+}
+
+function lockChecker() {
+  if (localStorage.getItem("lock") == "hide") {
+    lockPageContainer.remove();
+
+    mainContainer.style.display = "block";
+
+    setHeaderParent();
+  } else {
+    console.log("false");
+    mainContainer.style.display = "none";
+  }
+}
+
+window.addEventListener("load", () => {
+  lockChecker();
+});
+
+let fetchEnd = setInterval(() => {
+  console.log(checkBoolean(fetchingComplete, 1, 3));
+
+  if (checkBoolean(fetchingComplete, 1, 3)) {
+    clearInterval(fetchEnd);
+  }
+}, 0);
+function unLockAnimation() {
+  lockHead.style.cssText += `
+        transform:translate(${lockHead.clientWidth + 20}px) rotateY(160deg);
+        box-shadow:none;`;
+}
+
 drawArea.addEventListener("mouseover", () => {
   clearInterval(minusCounter);
 
   clearTimeout(minusToCounter);
 
-  if (unlockStatus < 100) {
-    counterToUnlock = setInterval(() => {
+  if (unlockStatus < unlockFullValue) {
+    counter = setInterval(() => {
       unlockStatus++;
 
+      rangeValue.innerText = unlockStatus + "%";
+
       setTimeout(() => {
-        styleFile.innerHTML += `#range::before{
-    content:"";
-    width:${unlockStatus}%;}
-  #range::after{
-    content:'${unlockStatus}%';}`;
+        lockPageStyleFile.innerHTML += `
+        #range::before{
+          content:'';
+          width:${unlockStatus}%;
+        }`;
       }, 0);
 
-      if (unlockStatus >= 100) {
-        clearInterval(counterToUnlock);
+      if (unlockStatus >= unlockFullValue) {
+        clearInterval(counter);
 
-        // containerDiv.prepend(HEADER);
-
-        theLockHead.style.cssText += `transform:translate(${
-          parseInt(window.getComputedStyle(theLockHead).width) -
-          parseInt(window.getComputedStyle(theLockHead).borderWidth)
-        }px) rotateY(160deg);box-shadow:none;`;
-        successSound.play();
-
-        styleFile.innerHTML += disibledAnimation;
-        setTimeout(() => {
-          lockPageDiv.remove();
-
-          header.style.top = "0";
-        }, 1000);
+        unlocked();
       }
-    }, 10);
+    }, 50);
   }
 });
-
-const range = document.getElementById("range");
 
 drawArea.addEventListener("mouseout", () => {
   minusCounterFunction = () => {
     minusCounter = setInterval(() => {
-      if (unlockStatus > 0) unlockStatus--;
+      if (unlockStatus > 0) {
+        unlockStatus--;
 
-      styleFile.innerHTML += `#range::before{
-    content:"";
-    width:${unlockStatus}%;
-  }
-  #range::after{
-    content:'${unlockStatus}%';}
-  `;
+        rangeValue.innerText = unlockStatus + "%";
+
+        styleFile.innerHTML += `#range::before{
+        content:"";
+        width:${unlockStatus}%;
+      }`;
+      } else {
+        unlockStatus = 0;
+      }
     }, 1000);
   };
 
@@ -474,14 +588,56 @@ drawArea.addEventListener("mouseout", () => {
 
   HEAD.appendChild(styleFile);
 
-  clearInterval(counterToUnlock);
+  clearInterval(counter);
 });
+
+//  Add Loading Elements
+
+let CRT_topElement = new ELEMENT("div", "", "an-top-element", BODY);
+
+CRT_topElement.createElement();
+
+let topElement = CRT_topElement.getCreatedElement();
+
+let CRT_bottomElement = new ELEMENT("div", "", "an-bottom-element", BODY);
+
+CRT_bottomElement.createElement();
+
+let bottomElement = CRT_bottomElement.getCreatedElement();
+
+let CRT_animationText = new ELEMENT(
+  "h3",
+  "",
+  "animation-text",
+  BODY,
+  "Unlocked Now"
+);
+
+CRT_animationText.createElement();
+
+let animationText = CRT_animationText.getCreatedElement();
+
+function unLockAnimation() {
+  let animationElements = [topElement, bottomElement, animationText];
+  topElement.style.animation = "lock-an-top 7s ease-in-out 1";
+
+  bottomElement.style.animation = "lock-an-bottom 7s ease-in-out 1";
+
+  animationText.style.animation = "animation-text 4s ease-in-out 1 1.5s";
+  setTimeout(() => {
+    animationElements.forEach((e) => (e.style.animation = ""));
+  }, 10000);
+}
+
+topElement.classList.add("an-element");
+bottomElement.classList.add("an-element");
+
+// Header
 
 let header = document.getElementById("header");
 
 let headerParent = header.parentNode;
-
-document.addEventListener("DOMContentLoaded", () => {
+function setHeaderParent() {
   if (document_width < 1100) {
     header.style.width = "100%";
 
@@ -513,8 +669,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     initializeEnglishLanguageObject();
   }
-});
-
+}
 let V_scroll = 0;
 
 window.addEventListener("scroll", () => {
@@ -582,66 +737,14 @@ window.addEventListener("load", () => {
 
   initializeEnglishLanguageObject();
 
-  applyButtons(currentLanguge);
+  applyScrollingButtons(currentLanguge);
 
   currentLanguge ? applyLanguage(currentLanguge) : applyLanguage("english");
 
   if (currentLanguge != "arabic") {
-    createButtonAction(
-      changeThemeContainer,
-      changeTheme,
-      colorName,
-      applyTheme,
-      "Theme Changed To"
-    );
-
-    createButtonAction(
-      languagesContainer,
-      changeLanguageBtn,
-      languageNames,
-      applyLanguage,
-      "language Changed To"
-    );
-
-    createButtonAction(
-      selectDownloadContainer,
-      selectFileBtn,
-      fileNames,
-      test,
-      "Downloading File"
-    );
-
-    createButtonAction(infoContainer, infoBtn, infoNames, test, "Show");
-
-    createButtonAction(menuContainer, menu, tapNames, test, "Going To");
+    EN_action();
   } else if (currentLanguge === "arabic") {
-    createButtonAction(
-      changeThemeContainer,
-      changeTheme,
-      colorName,
-      applyTheme,
-      `تم تغيير الثمة الى اللون `
-    );
-
-    createButtonAction(
-      languagesContainer,
-      changeLanguageBtn,
-      languageNames,
-      applyLanguage,
-      "تم تغيير اللغة الى"
-    );
-
-    createButtonAction(
-      selectDownloadContainer,
-      selectFileBtn,
-      fileNames,
-      test,
-      "جار تنزيل"
-    );
-
-    createButtonAction(infoContainer, infoBtn, infoNames, test, "اظهار");
-
-    createButtonAction(menuContainer, menu, tapNames, test, "الذهاب الى");
+    AR_Action();
   }
 
   responsiveCardsWithGrid(
@@ -777,7 +880,7 @@ if (document_width < 800) {
 
   menu.style.marginRight = "15px";
 
-  headIconsContainer.style.left = `-${StylePackage(headIconsContainer).width}`;
+  // headIconsContainer.style.left = `-${StylePackage(headIconsContainer).width}`;
 }
 
 const menuRow = document.querySelector("menu-row");
@@ -808,19 +911,11 @@ mySkills.forEach((skill, index) => {
   landingSkills.appendChild(mySkill);
 });
 
-showIcons.addEventListener("click", () => {
-  let navigationLinks = showIcons.parentNode;
-
-  let position = parseInt(StylePackage(navigationLinks).left);
-
-  position < 0
-    ? (navigationLinks.style.left = "0px")
-    : (navigationLinks.style.left = "-" + navigationLinks.clientWidth + "px");
-});
-
 // Start Services Section
 
 // Request Data From File
+
+let fetchingComplete = [];
 
 async function requestServices() {
   try {
@@ -893,6 +988,8 @@ async function requestServices() {
 
       languages.arabic[`servDiscValue${index + 1}`] = card["explain"]["ar"];
     });
+
+    fetchingComplete.push(1);
   } catch (Error) {}
 }
 
@@ -1306,7 +1403,7 @@ async function RequestProjectsData(link) {
 
       // Create Reteing System
 
-      let retingStars = `<i class="fa-solid fa-star fa-xs" style="color:#fff;"></i>`;
+      let retingStars = `<i class="fa-solid fa-star fa-xs" style="color:var(--secoundary-color);"></i>`;
 
       const CRT_projectRete = new ELEMENT(
         "div",
@@ -1433,6 +1530,7 @@ async function RequestProjectsData(link) {
 
       visitLink.dataset.lang = "visitLinkText";
     }
+    fetchingComplete.push(1);
   } catch {
     console.error(error);
   }
@@ -1455,6 +1553,8 @@ setTimeout(() => {
 
 filtersProjects.forEach((fil) => {
   fil.addEventListener("click", (e) => {
+    applyScrollingButtons(currentLanguge);
+
     setTimeout(() => {
       let columnsStyle = `repeat(${hideElementNumber(
         projectsBox
@@ -1778,14 +1878,6 @@ async function RequestSocialMediaData(link) {
 
         languages.arabic[`socialContent${i + 1}`] = data[i]["content"]["ar"];
 
-        // styleFile.innerHTML += `
-        //  .project-card:nth-child(${i + 1}) p::-webkit-scrollbar-track {
-        // background-color: ${colorOpacity};
-        // }
-        //  .project-card:nth-child(${i + 1}) p::-webkit-scrollbar-thumb {
-        //  background-color: ${color};
-        // }`;
-
         // Initialize Visiting Button
 
         const CRT_Visiting = new ELEMENT(
@@ -1805,6 +1897,7 @@ async function RequestSocialMediaData(link) {
       }
       socialMediaBox.style.gridTemplateColumns = `repeat(${numberOfCards}, calc(100% / 4 )`;
     }
+    fetchingComplete.push(1);
   } catch {
     console.error(error);
   }
@@ -1812,16 +1905,6 @@ async function RequestSocialMediaData(link) {
 RequestSocialMediaData("api/social-media.json");
 
 // Apply Function
-
-// socialNextBtn.addEventListener("click", () => {
-//   scrollFunc(socialMediaBox, "next", 10, socialNextBtn);
-// });
-
-// socialPrevBtn.addEventListener("click", () => {
-//   scrollFunc(socialMediaBox, "prev", 10, socialPrevBtn);
-// });
-
-/// /// - -d-sa-d-aew--asda-e-we-
 
 // Contact Us Section
 
@@ -1859,7 +1942,6 @@ function sendEmail() {
     .send("service_ye55eu7", "template_og68n3e", params)
     .then((res) => {
       massege(sendMassageDone); // Corrected function name
-      // alert(`Your Massage Has Been Sent Successfully ${res}`);
       emailInput.value = "";
       nameInput.value = "";
       massageArea.value = "";
@@ -2013,29 +2095,6 @@ let skillsArray = [
   "commandline",
 ];
 
-//
-
-let First_Name = "Abdalrahman";
-let Last_Name = "Aldabbas";
-function nameConcat(f_Name, l_Name) {
-  return;
-  `
-                    $
-                    {
-                    First_Name
-                    }
-                     
-                    $
-                    {
-                      Last_Name
-                      }
-                       
-                    🩵
-                    `;
-}
-//
-nameConcat(First_Name, Last_Name);
-
 skillsArray.forEach((skill) => {
   let skills = document.createElement("span");
 
@@ -2055,14 +2114,6 @@ if (animationArea.clientHeight > animationArea.clientWidth) {
 } else if (animationArea.clientWidth > animationArea.clientHeight) {
   animationArea.style.height = animationArea.clientWidth + "px";
 }
-
-// let animationBall = document.querySelector(".animation-ball");
-
-// if (animationBall.clientHeight > animationBall.clientWidth) {
-//   animationBall.style.width = animationBall.clientHeight + "px";
-// } else if (animationBall.clientWidth > animationBall.clientHeight) {
-//   animationBall.style.height = animationBall.clientWidth + "px";
-// }
 
 function responsiveCardsWithGrid(
   target,
@@ -2084,7 +2135,7 @@ function responsiveCardsWithGrid(
 
 // End Portfolio
 
-function applyButtons(lang) {
+function applyScrollingButtons(lang) {
   setTimeout(() => {
     let dir = "en";
 
@@ -2125,7 +2176,7 @@ function applyButtons(lang) {
   }, 500);
 }
 
-applyButtons(currentLanguge);
+applyScrollingButtons(currentLanguge);
 
 // Start Road Map
 
@@ -2142,7 +2193,9 @@ let roadMapContentHeight =
     0) +
   "px";
 
-// roadMapContentBox.style.height = roadMapContentHeight;
+// isMobile()
+//   ? (roadMapContentBox.style.top = "33%")
+//   : (roadMapContentBox.style.top = "55%");
 
 let h_road = [...document.querySelectorAll(".h-road")];
 
@@ -2201,189 +2254,160 @@ controlCarBtn.addEventListener("click", () => {
 
 let car = document.querySelector(".car");
 
-let startControl = () => {
-  let toUp = (target) => {
-    target.style.top = `${target.offsetTop - 30}px`;
+function toUp(target) {
+  target.style.top = `${target.offsetTop - 30}px`;
 
-    target.style.transform = "rotate(0deg)";
-  };
+  target.style.transform = "rotate(0deg)";
+}
 
-  let toDown = (target) => {
-    target.style.top = `${target.offsetTop + 30}px`;
+function toDown(target) {
+  target.style.top = `${target.offsetTop + 30}px`;
 
-    target.style.transform = "rotate(180deg)";
-  };
+  target.style.transform = "rotate(180deg)";
+}
 
-  let toRight = (target) => {
-    target.style.left = `${target.offsetLeft + 30}px`;
+function toRight(target) {
+  target.style.left = `${target.offsetLeft + 30}px`;
 
-    target.style.transform = "rotate(90deg)";
-  };
+  target.style.transform = "rotate(90deg)";
+}
 
-  let toLeft = (target) => {
-    target.style.left = `${target.offsetLeft - 30}px`;
+function toLeft(target) {
+  target.style.left = `${target.offsetLeft - 30}px`;
 
-    target.style.transform = "rotate(270deg)";
-  };
+  target.style.transform = "rotate(270deg)";
+}
 
-  let applyKeys = (target) => {
-    let controlMassege = "Press 'W A S D' To Start Driving";
-
-    let aboutCarMassege =
-      "Don't look at driving a car, I added it to implement an idea I had in mind";
-
-    if (currentLanguge != "arabic") {
-      controlMassege = controlMassege;
-      aboutCarMassege = aboutCarMassege;
-    } else {
-      controlMassege = "اضغط ' W A S D ' لبدء القيادة";
-      aboutCarMassege =
-        "لا تنظر إلى قيادة السيارة، لقد أضفتها لتنفيذ فكرة كانت في ذهني";
-    }
-    document.addEventListener("keydown", (e) => {
-      let eventKey = e.key;
-      switch (eventKey) {
-        case "w":
-          toUp(target);
-          break;
-        case "s":
-          toDown(target);
-          break;
-        case "d":
-          toRight(target);
-          break;
-        case "a":
-          toLeft(target);
-          break;
-        case "W":
-          toUp(target);
-          break;
-        case "S":
-          toDown(target);
-          break;
-        case "D":
-          toRight(target);
-          break;
-        case "A":
-          toLeft(target);
-          break;
-        case "capslock":
-          test("as");
-          break;
-        default:
-          massege(controlMassege);
-      }
-    });
-    massege(controlMassege);
-    setTimeout(() => {
-      massege(aboutCarMassege, 7);
-    }, 5000);
-  };
-
-  let applyBtns = (target) => {
-    let controlMassege = "Control With Buttons";
-
-    let aboutCarMassege =
-      "Don't look at driving a car, I added it to implement an idea I had in mind";
-    if (currentLanguge != "arabic") {
-      controlMassege = controlMassege;
-
-      aboutCarMassege = aboutCarMassege;
-    } else {
-      controlMassege = "التحكم بالأزرار";
-      aboutCarMassege =
-        "لا تنظر إلى قيادة السيارة، لقد أضفتها لتنفيذ فكرة كانت في ذهني";
-    }
-
-    let up = document.querySelector(".to-top");
-
-    let down = document.querySelector(".to-bottom");
-
-    let right = document.querySelector(".to-right");
-
-    let left = document.querySelector(".to-left");
-
-    up.addEventListener("click", () => {
-      toUp(target);
-    });
-
-    down.addEventListener("click", () => {
-      toDown(target);
-    });
-
-    right.addEventListener("click", () => {
-      toRight(target);
-    });
-
-    left.addEventListener("click", () => {
-      toLeft(target);
-    });
-
-    applyBtns(car);
-
-    massege(controlMassege);
-
-    setTimeout(() => {
-      massege(aboutCarMassege, 7);
-    }, 5000);
-  };
-
+function createMobileButtons() {
   let remoteControlContainer = document.createElement("div");
-
-  car.style.display = "block";
 
   remoteControlContainer.classList.add("remote-control");
 
+  let Y_Axis_Buttons = document.createElement("div");
+
+  Y_Axis_Buttons.classList.add("y-area");
+
+  let To_Top_Button = document.createElement("button");
+
+  To_Top_Button.classList.add("to-top", "c-btn");
+
+  Y_Axis_Buttons.prepend(To_Top_Button);
+
+  let To_Bottom_Button = document.createElement("button");
+
+  To_Bottom_Button.classList.add("to-bottom", "c-btn");
+
+  Y_Axis_Buttons.appendChild(To_Bottom_Button);
+
+  remoteControlContainer.appendChild(Y_Axis_Buttons);
+
+  // Make Right And Left Buttons
+
+  let X_Axis_Buttons = document.createElement("div");
+
+  X_Axis_Buttons.classList.add("x-area");
+
+  let To_Left_Button = document.createElement("button");
+
+  To_Left_Button.classList.add("to-left", "c-btn");
+
+  X_Axis_Buttons.prepend(To_Left_Button);
+
+  let To_Right_Button = document.createElement("button");
+
+  To_Right_Button.classList.add("to-right", "c-btn");
+
+  X_Axis_Buttons.appendChild(To_Right_Button);
+
+  remoteControlContainer.appendChild(X_Axis_Buttons);
+
+  let roadMapContainer = document.querySelector(".road-map-container");
+
+  roadMapContainer.appendChild(remoteControlContainer);
+
+  roadMapContentBox.style.height = "570px";
+
+  roadMapContentBox.style.top = "45%";
+
+  remoteControlContainer.style.width = roadMapContentBox.clientWidth + "px";
+
+  document.querySelectorAll(".c-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      btn.style.animation = "clicked 0.5s 1 linear";
+
+      setTimeout(() => {
+        btn.style.animation = "";
+      }, 500);
+    });
+  });
+}
+
+function applyMobileButtons(car) {
+  let controlMassege = "Control With Buttons";
+
+  let aboutCarMassege =
+    "Don't look at driving a car, I added it to implement an idea I had in mind";
+  if (currentLanguge != "arabic") {
+    controlMassege = controlMassege;
+
+    aboutCarMassege = aboutCarMassege;
+  } else {
+    controlMassege = " التحكم بالأزرار";
+    aboutCarMassege =
+      "لا تنظر إلى قيادة السيارة، لقد أضفتها لتنفيذ فكرة كانت في ذهني";
+  }
+
+  let up = document.querySelector(".to-top");
+
+  let down = document.querySelector(".to-bottom");
+
+  let right = document.querySelector(".to-right");
+
+  let left = document.querySelector(".to-left");
+
+  HOLDER.onHold(
+    up,
+    () => toUp(car),
+    () => {}
+  );
+
+  HOLDER.onHold(
+    down,
+    () => toDown(car),
+    () => {}
+  );
+
+  HOLDER.onHold(
+    right,
+    () => {
+      toRight(car);
+    },
+    () => {}
+  );
+  // HOLDER.onHold(right, toRight(car), toLeft(car));
+
+  HOLDER.onHold(
+    left,
+    () => toLeft(car),
+    () => {}
+  );
+
+  massege(controlMassege);
+
+  setTimeout(() => {
+    massege(aboutCarMassege, 7);
+  }, 5000);
+}
+
+let startControl = () => {
+  car.style.display = "block";
+
   if (isMobile()) {
     // Make Top And Bottom Buttons
-
-    let Y_Axis_Buttons = document.createElement("div");
-
-    Y_Axis_Buttons.classList.add("y-area");
-
-    let To_Top_Button = document.createElement("button");
-
-    To_Top_Button.classList.add("to-top");
-
-    Y_Axis_Buttons.prepend(To_Top_Button);
-
-    let To_Bottom_Button = document.createElement("button");
-
-    To_Bottom_Button.classList.add("to-bottom");
-
-    Y_Axis_Buttons.appendChild(To_Bottom_Button);
-
-    remoteControlContainer.appendChild(Y_Axis_Buttons);
-
-    // Make Right And Left Buttons
-
-    let X_Axis_Buttons = document.createElement("div");
-
-    X_Axis_Buttons.classList.add("x-area");
-
-    let To_Left_Button = document.createElement("button");
-
-    To_Left_Button.classList.add("to-left");
-
-    X_Axis_Buttons.prepend(To_Left_Button);
-
-    let To_Right_Button = document.createElement("button");
-
-    To_Right_Button.classList.add("to-right");
-
-    X_Axis_Buttons.appendChild(To_Right_Button);
-
-    remoteControlContainer.appendChild(X_Axis_Buttons);
-
-    let roadMapContainer = document.querySelector(".road-map-container");
-
-    roadMapContainer.appendChild(remoteControlContainer);
-
-    roadMapContentBox.style.height = "570px";
-
-    remoteControlContainer.style.width = roadMapContentBox.clientWidth + "px";
+    createMobileButtons();
+    applyMobileButtons(car);
   } else {
-    applyKeys(car);
+    applyKeyboardButtons(car);
   }
 };
 
@@ -2391,6 +2415,453 @@ let startControl = () => {
 
 // Function For Menu & Popups
 
+function closeButton(parent) {
+  let closeBtn = document.createElement("button");
+
+  closeBtn.innerHTML = `<i class="fa-solid fa-xmark "></i>`;
+
+  parent.appendChild(closeBtn);
+
+  let parentId = closeBtn.parentNode.id;
+
+  closeBtn.classList.add("close-btn");
+
+  closeBtn.addEventListener("click", () => {
+    exit(document.getElementById(parentId));
+
+    lis.forEach((e) => {
+      e.style.right = "-2500px";
+    });
+  });
+
+  let lis = Array.from(
+    document.querySelectorAll(`.${closeBtn.previousElementSibling.className}`)
+  );
+}
+
+function close() {
+  let closeBtns = Array.from(document.querySelectorAll(".close-btn"));
+
+  closeBtns.forEach((e) => {
+    exit(e.parentNode);
+  });
+}
+// 5313 8940 5050 0245
+// Check If The Dvice Mobile Or PC
+
+function isMobile() {
+  return (
+    window.navigator.maxTouchPoints > 0 ||
+    /(Android|Iphone)/gi.test(window.navigator.userAgent)
+  );
+}
+
+function toCapitalize(word) {
+  return `${word.substr(0, 1).toUpperCase()}${word
+    .toLowerCase()
+    .substr(-word.length + 1)}`;
+}
+
+//  Functions For Btns
+
+function scrollToLeft(parent, L_Btn, R_Btn) {
+  L_Btn.addEventListener("click", () => {
+    let items = [...parent.children];
+
+    parent.scrollTo({
+      behavior: "smooth",
+      left: parent.scrollLeft - items[0].getFullWidth(),
+    });
+
+    parent.addEventListener("scroll", () => {
+      let checker = setInterval(() => {
+        checking(parent, L_Btn, R_Btn);
+      }, 300);
+
+      parent.addEventListener("scrollend", () => {
+        clearInterval(checker);
+      });
+    });
+  });
+}
+
+function scrollToRight(parent, L_Btn, R_Btn) {
+  R_Btn.addEventListener("click", () => {
+    let items = [...parent.children];
+
+    parent.scrollTo({
+      behavior: "smooth",
+      left: parent.scrollLeft + items[0].getFullWidth(),
+    });
+
+    parent.addEventListener("scroll", () => {
+      let checker = setInterval(() => {
+        checking(parent, L_Btn, R_Btn);
+      }, 300);
+
+      parent.addEventListener("scrollend", () => {
+        clearInterval(checker);
+      });
+    });
+
+    checking(parent, L_Btn, R_Btn);
+  });
+}
+
+function checking(parent, L_Btn, R_Btn) {
+  let scrollLeft = parent.scrollLeft;
+
+  let fullWidth = parent.scrollWidth;
+
+  let clientWidth = parent.clientWidth;
+
+  let mestakeMargin = 15;
+
+  let endedScrolling;
+
+  if (scrollLeft < 0) {
+    endedScrolling = -scrollLeft + clientWidth;
+  } else {
+    endedScrolling = scrollLeft + clientWidth;
+  }
+
+  if (currentLanguge != "arabic") {
+    if (scrollLeft < mestakeMargin) {
+      L_Btn.style.display = "none";
+    } else {
+      L_Btn.style.display = "block";
+    }
+  } else if (currentLanguge == "arabic") {
+    if (scrollLeft > -mestakeMargin) {
+      R_Btn.style.display = "none";
+    } else {
+      R_Btn.style.display = "block";
+    }
+  }
+  if (endedScrolling > fullWidth - 20) {
+    currentLanguge == "arabic"
+      ? (L_Btn.style.display = "none")
+      : (R_Btn.style.display = "none");
+  } else {
+    currentLanguge == "arabic"
+      ? (L_Btn.style.display = "block")
+      : (R_Btn.style.display = "block");
+  }
+}
+
+// Functions For themes Or Other Actions
+
+function checkBoolean(list, value, number) {
+  console.log(list.length);
+  if (list.length == number && list.every((e) => e >= value)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// Initialize Englisk Language Object
+
+function initializeEnglishLanguageObject() {
+  document.querySelectorAll("*").forEach((ele) => {
+    if (ele.getAttribute("data-lang")) {
+      languages.english[ele.getAttribute("data-lang")] = ele.innerHTML;
+    }
+
+    if (ele.getAttribute("data-lang-placeholder"))
+      languages.english[ele.getAttribute("data-lang-placeholder")] =
+        ele.placeholder;
+
+    if (ele.dataset.content) {
+      languages.english[ele.dataset.lang] = ele.dataset.content;
+    }
+  });
+}
+
+function AR_Action() {
+  createButtonAction(
+    changeThemeContainer,
+    changeTheme,
+    colorName,
+    applyTheme,
+    `تم تغيير الثمة الى اللون `
+  );
+
+  createButtonAction(
+    languagesContainer,
+    changeLanguageBtn,
+    languageNames,
+    applyLanguage,
+    "تم تغيير اللغة الى"
+  );
+
+  createButtonAction(
+    selectDownloadContainer,
+    selectFileBtn,
+    fileNames,
+    test,
+    "جار تنزيل"
+  );
+
+  createButtonAction(infoContainer, infoBtn, infoNames, test, "اظهار");
+
+  createButtonAction(menuContainer, menu, tapNames, test, "الذهاب الى");
+}
+
+function EN_action() {
+  createButtonAction(
+    changeThemeContainer,
+    changeTheme,
+    colorName,
+    applyTheme,
+    "Theme Changed To"
+  );
+
+  createButtonAction(
+    languagesContainer,
+    changeLanguageBtn,
+    languageNames,
+    applyLanguage,
+    "language Changed To"
+  );
+
+  createButtonAction(
+    selectDownloadContainer,
+    selectFileBtn,
+    fileNames,
+    test,
+    "Downloading File"
+  );
+
+  createButtonAction(infoContainer, infoBtn, infoNames, test, "Show");
+
+  createButtonAction(menuContainer, menu, tapNames, test, "Going To");
+}
+
+function applyLanguage(lang) {
+  localStorage.setItem("language", lang);
+
+  currentLanguge = localStorage.getItem("language");
+
+  let changeDirection = (direction) => {
+    let changeElementDirection = document.querySelectorAll(".l-change");
+
+    let pageTitle = document.querySelector(".Page-Title");
+
+    pageTitle.removeAttribute("direction");
+
+    if (direction == "rtl") {
+      document.body.style.direction = "rtl";
+
+      pageTitle.direction = "right";
+
+      pageTitle.behavior = "smooth";
+
+      changeElementDirection.forEach((ele) => {
+        ele.classList.remove("dir-lang-en");
+        ele.classList.add("dir-lang-ar");
+      });
+
+      applyScrollingButtons("arabic");
+    } else if (direction == "ltr") {
+      document.body.style.direction = "ltr";
+
+      pageTitle.direction = "left";
+
+      changeElementDirection.forEach((ele) => {
+        ele.classList.remove("dir-lang-ar");
+        ele.classList.add("dir-lang-en");
+      });
+
+      applyScrollingButtons("english");
+    }
+  };
+
+  // let currentLang = سشيصيسشصيسشصيشسيصيس صثتق شسيصسشصيسي صwindow.localStorage.getItem("language");
+
+  if (lang == "arabic") {
+    let arabicFont = '"Cairo", sans-serif';
+
+    changeDirection("rtl");
+
+    AR_Action();
+
+    document.body.style.fontFamily = arabicFont;
+
+    document.querySelectorAll("*").forEach((ele) => {
+      if (ele.getAttribute("data-lang")) {
+        ele.innerHTML = languages["arabic"][ele.getAttribute("data-lang")];
+      }
+
+      if (ele.getAttribute("data-lang-placeholder"))
+        ele.placeholder =
+          languages["arabic"][ele.getAttribute("data-lang-placeholder")];
+
+      if (ele.dataset.content) {
+        ele.dataset.content = languages.arabic[ele.dataset.lang];
+      }
+    });
+
+    styleFile.innerHTML += `
+    ::placeholder,
+    button,textarea,span,.massege-box{
+      font-family:${arabicFont};
+      font-size:0.8rem;
+      letter-spaceing
+    }
+    `;
+
+    navgationBar.classList.remove("navigation-english");
+    navgationBar.classList.add("navigation-arabic");
+
+    setInFullyRight(navgationBar);
+
+    showIcons.addEventListener("click", () => {
+      let navigationLinks = showIcons.parentNode;
+
+      let position = parseInt(StylePackage(navigationLinks).right);
+
+      position < 0
+        ? setInFullyRight(navigationLinks, 1)
+        : setInFullyRight(navigationLinks, 0);
+    });
+  }
+
+  if (lang == "english") {
+    changeDirection("ltr");
+
+    EN_action();
+
+    document.body.style.fontFamily = '"Anta", sans-serif';
+
+    document.querySelectorAll("*").forEach((ele) => {
+      if (ele.getAttribute("data-lang")) {
+        ele.innerHTML = languages["english"][ele.getAttribute("data-lang")];
+      }
+
+      if (ele.getAttribute("data-lang-placeholder"))
+        ele.placeholder =
+          languages["english"][ele.getAttribute("data-lang-placeholder")];
+
+      if (ele.dataset.content) {
+        ele.dataset.content = languages.english[ele.dataset.lang];
+      }
+    });
+
+    navgationBar.classList.remove("navigation-arabic");
+
+    navgationBar.classList.add("navigation-english");
+
+    navgationBar.style.left = "0";
+
+    showIcons.addEventListener("click", () => {
+      let navigationLinks = showIcons.parentNode;
+
+      let position = parseInt(StylePackage(navigationLinks).left);
+
+      position < 0
+        ? (navigationLinks.style.left = "0px")
+        : (navigationLinks.style.left =
+            "-" + navigationLinks.clientWidth + "px");
+    });
+  }
+}
+
+function setInFullyRight(ele, position) {
+  let size = ele.getFullWidth();
+  return position == 0
+    ? (ele.style.left = `100%`)
+    : (ele.style.left = `calc(100% - ${size}px)`);
+}
+
+function applyTheme(color) {
+  localStorage.setItem("theme", color);
+  switch (color) {
+    case "red":
+      themeStyleFile.innerHTML = `:root {
+--main-color: #ff0000;
+    --secoundary-color: #e7c3c3;
+    --background-main-color: #ff000038;
+    --background-white-color: #e7c3c37e;
+    --background-color: #000f18;
+}`;
+      break;
+    case "blue":
+      themeStyleFile.innerHTML = `:root {
+  --main-color: #186ca4;
+  --secoundary-color: #fff;
+  --background-main-color: rgba(30, 56, 103, 0.7);
+  --background-white-color: rgba(255, 255, 255, 0.7);
+  --background-color: #000f18;
+}`;
+      break;
+    case "green":
+      themeStyleFile.innerHTML = `
+    :root {
+  --main-color:#4caf50;
+  --secoundary-color:#b8f0ba;
+  --background-main-color:#4caf505c;
+  --background-white-color:#ffffff99;
+  --background-color: #000f18;
+}`;
+      break;
+
+    case "orange":
+      themeStyleFile.innerHTML = `
+    :root {
+  --main-color: #ff9800;
+  --secoundary-color:#ffe2b6;
+  --background-main-color:#ff980040;
+  --background-white-color:#b7a488;
+  --background-color: #000f18;
+}`;
+      break;
+    case "purple":
+      themeStyleFile.innerHTML = `
+    :root {
+  --main-color:#9c27b0;
+  --secoundary-color:#ba95c0;
+  --background-main-color:#9c27b05c;
+  --background-white-color:#d4abdb94;
+  --background-color: #000f18;
+}`;
+      break;
+  }
+}
+
+function hideElementNumber(parent) {
+  let elements = Array.from(parent.children);
+
+  return elements.filter((e) => StylePackage(e).display != "none").length;
+}
+
+function onOpenPopup(taps) {
+  count = 0;
+
+  let add = setInterval(() => {
+    if (!taps[count].classList.contains("close-btn")) {
+      taps[count].style.position = "relative";
+
+      taps[count].style.right = 0;
+
+      count == taps.length - 2 ? clearInterval(add) : count++;
+    }
+  }, 120);
+}
+
+function exit(target) {
+  target.style.right = "-200%";
+}
+
+HTMLElement.prototype.getFullWidth = function () {
+  return (
+    this.clientWidth +
+    parseInt(StylePackage(this).marginRight) +
+    parseInt(StylePackage(this).marginLeft) +
+    parseInt(StylePackage(this).borderRightWidth) +
+    parseInt(StylePackage(this).borderLeftWidth)
+  );
+};
 function toArabicNumber(englishNumber) {
   let arNums = [
     "٠",
@@ -2511,367 +2982,3 @@ function toArabicNumber(englishNumber) {
 
   return newNumber.join("");
 }
-
-function closeButton(parent) {
-  let closeBtn = document.createElement("button");
-
-  closeBtn.innerHTML = `<i class="fa-solid fa-xmark "></i>`;
-
-  parent.appendChild(closeBtn);
-
-  let parentId = closeBtn.parentNode.id;
-
-  closeBtn.classList.add("close-btn");
-
-  closeBtn.addEventListener("click", () => {
-    exit(document.getElementById(parentId));
-
-    lis.forEach((e) => {
-      e.style.right = "-2500px";
-    });
-  });
-
-  let lis = Array.from(
-    document.querySelectorAll(`.${closeBtn.previousElementSibling.className}`)
-  );
-}
-
-function close() {
-  let closeBtns = Array.from(document.querySelectorAll(".close-btn"));
-
-  closeBtns.forEach((e) => {
-    exit(e.parentNode);
-  });
-}
-// 5313 8940 5050 0245
-// Check If The Dvice Mobile Or PC
-
-let isMobile = () => {
-  return (
-    window.navigator.maxTouchPoints > 0 ||
-    /(Android|Iphone)/gi.test(window.navigator.userAgent)
-  );
-};
-
-function toCapitalize(word) {
-  return `${word.substr(0, 1).toUpperCase()}${word
-    .toLowerCase()
-    .substr(-word.length + 1)}`;
-}
-
-//  Functions For Btns
-
-function scrollToLeft(parent, L_Btn, R_Btn) {
-  L_Btn.addEventListener("click", () => {
-    let items = [...parent.children];
-
-    parent.scrollTo({
-      behavior: "smooth",
-      left: parent.scrollLeft - items[0].getFullWidth(),
-    });
-
-    parent.addEventListener("scroll", () => {
-      let checker = setInterval(() => {
-        checking(parent, L_Btn, R_Btn);
-      }, 300);
-
-      parent.addEventListener("scrollend", () => {
-        clearInterval(checker);
-      });
-    });
-  });
-}
-
-function scrollToRight(parent, L_Btn, R_Btn) {
-  R_Btn.addEventListener("click", () => {
-    let items = [...parent.children];
-
-    parent.scrollTo({
-      behavior: "smooth",
-      left: parent.scrollLeft + items[0].getFullWidth(),
-    });
-
-    parent.addEventListener("scroll", () => {
-      let checker = setInterval(() => {
-        checking(parent, L_Btn, R_Btn);
-      }, 300);
-
-      parent.addEventListener("scrollend", () => {
-        clearInterval(checker);
-      });
-    });
-
-    checking(parent, L_Btn, R_Btn);
-  });
-}
-
-function checking(parent, L_Btn, R_Btn) {
-  let scrollLeft = parent.scrollLeft;
-
-  let fullWidth = parent.scrollWidth;
-
-  let clientWidth = parent.clientWidth;
-
-  let mestakeMargin = 15;
-
-  let endedScrolling;
-
-  if (scrollLeft < 0) {
-    endedScrolling = -scrollLeft + clientWidth;
-  } else {
-    endedScrolling = scrollLeft + clientWidth;
-  }
-
-  if (currentLanguge != "arabic") {
-    if (scrollLeft < mestakeMargin) {
-      L_Btn.style.display = "none";
-    } else {
-      L_Btn.style.display = "block";
-    }
-  } else if (currentLanguge == "arabic") {
-    if (scrollLeft > -mestakeMargin) {
-      R_Btn.style.display = "none";
-    } else {
-      R_Btn.style.display = "block";
-    }
-  }
-  if (endedScrolling > fullWidth - 20) {
-    currentLanguge == "arabic"
-      ? (L_Btn.style.display = "none")
-      : (R_Btn.style.display = "none");
-  } else {
-    currentLanguge == "arabic"
-      ? (L_Btn.style.display = "block")
-      : (R_Btn.style.display = "block");
-  }
-}
-
-// Functions For themes Or Other Actions
-
-// Initialize Englisk Language Object
-
-function initializeEnglishLanguageObject() {
-  document.querySelectorAll("*").forEach((ele) => {
-    if (ele.getAttribute("data-lang")) {
-      languages.english[ele.getAttribute("data-lang")] = ele.innerHTML;
-
-      // console.log(languages.arabic);
-      // console.log(languages.english);
-    }
-
-    if (ele.getAttribute("data-lang-placeholder"))
-      languages.english[ele.getAttribute("data-lang-placeholder")] =
-        ele.placeholder;
-
-    if (ele.dataset.content) {
-      languages.english[ele.dataset.lang] = ele.dataset.content;
-    }
-  });
-}
-
-function applyLanguage(lang) {
-  localStorage.setItem("language", lang);
-
-  currentLanguge = localStorage.getItem("language");
-
-  let changeDirection = (direction) => {
-    let changeElementDirection = document.querySelectorAll(".l-change");
-
-    let pageTitle = document.querySelector(".Page-Title");
-
-    pageTitle.removeAttribute("direction");
-
-    if (direction == "rtl") {
-      document.body.style.direction = "rtl";
-
-      pageTitle.direction = "right";
-
-      pageTitle.behavior = "smooth";
-
-      changeElementDirection.forEach((ele) => {
-        ele.classList.remove("dir-lang-en");
-        ele.classList.add("dir-lang-ar");
-      });
-
-      applyButtons("arabic");
-    } else if (direction == "ltr") {
-      document.body.style.direction = "ltr";
-
-      pageTitle.direction = "left";
-
-      changeElementDirection.forEach((ele) => {
-        ele.classList.remove("dir-lang-ar");
-        ele.classList.add("dir-lang-en");
-      });
-
-      applyButtons("english");
-    }
-  };
-
-  // let currentLang = window.localStorage.getItem("language");
-
-  if (lang == "arabic") {
-    let arabicFont = '"Cairo", sans-serif';
-    changeDirection("rtl");
-
-    document.body.style.fontFamily = arabicFont;
-
-    document.querySelectorAll("*").forEach((ele) => {
-      if (ele.getAttribute("data-lang")) {
-        ele.innerHTML = languages["arabic"][ele.getAttribute("data-lang")];
-      }
-
-      if (ele.getAttribute("data-lang-placeholder"))
-        ele.placeholder =
-          languages["arabic"][ele.getAttribute("data-lang-placeholder")];
-
-      if (ele.dataset.content) {
-        ele.dataset.content = languages.arabic[ele.dataset.lang];
-      }
-    });
-
-    styleFile.innerHTML += `
-
-    ::placeholder,
-    button,span{
-      font-family:${arabicFont};
-      font-size:0.8rem;
-      letter-spaceing
-    }
-
-    
-    `;
-  }
-
-  if (lang == "english") {
-    changeDirection("ltr");
-
-    document.body.style.fontFamily = '"Anta", sans-serif';
-
-    document.querySelectorAll("*").forEach((ele) => {
-      if (ele.getAttribute("data-lang")) {
-        ele.innerHTML = languages["english"][ele.getAttribute("data-lang")];
-      }
-
-      if (ele.getAttribute("data-lang-placeholder"))
-        ele.placeholder =
-          languages["english"][ele.getAttribute("data-lang-placeholder")];
-
-      if (ele.dataset.content) {
-        ele.dataset.content = languages.english[ele.dataset.lang];
-      }
-    });
-  }
-}
-
-function applyTheme(color) {
-  localStorage.setItem("theme", color);
-  switch (color) {
-    case "red":
-      themeStyleFile.innerHTML = `:root {
---main-color: #ff0000;
-    --secoundary-color: #e7c3c3;
-    --background-main-color: #ff000038;
-    --background-white-color: #e7c3c37e;
-    --background-color: #000f18;
-}`;
-      break;
-    case "blue":
-      themeStyleFile.innerHTML = `:root {
-  --main-color: #186ca4;
-  --secoundary-color: #fff;
-  --background-main-color: rgba(30, 56, 103, 0.7);
-  --background-white-color: rgba(255, 255, 255, 0.7);
-  --background-color: #000f18;
-}`;
-      break;
-    case "green":
-      themeStyleFile.innerHTML = `
-    :root {
-  --main-color:#4caf50;
-  --secoundary-color:#b8f0ba;
-  --background-main-color:#4caf505c;
-  --background-white-color:#ffffff99;
-  --background-color: #000f18;
-}`;
-      break;
-
-    case "orange":
-      themeStyleFile.innerHTML = `
-    :root {
-  --main-color: #ff9800;
-  --secoundary-color:#ffe2b6;
-  --background-main-color:#ff980040;
-  --background-white-color:#b7a488;
-  --background-color: #000f18;
-}`;
-      break;
-    case "purple":
-      themeStyleFile.innerHTML = `
-    :root {
-  --main-color:#9c27b0;
-  --secoundary-color:#ba95c0;
-  --background-main-color:#9c27b05c;
-  --background-white-color:#d4abdb94;
-  --background-color: #000f18;
-}`;
-      break;
-
-    //     case "dark":
-    //       themeStyleFile.innerHTML = `
-    //     :root {
-    //   --main-color:#ffffff;
-    //   --secoundary-color:#000;
-    //   --background-main-color:#ffffff66;
-    //   --background-white-color:#ffffff7d;
-    //   --background-color: #000f18;
-    // }`;
-    //       break;
-  }
-}
-
-function hideElementNumber(parent) {
-  let elements = Array.from(parent.children);
-
-  return elements.filter((e) => StylePackage(e).display != "none").length;
-
-  // return Array.from(parent.children).filter(
-  // (e) => StylePackage(e).display != "none"
-  // ).length;
-}
-
-function onOpenPopup(taps) {
-  count = 0;
-
-  let add = setInterval(() => {
-    if (!taps[count].classList.contains("close-btn")) {
-      taps[count].style.position = "relative";
-
-      taps[count].style.right = 0;
-
-      count == taps.length - 2 ? clearInterval(add) : count++;
-    }
-  }, 120);
-}
-
-// taps[count].style.position = "relative";
-
-// taps[count].style.right = 0;
-
-// count == taps.length - 2 ? clearInterval(add) : count++;
-
-function exit(target) {
-  target.style.right = "-200%";
-}
-
-HTMLElement.prototype.getFullWidth = function () {
-  return (
-    this.clientWidth +
-    parseInt(StylePackage(this).marginRight) +
-    parseInt(StylePackage(this).marginLeft) +
-    parseInt(StylePackage(this).borderRightWidth) +
-    parseInt(StylePackage(this).borderLeftWidth)
-  );
-};
-
-console.log(BODY.getFullWidth());
