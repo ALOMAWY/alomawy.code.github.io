@@ -2360,31 +2360,71 @@ function applyMobileButtons(car) {
 
   let left = document.querySelector(".to-left");
 
+  let setMainColor = (btn) => {
+    btn.style.backgroundColor = "var(--main-color)";
+
+    btn.style.border = "none";
+  };
+
+  let setEffectColor = (btn) => {
+    btn.style.backgroundColor = "var(--secondary-color)";
+
+    btn.style.border = "1px solid var(--main-color)";
+  };
+
+  up.addEventListener("click", () => toUp(car));
+
   HOLDER.onHold(
     up,
-    () => toUp(car),
-    () => {}
+    () => {
+      toUp(car);
+
+      setEffectColor(up);
+    },
+    () => {
+      setMainColor(up);
+    }
   );
+
+  down.addEventListener("click", () => toDown(car));
 
   HOLDER.onHold(
     down,
-    () => toDown(car),
-    () => {}
+    () => {
+      toDown(car);
+      setEffectColor(down);
+    },
+    () => {
+      setMainColor(down);
+    }
   );
+  right.addEventListener("click", () => toRight(car));
 
   HOLDER.onHold(
     right,
     () => {
-      toRight(car);
+      {
+        toRight(car);
+
+        setEffectColor(right);
+      }
     },
-    () => {}
+    () => {
+      setMainColor(right);
+    }
   );
-  // HOLDER.onHold(right, toRight(car), toLeft(car));
+
+  left.addEventListener("click", () => toLeft(car));
 
   HOLDER.onHold(
     left,
-    () => toLeft(car),
-    () => {}
+    () => {
+      toLeft(car);
+      setEffectColor(left);
+    },
+    () => {
+      setMainColor(left);
+    }
   );
 
   massege(controlMassege);

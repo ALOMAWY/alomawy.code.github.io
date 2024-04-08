@@ -2967,7 +2967,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .remote-control {
-  width: 80%;
+  width: 100%;
   display: flex;
   justify-content: space-evenly;
   margin: auto;
@@ -2978,9 +2978,9 @@ body::-webkit-scrollbar-thumb:hover {
   transform: translateX(-50%);
 }
 .y-area {
-  width: 100px;
+  width: 45%;
   height: 100px;
-  border-radius: 50%;
+  border-radius: 20px;
   background-color: var(--secoundary-color);
   display: flex;
   flex-direction: column;
@@ -2988,16 +2988,16 @@ body::-webkit-scrollbar-thumb:hover {
   justify-content: space-evenly;
   box-shadow: 0 0 20px var(--main-color);
   .to-top {
-    width: 35px;
-    height: 35px;
+    width: 40%;
+    height: 40%;
     background-color: var(--main-color);
     clip-path: polygon(0 100%, 50% 0%, 100% 100%);
     border-radius: 0;
   }
 
   .to-bottom {
-    width: 35px;
-    height: 35px;
+    width: 40%;
+    height: 40%;
     background-color: var(--main-color);
     clip-path: polygon(0 0, 100% 0, 50% 100%);
     border-radius: 0;
@@ -3005,9 +3005,9 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .x-area {
-  width: 100px;
+  width: 45%;
   height: 100px;
-  border-radius: 50%;
+  border-radius: 20px;
   background-color: var(--secoundary-color);
   /* position: absolute;
     right:  7%;
@@ -3020,15 +3020,15 @@ body::-webkit-scrollbar-thumb:hover {
   direction: ltr;
 
   .to-right {
-    width: 35px;
-    height: 35px;
+    width: 40%;
+    height: 55%;
     background-color: var(--main-color);
     clip-path: polygon(0 0, 100% 50%, 0% 100%);
     border-radius: 0;
   }
   .to-left {
-    width: 35px;
-    height: 35px;
+    width: 40%;
+    height: 55%;
     background-color: var(--main-color);
     clip-path: polygon(100% 100%, 0% 50%, 100% 0%);
     border-radius: 0;
