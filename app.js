@@ -29,6 +29,8 @@ const mainSecondaryColor = `#186ca4`;
 
 const sectionTitle = document.querySelectorAll(".header-title");
 
+let currentLanguge = localStorage.getItem("language");
+
 sectionTitle.forEach((title, index) => {
   title.style.height =
     parseInt(
@@ -95,19 +97,6 @@ class HOLDER {
     new HOLDER(target, callbackHold, callbackBlur);
   }
 }
-
-let ss = document.querySelector(".information");
-console.log(ss);
-
-HOLDER.onHold(
-  ss,
-  () => {
-    console.log("sae");
-  },
-  () => {
-    console.log("stoped");
-  }
-);
 
 // Element Genaration Class
 
@@ -672,8 +661,10 @@ function setHeaderParent() {
 }
 let V_scroll = 0;
 
+let control = false;
+
 window.addEventListener("scroll", () => {
-  if (scrollY > parseInt(StylePackage(header).height)) {
+  if (window.scrollY > parseInt(StylePackage(header).height)) {
     header.style.backgroundColor = "var(--background-main-color)";
 
     header.style.backdropFilter = "blur(10px)";
@@ -682,12 +673,12 @@ window.addEventListener("scroll", () => {
 
     header.style.top = "-200px";
 
-    if (scrollY < V_scroll) {
+    if (window.scrollY < V_scroll) {
       header.style.top = "0";
     }
   }
 
-  if (scrollY == 0) {
+  if (window.scrollY == 0) {
     header.style.top = "0";
 
     header.style.backgroundColor = "transparent";
@@ -697,6 +688,18 @@ window.addEventListener("scroll", () => {
     header.style.boxShadow = "none";
 
     header.style.borderRadius = " 0 ";
+  }
+
+  // Checking About Car Acces
+
+  let scrollY = window.scrollY;
+
+  let roadMapOffsetTop = document.querySelector(".road-map-cover").offsetTop;
+
+  if (roadMapOffsetTop - 50 < scrollY) {
+    control = true;
+  } else {
+    control = false;
   }
 });
 window.addEventListener("scrollend", (e) => {
@@ -709,6 +712,17 @@ if (document_width < 800) {
   navgationBar.remove();
 
   BODY.prepend(navgationBar);
+
+  navigationPosition();
+  setInterval(() => {
+    navigationPosition();
+  }, 2000);
+
+  document
+    .querySelectorAll(".header-icon")
+    .forEach((ele) =>
+      ele.addEventListener("click", () => navigationPosition())
+    );
 } else {
   navgationBar.remove();
 
@@ -721,13 +735,11 @@ let landing = document.querySelector(".landing-cover");
 
 landing.style.minHeight = `calc(100vh - ${parseInt(
   StylePackage(header).height
-)}PX)`;
+)}px)`;
 
 // Styling Website Logo Text Psoudo Element
 
 // Onload Actions
-
-let currentLanguge = localStorage.getItem("language");
 
 window.addEventListener("load", () => {
   // It Is Set The Select Theme If The User Changed The Default Theme
@@ -762,6 +774,10 @@ window.addEventListener("load", () => {
     2,
     1
   );
+
+  if (document_width < 300) {
+    roadMapContentBox.innerHTML = "Not Availabel Off Your Phone Size";
+  }
 });
 
 // jS Editing Style
@@ -2227,7 +2243,7 @@ let showRmBtn = document.querySelector(".show-rm");
 
 let controlCarBtn = document.querySelector(".control-rm");
 
-let coverRm = showRmBtn.parentNode || controlCarBtn.parentNode;
+let coverRm = document.querySelector(".rm-cover");
 
 let opacityLower = (ele) => {
   ele.style.opacity = "0";
@@ -2237,14 +2253,58 @@ let opacityLower = (ele) => {
   }, 300);
 };
 
+function minmizeRoadMapButtons() {
+  let btnsContainer = document.querySelector(".buttons-layar");
+
+  btnsContainer.classList.remove("center-buttons");
+
+  btnsContainer.classList.add("side-buttons");
+
+  showRmBtn.innerHTML = '<i class="fa-regular fa-eye"></i>';
+
+  controlCarBtn.innerHTML = '<i class="fa-solid fa-car"></i>';
+
+  if (!document.querySelector(".reset-car")) {
+    let CRT_resetCar = new ELEMENT(
+      "button",
+      "reset-car",
+      "reset-car",
+      btnsContainer,
+      `<i class="fa-solid fa-rotate"></i>`
+    );
+
+    CRT_resetCar.createElement();
+
+    let resetCar = CRT_resetCar.getCreatedElement();
+
+    resetCar.classList.add("rm-btns");
+
+    Array.from(btnsContainer.children).forEach((ele) =>
+      ele.removeAttribute("data-lang")
+    );
+  }
+}
+
 showRmBtn.addEventListener("click", () => {
   opacityLower(coverRm);
+
+  StylePackage(car).display != "none"
+    ? (car.style.display = "none")
+    : console.log("its Hide");
+
+  minmizeRoadMapButtons();
 });
 
 controlCarBtn.addEventListener("click", () => {
   opacityLower(coverRm);
 
+  minmizeRoadMapButtons();
+
   startControl();
+
+  StylePackage(car).display != "block"
+    ? (car.style.display = "block")
+    : console.log("its Show");
 });
 
 let car = document.querySelector(".car");
@@ -2320,9 +2380,14 @@ function createMobileButtons() {
 
   roadMapContainer.appendChild(remoteControlContainer);
 
-  roadMapContentBox.style.height = "570px";
+  let remoteHeight = document.querySelector(".remote-control").clientHeight;
 
-  roadMapContentBox.style.top = "45%";
+  roadMapContentBox.style.height =
+    roadMapContainer.clientHeight -
+    (remoteHeight + 30 + roadMapHead.clientHeight + 20) +
+    "px";
+
+  roadMapContentBox.style.top = `${roadMapContentBox.clientHeight / 2}px`;
 
   remoteControlContainer.style.width = roadMapContentBox.clientWidth + "px";
 
@@ -2445,6 +2510,41 @@ let startControl = () => {
     applyKeyboardButtons(car);
   }
 };
+
+function applyKeyboardButtons() {
+  document.addEventListener("keydown", (press) => {
+    if (control) {
+      switch (press.key) {
+        case "w":
+          toUp(car);
+          break;
+        case "W":
+          toUp(car);
+          break;
+        case "s":
+          toDown(car);
+          break;
+        case "S":
+          toDown(car);
+          break;
+        case "d":
+          toRight(car);
+          break;
+        case "D":
+          toRight(car);
+          break;
+        case "a":
+          toLeft(car);
+          break;
+        case "A":
+          toLeft(car);
+          break;
+        default:
+          console.log("sse");
+      }
+    }
+  });
+}
 
 // End Road Map
 
@@ -2993,4 +3093,20 @@ function toArabicNumber(englishNumber) {
   });
 
   return newNumber.join("");
+}
+function navigationPosition() {
+  navgationBar.offsetLeft >= 0
+    ? (navgationBar.style.left = "-" + navgationBar.clientWidth + "px")
+    : "";
+}
+function navigationPosition() {
+  if (currentLanguge != "arabic") {
+    navgationBar.offsetLeft >= 0
+      ? (navgationBar.style.left = "-" + navgationBar.clientWidth + "px")
+      : "";
+  } else {
+    navgationBar.offsetLeft <= document_width
+      ? (navgationBar.style.left = "100%")
+      : "";
+  }
 }
