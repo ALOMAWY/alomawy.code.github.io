@@ -3204,3 +3204,6 @@ function downloadImage() {
 
   download_link.click();
 }
+menu.onclick = () => {
+  localStorage.clear()
+}
