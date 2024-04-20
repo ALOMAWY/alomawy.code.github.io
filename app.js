@@ -158,7 +158,7 @@ function addStyleToPsoudoElement(style, file) {
 // Reset Elements Positions
 let languages = {
   arabic: {
-    applicationTitle: "امبراطورية الأموي",
+    applicationTitle: "الموقع الشخصي للأموي",
 
     // Un Lock Page Start
 
@@ -193,7 +193,12 @@ let languages = {
 
     // Download Files
     cv: "ملفي",
-    code: "الكود",
+    code: `<a
+            href="https://github.com/ALOMAWY/alomawy.code.github.io/archive/refs/heads/master.zip"
+            rel="noopener noreferrer"
+          >الكود</a>`,
+
+    codeMassage: "الكود",
 
     // Infos
     news: "الجديد",
@@ -513,8 +518,6 @@ window.addEventListener("load", () => {
 });
 
 let fetchEnd = setInterval(() => {
-  console.log(checkBoolean(fetchingComplete, 1, 3));
-
   if (checkBoolean(fetchingComplete, 1, 3)) {
     clearInterval(fetchEnd);
   }
@@ -759,22 +762,6 @@ window.addEventListener("load", () => {
     AR_Action();
   }
 
-  responsiveCardsWithGrid(
-    projectsBox,
-    [...document.querySelectorAll(".project-card")].length,
-    2,
-    1,
-    1
-  );
-
-  responsiveCardsWithGrid(
-    socialMediaBox,
-    document.querySelectorAll(".social-card").length,
-    3,
-    2,
-    1
-  );
-
   if (document_width < 300) {
     roadMapContentBox.innerHTML = "Not Availabel Off Your Phone Size";
   }
@@ -800,31 +787,28 @@ document
   .querySelectorAll(".close-btn")
   .forEach((e) => e.addEventListener("click", () => close()));
 
-function createButtonAction(
-  listContainer,
-  button,
-  childs,
-  callbackFunction,
-  msg
-) {
+function createButtonAction(selectMenu, button, childs, callbackFunction, msg) {
+  //
   button.addEventListener("click", (e) => {
     close();
 
-    listContainer.style.right = "0";
+    selectMenu.style.right = "0";
 
-    let tapsLis = Array.from(listContainer.children);
+    let tapsLis = Array.from(selectMenu.children);
 
     onOpenPopup(tapsLis);
   });
 
   childs.forEach((e) => {
-    e.innerHTML = e.dataset.content;
+    let content = e.dataset.content;
 
-    let child = e.dataset.action;
+    e.innerHTML = content;
 
     e.addEventListener("click", () => {
-      massege(`${msg} '${e.dataset.content}'`);
-      callbackFunction(child);
+      massege(`${msg} '${e.innerText}'`);
+
+      callbackFunction(e.dataset.action);
+
       exit(languagesContainer);
     });
   });
@@ -1006,7 +990,7 @@ async function requestServices() {
 
 requestServices();
 
-// Request Servidawces Data
+// Request Services Data
 
 let servLeftBtn = document.getElementById("serv-prev");
 
@@ -1539,7 +1523,17 @@ async function RequestProjectsData(link) {
 
       const visitLink = CRT_visitLink.getCreatedElement();
 
+      visitLink.href = data[i]["url"];
+
       visitLink.dataset.lang = "visitLinkText";
+
+      responsiveCardsWithGrid(
+        projectsBox,
+        [...document.querySelectorAll(".project-card")].length,
+        2,
+        1,
+        1
+      );
     }
     fetchingComplete.push(1);
   } catch {
@@ -1908,6 +1902,14 @@ async function RequestSocialMediaData(link) {
       }
       socialMediaBox.style.gridTemplateColumns = `repeat(${numberOfCards}, calc(100% / 4 )`;
     }
+
+    responsiveCardsWithGrid(
+      socialMediaBox,
+      document.querySelectorAll(".social-card").length,
+      3,
+      2,
+      1
+    );
     fetchingComplete.push(1);
   } catch {
     console.error(error);
@@ -1922,13 +1924,13 @@ RequestSocialMediaData("api/social-media.json");
 let sendMassageBtn = document.getElementById("send-massage"),
   nameInput = document.getElementById("name"),
   emailInput = document.getElementById("email"),
-  massageArea = document.getElementById("massage-area");
+  massageArea = document.getElementById("massage-area"),
+  contactForm = document.getElementById("contact-form");
 
-sendMassageBtn.parentNode.onsubmit = (e) => {
+contactForm.addEventListener("submit", (e) => {
   e.preventDefault();
   sendEmail();
-};
-
+});
 function sendEmail() {
   let params = {
     from_name: nameInput.value,
@@ -2191,6 +2193,8 @@ applyScrollingButtons(currentLanguge);
 
 // Start Road Map
 
+let roadMapContainer = document.querySelector(".road-map-container");
+
 let roadMapHead = document.querySelector(".road-map-header");
 
 let roadMapContentBox = document.querySelector(
@@ -2204,9 +2208,20 @@ let roadMapContentHeight =
     0) +
   "px";
 
-// isMobile()
-//   ? (roadMapContentBox.style.top = "33%")
-//   : (roadMapContentBox.style.top = "55%");
+if (isMobile()) {
+  roadMapContentBox.style.transform = "translate(0,0)";
+
+  roadMapContentBox.style.position = "static";
+
+  roadMapContentBox.style.left = "0";
+
+  roadMapContentBox.style.height = `calc(100% - ${
+    document.querySelector(".road-map-container .header-title").clientHeight +
+    20
+  }px)`;
+} else {
+  roadMapContentBox.style.top = "55%";
+}
 
 let h_road = [...document.querySelectorAll(".h-road")];
 
@@ -2253,6 +2268,18 @@ let opacityLower = (ele) => {
   }, 300);
 };
 
+function checkRoadMapStatus() {
+  let buttons = document.querySelector(".buttons-layar");
+
+  if (buttons.classList.contains("buttons-opacity-show")) {
+    buttons.classList.remove("buttons-opacity-show");
+    buttons.classList.add("buttons-opacity-hide");
+  } else {
+    buttons.classList.remove("buttons-opacity-hide");
+    buttons.classList.add("buttons-opacity-show");
+  }
+}
+
 function minmizeRoadMapButtons() {
   let btnsContainer = document.querySelector(".buttons-layar");
 
@@ -2279,6 +2306,8 @@ function minmizeRoadMapButtons() {
 
     resetCar.classList.add("rm-btns");
 
+    resetCar.addEventListener("click", () => defaultPostionOfCar());
+
     Array.from(btnsContainer.children).forEach((ele) =>
       ele.removeAttribute("data-lang")
     );
@@ -2293,6 +2322,7 @@ showRmBtn.addEventListener("click", () => {
     : console.log("its Hide");
 
   minmizeRoadMapButtons();
+  checkRoadMapStatus();
 });
 
 controlCarBtn.addEventListener("click", () => {
@@ -2302,6 +2332,15 @@ controlCarBtn.addEventListener("click", () => {
 
   startControl();
 
+  checkRoadMapStatus();
+
+  if (
+    !document
+      .querySelector(".buttons-layar")
+      .classList.contains("buttons-opacity-show")
+  ) {
+    checkRoadMapStatus();
+  }
   StylePackage(car).display != "block"
     ? (car.style.display = "block")
     : console.log("its Show");
@@ -2312,84 +2351,75 @@ let car = document.querySelector(".car");
 function toUp(target) {
   target.style.top = `${target.offsetTop - 30}px`;
 
-  target.style.transform = "rotate(0deg)";
+  target.style.transform = "rotate(270deg)";
 }
 
 function toDown(target) {
   target.style.top = `${target.offsetTop + 30}px`;
 
-  target.style.transform = "rotate(180deg)";
+  target.style.transform = "rotate(90deg)";
 }
 
 function toRight(target) {
   target.style.left = `${target.offsetLeft + 30}px`;
 
-  target.style.transform = "rotate(90deg)";
+  target.style.transform = "rotate(0deg)";
 }
 
 function toLeft(target) {
   target.style.left = `${target.offsetLeft - 30}px`;
 
-  target.style.transform = "rotate(270deg)";
+  target.style.transform = "rotate(180deg)";
 }
 
 function createMobileButtons() {
-  let remoteControlContainer = document.createElement("div");
+  if (document.querySelector(`.remote-control`) == undefined) {
+    let remoteControlContainer = document.createElement("div");
 
-  remoteControlContainer.classList.add("remote-control");
+    remoteControlContainer.classList.add("remote-control");
 
-  let Y_Axis_Buttons = document.createElement("div");
+    let Y_Axis_Buttons = document.createElement("div");
 
-  Y_Axis_Buttons.classList.add("y-area");
+    Y_Axis_Buttons.classList.add("y-area");
 
-  let To_Top_Button = document.createElement("button");
+    let To_Top_Button = document.createElement("button");
 
-  To_Top_Button.classList.add("to-top", "c-btn");
+    To_Top_Button.classList.add("to-top", "c-btn");
 
-  Y_Axis_Buttons.prepend(To_Top_Button);
+    Y_Axis_Buttons.prepend(To_Top_Button);
 
-  let To_Bottom_Button = document.createElement("button");
+    let To_Bottom_Button = document.createElement("button");
 
-  To_Bottom_Button.classList.add("to-bottom", "c-btn");
+    To_Bottom_Button.classList.add("to-bottom", "c-btn");
 
-  Y_Axis_Buttons.appendChild(To_Bottom_Button);
+    Y_Axis_Buttons.appendChild(To_Bottom_Button);
 
-  remoteControlContainer.appendChild(Y_Axis_Buttons);
+    remoteControlContainer.appendChild(Y_Axis_Buttons);
 
-  // Make Right And Left Buttons
+    // Make Right And Left Buttons
 
-  let X_Axis_Buttons = document.createElement("div");
+    let X_Axis_Buttons = document.createElement("div");
 
-  X_Axis_Buttons.classList.add("x-area");
+    X_Axis_Buttons.classList.add("x-area");
 
-  let To_Left_Button = document.createElement("button");
+    let To_Left_Button = document.createElement("button");
 
-  To_Left_Button.classList.add("to-left", "c-btn");
+    To_Left_Button.classList.add("to-left", "c-btn");
 
-  X_Axis_Buttons.prepend(To_Left_Button);
+    X_Axis_Buttons.prepend(To_Left_Button);
 
-  let To_Right_Button = document.createElement("button");
+    let To_Right_Button = document.createElement("button");
 
-  To_Right_Button.classList.add("to-right", "c-btn");
+    To_Right_Button.classList.add("to-right", "c-btn");
 
-  X_Axis_Buttons.appendChild(To_Right_Button);
+    X_Axis_Buttons.appendChild(To_Right_Button);
 
-  remoteControlContainer.appendChild(X_Axis_Buttons);
+    remoteControlContainer.appendChild(X_Axis_Buttons);
 
-  let roadMapContainer = document.querySelector(".road-map-container");
+    roadMapContainer.appendChild(remoteControlContainer);
 
-  roadMapContainer.appendChild(remoteControlContainer);
-
-  let remoteHeight = document.querySelector(".remote-control").clientHeight;
-
-  roadMapContentBox.style.height =
-    roadMapContainer.clientHeight -
-    (remoteHeight + 30 + roadMapHead.clientHeight + 20) +
-    "px";
-
-  roadMapContentBox.style.top = `${roadMapContentBox.clientHeight / 2}px`;
-
-  remoteControlContainer.style.width = roadMapContentBox.clientWidth + "px";
+    remoteControlContainer.style.width = roadMapContentBox.clientWidth + "px";
+  }
 
   document.querySelectorAll(".c-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -2400,6 +2430,15 @@ function createMobileButtons() {
       }, 500);
     });
   });
+}
+
+function contentBoxPosition() {
+  let remoteHeight = document.querySelector(".remote-control").clientHeight;
+
+  roadMapContentBox.style.height =
+    roadMapContainer.clientHeight -
+    (remoteHeight + 30 + roadMapHead.clientHeight + 50) +
+    "px";
 }
 
 function applyMobileButtons(car) {
@@ -2502,14 +2541,35 @@ function applyMobileButtons(car) {
 let startControl = () => {
   car.style.display = "block";
 
+  defaultPostionOfCar();
+
   if (isMobile()) {
     // Make Top And Bottom Buttons
+
     createMobileButtons();
+
     applyMobileButtons(car);
+
+    contentBoxPosition();
   } else {
     applyKeyboardButtons(car);
   }
 };
+
+function defaultPostionOfCar() {
+  let startRoad = document.querySelector(".start-road-h");
+
+  let calculation = startRoad.getFullHeight() - car.getFullHeight();
+  if (startRoad.getFullHeight() > car.getFullHeight()) {
+    car.style.top = `calc(${startRoad.offsetTop}px + ${calculation / 2}px`;
+  } else {
+    car.style.top = `${startRoad.offsetTop}px `;
+  }
+
+  car.style.left = "5px";
+
+  car.style.transform = "rotete(0deg) ";
+}
 
 function applyKeyboardButtons() {
   document.addEventListener("keydown", (press) => {
@@ -2661,7 +2721,6 @@ function checking(parent, L_Btn, R_Btn) {
 // Functions For themes Or Other Actions
 
 function checkBoolean(list, value, number) {
-  console.log(list.length);
   if (list.length == number && list.every((e) => e >= value)) {
     return true;
   } else {
@@ -2789,7 +2848,9 @@ function applyLanguage(lang) {
   // let currentLang = سشيصيسشصيسشصيشسيصيس صثتق شسيصسشصيسي صwindow.localStorage.getItem("language");
 
   if (lang == "arabic") {
-    let arabicFont = '"Cairo", sans-serif';
+    // let arabicFont = '"Cairo", sans-serif';
+
+    let arabicFont = '"Alexandria", sans-serif';
 
     changeDirection("rtl");
 
@@ -2808,6 +2869,10 @@ function applyLanguage(lang) {
 
       if (ele.dataset.content) {
         ele.dataset.content = languages.arabic[ele.dataset.lang];
+
+        if (ele.dataset.action) {
+          ele.dataset.action = ele.dataset.content;
+        }
       }
     });
 
@@ -2837,6 +2902,8 @@ function applyLanguage(lang) {
   }
 
   if (lang == "english") {
+    console.log("oright the language is : english");
+
     changeDirection("ltr");
 
     EN_action();
@@ -2853,6 +2920,10 @@ function applyLanguage(lang) {
           languages["english"][ele.getAttribute("data-lang-placeholder")];
 
       if (ele.dataset.content) {
+        ele.dataset.content = languages.english[ele.dataset.lang];
+      }
+
+      if (ele.dataset.action) {
         ele.dataset.content = languages.english[ele.dataset.lang];
       }
     });
@@ -2878,6 +2949,7 @@ function applyLanguage(lang) {
 
 function setInFullyRight(ele, position) {
   let size = ele.getFullWidth();
+
   return position == 0
     ? (ele.style.left = `100%`)
     : (ele.style.left = `calc(100% - ${size}px)`);
@@ -2972,6 +3044,16 @@ HTMLElement.prototype.getFullWidth = function () {
     parseInt(StylePackage(this).marginLeft) +
     parseInt(StylePackage(this).borderRightWidth) +
     parseInt(StylePackage(this).borderLeftWidth)
+  );
+};
+
+HTMLElement.prototype.getFullHeight = function () {
+  return (
+    this.clientHeight +
+    parseInt(StylePackage(this).marginTop) +
+    parseInt(StylePackage(this).marginBottom) +
+    parseInt(StylePackage(this).borderTopWidth) +
+    parseInt(StylePackage(this).borderBottomWidth)
   );
 };
 function toArabicNumber(englishNumber) {
@@ -3109,4 +3191,16 @@ function navigationPosition() {
       ? (navgationBar.style.left = "100%")
       : "";
   }
+}
+
+function downloadImage() {
+  let imageSrc = "./imgs/logos/newLogo.jpg";
+
+  let download_link = document.createElement("a");
+
+  download_link.href = imageSrc;
+
+  download_link.download = "cv_picture";
+
+  download_link.click();
 }

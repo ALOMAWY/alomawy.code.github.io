@@ -18,8 +18,6 @@ html {
   border: none;
   outline: none;
   list-style: none;
-  /* font-family: "Acme", sans-serif; */
-
   color: var(--main-color);
   font-weight: 700;
   text-transform: capitalize;
@@ -466,11 +464,11 @@ body::-webkit-scrollbar-thumb:hover {
   }
 
   .prev-btn {
-    left: -75px;
+    left: -20px;
     /* transform: translateY(-50%); */
   }
   .next-btn {
-    right: -75px;
+    right: -20px;
     /* transform: translateY(-50%); */
   }
 }
@@ -482,15 +480,6 @@ body::-webkit-scrollbar-thumb:hover {
 
   .main-container {
     min-width: 85%;
-  }
-
-  /* Btns */
-
-  .prev-btn {
-    left: -60px;
-  }
-  .next-btn {
-    right: -60px;
   }
 }
 
@@ -510,12 +499,10 @@ body::-webkit-scrollbar-thumb:hover {
   /* Btns */
 
   .prev-btn {
-    top: 50px;
-    left: 25px;
+    left: 0;
   }
   .next-btn {
-    top: 50px;
-    right: 25px;
+    right: 0;
   }
 }
 
@@ -586,15 +573,6 @@ body::-webkit-scrollbar-thumb:hover {
     i {
       font-size: 11px;
     }
-  }
-
-  .next-btn {
-    right: 15px;
-    top: 45px;
-  }
-  .prev-btn {
-    left: 15px;
-    top: 45px;
   }
 }
 
@@ -1049,7 +1027,8 @@ body::-webkit-scrollbar-thumb:hover {
     right: -2500px;
   }
 
-  li button {
+  li button,
+  li button a {
     background-color: transparent;
     outline: none;
     border: none;
@@ -2615,16 +2594,17 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .car {
-  width: 30px;
-  height: fit-content;
-  transform: rotate(90deg);
+  width: 50px;
+  height: 25px;
   position: absolute;
   top: calc(15% + 15px);
   z-index: 5;
   left: 0;
   display: none;
+
   img {
     width: 100%;
+    height: 100%;
   }
 }
 
@@ -2652,6 +2632,7 @@ body::-webkit-scrollbar-thumb:hover {
   z-index: 1;
   .road-map-container {
     padding: 0;
+
     .content-box {
       margin: auto;
       border: 1px solid var(--main-color);
@@ -2663,7 +2644,6 @@ body::-webkit-scrollbar-thumb:hover {
       box-shadow: 0 0 20px 1px var(--main-color) inset;
       overflow: auto;
       position: absolute;
-      top: 55%;
       left: 50%;
       transform: translate(-50%, -50%);
       overflow: hidden;
@@ -2740,6 +2720,18 @@ body::-webkit-scrollbar-thumb:hover {
       align-items: center;
       flex-direction: column;
       z-index: 101;
+    }
+
+    .buttons-opacity-show {
+      opacity: 1;
+    }
+
+    .buttons-opacity-hide {
+      opacity: 0;
+    }
+
+    .buttons-opacity-hide:hover {
+      opacity: 1;
     }
 
     h4 {
@@ -3110,6 +3102,27 @@ body::-webkit-scrollbar-thumb:hover {
 
       .content-box {
         width: 100%;
+
+        h4 {
+          left: 43.5%;
+          font-size: 1.6rem;
+        }
+
+        .r-6 {
+          top: calc(5% + var(--size));
+        }
+
+        .r-10 {
+          height: 70%;
+        }
+
+        .r-12 {
+          height: calc(59% - 2%);
+        }
+
+        .r-14 {
+          height: 57%;
+        }
       }
     }
   }
@@ -3127,10 +3140,28 @@ body::-webkit-scrollbar-thumb:hover {
 @media (max-width: 900px) {
 }
 
+@media (max-width: 920px) and (min-width: 767px) {
+  .road-map-cover {
+    .road-map-container {
+      .content-box {
+        h4 {
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+}
+
 @media (max-width: 768px) {
   .car {
     top: 3.1%;
     width: var(--size);
+    height: 17px;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
   .road-map-cover {
     /* Varibles */
@@ -3165,10 +3196,12 @@ body::-webkit-scrollbar-thumb:hover {
         height: 720px;
 
         h4 {
-          left: 30%;
+          left: 27.5%;
           top: 55%;
-          font-size: 1.2rem;
+          font-size: 1rem;
           padding: 20px 10px 20px;
+          width: 50%;
+          text-align: center;
         }
 
         .start-road-h {
@@ -3423,8 +3456,6 @@ body::-webkit-scrollbar-thumb:hover {
     }
   }
 }
-@media (max-width: 800px) {
-}
 
 @media (min-width: 901px) {
   .road-map-cover {
@@ -3447,7 +3478,6 @@ body::-webkit-scrollbar-thumb:hover {
 @media (max-width: 530px) {
   .road-map-cover {
     /* Varibles */
-
     --size: 15px;
     --fontSize: 0.6rem;
     --fontColor: var(var(--main-color));
@@ -3462,6 +3492,18 @@ body::-webkit-scrollbar-thumb:hover {
     --w-h: 150px;
     --st-end: 80%;
     --margin-size: 7.4%;
+
+    .car {
+      width: 20px;
+      height: 11px;
+      img {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+
     .info {
       width: 20px;
       height: 20px;
@@ -3495,7 +3537,6 @@ body::-webkit-scrollbar-thumb:hover {
           left: 15%;
           font-size: 0.8rem;
           padding: 12px 3px 12px;
-          text-align: center;
         }
         .r-1 {
           width: calc(var(--st-end) + var(--size));

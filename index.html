@@ -64,6 +64,16 @@
     />
     <!-- End Get Arabic Font  -->
 
+    <!-- testing New Arabic Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Cairo:wght@200..1000&family=Kode+Mono:wght@400..700&family=Readex+Pro:wght@160..700&family=Reem+Kufi:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- testing New Arabic Fonts -->
+
     <!-- Contact Section Send Email Api  -->
 
     <script
@@ -246,12 +256,16 @@
             data-content="cv"
             data-lang="cv"
             data-action="cv"
+            onclick="downloadImage()"
           ></button>
         </li>
         <li class="li-d-file">
           <button
             class="d-btn"
-            data-content="code"
+            data-content='<a
+            href="https://github.com/ALOMAWY/alomawy.code.github.io/archive/refs/heads/master.zip"
+            rel="noopener noreferrer"
+          >Code</a>'
             data-lang="code"
             data-action="code"
           ></button>
@@ -454,7 +468,7 @@
           </div>
           <div id="contact-box" class="cards-box content-scrollerbox">
             <div class="email-tap">
-              <form action="send-massage">
+              <form action="send-massage" id="contact-form">
                 <div class="input-container">
                   <label for="name"><i class="fa-solid fa-user"></i></label>
                   <input
@@ -462,6 +476,8 @@
                     type="text"
                     placeholder="Name"
                     data-lang-placeholder="inputName"
+                    minlength="6"
+                    required
                   />
                 </div>
                 <div class="input-container">
@@ -473,6 +489,7 @@
                     type="email"
                     placeholder="Email"
                     data-lang-placeholder="inputEmail"
+                    required
                   />
                 </div>
                 <textarea
@@ -484,6 +501,7 @@
                   rows="6"
                   minlength="10"
                   maxlength="500"
+                  required
                 ></textarea>
                 <button type="submit" id="send-massage" data-lang="sendMassege">
                   Send Massage
@@ -671,12 +689,6 @@
         </div>
       </div>
       <div id="road-map" class="road-map-cover cover">
-        <!-- <button id="road-map-prev" class="prev-btn scroll-btns">
-          <i class="fa-solid fa-left-long fa-fade"></i>
-        </button>
-        <button id="road-map-next" class="next-btn scroll-btns">
-          <i class="fa-solid fa-right-long fa-fade"></i>
-        </button> -->
         <div class="road-map-container container">
           <div class="header-title">
             <div class="road-map-header section-head">
@@ -691,7 +703,7 @@
           </div>
 
           <div class="content-box box">
-            <div class="buttons-layar center-buttons">
+            <div class="buttons-layar center-buttons buttons-opacity-show">
               <button class="rm-btns show-rm" data-lang="showRm">
                 Show Road Map
               </button>
@@ -700,7 +712,6 @@
               </button>
             </div>
             <div class="rm-cover"></div>
-            <div class="popup"></div>
             <div class="car">
               <img src="./imgs/assets/ad_.png" alt="car_photo" />
             </div>

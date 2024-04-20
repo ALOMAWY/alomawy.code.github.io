@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Save Image</title>
+  </head>
+  <body>
+    <img id="myImage" src="image.jpg" alt="Image" />
+
+    <button onclick="saveImage()">Save Image</button>
+
+    <script>
+      function saveImage() {
+        // Get the image element
+        var img = document.getElementById("myImage");
+
+        // Create an anchor element
+        var link = document.createElement("a");
+
+        // Set the href attribute to the image source
+        link.href = img.src;
+
+        // Set the download attribute to specify the filename
+        link.download = "image.jpg";
+
+        // Simulate a click on the anchor element to trigger the download
+        link.click();
+      }
+    </script>
+  </body>
+</html>
