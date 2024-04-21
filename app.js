@@ -717,9 +717,6 @@ if (document_width < 800) {
   BODY.prepend(navgationBar);
 
   navigationPosition();
-  setInterval(() => {
-    navigationPosition();
-  }, 2000);
 
   document
     .querySelectorAll(".header-icon")
@@ -732,6 +729,26 @@ if (document_width < 800) {
   header.appendChild(navgationBar);
 }
 
+// navgationBar.addEventListener("click", () => {
+//   let navgationCherker = setTimeout(() => {
+//     navigationPosition();
+//   }, 2000);
+
+//   // clearTimeout(navgationCherker);
+// });
+
+function navChecker() {
+  return new Promise((res, rej) => {
+    console.log(navgationBar.offsetLeft);
+    if (navgationBar.offsetLeft < 0) {
+      navgationBar.addEventListener("click", () => {
+        res(console.log("open"));
+      });
+    }
+  });
+}
+
+navChecker();
 // Header Styling
 
 let landing = document.querySelector(".landing-cover");
@@ -2439,6 +2456,12 @@ function contentBoxPosition() {
     roadMapContainer.clientHeight -
     (remoteHeight + 30 + roadMapHead.clientHeight + 50) +
     "px";
+
+  let roadMapTitle = document.querySelector(
+    ".road-map-container .content-box h4"
+  );
+
+  roadMapTitle.style.top = "45.5%";
 }
 
 function applyMobileButtons(car) {
@@ -2869,10 +2892,6 @@ function applyLanguage(lang) {
 
       if (ele.dataset.content) {
         ele.dataset.content = languages.arabic[ele.dataset.lang];
-
-        if (ele.dataset.action) {
-          ele.dataset.action = ele.dataset.content;
-        }
       }
     });
 
@@ -3203,7 +3222,4 @@ function downloadImage() {
   download_link.download = "cv_picture";
 
   download_link.click();
-}
-menu.onclick = () => {
-  localStorage.clear()
 }

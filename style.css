@@ -36,12 +36,10 @@ body {
   background-position: 72.2%;
   background-attachment: fixed;
   margin: 0px;
-  letter-spacing: 2px;
   font-weight: 700;
   overflow-x: hidden;
   position: relative;
   animation: background-scroll 1000s linear infinite forwards;
-
   font-family: "Anta", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -148,15 +146,21 @@ body::-webkit-scrollbar-thumb:hover {
   width: fit-content;
   height: fit-content;
   font-size: 2.2rem;
-  /* position: absolute; */
   position: relative;
   color: var(--background-main-color);
   text-transform: uppercase;
-  letter-spacing: 3px;
   padding: 5px 5px 15px;
   text-shadow: var(--main-color) 5px 2px;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.section-title.dir-lang-en {
+  letter-spacing: 3px;
+}
+
+.section-title.dir-lang-ar {
+  letter-spacing: 1px;
 }
 
 .section-title::before {
@@ -590,6 +594,13 @@ body::-webkit-scrollbar-thumb:hover {
     animation-timeline: view(0);
   }
 }
+
+@media (max-width: 800px) {
+  .section-title {
+    color: var(--secoundary-color);
+    text-shadow: none;
+  }
+}
 /* Media Of Initialized Style End */ /* @media (max-width: 1500px) { } @media (max-width: 1300px) { } @media (max-width: 1000px) { } @media (max-width: 900px) { } @media (max-width: 800px) { } @media (max-width: 700px) { } @media (max-width: 650px) { } @media (max-width: 500px) { } @media (max-width: 400px) { } */
 /* Start Lock Page Style */
 /* .lockpage-cover { } */
@@ -622,6 +633,7 @@ body::-webkit-scrollbar-thumb:hover {
   align-items: center;
   border-top: 1px solid var(--main-color);
   border-bottom: 1px solid var(--main-color);
+  margin: 30px 0;
 }
 
 .unlock-text:hover {
@@ -670,7 +682,7 @@ body::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.3);
   border-radius: 30px;
   position: relative;
-  margin: 20px 0px;
+  margin: 10px 0px;
 }
 
 .draw-area:hover {
@@ -694,7 +706,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .range-container {
-  margin: 30px 0;
+  margin: 15px 0;
 }
 
 .count-value {
@@ -727,9 +739,9 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .the-lock {
-  width: 150px;
-  height: 200px;
-  margin: 0px auto;
+  width: 100px;
+  height: 150px;
+  margin: 0px auto 20px;
 }
 .the-lock .lock-head {
   width: 90%;
@@ -1048,6 +1060,7 @@ body::-webkit-scrollbar-thumb:hover {
   justify-content: space-between;
   align-items: center;
   min-height: 100%;
+
   .textarea {
     display: flex;
     flex-direction: column;
@@ -1088,28 +1101,27 @@ body::-webkit-scrollbar-thumb:hover {
       /* width: 100%; */
     }
 
-    .dir-lang-en {
+    article.dir-lang-en {
       border-left: 3px solid var(--main-color);
     }
 
-    .dir-lang-en::before {
+    article.dir-lang-en::before {
       border-radius: 0 50px 50px 0;
     }
-    .dir-lang-ar {
+    article.dir-lang-ar {
       border-right: 3px solid var(--main-color);
     }
-    .dir-lang-ar::before {
+    article.dir-lang-ar::before {
       border-radius: 50px 0 0 50px;
     }
 
-    .discripton:hover::before {
+    article.discripton:hover::before {
       width: 100%;
       border: 5px solid var(--main-color);
     }
 
-    .discripton .sey-hello {
+    article.discripton .sey-hello {
       color: var(--secoundary-color);
-      letter-spacing: 5px;
       font-size: 1.3rem;
       background-color: var(--background-main-color);
       padding: 10px 20px;
@@ -1124,6 +1136,15 @@ body::-webkit-scrollbar-thumb:hover {
     .discripton .last-name {
       color: var(--secoundary-color);
       font-size: 0.9rem;
+    }
+
+    article.dir-lang-en {
+      letter-spacing: 5px;
+    }
+
+    article.dir-lang-ar {
+      letter-spacing: 1px;
+      word-spacing: 6px;
     }
   }
   & .my-name {
@@ -1144,10 +1165,10 @@ body::-webkit-scrollbar-thumb:hover {
     background-size: 500%;
   }
 
-  .dir-lang-en {
+  .logo-section.dir-lang-en {
     margin-right: 70px;
   }
-  .dir-lang-ar {
+  .logo-section.dir-lang-ar {
     margin-left: 70px;
   }
 }
@@ -1189,7 +1210,7 @@ body::-webkit-scrollbar-thumb:hover {
   width: 100%;
   position: relative;
   background-color: var(--background-main-color);
-  margin: 10px 10px 5px 0;
+  margin: 10px 0 5px 0;
   border-radius: 20px 2px 20px 2px / 30px 2px 30px 2px;
   transition: 0.3s;
   color: white;
@@ -1243,8 +1264,15 @@ body::-webkit-scrollbar-thumb:hover {
 
     .logo-section {
       gap: 30px;
-      margin: 0;
     }
+
+    .logo-section.dir-lang-en {
+      margin-right: 0px;
+    }
+    .logo-section.dir-lang-ar {
+      margin-left: 0px;
+    }
+
     & .textarea {
       min-height: 50%;
       text-align: center;
@@ -1253,12 +1281,18 @@ body::-webkit-scrollbar-thumb:hover {
       max-width: 100%;
       margin-left: 0;
 
-      .discripton,
-      .dir-lang-en,
-      .dir-lang-ar {
-        padding: 50px;
+      article.dir-lang-en {
         border-left: none;
+      }
+
+      article.dir-lang-ar {
         border-right: none;
+      }
+
+      .discripton,
+      .logo-section.dir-lang-en,
+      .logo-section.dir-lang-ar {
+        padding: 50px;
         border-top: 1px solid var(--main-color);
         margin-top: 40px;
         border-bottom: 1px solid var(--main-color);
@@ -1268,16 +1302,16 @@ body::-webkit-scrollbar-thumb:hover {
           margin: 0 auto 20px;
         }
       }
-      .dir-lang-ar {
+      article.dir-lang-ar {
         margin: 40px 0;
       }
-      .dir-lang-en {
+      article.dir-lang-en {
         margin: 40px 0;
       }
 
       & .discripton::before,
-      &.dir-lang-en::before,
-      &.dir-lang-ar::before {
+      & article.dir-lang-en::before,
+      & article.dir-lang-ar::before {
         border-radius: 0;
         border-top-color: transparent;
         border-bottom-color: transparent;
@@ -1293,8 +1327,12 @@ body::-webkit-scrollbar-thumb:hover {
         padding-top: 20px;
       }
 
-      .my-skill {
+      #my-skills.dir-lang-ar .my-skill {
         text-align: right;
+      }
+
+      #my-skills.dir-lang-en .my-skill {
+        text-align: left;
       }
     }
   }
@@ -1659,6 +1697,7 @@ body::-webkit-scrollbar-thumb:hover {
             p {
               font-size: 0.65rem;
               color: var(--secoundary-color);
+              letter-spacing: 2px;
             }
           }
         }
