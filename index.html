@@ -178,7 +178,7 @@
         </li>
       </ul>
 
-      <ul class="select-themes select" id="select-theme">
+      <!-- <ul class="select-themes select" id="select-theme">
         <button class="close-btn">
           <i class="fa-solid fa-xmark"></i>
         </button>
@@ -292,7 +292,124 @@
             data-action="after-set"
           ></button>
         </li>
+      </ul> -->
+
+      <ul class="select-themes select" id="select-theme">
+        <span class="close-btn">
+          <i class="fa-solid fa-xmark"></i>
+        </span>
+        <li class="li-theme">
+          <span
+            class="theme-btn"
+            data-content="red"
+            data-lang="red"
+            data-action="red"
+          ></span>
+        </li>
+        <li class="li-theme">
+          <span
+            class="theme-btn"
+            data-content="green"
+            data-lang="green"
+            data-action="green"
+          ></span>
+        </li>
+        <li class="li-theme">
+          <span
+            class="theme-btn"
+            data-content="blue"
+            data-lang="blue"
+            data-action="blue"
+          ></span>
+        </li>
+        <li class="li-theme">
+          <span
+            class="theme-btn"
+            data-content="purple"
+            data-lang="purple"
+            data-action="purple"
+          ></span>
+        </li>
+        <li class="li-theme">
+          <span
+            class="theme-btn"
+            data-content="orange"
+            data-lang="orange"
+            data-action="orange"
+          ></span>
+        </li>
       </ul>
+
+      <ul class="select-language select" id="select-lang">
+        <span class="close-btn">
+          <i class="fa-solid fa-xmark"></i>
+        </span>
+        <li class="li-lang">
+          <span
+            class="lang-btn"
+            data-content="arabic"
+            data-lang="arabicLang"
+            data-action="arabic"
+          ></span>
+        </li>
+        <li class="li-lang">
+          <span
+            class="lang-btn"
+            data-content="english"
+            data-lang="englishLang"
+            data-action="english"
+          ></span>
+        </li>
+      </ul>
+
+      <ul class="select-download select" id="select-d-file">
+        <span class="close-btn">
+          <i class="fa-solid fa-xmark"></i>
+        </span>
+        <li class="li-d-file">
+          <span
+            class="d-btn"
+            data-content="cv"
+            data-lang="cv"
+            data-action="cv"
+            onclick="downloadImage()"
+          ></span>
+        </li>
+        <li class="li-d-file">
+          <span
+            class="d-btn"
+            data-content='<a
+      href="https://github.com/ALOMAWY/alomawy.code.github.io/archive/refs/heads/master.zip"
+      rel="noopener noreferrer"
+    >Code</a>'
+            data-lang="code"
+            data-action="code"
+          ></span>
+        </li>
+      </ul>
+
+      <ul class="select-info select" id="select-info">
+        <span class="close-btn">
+          <i class="fa-solid fa-xmark"></i>
+        </span>
+        <li class="li-info">
+          <span
+            class="info-btn"
+            data-content="news"
+            data-lang="news"
+            data-action="news"
+          ></span>
+        </li>
+        <li class="li-info">
+          <span
+            class="info-btn"
+            data-content="after-set"
+            data-lang="afterSet"
+            data-action="after-set"
+          ></span>
+        </li>
+      </ul>
+
       <div class="header-container container">
         <header id="header" class="header">
           <h2 id="logo-text" class="logo-text">LOGO TEXT</h2>
@@ -306,7 +423,7 @@
           >
         </header>
       </div>
-      <nav id="header-icons" class="header-icons">
+      <!-- <nav id="header-icons" class="header-icons">
         <div class="show-icons"></div>
         <button id="change-mode" class="header-icon">
           <i class="fa-solid fa-brush"></i>
@@ -327,7 +444,30 @@
             <span id="last-row" class="menu-row"></span>
           </div>
         </button>
+      </nav> -->
+      <nav id="header-icons" class="header-icons">
+        <div class="show-icons"></div>
+        <span id="change-mode" class="header-icon">
+          <i class="fa-solid fa-brush"></i>
+        </span>
+        <span id="change-language" class="header-icon">
+          <i class="fa-solid fa-language"></i>
+        </span>
+        <span id="download-btn" class="header-icon">
+          <i class="fa-solid fa-download"></i>
+        </span>
+        <span id="get-info" class="header-icon">
+          <i class="fa-solid fa-circle-info"></i>
+        </span>
+        <span id="menu-btn" class="header-icon">
+          <div id="menu" class="menu">
+            <span id="first-row" class="menu-row"></span>
+            <span id="secound-row" class="menu-row"></span>
+            <span id="last-row" class="menu-row"></span>
+          </div>
+        </span>
       </nav>
+
       <div id="home" class="landing-cover cover">
         <div class="landing-container container">
           <div class="textarea">

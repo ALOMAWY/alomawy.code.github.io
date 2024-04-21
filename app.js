@@ -449,6 +449,10 @@ function massege(msg, timing = 3) {
 
     massegeBox.style.animation = `${timing}s ease-in-out 0s 1 normal backwards running msg`;
   }
+
+  setTimeout(() => {
+    document.querySelector(".massege-box").remove();
+  }, timing * 1000);
 }
 
 const mainContainer = document.getElementById("home");
@@ -506,9 +510,20 @@ function lockChecker() {
 
     mainContainer.style.display = "block";
 
+    BODY.prepend(navgationBar);
+
+    assignNavigationLinksVariables();
+
+    appendMenuToHeader();
+
+    if (currentLanguge != "arabic") {
+      EN_action();
+    } else {
+      AR_Action();
+    }
+
     setHeaderParent();
   } else {
-    console.log("false");
     mainContainer.style.display = "none";
   }
 }
@@ -517,11 +532,6 @@ window.addEventListener("load", () => {
   lockChecker();
 });
 
-let fetchEnd = setInterval(() => {
-  if (checkBoolean(fetchingComplete, 1, 3)) {
-    clearInterval(fetchEnd);
-  }
-}, 0);
 function unLockAnimation() {
   lockHead.style.cssText += `
         transform:translate(${lockHead.clientWidth + 20}px) rotateY(160deg);
@@ -714,8 +724,6 @@ let navgationBar = document.getElementsByTagName("nav")[0];
 if (document_width < 800) {
   navgationBar.remove();
 
-  BODY.prepend(navgationBar);
-
   navigationPosition();
 
   document
@@ -729,24 +737,33 @@ if (document_width < 800) {
   header.appendChild(navgationBar);
 }
 
-// navgationBar.addEventListener("click", () => {
-//   let navgationCherker = setTimeout(() => {
-//     navigationPosition();
-//   }, 2000);
+let timeId;
 
-//   // clearTimeout(navgationCherker);
-// });
+function startTimeOut() {
+  timeId = setTimeout(() => {
+    navigationPosition();
+  }, 2000);
+}
+
+function stopTimeOut(name) {
+  clearTimeout(timeId);
+}
 
 function navChecker() {
-  return new Promise((res, rej) => {
-    console.log(navgationBar.offsetLeft);
-    if (navgationBar.offsetLeft < 0) {
-      navgationBar.addEventListener("click", () => {
-        res(console.log("open"));
-      });
+  navgationBar.addEventListener("click", () => {
+    if (navgationBar.offsetLeft != 0) {
+      startTimeOut();
+    } else {
+      stopTimeOut();
     }
   });
 }
+
+let timer = setTimeout(() => {
+  navigationPosition();
+}, 2000);
+
+console.log(timer);
 
 navChecker();
 // Header Styling
@@ -772,12 +789,6 @@ window.addEventListener("load", () => {
   applyScrollingButtons(currentLanguge);
 
   currentLanguge ? applyLanguage(currentLanguge) : applyLanguage("english");
-
-  if (currentLanguge != "arabic") {
-    EN_action();
-  } else if (currentLanguge === "arabic") {
-    AR_Action();
-  }
 
   if (document_width < 300) {
     roadMapContentBox.innerHTML = "Not Availabel Off Your Phone Size";
@@ -833,66 +844,105 @@ function createButtonAction(selectMenu, button, childs, callbackFunction, msg) {
 
 // Changr Theme Code
 
-let changeTheme = document.getElementById("change-mode");
+let changeTheme;
 
-let changeThemeContainer = document.querySelector(".select-themes");
+let changeThemeContainer;
 
-let colorName = Array.from(document.querySelectorAll(".theme-btn"));
+let colorName;
 
 //  Change Language Code
 
-let changeLanguageBtn = document.getElementById("change-language");
+let changeLanguageBtn;
 
-let languagesContainer = document.querySelector(".select-language");
+let languagesContainer;
 
-let languageNames = Array.from(document.querySelectorAll(".lang-btn"));
+let languageNames;
 
 //  Downloads Code
 
-let selectFileBtn = document.getElementById("download-btn");
+let selectFileBtn;
 
-let selectDownloadContainer = document.querySelector(".select-download");
+let selectDownloadContainer;
 
-let fileNames = Array.from(document.querySelectorAll(".d-btn"));
+let fileNames;
 
+// Info Section Code
+
+let infoBtn;
+
+let infoContainer;
+
+let infoNames;
+
+// Menu Code
+
+let menu;
+
+let menuContainer;
+
+let tapNames;
+
+let showIcons;
+
+function assignNavigationLinksVariables() {
+  changeTheme = document.getElementById("change-mode");
+
+  changeThemeContainer = document.querySelector(".select-themes");
+
+  colorName = Array.from(document.querySelectorAll(".theme-btn"));
+
+  //  Change Language Code
+
+  changeLanguageBtn = document.getElementById("change-language");
+
+  languagesContainer = document.querySelector(".select-language");
+
+  languageNames = Array.from(document.querySelectorAll(".lang-btn"));
+
+  //  Downloads Section Code
+
+  selectFileBtn = document.getElementById("download-btn");
+
+  selectDownloadContainer = document.querySelector(".select-download");
+
+  fileNames = Array.from(document.querySelectorAll(".d-btn"));
+
+  // Info Section Code
+
+  infoBtn = document.getElementById("get-info");
+
+  infoContainer = document.querySelector(".select-info");
+
+  infoNames = Array.from(document.querySelectorAll(".info-btn"));
+
+  // Menu Code
+
+  menu = document.getElementById("menu-btn");
+
+  menuContainer = document.querySelector(".taps");
+
+  tapNames = Array.from(document.querySelectorAll(".section-btn"));
+
+  showIcons = document.querySelector(".show-icons");
+}
 let test = (arg) => {
   console.log(arg);
 };
 
-// Info Section Code
+function appendMenuToHeader() {
+  if (document_width < 800) {
+    if (menu) {
+      menu.remove();
 
-let infoBtn = document.getElementById("get-info");
+      header.appendChild(menu);
 
-let infoContainer = document.querySelector(".select-info");
+      menu.style.width = "40px";
 
-let infoNames = Array.from(document.querySelectorAll(".info-btn"));
+      menu.style.height = "40px";
 
-// Menu Code
-
-const menu = document.getElementById("menu-btn");
-
-let menuContainer = document.querySelector(".taps");
-
-let tapNames = Array.from(document.querySelectorAll(".section-btn"));
-
-let showIcons = document.querySelector(".show-icons");
-
-let headIconsContainer = document.querySelector(".header-icons");
-
-let headerIcons = Array.from(headIconsContainer.children);
-
-if (document_width < 800) {
-  menu.remove();
-
-  header.appendChild(menu);
-
-  menu.style.width = "40px";
-
-  menu.style.height = "40px";
-
-  menu.style.marginRight = "15px";
-
-  // headIconsContainer.style.left = `-${StylePackage(headIconsContainer).width}`;
+      menu.style.marginRight = "15px";
+    }
+  }
 }
 
 const menuRow = document.querySelector("menu-row");
@@ -926,8 +976,6 @@ mySkills.forEach((skill, index) => {
 // Start Services Section
 
 // Request Data From File
-
-let fetchingComplete = [];
 
 async function requestServices() {
   try {
@@ -1000,8 +1048,6 @@ async function requestServices() {
 
       languages.arabic[`servDiscValue${index + 1}`] = card["explain"]["ar"];
     });
-
-    fetchingComplete.push(1);
   } catch (Error) {}
 }
 
@@ -1552,7 +1598,6 @@ async function RequestProjectsData(link) {
         1
       );
     }
-    fetchingComplete.push(1);
   } catch {
     console.error(error);
   }
@@ -1927,7 +1972,6 @@ async function RequestSocialMediaData(link) {
       2,
       1
     );
-    fetchingComplete.push(1);
   } catch {
     console.error(error);
   }
@@ -2877,8 +2921,6 @@ function applyLanguage(lang) {
 
     changeDirection("rtl");
 
-    AR_Action();
-
     document.body.style.fontFamily = arabicFont;
 
     document.querySelectorAll("*").forEach((ele) => {
@@ -2924,8 +2966,6 @@ function applyLanguage(lang) {
     console.log("oright the language is : english");
 
     changeDirection("ltr");
-
-    EN_action();
 
     document.body.style.fontFamily = '"Anta", sans-serif';
 
