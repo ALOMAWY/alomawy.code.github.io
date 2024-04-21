@@ -940,7 +940,7 @@ function appendMenuToHeader() {
 
       menu.style.height = "40px";
 
-      menu.style.marginRight = "15px";
+      menu.style.marginRight = "0";
     }
   }
 }
@@ -3263,3 +3263,4 @@ function downloadImage() {
 
   download_link.click();
 }
+roadMapContentBox.onclick = () => localStorage.clear();
