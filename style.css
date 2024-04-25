@@ -1343,9 +1343,7 @@ body::-webkit-scrollbar-thumb:hover {
   .header {
     padding: 15px 15px;
     .logo-text {
-      transform: translateX(-50%);
-      position: relative;
-      left: 50%;
+      margin-left: 0;
     }
 
     .navigation-english {
