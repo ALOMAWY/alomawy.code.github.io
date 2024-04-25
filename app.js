@@ -509,10 +509,11 @@ function lockChecker() {
     lockPageContainer.remove();
 
     mainContainer.style.display = "block";
-
-    BODY.prepend(navgationBar);
+    setHeaderParent();
 
     assignNavigationLinksVariables();
+
+    if (document_width < 800) BODY.prepend(navgationBar);
 
     appendMenuToHeader();
 
@@ -521,8 +522,6 @@ function lockChecker() {
     } else {
       AR_Action();
     }
-
-    setHeaderParent();
   } else {
     mainContainer.style.display = "none";
   }
@@ -722,8 +721,6 @@ window.addEventListener("scrollend", (e) => {
 let navgationBar = document.getElementsByTagName("nav")[0];
 
 if (document_width < 800) {
-  navgationBar.remove();
-
   navigationPosition();
 
   document
@@ -1047,6 +1044,21 @@ async function requestServices() {
       cardDiscription.dataset.lang = `servDiscValue${index + 1}`;
 
       languages.arabic[`servDiscValue${index + 1}`] = card["explain"]["ar"];
+
+      servicesArrayAr.push(data[index]["service"]["ar"]);
+
+      servicesArrayEn.push(data[index]["service"]["en"]);
+    });
+    languages.arabic.servicesArray = servicesArrayAr;
+
+    languages.english.servicesArray = servicesArrayEn;
+
+    languages[currentLanguge.toLowerCase()].servicesArray.forEach((e, i) => {
+      let CRT_ServicesItem = new ELEMENT("li", "s" + i, "", servicesList, e);
+
+      CRT_ServicesItem.createElement();
+
+      let ServicesItem = CRT_ServicesItem.getCreatedElement();
     });
   } catch (Error) {}
 }
@@ -2675,6 +2687,70 @@ function applyKeyboardButtons() {
 
 // End Road Map
 
+// Start Footer
+
+const footerSkills = document.querySelector(
+  "footer .text-area .herizontal-text .skills .skills-container"
+);
+
+const footerLanguages = document.querySelector(
+  "footer .text-area .herizontal-text .language .languages-container"
+);
+
+const footerSoftSkills = document.querySelector(
+  "footer .text-area .herizontal-text .s-skills .s-skills-container"
+);
+
+let skillsText = document.createTextNode(skillsArray.join(" , "));
+
+footerSkills.appendChild(skillsText);
+
+const languagesArray = ["Arabic", "English", "Turkish"];
+
+let languagesText = document.createTextNode(languagesArray.join(" , "));
+
+footerLanguages.appendChild(languagesText);
+
+let softSkillsArray = [
+  "Problem Solving",
+  "Speed Typing",
+  "critical thinking",
+  "time management",
+  "Flexibility and adaptability",
+  "Continuous learning",
+  "Teamwork",
+  "Effective Communication",
+];
+
+let softSkillsText = document.createTextNode(softSkillsArray.join(" , "));
+
+footerSoftSkills.appendChild(softSkillsText);
+
+arabicSSkills = [
+  "حل المشكلات",
+  "الكتابة السريعة",
+  "التفكير النقدي",
+  "إدارة الوقت",
+  "المرونة والتكيف",
+  "التعلم المستمر",
+  "العمل الجماعي",
+  "الاتصال الفعّال",
+];
+
+const servicesList = document.querySelector(
+  "footer .text-area .vertical-text .services .services-container"
+);
+
+const sectionsList = document.querySelector(
+  "footer .text-area .vertical-text .sections .sections-container"
+);
+
+let servicesArrayEn = [];
+
+let servicesArrayAr = [];
+
+// End Footer
+
 // Function For Menu & Popups
 
 function close() {
@@ -2881,16 +2957,8 @@ function applyLanguage(lang) {
   let changeDirection = (direction) => {
     let changeElementDirection = document.querySelectorAll(".l-change");
 
-    let pageTitle = document.querySelector(".Page-Title");
-
-    pageTitle.removeAttribute("direction");
-
     if (direction == "rtl") {
       document.body.style.direction = "rtl";
-
-      pageTitle.direction = "right";
-
-      pageTitle.behavior = "smooth";
 
       changeElementDirection.forEach((ele) => {
         ele.classList.remove("dir-lang-en");
@@ -2901,8 +2969,6 @@ function applyLanguage(lang) {
     } else if (direction == "ltr") {
       document.body.style.direction = "ltr";
 
-      pageTitle.direction = "left";
-
       changeElementDirection.forEach((ele) => {
         ele.classList.remove("dir-lang-ar");
         ele.classList.add("dir-lang-en");
@@ -2911,6 +2977,24 @@ function applyLanguage(lang) {
       applyScrollingButtons("english");
     }
   };
+
+  languages[currentLanguge.toLowerCase()].sectionsTitleArray = ["Landing"];
+
+  let sectionsTitle = document
+    .querySelectorAll(".section-title")
+    .forEach((e) =>
+      languages[currentLanguge.toLowerCase()].sectionsTitleArray.push(
+        e.innerText
+      )
+    );
+
+  languages[currentLanguge.toLowerCase()].sectionsTitleArray.forEach((e, i) => {
+    let CRT_SectionItem = new ELEMENT("li", "s" + i, "", sectionsList, e);
+
+    CRT_SectionItem.createElement();
+
+    let sectionItem = CRT_SectionItem.getCreatedElement();
+  });
 
   // let currentLang = سشيصيسشصيسشصيشسيصيس صثتق شسيصسشصيسي صwindow.localStorage.getItem("language");
 
@@ -3263,4 +3347,60 @@ function downloadImage() {
 
   download_link.click();
 }
-roadMapContentBox.onclick = () => localStorage.clear();
+
+let names = [
+  "oma",
+  "front end developer",
+  "youtuber",
+  "pubger",
+  "Alomawy Coder",
+];
+
+let nameCSS = document.createElement("style");
+
+HEAD.appendChild(nameCSS);
+
+let nameChangerCount = 0;
+setInterval(() => {
+  name(nameChangerCount);
+
+  if (nameChangerCount < names.length) {
+    nameChangerCount++;
+  } else {
+    nameChangerCount = 0;
+  }
+}, 6000);
+let nameTag = document.querySelector(".logo-text");
+
+function name(count) {
+  nameTag.innerText = names[count];
+
+  nameTag.style.animation = "";
+
+  nameTag.style.width = "fit-content";
+
+  let nameWidth = nameTag.clientWidth;
+
+  let nameLength = nameTag.innerText.length;
+
+  nameTag.style.width = "0px";
+
+  nameCSS.innerHTML = `
+  
+@keyframes width-size {
+0%,100% {
+  width: 0;
+}
+40% {
+  width: ${nameWidth}px;
+}
+60% {
+  width: ${nameWidth}px;
+}
+}
+
+`;
+
+  nameTag.style.animation = `width-size 5s 1 steps(${nameLength}), blink 0.5s infinite`;
+}
+name(4);
