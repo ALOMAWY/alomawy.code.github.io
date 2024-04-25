@@ -313,6 +313,38 @@ let languages = {
     mapTitle: "تطوير الواجهات الأمامية",
 
     // End Road Map Page
+
+    // Start Footer
+
+    skillsTitle: "المهارات :",
+
+    languagesTitle: "اللغات :",
+
+    sSkillsTitle: "المهارات الخارجية :",
+
+    sectionTitle: "اللأقسام",
+
+    linuxProgressNumber: "٠%",
+
+    projectsTitle: " : المشاريع ",
+
+    numberOfProjects: "٧",
+
+    developerTitle: ": المطور",
+
+    developerValue: "عبدالرحمن الدباس",
+
+    // End Footer
+
+    sectionsTitleArray: [
+      "صفحة التعريف",
+      "الخدمات",
+      "المعرض",
+      "التواصل الاجتماعي",
+      "تواصل معنا",
+      "تفاصيل",
+      "خريطة التعلم",
+    ],
   },
   english: {},
 };
@@ -790,6 +822,8 @@ window.addEventListener("load", () => {
   if (document_width < 300) {
     roadMapContentBox.innerHTML = "Not Availabel Off Your Phone Size";
   }
+
+  setUnifiedWidth();
 });
 
 // jS Editing Style
@@ -2749,6 +2783,20 @@ let servicesArrayEn = [];
 
 let servicesArrayAr = [];
 
+function setUnifiedWidth() {
+  let footerRowsTitles = document.querySelectorAll(
+    ".herizontal-text > div p.title"
+  );
+  let footerRowsTitlesWidths = [];
+
+  footerRowsTitles.forEach((ele) => {
+    footerRowsTitlesWidths.push(ele.clientWidth);
+
+    ele.style.width =
+      footerRowsTitlesWidths.reduce((a, c) => (a > c ? a : c)) + "px";
+  });
+}
+
 // End Footer
 
 // Function For Menu & Popups
@@ -2978,17 +3026,13 @@ function applyLanguage(lang) {
     }
   };
 
-  languages[currentLanguge.toLowerCase()].sectionsTitleArray = ["Landing"];
+  languages.english.sectionsTitleArray = ["Landing"];
 
   let sectionsTitle = document
     .querySelectorAll(".section-title")
-    .forEach((e) =>
-      languages[currentLanguge.toLowerCase()].sectionsTitleArray.push(
-        e.innerText
-      )
-    );
+    .forEach((e) => languages.english.sectionsTitleArray.push(e.innerText));
 
-  languages[currentLanguge.toLowerCase()].sectionsTitleArray.forEach((e, i) => {
+  languages[currentLanguge].sectionsTitleArray.forEach((e, i) => {
     let CRT_SectionItem = new ELEMENT("li", "s" + i, "", sectionsList, e);
 
     CRT_SectionItem.createElement();
