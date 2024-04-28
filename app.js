@@ -106,7 +106,7 @@ class ELEMENT {
 
     this.id = id;
 
-    this.clas = clas;
+    this.classEle = clas;
 
     this.parent = parent;
 
@@ -126,7 +126,7 @@ class ELEMENT {
 
     element.id = this.id;
 
-    element.className = this.clas;
+    element.className = this.classEle;
 
     if (this.content) {
       element.innerHTML = this.content;
@@ -147,7 +147,7 @@ class ELEMENT {
   }
 }
 
-function addStyleToPsoudoElement(style, file) {
+function addStyleToPseudoElement(style, file) {
   return setTimeout(() => {
     file.innerHTML += style;
 
@@ -168,7 +168,7 @@ let languages = {
     // Un Lock Page End
 
     // Start Header
-    // Navgation Bar
+    // Navigation Bar
     webTitle: "عبدالرحمن الدباس",
     home: "الرئيسية",
     services: "الخدمات",
@@ -226,9 +226,9 @@ let languages = {
     portfolioTitle: "المعرض",
 
     // Filter List
-    catagoryAll: "الكل",
-    catagoryWebsites: "المواقع",
-    catagoryGames: "الألعاب",
+    categoryAll: "الكل",
+    categoryWebsites: "المواقع",
+    categoryGames: "الألعاب",
 
     // End Portfolio Page
 
@@ -249,7 +249,7 @@ let languages = {
     inputEmail: "البريد الالكتروني",
     textAreaPlaceholder: "اكتب رسالتك",
 
-    sendMassege: "ارسل رسالتك",
+    sendMassage: "ارسل رسالتك",
 
     // End ContactUs Page
 
@@ -824,6 +824,8 @@ window.addEventListener("load", () => {
   }
 
   setUnifiedWidth();
+
+  imagesParent();
 });
 
 // jS Editing Style
@@ -1166,7 +1168,7 @@ async function RequestProjectsData(link) {
         `
         border:1px solid ${color};
         border-bottom:10px solid ${color};
-        background-color: ${colorOpacity};        
+        background-color: ${colorOpacity};
         `,
         `
        #project-${data[i]["id"]["en"]}:hover{
@@ -1227,14 +1229,26 @@ async function RequestProjectsData(link) {
 
       languages.arabic[`projectCardId${i + 1}`] = data[i]["id"]["ar"];
 
+      const CRT_cardImageParent = new ELEMENT(
+        "div",
+        `cardImageParent${i}`,
+        "card-image-parent",
+        projectCard
+      );
+
+      CRT_cardImageParent.createElement();
+
+      const cardImageParent = CRT_cardImageParent.getCreatedElement();
+
       const CRT_cardPicture = new ELEMENT(
         "img",
         `img-${i}`,
         `project-image`,
-        projectCard,
+        cardImageParent,
         "",
         `border: 0.5px solid ${color}`
       );
+
       CRT_cardPicture.createElement();
 
       const cardPicture = CRT_cardPicture.getCreatedElement();
@@ -1609,7 +1623,7 @@ async function RequestProjectsData(link) {
       languages.arabic[`pDiscValue${i + 1}`] = data[i]["description"]["ar"];
 
       const CRT_projectVisiting = new ELEMENT(
-        "button",
+        "span",
         `projectVisiting${i + 1}`,
         "project-visiting",
         projectCard
@@ -1757,7 +1771,7 @@ async function RequestSocialMediaData(link) {
           `
         border:1px solid transparent;
         border-color: transparent ${textColor} transparent ${textColor}  ;
-        background-color: ${colorOpacity};        
+        background-color: ${colorOpacity};
         `,
           `
        #social-card-${i}:hover{
@@ -1994,7 +2008,7 @@ async function RequestSocialMediaData(link) {
         // Initialize Visiting Button
 
         const CRT_Visiting = new ELEMENT(
-          "button",
+          "span",
           `socialVisiting${i + 1}`,
           "social-visiting",
           socialCard,
@@ -2376,7 +2390,7 @@ let opacityLower = (ele) => {
 };
 
 function checkRoadMapStatus() {
-  let buttons = document.querySelector(".buttons-layar");
+  let buttons = document.querySelector(".buttons-layer");
 
   if (buttons.classList.contains("buttons-opacity-show")) {
     buttons.classList.remove("buttons-opacity-show");
@@ -2388,7 +2402,7 @@ function checkRoadMapStatus() {
 }
 
 function minmizeRoadMapButtons() {
-  let btnsContainer = document.querySelector(".buttons-layar");
+  let btnsContainer = document.querySelector(".buttons-layer");
 
   btnsContainer.classList.remove("center-buttons");
 
@@ -2400,7 +2414,7 @@ function minmizeRoadMapButtons() {
 
   if (!document.querySelector(".reset-car")) {
     let CRT_resetCar = new ELEMENT(
-      "button",
+      "span",
       "reset-car",
       "reset-car",
       btnsContainer,
@@ -2443,7 +2457,7 @@ controlCarBtn.addEventListener("click", () => {
 
   if (
     !document
-      .querySelector(".buttons-layar")
+      .querySelector(".buttons-layer")
       .classList.contains("buttons-opacity-show")
   ) {
     checkRoadMapStatus();
@@ -2489,13 +2503,13 @@ function createMobileButtons() {
 
     Y_Axis_Buttons.classList.add("y-area");
 
-    let To_Top_Button = document.createElement("button");
+    let To_Top_Button = document.createElement("span");
 
     To_Top_Button.classList.add("to-top", "c-btn");
 
     Y_Axis_Buttons.prepend(To_Top_Button);
 
-    let To_Bottom_Button = document.createElement("button");
+    let To_Bottom_Button = document.createElement("span");
 
     To_Bottom_Button.classList.add("to-bottom", "c-btn");
 
@@ -2509,13 +2523,13 @@ function createMobileButtons() {
 
     X_Axis_Buttons.classList.add("x-area");
 
-    let To_Left_Button = document.createElement("button");
+    let To_Left_Button = document.createElement("span");
 
     To_Left_Button.classList.add("to-left", "c-btn");
 
     X_Axis_Buttons.prepend(To_Left_Button);
 
-    let To_Right_Button = document.createElement("button");
+    let To_Right_Button = document.createElement("span");
 
     To_Right_Button.classList.add("to-right", "c-btn");
 
@@ -2797,6 +2811,12 @@ function setUnifiedWidth() {
   });
 }
 
+document.getElementById(
+  "copyright"
+).innerHTML = `&copy <span class='name'>Abdalrahman Aldabbas</span> <span class='date'>${new Date(
+  Date.now()
+).getFullYear()}</span> `;
+
 // End Footer
 
 // Function For Menu & Popups
@@ -2889,13 +2909,13 @@ function checking(parent, L_Btn, R_Btn) {
     if (scrollLeft < mestakeMargin) {
       L_Btn.style.display = "none";
     } else {
-      L_Btn.style.display = "block";
+      L_Btn.style.display = "flex";
     }
   } else if (currentLanguge == "arabic") {
     if (scrollLeft > -mestakeMargin) {
       R_Btn.style.display = "none";
     } else {
-      R_Btn.style.display = "block";
+      R_Btn.style.display = "flex";
     }
   }
   if (endedScrolling > fullWidth - 20) {
@@ -2904,8 +2924,8 @@ function checking(parent, L_Btn, R_Btn) {
       : (R_Btn.style.display = "none");
   } else {
     currentLanguge == "arabic"
-      ? (L_Btn.style.display = "block")
-      : (R_Btn.style.display = "block");
+      ? (L_Btn.style.display = "flex")
+      : (R_Btn.style.display = "flex");
   }
 }
 
@@ -3063,6 +3083,12 @@ function applyLanguage(lang) {
       if (ele.dataset.content) {
         ele.dataset.content = languages.arabic[ele.dataset.lang];
       }
+
+      let fontSize = parseInt(StylePackage(ele).fontSize);
+
+      if (fontSize < 12) {
+        ele.style.fontSize = "13px";
+      }
     });
 
     styleFile.innerHTML += `
@@ -3113,6 +3139,12 @@ function applyLanguage(lang) {
       if (ele.dataset.action) {
         ele.dataset.content = languages.english[ele.dataset.lang];
       }
+
+      let fontSize = parseInt(StylePackage(ele).fontSize);
+
+      if (fontSize < 12) {
+        ele.style.fontSize = "13px";
+      }
     });
 
     navgationBar.classList.remove("navigation-arabic");
@@ -3143,12 +3175,13 @@ function setInFullyRight(ele, position) {
 }
 
 function applyTheme(color) {
+  BODY.style.backgroundImage = `url(./imgs/backgrounds/Background_${color}.png)`;
   localStorage.setItem("theme", color);
   switch (color) {
     case "red":
       themeStyleFile.innerHTML = `:root {
 --main-color: #ff0000;
-    --secoundary-color: #e7c3c3;
+    --secondary-color: #e7c3c3;
     --background-main-color: #ff000038;
     --background-white-color: #e7c3c37e;
     --background-color: #000f18;
@@ -3157,7 +3190,7 @@ function applyTheme(color) {
     case "blue":
       themeStyleFile.innerHTML = `:root {
   --main-color: #186ca4;
-  --secoundary-color: #fff;
+  --secondary-color: #fff;
   --background-main-color: rgba(30, 56, 103, 0.7);
   --background-white-color: rgba(255, 255, 255, 0.7);
   --background-color: #000f18;
@@ -3167,7 +3200,7 @@ function applyTheme(color) {
       themeStyleFile.innerHTML = `
     :root {
   --main-color:#4caf50;
-  --secoundary-color:#b8f0ba;
+  --secondary-color:#b8f0ba;
   --background-main-color:#4caf505c;
   --background-white-color:#ffffff99;
   --background-color: #000f18;
@@ -3178,7 +3211,7 @@ function applyTheme(color) {
       themeStyleFile.innerHTML = `
     :root {
   --main-color: #ff9800;
-  --secoundary-color:#ffe2b6;
+  --secondary-color:#ffe2b6;
   --background-main-color:#ff980040;
   --background-white-color:#b7a488;
   --background-color: #000f18;
@@ -3188,7 +3221,7 @@ function applyTheme(color) {
       themeStyleFile.innerHTML = `
     :root {
   --main-color:#9c27b0;
-  --secoundary-color:#ba95c0;
+  --secondary-color:#ba95c0;
   --background-main-color:#9c27b05c;
   --background-white-color:#d4abdb94;
   --background-color: #000f18;
@@ -3448,3 +3481,16 @@ function name(count) {
   nameTag.style.animation = `width-size 5s 1 steps(${nameLength}), blink 0.5s infinite`;
 }
 name(4);
+
+function imagesParent() {
+  return document.querySelectorAll("img").forEach((e) => {
+    // let parentWidth = e.clientWidth;
+    // let parentHieght = e.clientHeight;
+    // e.style.width = parentWidth + "px";
+    // e.style.height = parentHieght + "px";
+    // console.log(parentHieght);
+    // console.log(parentWidth);
+
+    e.style.cssText = `max-width: 100%; max-height: 100%; background-size: contain; background-repeat: no-repeat; background-position: center;`;
+  });
+}
