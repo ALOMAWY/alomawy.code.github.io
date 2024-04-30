@@ -1,3283 +1,179 @@
-// Add To HTML Head
-const BODY = document.body;
-
-const HEAD = document.head;
-
-let StylePackage = (element) => {
-  return window.getComputedStyle(element);
-};
-
+const BODY = document.body,
+  HEAD = document.head;
+let StylePackage = (e) => window.getComputedStyle(e);
 const styleFile = document.createElement("style");
-
 styleFile.id = "main-style";
-
-const lockPageStyleFile = document.createElement("style");
-
-lockPageStyleFile.className = "Lock Page Style File";
-
-HEAD.appendChild(lockPageStyleFile);
-
 const changeAndTypingAnimationStylingFile = document.createElement("style");
-
 changeAndTypingAnimationStylingFile.id = "name-change-animation-style";
-
-const dynamicFontSize = "1rem";
-
-const mainTextColor = `#fff`;
-
-const mainSecondaryColor = `#186ca4`;
-
 const sectionTitle = document.querySelectorAll(".header-title");
-
 let currentLanguge = localStorage.getItem("language");
-
-sectionTitle.forEach((title, index) => {
-  title.style.height =
+sectionTitle.forEach((e, t) => {
+  e.style.height =
     parseInt(
-      StylePackage(document.querySelectorAll(".section-head")[index]).height
+      StylePackage(document.querySelectorAll(".section-head")[t]).height
     ) +
     30 +
     "px";
-});
-
-// Background Colors
-
-const background_White_Color = `rgba(255 , 255 , 255 , 0.7 )`;
-
-const background_blue_Color = `rgba(30 , 56 , 103 , 0.7 )`;
-
-// Styling Body
-
-BODY.style.minHeight = "100vh";
-
-// Add Bac
-
-// BODY.style.backgroundSize = "100% 00vh";
-
+}),
+  (BODY.style.minHeight = "100vh");
 const document_width = document.documentElement.clientWidth;
-
-// Hold Click Event Class
-
 class HOLDER {
-  constructor(target, callbackHold, callbackBlur) {
-    this.target = target;
-    this.callbackHold = callbackHold;
-    this.callbackBlur = callbackBlur;
-    this.isHeld = false;
-    this.activeHoldTimeOutId = null;
-
-    ["mousedown", "touchstart"].forEach((type) => {
-      this.target.addEventListener(type, () => this._onHoldStart.bind(this)());
-    });
-
-    ["mouseup", "mouseleave", "mouseout", "touchend", "touchcancel"].forEach(
-      (type) => {
-        this.target.addEventListener(type, () => this._onHoldEnd.bind(this)());
-      }
-    );
+  constructor(e, t, a) {
+    (this.target = e),
+      (this.callbackHold = t),
+      (this.callbackBlur = a),
+      (this.isHeld = !1),
+      (this.activeHoldTimeOutId = null),
+      ["mousedown", "touchstart"].forEach((e) => {
+        this.target.addEventListener(e, () => this._onHoldStart.bind(this)());
+      }),
+      ["mouseup", "mouseleave", "mouseout", "touchend", "touchcancel"].forEach(
+        (e) => {
+          this.target.addEventListener(e, () => this._onHoldEnd.bind(this)());
+        }
+      );
   }
-
   _onHoldStart() {
-    this.isHeld = true;
-
-    this.activeHoldTimeOutId = setInterval(() => {
-      if (this.isHeld) {
-        this.callbackHold();
-      }
-    }, 100);
+    (this.isHeld = !0),
+      (this.activeHoldTimeOutId = setInterval(() => {
+        this.isHeld && this.callbackHold();
+      }, 100));
   }
-
   _onHoldEnd() {
-    this.isHeld = false;
-    clearTimeout(this.activeHoldTimeOutId);
-    this.callbackBlur();
+    (this.isHeld = !1),
+      clearTimeout(this.activeHoldTimeOutId),
+      this.callbackBlur();
   }
-
-  static onHold(target, callbackHold, callbackBlur) {
-    new HOLDER(target, callbackHold, callbackBlur);
+  static onHold(e, t, a) {
+    new HOLDER(e, t, a);
   }
 }
-
-// Element Genaration Class
-
 class ELEMENT {
-  constructor(type, id, clas, parent, content, style, customStyle, styleFile) {
-    this.type = type;
-
-    this.id = id;
-
-    this.classEle = clas;
-
-    this.parent = parent;
-
-    this.content = content;
-
-    this.style = style;
-
-    this.customStyle = customStyle;
-
-    this.styleFile = styleFile;
-
-    this.createdElement = null;
+  constructor(e, t, a, n, o, l, r, i) {
+    (this.type = e),
+      (this.id = t),
+      (this.classEle = a),
+      (this.parent = n),
+      (this.content = o),
+      (this.style = l),
+      (this.customStyle = r),
+      (this.styleFile = i),
+      (this.createdElement = null);
   }
-
   createElement() {
-    const element = document.createElement(this.type);
-
-    element.id = this.id;
-
-    element.className = this.classEle;
-
-    if (this.content) {
-      element.innerHTML = this.content;
-    }
-    this.parent.appendChild(element);
-
-    element.style.cssText = this.style;
-
-    setTimeout(() => {
-      if (this.customStyle) this.styleFile.innerHTML += this.customStyle;
-      if (this.styleFile) HEAD.appendChild(this.styleFile);
-    }, 1);
-
-    this.createdElement = element;
+    const e = document.createElement(this.type);
+    (e.id = this.id),
+      (e.className = this.classEle),
+      this.content && (e.innerHTML = this.content),
+      this.parent.appendChild(e),
+      (e.style.cssText = this.style),
+      setTimeout(() => {
+        this.customStyle && (this.styleFile.innerHTML += this.customStyle),
+          this.styleFile && HEAD.appendChild(this.styleFile);
+      }, 1),
+      (this.createdElement = e);
   }
   getCreatedElement() {
     return this.createdElement;
   }
 }
-
-function addStyleToPseudoElement(style, file) {
+function addStyleToPseudoElement(e, t) {
   return setTimeout(() => {
-    file.innerHTML += style;
-
-    HEAD.appendChild(styleFile);
+    (t.innerHTML += e), HEAD.appendChild(styleFile);
   }, 1);
 }
-
-// Reset Elements Positions
 let languages = {
-  arabic: {
-    applicationTitle: "الموقع الشخصي للأموي",
-
-    // Un Lock Page Start
-
-    un_lock_explain:
-      "قم بوضع موشر الفارة على المربع اناه حتى يتم الغاء قفل الموقع",
-
-    // Un Lock Page End
-
-    // Start Header
-    // Navigation Bar
-    webTitle: "عبدالرحمن الدباس",
-    home: "الرئيسية",
-    services: "الخدمات",
-    portfolio: "المعرض",
-    social_media: "التواصل الاجتماعي",
-    contact_us: "اتصل بنا",
-    about_us: "عنا",
-    road_map: "خريطة التعلم",
-
-    // Skills
-
-    // Colors
-    red: "أحمر",
-    green: "أخضر",
-    blue: "أزرق",
-    orange: "برتقالي",
-    purple: "بنفسجي",
-
-    // Languages
-    arabicLang: "العربية",
-    englishLang: "الانجليزية",
-
-    // Download Files
-    cv: "ملفي",
-    code: `<a
-            href="https://github.com/ALOMAWY/alomawy.code.github.io/archive/refs/heads/master.zip"
-            rel="noopener noreferrer"
-          >الكود</a>`,
-
-    codeMassage: "الكود",
-
-    // Infos
-    news: "الجديد",
-
-    // End Header
-
-    // Start Landing Page
-
-    seyHello: "السلام عليكم",
-    aboutMeInfos:
-      "<h2 class='sey-hello' data-lang='seyHello'>السلام عليكم</h2>مرحبا انا عبدالرحمن الدباس . أعمل  كمطور واجهات أمامية لمواقع الانترنت .أنا من سوريا دمشق . هذا موقع شخصي بسيط قمت بتطويره ب  'Java Script' . فقط",
-
-    fullName: "عبدالرحمن الدباس",
-
-    // End Landing Page
-
-    // Start Services Page
-
-    servicesTitle: "الخدمات",
-
-    // End Services Page
-
-    // Start Portfolio Page
-
-    portfolioTitle: "المعرض",
-
-    // Filter List
-    categoryAll: "الكل",
-    categoryWebsites: "المواقع",
-    categoryGames: "الألعاب",
-
-    // End Portfolio Page
-
-    // Start social Media
-
-    socialMediaTitle: "التواصل الاجتماعي",
-
-    // End social Media
-
-    // Start ContactUs Page
-    contactUsTitle: "تواصل معنا",
-    contactUsName: "الاسم",
-
-    contactUsPopup: "تواصل معنا",
-
-    // Form Inputs
-    inputName: "الاسم",
-    inputEmail: "البريد الالكتروني",
-    textAreaPlaceholder: "اكتب رسالتك",
-
-    sendMassage: "ارسل رسالتك",
-
-    // End ContactUs Page
-
-    // Start About Page
-
-    aboutTitle: "تفاصيل",
-    fullNameText: `<i class="fa-solid fa-signature"></i> الاسم :`,
-    ageText: `<i class="fa-solid fa-heart-pulse"></i> العمر :`,
-    cWorkText: `<i class="fa-solid fa-briefcase"></i> العمل :`,
-    statusText: `<i class="fa-solid fa-diagram-project"></i> الحالة :`,
-    expText: `<i class="fa-solid fa-chart-simple"></i> الخبرة :`,
-    skills: `المهارات :`,
-
-    age: "العمر",
-    cWork: "مطور واجهات أمامية",
-    status: "متاح للعمل",
-    exp: toArabicNumber(getExpYears("02/22/2022")),
-
-    // End About Page
-
-    // Start Project Card
-
-    pDevTitleText: "المطور :",
-
-    pTypeTitleText: "النوع :",
-
-    pTechTitleText: "التقنيات :",
-
-    pHostTitleText: "الاستضافة :",
-
-    pLangTitleText: "اللغات :",
-
-    pSrcTitleText: "مصدر الفكرة :",
-
-    pRateTitleText: "التقييم :",
-
-    pDiscTitleText: "الوصف :",
-
-    visitLinkText: "زيارة",
-
-    // End Project Card
-
-    // Start Social Card
-
-    socialFollowersTitle: "المتابعين",
-
-    socialFriendsTitle: "الأصدقاء",
-
-    socialPostsTitle: "المنشورات",
-
-    socialUserNameTitle: "اسم المستخدم",
-
-    socialContentTitle: "المحتوى",
-    // End Social Card
-
-    // Start Road Map Page
-
-    roadMapTitle: "خريطة التعلم",
-    showRm: "رؤية الخريطة",
-    controlCar: "قيادة السيارة",
-    mapTitle: "تطوير الواجهات الأمامية",
-
-    // End Road Map Page
-
-    // Start Footer
-
-    skillsTitle: "المهارات :",
-
-    languagesTitle: "اللغات :",
-
-    sSkillsTitle: "المهارات الخارجية :",
-
-    sectionTitle: "اللأقسام",
-
-    linuxProgressNumber: "٠%",
-
-    projectsTitle: " : المشاريع ",
-
-    numberOfProjects: "٧",
-
-    developerTitle: ": المطور",
-
-    developerValue: "عبدالرحمن الدباس",
-
-    // End Footer
-
-    sectionsTitleArray: [
-      "صفحة التعريف",
-      "الخدمات",
-      "المعرض",
-      "التواصل الاجتماعي",
-      "تواصل معنا",
-      "تفاصيل",
-      "خريطة التعلم",
-    ],
+    arabic: {
+      applicationTitle: "الموقع الشخصي للأموي",
+      un_lock_explain:
+        "قم بوضع موشر الفارة على المربع اناه حتى يتم الغاء قفل الموقع",
+      webTitle: "عبدالرحمن الدباس",
+      home: "الرئيسية",
+      services: "الخدمات",
+      portfolio: "المعرض",
+      social_media: "التواصل الاجتماعي",
+      contact_us: "اتصل بنا",
+      about_us: "عنا",
+      road_map: "خريطة التعلم",
+      red: "أحمر",
+      green: "أخضر",
+      blue: "أزرق",
+      orange: "برتقالي",
+      purple: "بنفسجي",
+      arabicLang: "العربية",
+      englishLang: "الانجليزية",
+      cv: "ملفي",
+      code: '<a\n            href="https://github.com/ALOMAWY/alomawy.code.github.io/archive/refs/heads/master.zip"\n            rel="noopener noreferrer"\n          >الكود</a>',
+      codeMassage: "الكود",
+      news: "الجديد",
+      seyHello: "السلام عليكم",
+      aboutMeInfos:
+        "<h2 class='sey-hello' data-lang='seyHello'>السلام عليكم</h2><p>مرحبا انا عبدالرحمن الدباس . أعمل  كمطور واجهات أمامية لمواقع الانترنت .أنا من سوريا دمشق . هذا موقع شخصي بسيط قمت بتطويره ب  'Java Script' . فقط</p> ",
+      fullName: "عبدالرحمن الدباس",
+      servicesTitle: "الخدمات",
+      portfolioTitle: "المعرض",
+      categoryAll: "الكل",
+      categoryWebsites: "المواقع",
+      categoryGames: "الألعاب",
+      socialMediaTitle: "التواصل الاجتماعي",
+      contactUsTitle: "تواصل معنا",
+      contactUsName: "الاسم",
+      contactUsPopup: "تواصل معنا",
+      inputName: "الاسم",
+      inputEmail: "البريد الالكتروني",
+      textAreaPlaceholder: "اكتب رسالتك",
+      sendMassage: "ارسل رسالتك",
+      aboutTitle: "تفاصيل",
+      fullNameText: '<i class="fa-solid fa-signature"></i> الاسم :',
+      ageText: '<i class="fa-solid fa-heart-pulse"></i> العمر :',
+      cWorkText: '<i class="fa-solid fa-briefcase"></i> العمل :',
+      statusText: '<i class="fa-solid fa-diagram-project"></i> الحالة :',
+      expText: '<i class="fa-solid fa-chart-simple"></i> الخبرة :',
+      skills: "المهارات :",
+      age: "العمر",
+      cWork: "مطور واجهات أمامية",
+      status: "متاح للعمل",
+      exp: toArabicNumber(getExpYears("02/22/2022")),
+      pDevTitleText: "المطور :",
+      pTypeTitleText: "النوع :",
+      pTechTitleText: "التقنيات :",
+      pHostTitleText: "الاستضافة :",
+      pLangTitleText: "اللغات :",
+      pSrcTitleText: "مصدر الفكرة :",
+      pRateTitleText: "التقييم :",
+      pDiscTitleText: "الوصف :",
+      visitLinkText: "زيارة",
+      socialFollowersTitle: "المتابعين",
+      socialFriendsTitle: "الأصدقاء",
+      socialPostsTitle: "المنشورات",
+      socialUserNameTitle: "اسم المستخدم",
+      socialContentTitle: "المحتوى",
+      roadMapTitle: "خريطة التعلم",
+      showRm: "رؤية الخريطة",
+      controlCar: "قيادة السيارة",
+      mapTitle: "تطوير الواجهات الأمامية",
+      skillsTitle: "المهارات :",
+      languagesTitle: "اللغات :",
+      sSkillsTitle: "المهارات الخارجية :",
+      sectionTitle: "اللأقسام",
+      linuxProgressNumber: "٠%",
+      projectsTitle: " : المشاريع ",
+      numberOfProjects: "٧",
+      developerTitle: ": المطور",
+      developerValue: "عبدالرحمن الدباس",
+      sectionsTitleArray: [
+        "صفحة التعريف",
+        "الخدمات",
+        "المعرض",
+        "التواصل الاجتماعي",
+        "تواصل معنا",
+        "تفاصيل",
+        "خريطة التعلم",
+      ],
+    },
+    english: {},
   },
-  english: {},
-};
-
-let arNums = [
-  "٠",
-  "١",
-  "٢",
-  "٣",
-  "٤",
-  "٥",
-  "٦",
-  "٧",
-  "٨",
-  "٩",
-  "١٠",
-  "١١",
-  "١٢",
-  "١٣",
-  "١٤",
-  "١٥",
-  "١٦",
-  "١٧",
-  "١٨",
-  "١٩",
-  "٢٠",
-  "٢١",
-  "٢٢",
-  "٢٣",
-  "٢٤",
-  "٢٥",
-  "٢٦",
-  "٢٧",
-  "٢٨",
-  "٢٩",
-  "٣٠",
-  "٣١",
-  "٣٢",
-  "٣٣",
-  "٣٤",
-  "٣٥",
-  "٣٦",
-  "٣٧",
-  "٣٨",
-  "٣٩",
-  "٤٠",
-  "٤١",
-  "٤٢",
-  "٤٣",
-  "٤٤",
-  "٤٥",
-  "٤٦",
-  "٤٧",
-  "٤٨",
-  "٤٩",
-  "٥٠",
-  "٥١",
-  "٥٢",
-  "٥٣",
-  "٥٤",
-  "٥٥",
-  "٥٦",
-  "٥٧",
-  "٥٨",
-  "٥٩",
-  "٦٠",
-  "٦١",
-  "٦٢",
-  "٦٣",
-  "٦٤",
-  "٦٥",
-  "٦٦",
-  "٦٧",
-  "٦٨",
-  "٦٩",
-  "٧٠",
-  "٧١",
-  "٧٢",
-  "٧٣",
-  "٧٤",
-  "٧٥",
-  "٧٦",
-  "٧٧",
-  "٧٨",
-  "٧٩",
-  "٨٠",
-  "٨١",
-  "٨٢",
-  "٨٣",
-  "٨٤",
-  "٨٥",
-  "٨٦",
-  "٨٧",
-  "٨٨",
-  "٨٩",
-  "٩٠",
-  "٩١",
-  "٩٢",
-  "٩٣",
-  "٩٤",
-  "٩٥",
-  "٩٦",
-  "٩٧",
-  "٩٨",
-  "٩٩",
-  "١٠٠",
-];
-
-function massege(msg, timing = 3) {
-  if (document.querySelector(".massege-box")) {
-    document.querySelector(".massege-box").remove();
-
-    let massegeBox = document.createElement("div");
-
-    let textNode = document.createTextNode(msg);
-
-    massegeBox.appendChild(textNode);
-
-    massegeBox.classList.add("massege-box");
-
-    BODY.prepend(massegeBox);
-
-    massegeBox.style.animation = `${timing}s ease-in-out 0s 1 normal backwards running msg`;
-  } else {
-    let massegeBox = document.createElement("div");
-
-    let textNode = document.createTextNode(msg);
-
-    massegeBox.appendChild(textNode);
-
-    massegeBox.classList.add("massege-box");
-
-    BODY.prepend(massegeBox);
-
-    massegeBox.style.animation = `${timing}s ease-in-out 0s 1 normal backwards running msg`;
-  }
-
-  setTimeout(() => {
-    document.querySelector(".massege-box").remove();
-  }, timing * 1000);
-}
-
-const mainContainer = document.getElementById("home");
-
-const lockPageContainer = document.getElementById("lock-page");
-
-const ExplainToUnlock = document.getElementById("unlock-text");
-
-const drawArea = document.getElementById("draw-area");
-
-// Get Sound
-
-const successSound = document.getElementById("unlock-sound");
-
-successSound.src =
-  "./sounds/short-success-sound-glockenspiel-treasure-video-game-6346.mp3";
-
-const range = document.getElementById("range");
-
-const rangeValue = document.querySelector(".count-value");
-
-const lockHead = document.querySelector(".the-lock .lock-head");
-
-let counter;
-
-let unlockStatus = 0;
-
-let unlockFullValue = 100;
-
-let minusCounterFunction;
-
-let minusCounter;
-
-let minusToCounter;
-
-function unlocked() {
-  localStorage.setItem("lock", "hide");
-
-  successSound.play();
-
-  mainContainer.style.display = "block";
-
-  unLockAnimation();
-
-  setHeaderParent();
-
-  setTimeout(() => {
-    lockPageContainer.remove();
-  }, 1000);
-}
-
-function lockChecker() {
-  if (localStorage.getItem("lock") == "hide") {
-    lockPageContainer.remove();
-
-    mainContainer.style.display = "block";
-    setHeaderParent();
-
-    assignNavigationLinksVariables();
-
-    if (document_width < 800) BODY.prepend(navgationBar);
-
-    appendMenuToHeader();
-
-    if (currentLanguge != "arabic") {
-      EN_action();
-    } else {
-      AR_Action();
-    }
-  } else {
-    mainContainer.style.display = "none";
-  }
-}
-
-window.addEventListener("load", () => {
-  lockChecker();
-});
-
-function unLockAnimation() {
-  lockHead.style.cssText += `
-        transform:translate(${lockHead.clientWidth + 20}px) rotateY(160deg);
-        box-shadow:none;`;
-}
-
-drawArea.addEventListener("mouseover", () => {
-  clearInterval(minusCounter);
-
-  clearTimeout(minusToCounter);
-
-  if (unlockStatus < unlockFullValue) {
-    counter = setInterval(() => {
-      unlockStatus++;
-
-      rangeValue.innerText = unlockStatus + "%";
-
-      setTimeout(() => {
-        lockPageStyleFile.innerHTML += `
-        #range::before{
-          content:'';
-          width:${unlockStatus}%;
-        }`;
-      }, 0);
-
-      if (unlockStatus >= unlockFullValue) {
-        clearInterval(counter);
-
-        unlocked();
-      }
-    }, 50);
-  }
-});
-
-drawArea.addEventListener("mouseout", () => {
-  minusCounterFunction = () => {
-    minusCounter = setInterval(() => {
-      if (unlockStatus > 0) {
-        unlockStatus--;
-
-        rangeValue.innerText = unlockStatus + "%";
-
-        styleFile.innerHTML += `#range::before{
-        content:"";
-        width:${unlockStatus}%;
-      }`;
-      } else {
-        unlockStatus = 0;
-      }
-    }, 1000);
-  };
-
-  minusToCounter = setTimeout(() => {
-    minusCounterFunction();
-  }, 5000);
-
-  HEAD.appendChild(styleFile);
-
-  clearInterval(counter);
-});
-
-//  Add Loading Elements
-
-let CRT_topElement = new ELEMENT("div", "", "an-top-element", BODY);
-
-CRT_topElement.createElement();
-
-let topElement = CRT_topElement.getCreatedElement();
-
-let CRT_bottomElement = new ELEMENT("div", "", "an-bottom-element", BODY);
-
-CRT_bottomElement.createElement();
-
-let bottomElement = CRT_bottomElement.getCreatedElement();
-
-let CRT_animationText = new ELEMENT(
-  "h3",
-  "",
-  "animation-text",
-  BODY,
-  "Unlocked Now"
-);
-
-CRT_animationText.createElement();
-
-let animationText = CRT_animationText.getCreatedElement();
-
-function unLockAnimation() {
-  let animationElements = [topElement, bottomElement, animationText];
-  topElement.style.animation = "lock-an-top 7s ease-in-out 1";
-
-  bottomElement.style.animation = "lock-an-bottom 7s ease-in-out 1";
-
-  animationText.style.animation = "animation-text 4s ease-in-out 1 1.5s";
-  setTimeout(() => {
-    animationElements.forEach((e) => (e.style.animation = ""));
-  }, 10000);
-}
-
-topElement.classList.add("an-element");
-bottomElement.classList.add("an-element");
-
-// Header
-
-let header = document.getElementById("header");
-
-let headerParent = header.parentNode;
-function setHeaderParent() {
-  if (document_width < 1100) {
-    header.style.width = "100%";
-
-    headerParent.style.height = StylePackage(header).height;
-
-    headerParent.style.paddingLeft = "0";
-
-    headerParent.style.paddingRight = "0";
-
-    headerParent.style.borderRadius = "0";
-
-    header.style.padding = " 7px 15px ";
-
-    let headerAllHeight = parseInt(StylePackage(header).height);
-
-    if (headerAllHeight == parseInt(StylePackage(header).height)) {
-      setTimeout(() => {
-        headerParent.style.height = StylePackage(header).height;
-      }, 500);
-    }
-  } else {
-    header.style.width = headerParent.getFullWidth() + "px";
-
-    headerParent.style.height = StylePackage(header).height;
-
-    headerParent.style.paddingLeft = StylePackage(header).paddingLeft;
-
-    headerParent.style.paddingRight = StylePackage(header).paddingRight;
-
-    initializeEnglishLanguageObject();
-  }
-}
-let V_scroll = 0;
-
-let control = false;
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY > parseInt(StylePackage(header).height)) {
-    header.style.backgroundColor = "var(--background-main-color)";
-
-    header.style.backdropFilter = "blur(10px)";
-
-    header.style.boxShadow = "0 0 20px var(--main-color)";
-
-    header.style.top = "-200px";
-
-    if (window.scrollY < V_scroll) {
-      header.style.top = "0";
-    }
-  }
-
-  if (window.scrollY == 0) {
-    header.style.top = "0";
-
-    header.style.backgroundColor = "transparent";
-
-    header.style.backdropFilter = "blur(0px)";
-
-    header.style.boxShadow = "none";
-
-    header.style.borderRadius = " 0 ";
-  }
-
-  // Checking About Car Acces
-
-  let scrollY = window.scrollY;
-
-  let roadMapOffsetTop = document.querySelector(".road-map-cover").offsetTop;
-
-  if (roadMapOffsetTop - 50 < scrollY) {
-    control = true;
-  } else {
-    control = false;
-  }
-});
-window.addEventListener("scrollend", (e) => {
-  V_scroll = window.scrollY;
-});
-
-let navgationBar = document.getElementsByTagName("nav")[0];
-
-if (document_width < 800) {
-  navigationPosition();
-
-  document
-    .querySelectorAll(".header-icon")
-    .forEach((ele) =>
-      ele.addEventListener("click", () => navigationPosition())
-    );
-} else {
-  navgationBar.remove();
-
-  header.appendChild(navgationBar);
-}
-
-let timeId;
-
-function startTimeOut() {
-  timeId = setTimeout(() => {
-    navigationPosition();
-  }, 2000);
-}
-
-function stopTimeOut(name) {
-  clearTimeout(timeId);
-}
-
-function navChecker() {
-  navgationBar.addEventListener("click", () => {
-    if (navgationBar.offsetLeft != 0) {
-      startTimeOut();
-    } else {
-      stopTimeOut();
-    }
-  });
-}
-
-let timer = setTimeout(() => {
-  navigationPosition();
-}, 2000);
-
-console.log(timer);
-
-navChecker();
-// Header Styling
-
-let landing = document.querySelector(".landing-cover");
-
-landing.style.minHeight = `calc(100vh - ${parseInt(
-  StylePackage(header).height
-)}px)`;
-
-// Styling Website Logo Text Psoudo Element
-
-// Onload Actions
-
-window.addEventListener("load", () => {
-  // It Is Set The Select Theme If The User Changed The Default Theme
-  localStorage.getItem("theme")
-    ? applyTheme(localStorage.getItem("theme"))
-    : applyTheme("blue");
-
-  initializeEnglishLanguageObject();
-
-  applyScrollingButtons(currentLanguge);
-
-  currentLanguge ? applyLanguage(currentLanguge) : applyLanguage("english");
-
-  if (document_width < 300) {
-    roadMapContentBox.innerHTML = "Not Availabel Off Your Phone Size";
-  }
-
-  setUnifiedWidth();
-
-  imagesParent();
-});
-
-// jS Editing Style
-
-let js_StyleFile = document.createElement("style");
-
-js_StyleFile.id = "js-file";
-
-HEAD.appendChild(js_StyleFile);
-
-// Create Theme CSS File &  Add Theme To File
-
-let themeStyleFile = document.createElement("style");
-
-themeStyleFile.id = "theme-js";
-
-HEAD.appendChild(themeStyleFile);
-
-document
-  .querySelectorAll(".close-btn")
-  .forEach((e) => e.addEventListener("click", () => close()));
-
-function createButtonAction(selectMenu, button, childs, callbackFunction, msg) {
-  //
-  button.addEventListener("click", (e) => {
-    close();
-
-    selectMenu.style.right = "0";
-
-    let tapsLis = Array.from(selectMenu.children);
-
-    onOpenPopup(tapsLis);
-  });
-
-  childs.forEach((e) => {
-    let content = e.dataset.content;
-
-    e.innerHTML = content;
-
-    e.addEventListener("click", () => {
-      massege(`${msg} '${e.innerText}'`);
-
-      callbackFunction(e.dataset.action);
-
-      exit(languagesContainer);
-    });
-  });
-}
-
-// Changr Theme Code
-
-let changeTheme;
-
-let changeThemeContainer;
-
-let colorName;
-
-//  Change Language Code
-
-let changeLanguageBtn;
-
-let languagesContainer;
-
-let languageNames;
-
-//  Downloads Code
-
-let selectFileBtn;
-
-let selectDownloadContainer;
-
-let fileNames;
-
-// Info Section Code
-
-let infoBtn;
-
-let infoContainer;
-
-let infoNames;
-
-// Menu Code
-
-let menu;
-
-let menuContainer;
-
-let tapNames;
-
-let showIcons;
-
-function assignNavigationLinksVariables() {
-  changeTheme = document.getElementById("change-mode");
-
-  changeThemeContainer = document.querySelector(".select-themes");
-
-  colorName = Array.from(document.querySelectorAll(".theme-btn"));
-
-  //  Change Language Code
-
-  changeLanguageBtn = document.getElementById("change-language");
-
-  languagesContainer = document.querySelector(".select-language");
-
-  languageNames = Array.from(document.querySelectorAll(".lang-btn"));
-
-  //  Downloads Section Code
-
-  selectFileBtn = document.getElementById("download-btn");
-
-  selectDownloadContainer = document.querySelector(".select-download");
-
-  fileNames = Array.from(document.querySelectorAll(".d-btn"));
-
-  // Info Section Code
-
-  infoBtn = document.getElementById("get-info");
-
-  infoContainer = document.querySelector(".select-info");
-
-  infoNames = Array.from(document.querySelectorAll(".info-btn"));
-
-  // Menu Code
-
-  menu = document.getElementById("menu-btn");
-
-  menuContainer = document.querySelector(".taps");
-
-  tapNames = Array.from(document.querySelectorAll(".section-btn"));
-
-  showIcons = document.querySelector(".show-icons");
-}
-let test = (arg) => {
-  console.log(arg);
-};
-
-function appendMenuToHeader() {
-  if (document_width < 800) {
-    if (menu) {
-      menu.remove();
-
-      header.appendChild(menu);
-
-      menu.style.width = "40px";
-
-      menu.style.height = "40px";
-
-      menu.style.marginRight = "0";
-    }
-  }
-}
-
-const menuRow = document.querySelector("menu-row");
-
-const firstRow = document.getElementById("menu-row-1"),
-  secondaryRow = document.getElementById("menu-row-2"),
-  lastRow = document.getElementById("menu-row-3");
-
-const menuTaps = document.querySelector(".taps");
-
-const landingSkills = document.getElementById("my-skills");
-
-const mySkills = ["HTML", "CSS", "JAVASCRIPT", "GITHUB", "COMANDLINE", "OOP"];
-
-mySkills.forEach((skill, index) => {
-  const mySkill = document.createElement("li");
-
-  mySkill.id = `my-skill-${index + 1}`;
-
-  mySkill.classList.add("my-skill");
-
-  mySkill.setAttribute("data-lang", `${skill.toLowerCase()}`);
-
-  languages.arabic[skill.toLowerCase()] = `${arNums[index + 1]}- ${skill}`;
-
-  mySkill.innerHTML = `${index + 1} - ${skill}`;
-
-  landingSkills.appendChild(mySkill);
-});
-
-// Start Services Section
-
-// Request Data From File
-
-async function requestServices() {
-  try {
-    let response = await fetch("api/services.json");
-
-    let data = await response.json();
-
-    data.forEach((card, index) => {
-      // Create Card Div
-
-      const CRT_ServicesCard = new ELEMENT(
-        "div",
-        `service-card-${index + 1}`,
-        "service-card",
-        document.querySelector(".services-body"),
-        ``
-      );
-
-      CRT_ServicesCard.createElement();
-
-      const ServicesCard = CRT_ServicesCard.getCreatedElement();
-
-      // Create Icon Container
-
-      const CRT_cardIcon = new ELEMENT(
-        "span",
-        "serv-icon",
-        "serv-icon",
-        ServicesCard,
-        card["icon"]
-      );
-
-      CRT_cardIcon.createElement();
-
-      const cardIcon = CRT_cardIcon.getCreatedElement();
-
-      // Create Title Container
-
-      const CRT_cardTitle = new ELEMENT(
-        "h2",
-        `servTitle${index + 1}`,
-        "serv-title",
-        ServicesCard,
-        card["service"]["en"]
-      );
-
-      CRT_cardTitle.createElement();
-
-      const cardTitle = CRT_cardTitle.getCreatedElement();
-
-      cardTitle.dataset.lang = `servTitleValue${index + 1}`;
-
-      languages.arabic[`servTitleValue${index + 1}`] = card["service"]["ar"];
-
-      // Create Discription Container
-
-      const CRT_cardDiscription = new ELEMENT(
-        "span",
-        `servDisc${index + 1}`,
-        "serv-disc",
-        ServicesCard,
-        card["explain"]["en"]
-      );
-
-      CRT_cardDiscription.createElement();
-
-      const cardDiscription = CRT_cardDiscription.getCreatedElement();
-
-      cardDiscription.dataset.lang = `servDiscValue${index + 1}`;
-
-      languages.arabic[`servDiscValue${index + 1}`] = card["explain"]["ar"];
-
-      servicesArrayAr.push(data[index]["service"]["ar"]);
-
-      servicesArrayEn.push(data[index]["service"]["en"]);
-    });
-    languages.arabic.servicesArray = servicesArrayAr;
-
-    languages.english.servicesArray = servicesArrayEn;
-
-    languages[currentLanguge.toLowerCase()].servicesArray.forEach((e, i) => {
-      let CRT_ServicesItem = new ELEMENT("li", "s" + i, "", servicesList, e);
-
-      CRT_ServicesItem.createElement();
-
-      let ServicesItem = CRT_ServicesItem.getCreatedElement();
-    });
-  } catch (Error) {}
-}
-
-requestServices();
-
-// Request Services Data
-
-let servLeftBtn = document.getElementById("serv-prev");
-
-let servRightBtn = document.getElementById("serv-next");
-
-let servicesContainer = document.querySelector(".services-body");
-
-if (servicesContainer.clientWidth >= servicesContainer.scrollWidth) {
-  servLeftBtn.style.display = "none";
-
-  servRightBtn.style.display = "none";
-}
-// End Services Section
-
-// Scrolling Buttons Start
-
-const projectsBox = document.getElementById("projects-box");
-
-async function RequestProjectsData(link) {
-  try {
-    let response = await fetch(link);
-
-    let data = await response.json();
-
-    projectsBox.style.gridTemplateColumns = `repeat(${
-      data.length
-    }, calc(100% / 3 - ${parseInt(StylePackage(projectsBox).gap)}px)`;
-
-    // Initialize Portfolio Cards
-
-    for (let i = 0; i < data.length; i++) {
-      let color = data[i]["color"];
-
-      switch (color) {
-        case "green":
-          color = "#51ad24";
-          break;
-        case "purple":
-          color = "#673AB7";
-          break;
-        case "orange":
-          color = "#ff9800";
-          break;
-        case "blue":
-          color = mainSecondaryColor;
-          break;
-        case "skyblue":
-          color = "#2196f3";
-          break;
-        case "red":
-          color = "#ff5722";
-          break;
-      }
-      let colorOpacity = color + "20";
-
-      let projectDataStyle = `color:${color}; text-shadow:0 0 20px ${color};`;
-
-      const CRT_projectCard = new ELEMENT(
-        "div",
-        `project-${data[i]["id"]["en"]}`,
-        "project-card",
-        projectsBox,
-        "",
-        `
-        border:1px solid ${color};
-        border-bottom:10px solid ${color};
-        background-color: ${colorOpacity};
-        `,
-        `
-       #project-${data[i]["id"]["en"]}:hover{
-          box-shadow:-7px 0 0  ${color};
-        }`,
-        styleFile
-      );
-
-      CRT_projectCard.createElement();
-
-      const projectCard = CRT_projectCard.getCreatedElement();
-
-      projectCard.dataset.type = data[i]["type"]["en"];
-
-      projectCard.setAttribute("datatype", data[i]["type"]["en"].toLowerCase());
-
-      const CRT_card_head = new ELEMENT(
-        "div",
-        `card-head`,
-        `card-head`,
-        projectCard,
-        ""
-      );
-      CRT_card_head.createElement();
-
-      const card_head = CRT_card_head.getCreatedElement();
-
-      const CRT_cardTitle = new ELEMENT(
-        "h3",
-        `title-${i + 1}`,
-        `title`,
-        card_head,
-        data[i]["name"]["en"],
-        projectDataStyle
-      );
-      CRT_cardTitle.createElement();
-
-      const projectCardTitle = CRT_cardTitle.getCreatedElement();
-
-      projectCardTitle.setAttribute("data-lang", `projectCardTitle${i + 1}`);
-
-      languages.arabic[`projectCardTitle${i + 1}`] = data[i]["name"]["ar"];
-
-      const CRT_projectId = new ELEMENT(
-        "p",
-        `project-id`,
-        "project-id",
-        card_head,
-        data[i]["id"]["en"],
-        projectDataStyle
-      );
-
-      CRT_projectId.createElement();
-
-      const projectId = CRT_projectId.getCreatedElement();
-
-      projectId.setAttribute("data-lang", `projectCardId${i + 1}`);
-
-      languages.arabic[`projectCardId${i + 1}`] = data[i]["id"]["ar"];
-
-      const CRT_cardImageParent = new ELEMENT(
-        "div",
-        `cardImageParent${i}`,
-        "card-image-parent",
-        projectCard
-      );
-
-      CRT_cardImageParent.createElement();
-
-      const cardImageParent = CRT_cardImageParent.getCreatedElement();
-
-      const CRT_cardPicture = new ELEMENT(
-        "img",
-        `img-${i}`,
-        `project-image`,
-        cardImageParent,
-        "",
-        `border: 0.5px solid ${color}`
-      );
-
-      CRT_cardPicture.createElement();
-
-      const cardPicture = CRT_cardPicture.getCreatedElement();
-
-      cardPicture.setAttribute("loading", "lazy");
-
-      cardPicture.setAttribute("alt", "project-landing-screen");
-
-      cardPicture.src = data[i]["picture"];
-
-      const CRT_project_Info = new ELEMENT(
-        "div",
-        `project-info`,
-        "project-info",
-        projectCard,
-        ``
-      );
-
-      CRT_project_Info.createElement();
-
-      const projectInfo = CRT_project_Info.getCreatedElement();
-
-      const CRT_project_Developer = new ELEMENT(
-        "div",
-        `project-developer-${i + 1}`,
-        "project-developer detail",
-        projectInfo
-      );
-
-      CRT_project_Developer.createElement();
-
-      const project_Developer = CRT_project_Developer.getCreatedElement();
-
-      const CRT_devTitle = new ELEMENT(
-        "p",
-        `devTit-${i + 1}`,
-        "devleoper-title",
-        project_Developer,
-        "Develeoper :",
-        projectDataStyle
-      );
-
-      CRT_devTitle.createElement();
-
-      const devTitle = CRT_devTitle.getCreatedElement();
-
-      devTitle.dataset.lang = "pDevTitleText";
-
-      const CRT_devValue = new ELEMENT(
-        "p",
-        `devVal-${i + 1}`,
-        "developer-value",
-        project_Developer,
-        data[i]["developer"]["en"]
-      );
-
-      CRT_devValue.createElement();
-
-      const devValue = CRT_devValue.getCreatedElement();
-
-      devValue.dataset.lang = `devVal${i + 1}`;
-
-      languages.arabic[`devVal${i + 1}`] = data[i]["developer"]["ar"];
-
-      const CRT_project_Type = new ELEMENT(
-        "div",
-        `programTitle${i}`,
-        "program-title detail",
-        projectInfo
-      );
-
-      CRT_project_Type.createElement();
-
-      const project_Type = CRT_project_Type.getCreatedElement();
-
-      const CRT_typeTitle = new ELEMENT(
-        "p",
-        `typeTitle${i + 1}`,
-        "type-title",
-        project_Type,
-        "Type :",
-        projectDataStyle
-      );
-
-      CRT_typeTitle.createElement();
-
-      const typeTitle = CRT_typeTitle.getCreatedElement();
-
-      typeTitle.dataset.lang = "pTypeTitleText";
-
-      const CRT_typeValue = new ELEMENT(
-        "p",
-        `typeValue${i + 1}`,
-        "type-value",
-        project_Type,
-        data[i]["type"]["en"]
-      );
-
-      CRT_typeValue.createElement();
-
-      const typeValue = CRT_typeValue.getCreatedElement();
-
-      typeValue.dataset.lang = `pTypeValue${i + 1}`;
-
-      languages.arabic[`pTypeValue${i + 1}`] = data[i]["type"]["ar"];
-
-      const CRT_projectTechnolojes = new ELEMENT(
-        "div",
-        `technolojes${i + 1}`,
-        "technolojes detail",
-        projectInfo
-      );
-
-      CRT_projectTechnolojes.createElement();
-
-      const projectTechnolojes = CRT_projectTechnolojes.getCreatedElement();
-
-      const CRT_techTitle = new ELEMENT(
-        "p",
-        `techTitle${i + 1}`,
-        "tech-title",
-        projectTechnolojes,
-        "Technolojes :",
-        projectDataStyle
-      );
-
-      CRT_techTitle.createElement();
-
-      const techTitle = CRT_techTitle.getCreatedElement();
-
-      techTitle.dataset.lang = "pTechTitleText";
-
-      const CRT_techValue = new ELEMENT(
-        "p",
-        `techValue${i + 1}`,
-        "tech-value",
-        projectTechnolojes,
-        data[i]["technologies"]
-      );
-
-      CRT_techValue.createElement();
-
-      const techValue = CRT_techValue.getCreatedElement();
-
-      const CRT_projectHosting = new ELEMENT(
-        "div",
-        `projectTech${i + 1}`,
-        "project-hosting detail",
-        projectInfo
-      );
-
-      CRT_projectHosting.createElement();
-
-      const projectHosting = CRT_projectHosting.getCreatedElement();
-
-      const CRT_hostingTitle = new ELEMENT(
-        "p",
-        `hostingTitle${i + 1}`,
-        "hosting-title",
-        projectHosting,
-        "Hosting :",
-        projectDataStyle
-      );
-
-      CRT_hostingTitle.createElement();
-
-      const hostingTitle = CRT_hostingTitle.getCreatedElement();
-
-      hostingTitle.dataset.lang = "pHostTitleText";
-
-      const CRT_hostingValue = new ELEMENT(
-        "p",
-        `hostingValue${i + 1}`,
-        "hosting-value",
-        projectHosting,
-        data[i]["hosting"]["en"]
-      );
-
-      CRT_hostingValue.createElement();
-
-      const hostingValue = CRT_hostingValue.getCreatedElement();
-
-      hostingValue.dataset.lang = `pHostingValue${i + 1}`;
-
-      languages.arabic[`pHostingValue${i + 1}`] = data[i]["hosting"]["ar"];
-
-      const CRT_projectLanguage = new ELEMENT(
-        "div",
-        `projectLanguages${i + 1}`,
-        "project-languages detail",
-        projectInfo
-      );
-
-      CRT_projectLanguage.createElement();
-
-      const projectLanguage = CRT_projectLanguage.getCreatedElement();
-
-      const CRT_langTitle = new ELEMENT(
-        "p",
-        `langTitle${i + 1}`,
-        "lang-title",
-        projectLanguage,
-        "Languages :",
-        projectDataStyle
-      );
-
-      CRT_langTitle.createElement();
-
-      const langTitle = CRT_langTitle.getCreatedElement();
-
-      langTitle.dataset.lang = "pLangTitleText";
-
-      const CRT_langValue = new ELEMENT(
-        "p",
-        `langValue${i + 1}`,
-        "lang-value",
-        projectLanguage,
-        data[i]["language"]["en"]
-      );
-
-      CRT_langValue.createElement();
-
-      const langValue = CRT_langValue.getCreatedElement();
-
-      langValue.dataset.lang = `pLangValue${i + 1}`;
-
-      languages.arabic[`pLangValue${i + 1}`] = data[i]["language"]["ar"];
-
-      const CRT_projectsource = new ELEMENT(
-        "div",
-        `projectSource${i + 1}`,
-        "project-source detail",
-        projectInfo
-      );
-
-      CRT_projectsource.createElement();
-
-      const projectsource = CRT_projectsource.getCreatedElement();
-
-      const CRT_sourceTitle = new ELEMENT(
-        "p",
-        `sourceTitle${i + 1}`,
-        "source-title",
-        projectsource,
-        "Idea Source :",
-        projectDataStyle
-      );
-
-      CRT_sourceTitle.createElement();
-
-      const sourceTitle = CRT_sourceTitle.getCreatedElement();
-
-      sourceTitle.dataset.lang = "pSrcTitleText";
-
-      const CRT_sourceValue = new ELEMENT(
-        "p",
-        `sourceValue${i + 1}`,
-        "source-value",
-        projectsource,
-        data[i]["source"]["en"]
-      );
-
-      CRT_sourceValue.createElement();
-
-      const sourceValue = CRT_sourceValue.getCreatedElement();
-
-      sourceValue.dataset.lang = `pSrcValue${i + 1}`;
-
-      languages.arabic[`pSrcValue${i + 1}`] = data[i]["source"]["ar"];
-
-      // Create Reteing System
-
-      let retingStars = `<i class="fa-solid fa-star fa-xs" style="color:var(--secoundary-color);"></i>`;
-
-      const CRT_projectRete = new ELEMENT(
-        "div",
-        "project-rete",
-        "project-rete detail",
-        projectInfo
-      );
-
-      CRT_projectRete.createElement();
-
-      const projectRete = CRT_projectRete.getCreatedElement();
-
-      const CRT_reteTitle = new ELEMENT(
-        "p",
-        `reteTitle${i + 1}`,
-        "rete-title",
-        projectRete,
-        "Rate :",
-        projectDataStyle
-      );
-
-      CRT_reteTitle.createElement();
-
-      const reteTitle = CRT_reteTitle.getCreatedElement();
-
-      reteTitle.dataset.lang = "pRateTitleText";
-
-      const CRT_reteValue = new ELEMENT(
-        "p",
-        `reteValue${i + 1}`,
-        "rete-value",
-        projectRete,
-        retingStars.repeat(data[i]["rate"]["from"]),
-        `display:flex; gap:6px;`
-      );
-
-      CRT_reteValue.createElement();
-
-      const reteValue = CRT_reteValue.getCreatedElement();
-
-      [...reteValue.children].forEach((star, index) => {
-        if (data[i]["rate"]["num"] <= index) {
-          star;
-        } else {
-          star.style.cssText = projectDataStyle;
-        }
-      });
-
-      [...reteValue.children].reverse();
-
-      styleFile.innerHTML += `
-       .project-card:nth-child(${i + 1}) p::-webkit-scrollbar-track {
-      background-color: ${colorOpacity};
-      }
-       .project-card:nth-child(${i + 1}) p::-webkit-scrollbar-thumb {
-       background-color: ${color};
-      }`;
-
-      const CRT_projectDiscription = new ELEMENT(
-        "div",
-        `projectDiscription${i + 1}`,
-        "project-discription detail",
-        projectInfo
-      );
-
-      CRT_projectDiscription.createElement();
-
-      const projectDiscription = CRT_projectDiscription.getCreatedElement();
-
-      const CRT_discTitle = new ELEMENT(
-        "p",
-        `discTitle${i + 1}`,
-        "disc-title",
-        projectDiscription,
-        "Discription :",
-        projectDataStyle
-      );
-
-      CRT_discTitle.createElement();
-
-      const discTitle = CRT_discTitle.getCreatedElement();
-
-      discTitle.dataset.lang = "pDiscTitleText";
-
-      const CRT_discValue = new ELEMENT(
-        "p",
-        `discValue${i + 1}`,
-        "disc-value content-scroller",
-        projectDiscription,
-        data[i]["description"]["en"]
-      );
-
-      CRT_discValue.createElement();
-
-      const discValue = CRT_discValue.getCreatedElement();
-
-      discValue.dataset.lang = `pDiscValue${i + 1}`;
-
-      languages.arabic[`pDiscValue${i + 1}`] = data[i]["description"]["ar"];
-
-      const CRT_projectVisiting = new ELEMENT(
-        "span",
-        `projectVisiting${i + 1}`,
-        "project-visiting",
-        projectCard
-      );
-
-      CRT_projectVisiting.createElement();
-
-      const projectVisiting = CRT_projectVisiting.getCreatedElement();
-
-      const CRT_visitLink = new ELEMENT(
-        "a",
-        `visitWeb${i + 1}`,
-        "visit-link",
-        projectVisiting,
-        "Visit",
-        `background-color: ${color};`
-      );
-
-      CRT_visitLink.createElement();
-
-      const visitLink = CRT_visitLink.getCreatedElement();
-
-      visitLink.href = data[i]["url"];
-
-      visitLink.dataset.lang = "visitLinkText";
-
-      responsiveCardsWithGrid(
-        projectsBox,
-        [...document.querySelectorAll(".project-card")].length,
-        2,
-        1,
-        1
-      );
-    }
-  } catch {
-    console.error(error);
-  }
-}
-RequestProjectsData("api/projects.json");
-
-let filtersProjects = Array.from(document.querySelectorAll(`form div input`));
-
-let cardPercent;
-
-setTimeout(() => {
-  let cardsWidth = parseInt(
-    StylePackage(document.querySelector(".project-card")).width
-  );
-
-  let projectsBoxWidth = parseInt(StylePackage(projectsBox).width);
-
-  cardPercent = parseInt(projectsBoxWidth / cardsWidth);
-}, 400);
-
-filtersProjects.forEach((fil) => {
-  fil.addEventListener("click", (e) => {
-    applyScrollingButtons(currentLanguge);
-
-    setTimeout(() => {
-      let columnsStyle = `repeat(${hideElementNumber(
-        projectsBox
-      )}, calc(100% / ${cardPercent}`;
-
-      projectsBox.style.gridTemplateColumns = columnsStyle;
-    }, 100);
-
-    let filterType = fil.value.toLowerCase();
-
-    console.log(filterType);
-
-    projectsBox.scrollTo({ behavior: "smooth", left: "start" });
-
-    let projectCards = [...document.querySelectorAll(".project-card")];
-
-    if (filterType == "all") {
-      projectCards.forEach((card) => {
-        card.style.display = "flex";
-      });
-    } else {
-      projectCards.forEach((card) => {
-        if (card.dataset.type.toLowerCase() == filterType) {
-          card.style.display = "flex";
-        } else {
-          card.style.display = "none";
-        }
-      });
-    }
-  });
-});
-
-let portfolioPrevBtn = document.getElementById("portfolio-prev");
-
-let portfolioNextBtn = document.getElementById("portfolio-next");
-
-let portfolioContainer = document.querySelector(".portfolio-body");
-
-// Social Media Section
-
-let socialMediaBox = document.getElementById("social-media-box");
-
-let socialPrevBtn = document.getElementById("social-prev");
-
-let socialNextBtn = document.getElementById("social-next");
-
-/// /// - -d-sa-d-aew--asda-e-we-
-
-async function RequestSocialMediaData(link) {
-  try {
-    let response = await fetch(link);
-
-    let data = await response.json();
-
-    let numberOfCards = data.length;
-
-    // Initialize Portfolio Cards
-
-    for (let i = 0; i < data.length; i++) {
-      if (data[i]["status"] == "active") {
-        // initialize Color Variable
-
-        let color = data[i]["color"]["color"];
-
-        let colorType = data[i]["color"]["type"];
-
-        let textColor = data[i]["color"]["color"];
-
-        let colorOpacity = color + "30";
-
-        let greyColor = "#484848";
-
-        colorType == "dark" ? (textColor = greyColor) : (textColor = textColor);
-
-        // Add Opacity To Color
-
-        // Initialize Style For Titles
-        let socialTitlesStyle = `font-size:.85rem;
-        color:${textColor}; text-shadow:0 0 20px ${color};`;
-
-        const CRT_socialCard = new ELEMENT(
-          "div",
-          `socialCard-${i}`,
-          "social-card",
-          socialMediaBox,
-          "",
-          `
-        border:1px solid transparent;
-        border-color: transparent ${textColor} transparent ${textColor}  ;
-        background-color: ${colorOpacity};
-        `,
-          `
-       #social-card-${i}:hover{
-          box-shadow:0px 0px 20px  ${color};
-        }`,
-          styleFile
-        );
-
-        CRT_socialCard.createElement();
-
-        const socialCard = CRT_socialCard.getCreatedElement();
-
-        const CRT_card_head = new ELEMENT(
-          "div",
-          `cardHead${i + 1}`,
-          `card-head`,
-          socialCard,
-          ""
-        );
-        CRT_card_head.createElement();
-
-        const card_head = CRT_card_head.getCreatedElement();
-
-        const CRT_cardTitle = new ELEMENT(
-          "h3",
-          `title-${i + 1}`,
-          `title`,
-          card_head,
-          data[i]["appName"]["en"],
-          `background-color:${color};`
-        );
-        CRT_cardTitle.createElement();
-
-        const cardTitle = CRT_cardTitle.getCreatedElement();
-
-        cardTitle.dataset.lang = `socialcardTitle${i + 1}`;
-
-        languages.arabic[`socialcardTitle${i + 1}`] = data[i]["appName"]["ar"];
-
-        const CRT_cardPicture = new ELEMENT(
-          "img",
-          `img-${i}`,
-          `card-image`,
-          card_head,
-          ""
-        );
-
-        CRT_cardPicture.createElement();
-
-        const cardPicture = CRT_cardPicture.getCreatedElement();
-
-        cardPicture.setAttribute("loading", "lazy");
-
-        cardPicture.setAttribute("alt", "social-media-logo");
-
-        cardPicture.src = data[i]["logo"];
-
-        const CRT_Details_Info = new ELEMENT(
-          "div",
-          `details-info`,
-          "details-info",
-          socialCard,
-          ``
-        );
-
-        CRT_Details_Info.createElement();
-
-        const Details_Info = CRT_Details_Info.getCreatedElement();
-
-        const CRT_people = new ELEMENT(
-          "div",
-          `card-people`,
-          "card-people",
-          Details_Info
-        );
-
-        CRT_people.createElement();
-
-        const people = CRT_people.getCreatedElement();
-
-        const CRT_peopleTitle = new ELEMENT(
-          "span",
-          `people-title-${i + 1}`,
-          `people-title`,
-          people,
-          data[i]["people"]["type"]
-        );
-
-        CRT_peopleTitle.createElement();
-
-        const peopleTitle = CRT_peopleTitle.getCreatedElement();
-
-        // peopleTitle.setAttribute("data-lang", "people-title");
-
-        peopleTitle.dataset.lang = `social${toCapitalize(
-          peopleTitle.innerText
-        )}Title`;
-
-        const CRT_peopleValue = new ELEMENT(
-          "span",
-          `people-value-${i + 1}`,
-          `people-value`,
-          people,
-          data[i]["people"][data[i]["people"]["type"]],
-          socialTitlesStyle
-        );
-
-        CRT_peopleValue.createElement();
-
-        const peopleValue = CRT_peopleValue.getCreatedElement();
-
-        peopleValue.dataset.lang = `socialPeopleValue${i + 1}`;
-
-        languages.arabic[`socialPeopleValue${i + 1}`] =
-          data[i]["people"][data[i]["people"]["type"]];
-
-        const CRT_posts = new ELEMENT("div", `posts`, "posts", Details_Info);
-
-        CRT_posts.createElement();
-
-        const posts = CRT_posts.getCreatedElement();
-
-        const CRT_postsTitle = new ELEMENT(
-          "span",
-          `posts-title-${i + 1}`,
-          `posts-title`,
-          posts,
-          "Posts"
-        );
-
-        CRT_postsTitle.createElement();
-
-        const posts_title = CRT_postsTitle.getCreatedElement();
-
-        posts_title.dataset.lang = "socialPostsTitle";
-
-        const CRT_postsValue = new ELEMENT(
-          "span",
-          `posts-value-${i + 1}`,
-          `posts-value`,
-          posts,
-          data[i]["posts"]["en"],
-          socialTitlesStyle
-        );
-
-        CRT_postsValue.createElement();
-
-        const posts_value = CRT_postsValue.getCreatedElement();
-
-        posts_value.dataset.lang = `socialPosts${i + 1}`;
-
-        languages.arabic[`socialPosts${i + 1}`] = data[i]["posts"]["ar"];
-
-        const CRT_userName = new ELEMENT(
-          "div",
-          `user-name-${i}`,
-          "user-name",
-          Details_Info
-        );
-
-        CRT_userName.createElement();
-
-        const userName = CRT_userName.getCreatedElement();
-
-        const CRT_userNameTitle = new ELEMENT(
-          "span",
-          `un-title-${i + 1}`,
-          `un-title`,
-          userName,
-          "User Name"
-        );
-
-        CRT_userNameTitle.createElement();
-
-        const un_title = CRT_userNameTitle.getCreatedElement();
-
-        un_title.dataset.lang = "socialUserNameTitle";
-
-        const CRT_userNameValue = new ELEMENT(
-          "span",
-          `un-value-${i + 1}`,
-          `un-value`,
-          userName,
-          data[i]["userName"],
-          socialTitlesStyle
-        );
-
-        CRT_userNameValue.createElement();
-
-        const un_value = CRT_userNameValue.getCreatedElement();
-
-        const CRT_Content = new ELEMENT(
-          "div",
-          "content",
-          "content",
-          Details_Info
-        );
-
-        CRT_Content.createElement();
-
-        const content = CRT_Content.getCreatedElement();
-
-        const CRT_contentTitle = new ELEMENT(
-          "span",
-          `content-title-${i + 1}`,
-          `content-title`,
-          content,
-          "Content"
-        );
-
-        CRT_contentTitle.createElement();
-
-        const contentTitle = CRT_contentTitle.getCreatedElement();
-
-        contentTitle.dataset.lang = "socialContentTitle";
-
-        const CRT_contentValue = new ELEMENT(
-          "span",
-          `content-value-${i + 1}`,
-          `content-value`,
-          content,
-          data[i]["content"]["en"],
-          socialTitlesStyle
-        );
-
-        CRT_contentValue.createElement();
-
-        const contentValue = CRT_contentValue.getCreatedElement();
-
-        contentValue.dataset.lang = `socialContent${i + 1}`;
-
-        languages.arabic[`socialContent${i + 1}`] = data[i]["content"]["ar"];
-
-        // Initialize Visiting Button
-
-        const CRT_Visiting = new ELEMENT(
-          "span",
-          `socialVisiting${i + 1}`,
-          "social-visiting",
-          socialCard,
-          `<a class="visit-link" href="${data[i]["link"]}" style="color:${mainTextColor}; letter-spacing:4px; text-transform:uppercase;" target="_blank">Visit</a>`,
-          `background-color: ${color};`
-        );
-
-        CRT_Visiting.createElement();
-
-        const Visiting = CRT_Visiting.getCreatedElement();
-      } else {
-        numberOfCards--;
-      }
-      socialMediaBox.style.gridTemplateColumns = `repeat(${numberOfCards}, calc(100% / 4 )`;
-    }
-
-    responsiveCardsWithGrid(
-      socialMediaBox,
-      document.querySelectorAll(".social-card").length,
-      3,
-      2,
-      1
-    );
-  } catch {
-    console.error(error);
-  }
-}
-RequestSocialMediaData("api/social-media.json");
-
-// Apply Function
-
-// Contact Us Section
-
-let sendMassageBtn = document.getElementById("send-massage"),
-  nameInput = document.getElementById("name"),
-  emailInput = document.getElementById("email"),
-  massageArea = document.getElementById("massage-area"),
-  contactForm = document.getElementById("contact-form");
-
-contactForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  sendEmail();
-});
-function sendEmail() {
-  let params = {
-    from_name: nameInput.value,
-    email_id: emailInput.value,
-    massege: massageArea.value,
-  };
-
-  let sendMassageDone = "Massege Sended";
-
-  let sendMassageHasError = "Error sending email.";
-
-  if (currentLanguge != "arabic") {
-    sendMassageDone = sendMassageDone;
-
-    sendMassageHasError = sendMassageHasError;
-  } else {
-    sendMassageDone = "تم إرسال الرسالة";
-
-    sendMassageHasError = "خطأ في إرسال البريد الإلكتروني.";
-  }
-  emailjs
-    .send("service_ye55eu7", "template_og68n3e", params)
-    .then((res) => {
-      massege(sendMassageDone); // Corrected function name
-      emailInput.value = "";
-      nameInput.value = "";
-      massageArea.value = "";
-    })
-    .catch((error) => {
-      console.error("Error sending email:", error);
-      massege(sendMassageHasError); // You can handle errors in the 'catch' block
-    });
-}
-
-let contactUsPopupsBox = document.getElementById("contact-popups-box");
-
-contactUsPopupsBox.style.height = contactUsPopupsBox.clientWidth + "px";
-
-setTimeout(() => {}, 1412);
-let responsiveStyle = document.createElement("style");
-
-responsiveStyle.id = "respownsive-JS";
-
-HEAD.appendChild(responsiveStyle);
-
-// About Section
-
-function getAge(YourDate, stringLang) {
-  let date = new Date(YourDate);
-
-  let curruntDate = new Date(Date.now());
-
-  let milliSecoundAge = new Date(curruntDate - date).getTime();
-
-  let withYearsAge = new Date(milliSecoundAge).getFullYear() - 1970;
-
-  let currentMonths = curruntDate.getMonth();
-
-  let myDateMonths = date.getMonth() + 1;
-
-  let withMonthsAge = 12 - myDateMonths + currentMonths;
-
-  let monthsAbbreviated = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-
-  let setDaysToSuitableMonth = (numberOfMonth) => {
-    let thisDays;
-
-    let month = monthsAbbreviated[numberOfMonth];
-
-    if (
-      month == "Jan" ||
-      month == "Mar" ||
-      month == "May" ||
-      month == "Jul" ||
-      month == "Aug" ||
-      month == "Oct" ||
-      month == "Dec"
-    ) {
-      thisDays = 31;
-    } else if (month == "Feb") {
-      thisDays = 28;
-    } else {
-      thisDays = 30;
-    }
-    return thisDays;
-  };
-
-  let currentDays = curruntDate.getDate();
-
-  let myDataDays = date.getDate();
-
-  let withDaysAge =
-    setDaysToSuitableMonth(curruntDate.getMonth()) - myDataDays + currentDays;
-  return stringLang == "en"
-    ? `My Age Is : '${withYearsAge} Years And ${withMonthsAge} Months And ${withDaysAge} Days'`
-    : "ar"
-    ? `عمري ${toArabicNumber(withYearsAge)} سنة و ${toArabicNumber(
-        withMonthsAge
-      )} أشهر و ${toArabicNumber(withDaysAge)} أيام`
-    : false;
-}
-
-let ageLabel = document.getElementById("my-age-about");
-
-ageLabel.innerText = getAge("06/22/2006", "en");
-languages.arabic.age = getAge("06/22/2006", "ar");
-
-// Get Exp Label
-
-let expLabel = document.getElementById("my-exp-about");
-
-// Start Calculation
-
-function getExpYears() {
-  let currentDate = new Date();
-
-  let startingPointYear = new Date("05/29/2022");
-
-  // let years = currentDate.getFullYear() - startingPointYear.getFullYear();
-  let years = currentDate.getFullYear() - startingPointYear.getFullYear();
-
-  let months;
-
-  // العدد الكلي
-  let allMonthsNumber = 12;
-
-  let getPersent = (monthNumber) => {
-    let num = monthNumber / allMonthsNumber;
-
-    let parcent = num * 100;
-
-    return parseInt(parcent);
-  };
-
-  // حساب النسبة
-
-  if (startingPointYear.getMonth() < currentDate.getMonth()) {
-    let monthNumber = startingPointYear.getMonth() - currentDate.getMonth();
-
-    years -= 1;
-
-    return +`${years}.${getPersent(-monthNumber)}`;
-  } else {
-    let monthNumber = currentDate.getMonth() - startingPointYear.getMonth();
-
-    return `${years}.${getPersent(-monthNumber)}`;
-  }
-}
-
-expLabel.innerHTML = getExpYears();
-
-let skillsLabel = document.querySelector(".skills-container .about-skills");
-
-let skillsArray = [
-  "HTML",
-  "CSS",
-  "JAVASCRIPT",
-  "OOP",
-  "SASS",
-  "TYPESCRIPT",
-  "Git & GitHub",
-  "commandline",
-];
-
-skillsArray.forEach((skill) => {
-  let skills = document.createElement("span");
-
-  skills.classList.add("skill");
-
-  let skillText = document.createTextNode(skill);
-
-  skills.appendChild(skillText);
-
-  skillsLabel.appendChild(skills);
-});
-
-let animationArea = document.querySelector(".animation-area");
-
-if (animationArea.clientHeight > animationArea.clientWidth) {
-  animationArea.style.width = animationArea.clientHeight + "px";
-} else if (animationArea.clientWidth > animationArea.clientHeight) {
-  animationArea.style.height = animationArea.clientWidth + "px";
-}
-
-function responsiveCardsWithGrid(
-  target,
-  cardsLength,
-  max_1450,
-  max_600,
-  max_450
-) {
-  cardsLength = cardsLength;
-
-  if (document_width <= 1450 && document_width > 600) {
-    target.style.gridTemplateColumns = `repeat(${cardsLength},calc(100% / ${max_1450}) )`;
-  } else if (document_width <= 600 && document_width > 450) {
-    target.style.gridTemplateColumns = `repeat(${cardsLength},calc(100% / ${max_600} )`;
-  } else if (document_width <= 450) {
-    target.style.gridTemplateColumns = `repeat(${cardsLength},calc(100% / ${max_450} )`;
-  }
-}
-
-// End Portfolio
-
-function applyScrollingButtons(lang) {
-  setTimeout(() => {
-    let dir = "en";
-
-    let next = "right";
-
-    let prev = "left";
-
-    next = "right";
-
-    prev = "left";
-
-    // -/-/-/-/-/-/-/-/-/-/-/
-
-    scrollToRight(servicesContainer, servLeftBtn, servRightBtn);
-
-    scrollToLeft(servicesContainer, servLeftBtn, servRightBtn);
-
-    checking(servicesContainer, servLeftBtn, servRightBtn);
-    // -/-/-/-/-/-/-/-/-/-/-/
-
-    scrollToRight(projectsBox, portfolioPrevBtn, portfolioNextBtn);
-
-    scrollToLeft(projectsBox, portfolioPrevBtn, portfolioNextBtn);
-
-    checking(projectsBox, portfolioPrevBtn, portfolioNextBtn);
-
-    // -/-/-/-/-/-/-/-/-/-/-/
-
-    scrollToRight(socialMediaBox, socialPrevBtn, socialNextBtn);
-
-    scrollToLeft(socialMediaBox, socialPrevBtn, socialNextBtn);
-
-    checking(socialMediaBox, socialPrevBtn, socialNextBtn);
-
-    if (lang == "english") {
-    } else if (lang == "arabic") {
-    }
-  }, 500);
-}
-
-applyScrollingButtons(currentLanguge);
-
-// Start Road Map
-
-let roadMapContainer = document.querySelector(".road-map-container");
-
-let roadMapHead = document.querySelector(".road-map-header");
-
-let roadMapContentBox = document.querySelector(
-  ".road-map-container .content-box"
-);
-
-let roadMapContentHeight =
-  roadMapContentBox.parentNode.clientHeight -
-  (roadMapHead.clientHeight +
-    parseInt(StylePackage(document.querySelector(".section-head")).marginTop) +
-    0) +
-  "px";
-
-if (isMobile()) {
-  roadMapContentBox.style.transform = "translate(0,0)";
-
-  roadMapContentBox.style.position = "static";
-
-  roadMapContentBox.style.left = "0";
-
-  roadMapContentBox.style.height = `calc(100% - ${
-    document.querySelector(".road-map-container .header-title").clientHeight +
-    20
-  }px)`;
-} else {
-  roadMapContentBox.style.top = "55%";
-}
-
-let h_road = [...document.querySelectorAll(".h-road")];
-
-let v_road = [...document.querySelectorAll(".v-road")];
-
-// let elementsNums = parseInt(road.clientHeight / 100);
-
-h_road.forEach((road) => {
-  let elementsNums = parseInt(road.clientWidth / 35);
-
-  for (let i = 0; i < elementsNums; i++) {
-    // road.innerHTML += `<span class="h-line"></span>`;
-
-    let span = document.createElement("span");
-
-    span.classList.add("h-line");
-
-    road.prepend(span);
-  }
-});
-v_road.forEach((road) => {
-  let elementsNums = parseInt(road.clientHeight / 35);
-
-  for (let i = 0; i < elementsNums; i++) {
-    let span = document.createElement("span");
-
-    span.classList.add("v-line");
-
-    road.prepend(span);
-  }
-});
-
-let showRmBtn = document.querySelector(".show-rm");
-
-let controlCarBtn = document.querySelector(".control-rm");
-
-let coverRm = document.querySelector(".rm-cover");
-
-let opacityLower = (ele) => {
-  ele.style.opacity = "0";
-
-  setTimeout(() => {
-    ele.remove();
-  }, 300);
-};
-
-function checkRoadMapStatus() {
-  let buttons = document.querySelector(".buttons-layer");
-
-  if (buttons.classList.contains("buttons-opacity-show")) {
-    buttons.classList.remove("buttons-opacity-show");
-    buttons.classList.add("buttons-opacity-hide");
-  } else {
-    buttons.classList.remove("buttons-opacity-hide");
-    buttons.classList.add("buttons-opacity-show");
-  }
-}
-
-function minmizeRoadMapButtons() {
-  let btnsContainer = document.querySelector(".buttons-layer");
-
-  btnsContainer.classList.remove("center-buttons");
-
-  btnsContainer.classList.add("side-buttons");
-
-  showRmBtn.innerHTML = '<i class="fa-regular fa-eye"></i>';
-
-  controlCarBtn.innerHTML = '<i class="fa-solid fa-car"></i>';
-
-  if (!document.querySelector(".reset-car")) {
-    let CRT_resetCar = new ELEMENT(
-      "span",
-      "reset-car",
-      "reset-car",
-      btnsContainer,
-      `<i class="fa-solid fa-rotate"></i>`
-    );
-
-    CRT_resetCar.createElement();
-
-    let resetCar = CRT_resetCar.getCreatedElement();
-
-    resetCar.classList.add("rm-btns");
-
-    resetCar.addEventListener("click", () => defaultPostionOfCar());
-
-    Array.from(btnsContainer.children).forEach((ele) =>
-      ele.removeAttribute("data-lang")
-    );
-  }
-}
-
-showRmBtn.addEventListener("click", () => {
-  opacityLower(coverRm);
-
-  StylePackage(car).display != "none"
-    ? (car.style.display = "none")
-    : console.log("its Hide");
-
-  minmizeRoadMapButtons();
-  checkRoadMapStatus();
-});
-
-controlCarBtn.addEventListener("click", () => {
-  opacityLower(coverRm);
-
-  minmizeRoadMapButtons();
-
-  startControl();
-
-  checkRoadMapStatus();
-
-  if (
-    !document
-      .querySelector(".buttons-layer")
-      .classList.contains("buttons-opacity-show")
-  ) {
-    checkRoadMapStatus();
-  }
-  StylePackage(car).display != "block"
-    ? (car.style.display = "block")
-    : console.log("its Show");
-});
-
-let car = document.querySelector(".car");
-
-function toUp(target) {
-  target.style.top = `${target.offsetTop - 30}px`;
-
-  target.style.transform = "rotate(270deg)";
-}
-
-function toDown(target) {
-  target.style.top = `${target.offsetTop + 30}px`;
-
-  target.style.transform = "rotate(90deg)";
-}
-
-function toRight(target) {
-  target.style.left = `${target.offsetLeft + 30}px`;
-
-  target.style.transform = "rotate(0deg)";
-}
-
-function toLeft(target) {
-  target.style.left = `${target.offsetLeft - 30}px`;
-
-  target.style.transform = "rotate(180deg)";
-}
-
-function createMobileButtons() {
-  if (document.querySelector(`.remote-control`) == undefined) {
-    let remoteControlContainer = document.createElement("div");
-
-    remoteControlContainer.classList.add("remote-control");
-
-    let Y_Axis_Buttons = document.createElement("div");
-
-    Y_Axis_Buttons.classList.add("y-area");
-
-    let To_Top_Button = document.createElement("span");
-
-    To_Top_Button.classList.add("to-top", "c-btn");
-
-    Y_Axis_Buttons.prepend(To_Top_Button);
-
-    let To_Bottom_Button = document.createElement("span");
-
-    To_Bottom_Button.classList.add("to-bottom", "c-btn");
-
-    Y_Axis_Buttons.appendChild(To_Bottom_Button);
-
-    remoteControlContainer.appendChild(Y_Axis_Buttons);
-
-    // Make Right And Left Buttons
-
-    let X_Axis_Buttons = document.createElement("div");
-
-    X_Axis_Buttons.classList.add("x-area");
-
-    let To_Left_Button = document.createElement("span");
-
-    To_Left_Button.classList.add("to-left", "c-btn");
-
-    X_Axis_Buttons.prepend(To_Left_Button);
-
-    let To_Right_Button = document.createElement("span");
-
-    To_Right_Button.classList.add("to-right", "c-btn");
-
-    X_Axis_Buttons.appendChild(To_Right_Button);
-
-    remoteControlContainer.appendChild(X_Axis_Buttons);
-
-    roadMapContainer.appendChild(remoteControlContainer);
-
-    remoteControlContainer.style.width = roadMapContentBox.clientWidth + "px";
-  }
-
-  document.querySelectorAll(".c-btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      btn.style.animation = "clicked 0.5s 1 linear";
-
-      setTimeout(() => {
-        btn.style.animation = "";
-      }, 500);
-    });
-  });
-}
-
-function contentBoxPosition() {
-  let remoteHeight = document.querySelector(".remote-control").clientHeight;
-
-  roadMapContentBox.style.height =
-    roadMapContainer.clientHeight -
-    (remoteHeight + 30 + roadMapHead.clientHeight + 50) +
-    "px";
-
-  let roadMapTitle = document.querySelector(
-    ".road-map-container .content-box h4"
-  );
-
-  roadMapTitle.style.top = "45.5%";
-}
-
-function applyMobileButtons(car) {
-  let controlMassege = "Control With Buttons";
-
-  let aboutCarMassege =
-    "Don't look at driving a car, I added it to implement an idea I had in mind";
-  if (currentLanguge != "arabic") {
-    controlMassege = controlMassege;
-
-    aboutCarMassege = aboutCarMassege;
-  } else {
-    controlMassege = " التحكم بالأزرار";
-    aboutCarMassege =
-      "لا تنظر إلى قيادة السيارة، لقد أضفتها لتنفيذ فكرة كانت في ذهني";
-  }
-
-  let up = document.querySelector(".to-top");
-
-  let down = document.querySelector(".to-bottom");
-
-  let right = document.querySelector(".to-right");
-
-  let left = document.querySelector(".to-left");
-
-  let setMainColor = (btn) => {
-    btn.style.backgroundColor = "var(--main-color)";
-
-    btn.style.border = "none";
-  };
-
-  let setEffectColor = (btn) => {
-    btn.style.backgroundColor = "var(--secondary-color)";
-
-    btn.style.border = "1px solid var(--main-color)";
-  };
-
-  up.addEventListener("click", () => toUp(car));
-
-  HOLDER.onHold(
-    up,
-    () => {
-      toUp(car);
-
-      setEffectColor(up);
-    },
-    () => {
-      setMainColor(up);
-    }
-  );
-
-  down.addEventListener("click", () => toDown(car));
-
-  HOLDER.onHold(
-    down,
-    () => {
-      toDown(car);
-      setEffectColor(down);
-    },
-    () => {
-      setMainColor(down);
-    }
-  );
-  right.addEventListener("click", () => toRight(car));
-
-  HOLDER.onHold(
-    right,
-    () => {
-      {
-        toRight(car);
-
-        setEffectColor(right);
-      }
-    },
-    () => {
-      setMainColor(right);
-    }
-  );
-
-  left.addEventListener("click", () => toLeft(car));
-
-  HOLDER.onHold(
-    left,
-    () => {
-      toLeft(car);
-      setEffectColor(left);
-    },
-    () => {
-      setMainColor(left);
-    }
-  );
-
-  massege(controlMassege);
-
-  setTimeout(() => {
-    massege(aboutCarMassege, 7);
-  }, 5000);
-}
-
-let startControl = () => {
-  car.style.display = "block";
-
-  defaultPostionOfCar();
-
-  if (isMobile()) {
-    // Make Top And Bottom Buttons
-
-    createMobileButtons();
-
-    applyMobileButtons(car);
-
-    contentBoxPosition();
-  } else {
-    applyKeyboardButtons(car);
-  }
-};
-
-function defaultPostionOfCar() {
-  let startRoad = document.querySelector(".start-road-h");
-
-  let calculation = startRoad.getFullHeight() - car.getFullHeight();
-  if (startRoad.getFullHeight() > car.getFullHeight()) {
-    car.style.top = `calc(${startRoad.offsetTop}px + ${calculation / 2}px`;
-  } else {
-    car.style.top = `${startRoad.offsetTop}px `;
-  }
-
-  car.style.left = "5px";
-
-  car.style.transform = "rotete(0deg) ";
-}
-
-function applyKeyboardButtons() {
-  document.addEventListener("keydown", (press) => {
-    if (control) {
-      switch (press.key) {
-        case "w":
-          toUp(car);
-          break;
-        case "W":
-          toUp(car);
-          break;
-        case "s":
-          toDown(car);
-          break;
-        case "S":
-          toDown(car);
-          break;
-        case "d":
-          toRight(car);
-          break;
-        case "D":
-          toRight(car);
-          break;
-        case "a":
-          toLeft(car);
-          break;
-        case "A":
-          toLeft(car);
-          break;
-        default:
-          console.log("sse");
-      }
-    }
-  });
-}
-
-// End Road Map
-
-// Start Footer
-
-const footerSkills = document.querySelector(
-  "footer .text-area .herizontal-text .skills .skills-container"
-);
-
-const footerLanguages = document.querySelector(
-  "footer .text-area .herizontal-text .language .languages-container"
-);
-
-const footerSoftSkills = document.querySelector(
-  "footer .text-area .herizontal-text .s-skills .s-skills-container"
-);
-
-let skillsText = document.createTextNode(skillsArray.join(" , "));
-
-footerSkills.appendChild(skillsText);
-
-const languagesArray = ["Arabic", "English", "Turkish"];
-
-let languagesText = document.createTextNode(languagesArray.join(" , "));
-
-footerLanguages.appendChild(languagesText);
-
-let softSkillsArray = [
-  "Problem Solving",
-  "Speed Typing",
-  "critical thinking",
-  "time management",
-  "Flexibility and adaptability",
-  "Continuous learning",
-  "Teamwork",
-  "Effective Communication",
-];
-
-let softSkillsText = document.createTextNode(softSkillsArray.join(" , "));
-
-footerSoftSkills.appendChild(softSkillsText);
-
-arabicSSkills = [
-  "حل المشكلات",
-  "الكتابة السريعة",
-  "التفكير النقدي",
-  "إدارة الوقت",
-  "المرونة والتكيف",
-  "التعلم المستمر",
-  "العمل الجماعي",
-  "الاتصال الفعّال",
-];
-
-const servicesList = document.querySelector(
-  "footer .text-area .vertical-text .services .services-container"
-);
-
-const sectionsList = document.querySelector(
-  "footer .text-area .vertical-text .sections .sections-container"
-);
-
-let servicesArrayEn = [];
-
-let servicesArrayAr = [];
-
-function setUnifiedWidth() {
-  let footerRowsTitles = document.querySelectorAll(
-    ".herizontal-text > div p.title"
-  );
-  let footerRowsTitlesWidths = [];
-
-  footerRowsTitles.forEach((ele) => {
-    footerRowsTitlesWidths.push(ele.clientWidth);
-
-    ele.style.width =
-      footerRowsTitlesWidths.reduce((a, c) => (a > c ? a : c)) + "px";
-  });
-}
-
-document.getElementById(
-  "copyright"
-).innerHTML = `&copy <span class='name'>Abdalrahman Aldabbas</span> <span class='date'>${new Date(
-  Date.now()
-).getFullYear()}</span> `;
-
-// End Footer
-
-// Function For Menu & Popups
-
-function close() {
-  document.querySelectorAll(".select").forEach((e) => {
-    e.style.right = "-500%";
-  });
-}
-// 5313 8940 5050 0245
-// Check If The Dvice Mobile Or PC
-
-function isMobile() {
-  return (
-    window.navigator.maxTouchPoints > 0 ||
-    /(Android|Iphone)/gi.test(window.navigator.userAgent)
-  );
-}
-
-function toCapitalize(word) {
-  return `${word.substr(0, 1).toUpperCase()}${word
-    .toLowerCase()
-    .substr(-word.length + 1)}`;
-}
-
-//  Functions For Btns
-
-function scrollToLeft(parent, L_Btn, R_Btn) {
-  L_Btn.addEventListener("click", () => {
-    let items = [...parent.children];
-
-    parent.scrollTo({
-      behavior: "smooth",
-      left: parent.scrollLeft - items[0].getFullWidth(),
-    });
-
-    parent.addEventListener("scroll", () => {
-      let checker = setInterval(() => {
-        checking(parent, L_Btn, R_Btn);
-      }, 300);
-
-      parent.addEventListener("scrollend", () => {
-        clearInterval(checker);
-      });
-    });
-  });
-}
-
-function scrollToRight(parent, L_Btn, R_Btn) {
-  R_Btn.addEventListener("click", () => {
-    let items = [...parent.children];
-
-    parent.scrollTo({
-      behavior: "smooth",
-      left: parent.scrollLeft + items[0].getFullWidth(),
-    });
-
-    parent.addEventListener("scroll", () => {
-      let checker = setInterval(() => {
-        checking(parent, L_Btn, R_Btn);
-      }, 300);
-
-      parent.addEventListener("scrollend", () => {
-        clearInterval(checker);
-      });
-    });
-
-    checking(parent, L_Btn, R_Btn);
-  });
-}
-
-function checking(parent, L_Btn, R_Btn) {
-  let scrollLeft = parent.scrollLeft;
-
-  let fullWidth = parent.scrollWidth;
-
-  let clientWidth = parent.clientWidth;
-
-  let mestakeMargin = 15;
-
-  let endedScrolling;
-
-  if (scrollLeft < 0) {
-    endedScrolling = -scrollLeft + clientWidth;
-  } else {
-    endedScrolling = scrollLeft + clientWidth;
-  }
-
-  if (currentLanguge != "arabic") {
-    if (scrollLeft < mestakeMargin) {
-      L_Btn.style.display = "none";
-    } else {
-      L_Btn.style.display = "flex";
-    }
-  } else if (currentLanguge == "arabic") {
-    if (scrollLeft > -mestakeMargin) {
-      R_Btn.style.display = "none";
-    } else {
-      R_Btn.style.display = "flex";
-    }
-  }
-  if (endedScrolling > fullWidth - 20) {
-    currentLanguge == "arabic"
-      ? (L_Btn.style.display = "none")
-      : (R_Btn.style.display = "none");
-  } else {
-    currentLanguge == "arabic"
-      ? (L_Btn.style.display = "flex")
-      : (R_Btn.style.display = "flex");
-  }
-}
-
-// Functions For themes Or Other Actions
-
-function checkBoolean(list, value, number) {
-  if (list.length == number && list.every((e) => e >= value)) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-// Initialize Englisk Language Object
-
-function initializeEnglishLanguageObject() {
-  document.querySelectorAll("*").forEach((ele) => {
-    if (ele.getAttribute("data-lang")) {
-      languages.english[ele.getAttribute("data-lang")] = ele.innerHTML;
-    }
-
-    if (ele.getAttribute("data-lang-placeholder"))
-      languages.english[ele.getAttribute("data-lang-placeholder")] =
-        ele.placeholder;
-
-    if (ele.dataset.content) {
-      languages.english[ele.dataset.lang] = ele.dataset.content;
-    }
-  });
-}
-
-function AR_Action() {
-  createButtonAction(
-    changeThemeContainer,
-    changeTheme,
-    colorName,
-    applyTheme,
-    `تم تغيير الثمة الى اللون `
-  );
-
-  createButtonAction(
-    languagesContainer,
-    changeLanguageBtn,
-    languageNames,
-    applyLanguage,
-    "تم تغيير اللغة الى"
-  );
-
-  createButtonAction(
-    selectDownloadContainer,
-    selectFileBtn,
-    fileNames,
-    test,
-    "جار تنزيل"
-  );
-
-  createButtonAction(infoContainer, infoBtn, infoNames, test, "اظهار");
-
-  createButtonAction(menuContainer, menu, tapNames, test, "الذهاب الى");
-}
-
-function EN_action() {
-  createButtonAction(
-    changeThemeContainer,
-    changeTheme,
-    colorName,
-    applyTheme,
-    "Theme Changed To"
-  );
-
-  createButtonAction(
-    languagesContainer,
-    changeLanguageBtn,
-    languageNames,
-    applyLanguage,
-    "language Changed To"
-  );
-
-  createButtonAction(
-    selectDownloadContainer,
-    selectFileBtn,
-    fileNames,
-    test,
-    "Downloading File"
-  );
-
-  createButtonAction(infoContainer, infoBtn, infoNames, test, "Show");
-
-  createButtonAction(menuContainer, menu, tapNames, test, "Going To");
-}
-
-function applyLanguage(lang) {
-  localStorage.setItem("language", lang);
-
-  currentLanguge = localStorage.getItem("language");
-
-  let changeDirection = (direction) => {
-    let changeElementDirection = document.querySelectorAll(".l-change");
-
-    if (direction == "rtl") {
-      document.body.style.direction = "rtl";
-
-      changeElementDirection.forEach((ele) => {
-        ele.classList.remove("dir-lang-en");
-        ele.classList.add("dir-lang-ar");
-      });
-
-      applyScrollingButtons("arabic");
-    } else if (direction == "ltr") {
-      document.body.style.direction = "ltr";
-
-      changeElementDirection.forEach((ele) => {
-        ele.classList.remove("dir-lang-ar");
-        ele.classList.add("dir-lang-en");
-      });
-
-      applyScrollingButtons("english");
-    }
-  };
-
-  languages.english.sectionsTitleArray = ["Landing"];
-
-  let sectionsTitle = document
-    .querySelectorAll(".section-title")
-    .forEach((e) => languages.english.sectionsTitleArray.push(e.innerText));
-
-  languages[currentLanguge].sectionsTitleArray.forEach((e, i) => {
-    let CRT_SectionItem = new ELEMENT("li", "s" + i, "", sectionsList, e);
-
-    CRT_SectionItem.createElement();
-
-    let sectionItem = CRT_SectionItem.getCreatedElement();
-  });
-
-  // let currentLang = سشيصيسشصيسشصيشسيصيس صثتق شسيصسشصيسي صwindow.localStorage.getItem("language");
-
-  if (lang == "arabic") {
-    // let arabicFont = '"Cairo", sans-serif';
-
-    let arabicFont = '"Alexandria", sans-serif';
-
-    changeDirection("rtl");
-
-    document.body.style.fontFamily = arabicFont;
-
-    document.querySelectorAll("*").forEach((ele) => {
-      if (ele.getAttribute("data-lang")) {
-        ele.innerHTML = languages["arabic"][ele.getAttribute("data-lang")];
-      }
-
-      if (ele.getAttribute("data-lang-placeholder"))
-        ele.placeholder =
-          languages["arabic"][ele.getAttribute("data-lang-placeholder")];
-
-      if (ele.dataset.content) {
-        ele.dataset.content = languages.arabic[ele.dataset.lang];
-      }
-
-      let fontSize = parseInt(StylePackage(ele).fontSize);
-
-      if (fontSize < 12) {
-        ele.style.fontSize = "13px";
-      }
-    });
-
-    styleFile.innerHTML += `
-    ::placeholder,
-    button,textarea,span,.massege-box{
-      font-family:${arabicFont};
-      font-size:0.8rem;
-      letter-spaceing
-    }
-    `;
-
-    navgationBar.classList.remove("navigation-english");
-    navgationBar.classList.add("navigation-arabic");
-
-    setInFullyRight(navgationBar);
-
-    showIcons.addEventListener("click", () => {
-      let navigationLinks = showIcons.parentNode;
-
-      let position = parseInt(StylePackage(navigationLinks).right);
-
-      position < 0
-        ? setInFullyRight(navigationLinks, 1)
-        : setInFullyRight(navigationLinks, 0);
-    });
-  }
-
-  if (lang == "english") {
-    console.log("oright the language is : english");
-
-    changeDirection("ltr");
-
-    document.body.style.fontFamily = '"Anta", sans-serif';
-
-    document.querySelectorAll("*").forEach((ele) => {
-      if (ele.getAttribute("data-lang")) {
-        ele.innerHTML = languages["english"][ele.getAttribute("data-lang")];
-      }
-
-      if (ele.getAttribute("data-lang-placeholder"))
-        ele.placeholder =
-          languages["english"][ele.getAttribute("data-lang-placeholder")];
-
-      if (ele.dataset.content) {
-        ele.dataset.content = languages.english[ele.dataset.lang];
-      }
-
-      if (ele.dataset.action) {
-        ele.dataset.content = languages.english[ele.dataset.lang];
-      }
-
-      let fontSize = parseInt(StylePackage(ele).fontSize);
-
-      if (fontSize < 12) {
-        ele.style.fontSize = "13px";
-      }
-    });
-
-    navgationBar.classList.remove("navigation-arabic");
-
-    navgationBar.classList.add("navigation-english");
-
-    navgationBar.style.left = "0";
-
-    showIcons.addEventListener("click", () => {
-      let navigationLinks = showIcons.parentNode;
-
-      let position = parseInt(StylePackage(navigationLinks).left);
-
-      position < 0
-        ? (navigationLinks.style.left = "0px")
-        : (navigationLinks.style.left =
-            "-" + navigationLinks.clientWidth + "px");
-    });
-  }
-}
-
-function setInFullyRight(ele, position) {
-  let size = ele.getFullWidth();
-
-  return position == 0
-    ? (ele.style.left = `100%`)
-    : (ele.style.left = `calc(100% - ${size}px)`);
-}
-
-function applyTheme(color) {
-  BODY.style.backgroundImage = `url(./imgs/backgrounds/Background_${color}.png)`;
-  localStorage.setItem("theme", color);
-  switch (color) {
-    case "red":
-      themeStyleFile.innerHTML = `:root {
---main-color: #ff0000;
-    --secondary-color: #e7c3c3;
-    --background-main-color: #ff000038;
-    --background-white-color: #e7c3c37e;
-    --background-color: #000f18;
-}`;
-      break;
-    case "blue":
-      themeStyleFile.innerHTML = `:root {
-  --main-color: #186ca4;
-  --secondary-color: #fff;
-  --background-main-color: rgba(30, 56, 103, 0.7);
-  --background-white-color: rgba(255, 255, 255, 0.7);
-  --background-color: #000f18;
-}`;
-      break;
-    case "green":
-      themeStyleFile.innerHTML = `
-    :root {
-  --main-color:#4caf50;
-  --secondary-color:#b8f0ba;
-  --background-main-color:#4caf505c;
-  --background-white-color:#ffffff99;
-  --background-color: #000f18;
-}`;
-      break;
-
-    case "orange":
-      themeStyleFile.innerHTML = `
-    :root {
-  --main-color: #ff9800;
-  --secondary-color:#ffe2b6;
-  --background-main-color:#ff980040;
-  --background-white-color:#b7a488;
-  --background-color: #000f18;
-}`;
-      break;
-    case "purple":
-      themeStyleFile.innerHTML = `
-    :root {
-  --main-color:#9c27b0;
-  --secondary-color:#ba95c0;
-  --background-main-color:#9c27b05c;
-  --background-white-color:#d4abdb94;
-  --background-color: #000f18;
-}`;
-      break;
-  }
-}
-
-function hideElementNumber(parent) {
-  let elements = Array.from(parent.children);
-
-  return elements.filter((e) => StylePackage(e).display != "none").length;
-}
-
-function onOpenPopup(taps) {
-  let count = 1;
-
-  let add = setInterval(() => {
-    console.log;
-    if (taps[count].tagName.toLowerCase() == "li") {
-      taps[count].style.position = "relative";
-
-      taps[count].style.right = 0;
-
-      count == taps.length - 1 ? clearInterval(add) : count++;
-    } else {
-      count++;
-    }
-  }, 120);
-}
-
-function exit(target) {
-  target.style.right = "-200%";
-}
-
-HTMLElement.prototype.getFullWidth = function () {
-  return (
-    this.clientWidth +
-    parseInt(StylePackage(this).marginRight) +
-    parseInt(StylePackage(this).marginLeft) +
-    parseInt(StylePackage(this).borderRightWidth) +
-    parseInt(StylePackage(this).borderLeftWidth)
-  );
-};
-
-HTMLElement.prototype.getFullHeight = function () {
-  return (
-    this.clientHeight +
-    parseInt(StylePackage(this).marginTop) +
-    parseInt(StylePackage(this).marginBottom) +
-    parseInt(StylePackage(this).borderTopWidth) +
-    parseInt(StylePackage(this).borderBottomWidth)
-  );
-};
-function toArabicNumber(englishNumber) {
-  let arNums = [
+  arNums = [
     "٠",
     "١",
     "٢",
@@ -3380,117 +276,1671 @@ function toArabicNumber(englishNumber) {
     "٩٩",
     "١٠٠",
   ];
-
-  let str = `${englishNumber}`;
-
-  let newNumber = [];
-
-  str.split("").forEach((e, i) => {
-    typeof e == "number"
-      ? newNumber.push(arNums[e])
-      : e == "."
-      ? newNumber.push(".")
-      : "";
-    newNumber.push(arNums[e]);
-  });
-
-  return newNumber.join("");
-}
-function navigationPosition() {
-  navgationBar.offsetLeft >= 0
-    ? (navgationBar.style.left = "-" + navgationBar.clientWidth + "px")
-    : "";
-}
-function navigationPosition() {
-  if (currentLanguge != "arabic") {
-    navgationBar.offsetLeft >= 0
-      ? (navgationBar.style.left = "-" + navgationBar.clientWidth + "px")
-      : "";
+function massege(e, t = 3) {
+  if (document.querySelector(".massege-box")) {
+    document.querySelector(".massege-box").remove();
+    let a = document.createElement("div"),
+      n = document.createTextNode(e);
+    a.appendChild(n),
+      a.classList.add("massege-box"),
+      BODY.prepend(a),
+      (a.style.animation = `${t}s ease-in-out 0s 1 normal backwards running msg`);
   } else {
-    navgationBar.offsetLeft <= document_width
-      ? (navgationBar.style.left = "100%")
-      : "";
+    let a = document.createElement("div"),
+      n = document.createTextNode(e);
+    a.appendChild(n),
+      a.classList.add("massege-box"),
+      BODY.prepend(a),
+      (a.style.animation = `${t}s ease-in-out 0s 1 normal backwards running msg`);
+  }
+  setTimeout(() => {
+    document.querySelector(".massege-box").remove();
+  }, 1e3 * t);
+}
+const mainContainer = document.getElementById("home");
+let header = document.getElementById("header"),
+  headerParent = header.parentNode;
+function setHeaderParent() {
+  document_width < 1100
+    ? ((header.style.width = "100%"),
+      (headerParent.style.height = StylePackage(header).height),
+      (headerParent.style.paddingLeft = "0"),
+      (headerParent.style.paddingRight = "0"),
+      (headerParent.style.borderRadius = "0"),
+      (header.style.padding = " 7px 15px "),
+      parseInt(StylePackage(header).height) ==
+        parseInt(StylePackage(header).height) &&
+        setTimeout(() => {
+          headerParent.style.height = StylePackage(header).height;
+        }, 500))
+    : ((header.style.width = headerParent.getFullWidth() + "px"),
+      (headerParent.style.height = StylePackage(header).height),
+      (headerParent.style.paddingLeft = StylePackage(header).paddingLeft),
+      (headerParent.style.paddingRight = StylePackage(header).paddingRight),
+      initializeEnglishLanguageObject());
+}
+let V_scroll = 0,
+  control = !1;
+window.addEventListener("scroll", () => {
+  window.scrollY > parseInt(StylePackage(header).height) &&
+    ((header.style.backgroundColor = "var(--background-main-color)"),
+    (header.style.backdropFilter = "blur(10px)"),
+    (header.style.boxShadow = "0 0 20px var(--main-color)"),
+    (header.style.top = "-200px"),
+    window.scrollY < V_scroll && (header.style.top = "0")),
+    0 == window.scrollY &&
+      ((header.style.top = "0"),
+      (header.style.backgroundColor = "transparent"),
+      (header.style.backdropFilter = "blur(0px)"),
+      (header.style.boxShadow = "none"),
+      (header.style.borderRadius = " 0 "));
+  let e = window.scrollY,
+    t = document.querySelector(".road-map-cover").offsetTop;
+  control = t - 50 < e;
+}),
+  window.addEventListener("scrollend", (e) => {
+    V_scroll = window.scrollY;
+  });
+let timeId,
+  navgationBar = document.getElementsByTagName("nav")[0];
+function startTimeOut() {
+  timeId = setTimeout(() => {
+    navigationPosition();
+  }, 2e3);
+}
+function stopTimeOut(e) {
+  clearTimeout(timeId);
+}
+function navChecker() {
+  navgationBar.addEventListener("click", () => {
+    0 != navgationBar.offsetLeft ? startTimeOut() : stopTimeOut();
+  });
+}
+document_width < 800
+  ? (navigationPosition(),
+    document
+      .querySelectorAll(".header-icon")
+      .forEach((e) => e.addEventListener("click", () => navigationPosition())))
+  : (navgationBar.remove(), header.appendChild(navgationBar));
+let timer = setTimeout(() => {
+  navigationPosition();
+}, 2e3);
+console.log(timer), navChecker();
+let landing = document.querySelector(".landing-cover");
+(landing.style.minHeight = `calc(100vh - ${parseInt(
+  StylePackage(header).height
+)}px)`),
+  window.addEventListener("load", () => {
+    localStorage.getItem("theme")
+      ? applyTheme(localStorage.getItem("theme"))
+      : applyTheme("blue"),
+      initializeEnglishLanguageObject(),
+      appendMenuToHeader(),
+      setHeaderParent(),
+      assignNavigationLinksVariables(),
+      document_width < 800 && BODY.prepend(navgationBar),
+      "arabic" != currentLanguge ? EN_action() : AR_Action(),
+      applyScrollingButtons(currentLanguge),
+      applyLanguage(currentLanguge || "english"),
+      document_width < 300 &&
+        (roadMapContentBox.innerHTML = "Not Availabel Off Your Phone Size"),
+      setUnifiedWidth();
+  });
+let js_StyleFile = document.createElement("style");
+(js_StyleFile.id = "js-file"), HEAD.appendChild(js_StyleFile);
+let changeTheme,
+  changeThemeContainer,
+  colorName,
+  changeLanguageBtn,
+  languagesContainer,
+  languageNames,
+  selectFileBtn,
+  selectDownloadContainer,
+  fileNames,
+  infoBtn,
+  infoContainer,
+  infoNames,
+  menu,
+  menuContainer,
+  tapNames,
+  showIcons,
+  themeStyleFile = document.createElement("style");
+function createButtonAction(e, t, a, n, o) {
+  t.addEventListener("click", (t) => {
+    close(), (e.style.right = "0"), onOpenPopup(Array.from(e.children));
+  }),
+    a.forEach((e) => {
+      let t = e.dataset.content;
+      (e.innerHTML = t),
+        e.addEventListener("click", () => {
+          massege(`${o} '${e.innerText}'`),
+            n(e.dataset.action),
+            exit(languagesContainer);
+        });
+    });
+}
+function assignNavigationLinksVariables() {
+  (changeTheme = document.getElementById("change-mode")),
+    (changeThemeContainer = document.querySelector(".select-themes")),
+    (colorName = Array.from(document.querySelectorAll(".theme-btn"))),
+    (changeLanguageBtn = document.getElementById("change-language")),
+    (languagesContainer = document.querySelector(".select-language")),
+    (languageNames = Array.from(document.querySelectorAll(".lang-btn"))),
+    (selectFileBtn = document.getElementById("download-btn")),
+    (selectDownloadContainer = document.querySelector(".select-download")),
+    (fileNames = Array.from(document.querySelectorAll(".d-btn"))),
+    (infoBtn = document.getElementById("get-info")),
+    (infoContainer = document.querySelector(".select-info")),
+    (infoNames = Array.from(document.querySelectorAll(".info-btn"))),
+    (menu = document.getElementById("menu-btn")),
+    (menuContainer = document.querySelector(".taps")),
+    (tapNames = Array.from(document.querySelectorAll(".section-btn"))),
+    (showIcons = document.querySelector(".show-icons"));
+}
+(themeStyleFile.id = "theme-js"),
+  HEAD.appendChild(themeStyleFile),
+  document
+    .querySelectorAll(".close-btn")
+    .forEach((e) => e.addEventListener("click", () => close()));
+let test = (e) => {
+  console.log(e);
+};
+function appendMenuToHeader() {
+  document_width < 800 &&
+    menu &&
+    (menu.remove(),
+    header.appendChild(menu),
+    (menu.style.width = "40px"),
+    (menu.style.height = "40px"),
+    (menu.style.marginRight = "0"));
+}
+const menuRow = document.querySelector("menu-row"),
+  firstRow = document.getElementById("menu-row-1"),
+  secondaryRow = document.getElementById("menu-row-2"),
+  lastRow = document.getElementById("menu-row-3"),
+  menuTaps = document.querySelector(".taps");
+async function requestServices() {
+  try {
+    let e = await fetch("api/services.json"),
+      t = await e.json();
+    t.forEach((e, a) => {
+      const n = new ELEMENT(
+        "div",
+        `service-card-${a + 1}`,
+        "service-card",
+        document.querySelector(".services-body"),
+        ""
+      );
+      n.createElement();
+      const o = n.getCreatedElement(),
+        l = new ELEMENT("span", "serv-icon", "serv-icon", o, e.icon);
+      l.createElement(), l.getCreatedElement();
+      const r = new ELEMENT(
+        "h2",
+        `servTitle${a + 1}`,
+        "serv-title",
+        o,
+        e.service.en
+      );
+      r.createElement(),
+        (r.getCreatedElement().dataset.lang = `servTitleValue${a + 1}`),
+        (languages.arabic[`servTitleValue${a + 1}`] = e.service.ar);
+      const i = new ELEMENT(
+        "span",
+        `servDisc${a + 1}`,
+        "serv-disc",
+        o,
+        e.explain.en
+      );
+      i.createElement(),
+        (i.getCreatedElement().dataset.lang = `servDiscValue${a + 1}`),
+        (languages.arabic[`servDiscValue${a + 1}`] = e.explain.ar),
+        servicesArrayAr.push(t[a].service.ar),
+        servicesArrayEn.push(t[a].service.en);
+    }),
+      (languages.arabic.servicesArray = servicesArrayAr),
+      (languages.english.servicesArray = servicesArrayEn),
+      languages[currentLanguge.toLowerCase()].servicesArray.forEach((e, t) => {
+        let a = new ELEMENT("li", "s" + t, "", servicesList, e);
+        a.createElement(), a.getCreatedElement();
+      });
+  } catch (e) {}
+}
+requestServices();
+let servLeftBtn = document.getElementById("serv-prev"),
+  servRightBtn = document.getElementById("serv-next"),
+  servicesContainer = document.querySelector(".services-body");
+servicesContainer.clientWidth >= servicesContainer.scrollWidth &&
+  ((servLeftBtn.style.display = "none"), (servRightBtn.style.display = "none"));
+const projectsBox = document.getElementById("projects-box");
+async function RequestProjectsData(e) {
+  try {
+    let t = await fetch(e),
+      a = await t.json();
+    projectsBox.style.gridTemplateColumns = `repeat(${
+      a.length
+    }, calc(100% / 3 - ${parseInt(StylePackage(projectsBox).gap)}px)`;
+    for (let e = 0; e < a.length; e++) {
+      let t = a[e].color;
+      switch (t) {
+        case "green":
+          t = "#51ad24";
+          break;
+        case "purple":
+          t = "#673AB7";
+          break;
+        case "orange":
+          t = "#ff9800";
+          break;
+        case "blue":
+          t = "#186ca4";
+          break;
+        case "skyblue":
+          t = "#2196f3";
+          break;
+        case "red":
+          t = "#ff5722";
+      }
+      let n = t + "20",
+        o = `color:${t}; text-shadow:0 0 20px ${t};`;
+      const l = new ELEMENT(
+        "div",
+        `project-${a[e].id.en}`,
+        "project-card",
+        projectsBox,
+        "",
+        `\n        border:1px solid ${t};\n        border-bottom:10px solid ${t};\n        background-color: ${n};\n        `,
+        `\n       #project-${a[e].id.en}:hover{\n          box-shadow:-7px 0 0  ${t};\n        }`,
+        styleFile
+      );
+      l.createElement();
+      const r = l.getCreatedElement();
+      (r.dataset.type = a[e].type.en),
+        r.setAttribute("datatype", a[e].type.en.toLowerCase());
+      const i = new ELEMENT("div", "card-head", "card-head", r, "");
+      i.createElement();
+      const s = i.getCreatedElement(),
+        c = new ELEMENT("h3", `title-${e + 1}`, "title", s, a[e].name.en, o);
+      c.createElement(),
+        c
+          .getCreatedElement()
+          .setAttribute("data-lang", `projectCardTitle${e + 1}`),
+        (languages.arabic[`projectCardTitle${e + 1}`] = a[e].name.ar);
+      const d = new ELEMENT("p", "project-id", "project-id", s, a[e].id.en, o);
+      d.createElement(),
+        d
+          .getCreatedElement()
+          .setAttribute("data-lang", `projectCardId${e + 1}`),
+        (languages.arabic[`projectCardId${e + 1}`] = a[e].id.ar);
+      const g = new ELEMENT(
+        "div",
+        `cardImageParent${e}`,
+        "card-image-parent",
+        r
+      );
+      g.createElement();
+      const u = g.getCreatedElement(),
+        m = new ELEMENT(
+          "img",
+          `img-${e}`,
+          "project-image",
+          u,
+          "",
+          `border: 0.5px solid ${t}`
+        );
+      m.createElement();
+      const p = m.getCreatedElement();
+      p.setAttribute("loading", "lazy"),
+        p.setAttribute("width", "60"),
+        p.setAttribute("height", "60"),
+        p.setAttribute("alt", "project-landing-screen"),
+        (p.src = a[e].picture);
+      const h = new ELEMENT("div", "project-info", "project-info", r, "");
+      h.createElement();
+      const E = h.getCreatedElement(),
+        y = new ELEMENT(
+          "div",
+          `project-developer-${e + 1}`,
+          "project-developer detail",
+          E
+        );
+      y.createElement();
+      const f = y.getCreatedElement(),
+        T = new ELEMENT(
+          "p",
+          `devTit-${e + 1}`,
+          "devleoper-title",
+          f,
+          "Develeoper :",
+          o
+        );
+      T.createElement(), (T.getCreatedElement().dataset.lang = "pDevTitleText");
+      const v = new ELEMENT(
+        "p",
+        `devVal-${e + 1}`,
+        "developer-value",
+        f,
+        a[e].developer.en
+      );
+      v.createElement(),
+        (v.getCreatedElement().dataset.lang = `devVal${e + 1}`),
+        (languages.arabic[`devVal${e + 1}`] = a[e].developer.ar);
+      const b = new ELEMENT(
+        "div",
+        `programTitle${e}`,
+        "program-title detail",
+        E
+      );
+      b.createElement();
+      const L = b.getCreatedElement(),
+        w = new ELEMENT("p", `typeTitle${e + 1}`, "type-title", L, "Type :", o);
+      w.createElement(),
+        (w.getCreatedElement().dataset.lang = "pTypeTitleText");
+      const x = new ELEMENT(
+        "p",
+        `typeValue${e + 1}`,
+        "type-value",
+        L,
+        a[e].type.en
+      );
+      x.createElement(),
+        (x.getCreatedElement().dataset.lang = `pTypeValue${e + 1}`),
+        (languages.arabic[`pTypeValue${e + 1}`] = a[e].type.ar);
+      const S = new ELEMENT(
+        "div",
+        `technolojes${e + 1}`,
+        "technolojes detail",
+        E
+      );
+      S.createElement();
+      const C = S.getCreatedElement(),
+        k = new ELEMENT(
+          "p",
+          `techTitle${e + 1}`,
+          "tech-title",
+          C,
+          "Technolojes :",
+          o
+        );
+      k.createElement(),
+        (k.getCreatedElement().dataset.lang = "pTechTitleText");
+      const B = new ELEMENT(
+        "p",
+        `techValue${e + 1}`,
+        "tech-value",
+        C,
+        a[e].technologies
+      );
+      B.createElement(), B.getCreatedElement();
+      const A = new ELEMENT(
+        "div",
+        `projectTech${e + 1}`,
+        "project-hosting detail",
+        E
+      );
+      A.createElement();
+      const M = A.getCreatedElement(),
+        $ = new ELEMENT(
+          "p",
+          `hostingTitle${e + 1}`,
+          "hosting-title",
+          M,
+          "Hosting :",
+          o
+        );
+      $.createElement(),
+        ($.getCreatedElement().dataset.lang = "pHostTitleText");
+      const N = new ELEMENT(
+        "p",
+        `hostingValue${e + 1}`,
+        "hosting-value",
+        M,
+        a[e].hosting.en
+      );
+      N.createElement(),
+        (N.getCreatedElement().dataset.lang = `pHostingValue${e + 1}`),
+        (languages.arabic[`pHostingValue${e + 1}`] = a[e].hosting.ar);
+      const I = new ELEMENT(
+        "div",
+        `projectLanguages${e + 1}`,
+        "project-languages detail",
+        E
+      );
+      I.createElement();
+      const P = I.getCreatedElement(),
+        H = new ELEMENT(
+          "p",
+          `langTitle${e + 1}`,
+          "lang-title",
+          P,
+          "Languages :",
+          o
+        );
+      H.createElement(),
+        (H.getCreatedElement().dataset.lang = "pLangTitleText");
+      const j = new ELEMENT(
+        "p",
+        `langValue${e + 1}`,
+        "lang-value",
+        P,
+        a[e].language.en
+      );
+      j.createElement(),
+        (j.getCreatedElement().dataset.lang = `pLangValue${e + 1}`),
+        (languages.arabic[`pLangValue${e + 1}`] = a[e].language.ar);
+      const q = new ELEMENT(
+        "div",
+        `projectSource${e + 1}`,
+        "project-source detail",
+        E
+      );
+      q.createElement();
+      const D = q.getCreatedElement(),
+        R = new ELEMENT(
+          "p",
+          `sourceTitle${e + 1}`,
+          "source-title",
+          D,
+          "Idea Source :",
+          o
+        );
+      R.createElement(), (R.getCreatedElement().dataset.lang = "pSrcTitleText");
+      const F = new ELEMENT(
+        "p",
+        `sourceValue${e + 1}`,
+        "source-value",
+        D,
+        a[e].source.en
+      );
+      F.createElement(),
+        (F.getCreatedElement().dataset.lang = `pSrcValue${e + 1}`),
+        (languages.arabic[`pSrcValue${e + 1}`] = a[e].source.ar);
+      let _ =
+        '<i class="fa-solid fa-star fa-xs" style="color:var(--secoundary-color);"></i>';
+      const W = new ELEMENT("div", "project-rete", "project-rete detail", E);
+      W.createElement();
+      const V = W.getCreatedElement(),
+        O = new ELEMENT("p", `reteTitle${e + 1}`, "rete-title", V, "Rate :", o);
+      O.createElement(),
+        (O.getCreatedElement().dataset.lang = "pRateTitleText");
+      const z = new ELEMENT(
+        "p",
+        `reteValue${e + 1}`,
+        "rete-value",
+        V,
+        _.repeat(a[e].rate.from),
+        "display:flex; gap:6px;"
+      );
+      z.createElement();
+      const Y = z.getCreatedElement();
+      [...Y.children].forEach((t, n) => {
+        a[e].rate.num <= n || (t.style.cssText = o);
+      }),
+        [...Y.children].reverse(),
+        (styleFile.innerHTML += `\n       .project-card:nth-child(${
+          e + 1
+        }) p::-webkit-scrollbar-track {\n      background-color: ${n};\n      }\n       .project-card:nth-child(${
+          e + 1
+        }) p::-webkit-scrollbar-thumb {\n       background-color: ${t};\n      }`);
+      const U = new ELEMENT(
+        "div",
+        `projectDiscription${e + 1}`,
+        "project-discription detail",
+        E
+      );
+      U.createElement();
+      const J = U.getCreatedElement(),
+        G = new ELEMENT(
+          "p",
+          `discTitle${e + 1}`,
+          "disc-title",
+          J,
+          "Discription :",
+          o
+        );
+      G.createElement(),
+        (G.getCreatedElement().dataset.lang = "pDiscTitleText");
+      const K = new ELEMENT(
+        "p",
+        `discValue${e + 1}`,
+        "disc-value content-scroller",
+        J,
+        a[e].description.en
+      );
+      K.createElement(),
+        (K.getCreatedElement().dataset.lang = `pDiscValue${e + 1}`),
+        (languages.arabic[`pDiscValue${e + 1}`] = a[e].description.ar);
+      const Q = new ELEMENT(
+        "span",
+        `projectVisiting${e + 1}`,
+        "project-visiting",
+        r
+      );
+      Q.createElement();
+      const X = Q.getCreatedElement(),
+        Z = new ELEMENT(
+          "a",
+          `visitWeb${e + 1}`,
+          "visit-link",
+          X,
+          "Visit",
+          `background-color: ${t};`
+        );
+      Z.createElement();
+      const ee = Z.getCreatedElement();
+      (ee.href = a[e].url),
+        (ee.dataset.lang = "visitLinkText"),
+        responsiveCardsWithGrid(
+          projectsBox,
+          [...document.querySelectorAll(".project-card")].length,
+          2,
+          1,
+          1
+        );
+    }
+  } catch {
+    console.error(error);
   }
 }
-
-function downloadImage() {
-  let imageSrc = "./imgs/logos/newLogo.jpg";
-
-  let download_link = document.createElement("a");
-
-  download_link.href = imageSrc;
-
-  download_link.download = "cv_picture";
-
-  download_link.click();
+RequestProjectsData("api/projects.json");
+let cardPercent,
+  filtersProjects = Array.from(document.querySelectorAll("form div input"));
+setTimeout(() => {
+  let e = parseInt(StylePackage(document.querySelector(".project-card")).width),
+    t = parseInt(StylePackage(projectsBox).width);
+  cardPercent = parseInt(t / e);
+}, 400),
+  filtersProjects.forEach((e) => {
+    e.addEventListener("click", (t) => {
+      applyScrollingButtons(currentLanguge),
+        setTimeout(() => {
+          let e = `repeat(${hideElementNumber(
+            projectsBox
+          )}, calc(100% / ${cardPercent}`;
+          projectsBox.style.gridTemplateColumns = e;
+        }, 100);
+      let a = e.value.toLowerCase();
+      console.log(a),
+        projectsBox.scrollTo({ behavior: "smooth", left: "start" });
+      let n = [...document.querySelectorAll(".project-card")];
+      "all" == a
+        ? n.forEach((e) => {
+            e.style.display = "flex";
+          })
+        : n.forEach((e) => {
+            e.dataset.type.toLowerCase() == a
+              ? (e.style.display = "flex")
+              : (e.style.display = "none");
+          });
+    });
+  });
+let portfolioPrevBtn = document.getElementById("portfolio-prev"),
+  portfolioNextBtn = document.getElementById("portfolio-next"),
+  portfolioContainer = document.querySelector(".portfolio-body"),
+  socialMediaBox = document.getElementById("social-media-box"),
+  socialPrevBtn = document.getElementById("social-prev"),
+  socialNextBtn = document.getElementById("social-next");
+async function RequestSocialMediaData(e) {
+  try {
+    let t = await fetch(e),
+      a = await t.json(),
+      n = a.length;
+    for (let e = 0; e < a.length; e++) {
+      if ("active" == a[e].status) {
+        let t = a[e].color.color,
+          n = a[e].color.type,
+          o = a[e].color.color;
+        "dark" == n && (o = "#484848");
+        let l = `font-size:.85rem;\n        color:${o}; text-shadow:0 0 20px ${t};`;
+        const r = new ELEMENT(
+          "div",
+          `socialCard-${e}`,
+          "social-card",
+          socialMediaBox,
+          "",
+          `\n        border:1px solid transparent;\n        border-color: transparent ${o} transparent ${o}  ;\n        background-color: ${
+            t + "30"
+          };\n        `,
+          `\n       #social-card-${e}:hover{\n          box-shadow:0px 0px 20px  ${t};\n        }`,
+          styleFile
+        );
+        r.createElement();
+        const i = r.getCreatedElement(),
+          s = new ELEMENT("div", `cardHead${e + 1}`, "card-head", i, "");
+        s.createElement();
+        const c = s.getCreatedElement(),
+          d = new ELEMENT(
+            "h3",
+            `title-${e + 1}`,
+            "title",
+            c,
+            a[e].appName.en,
+            `background-color:${t};`
+          );
+        d.createElement(),
+          (d.getCreatedElement().dataset.lang = `socialcardTitle${e + 1}`),
+          (languages.arabic[`socialcardTitle${e + 1}`] = a[e].appName.ar);
+        const g = new ELEMENT("img", `img-${e}`, "card-image", c, "");
+        g.createElement();
+        const u = g.getCreatedElement();
+        u.setAttribute("loading", "lazy"),
+          u.setAttribute("width", "60"),
+          u.setAttribute("height", "60"),
+          u.setAttribute("alt", "social-media-logo"),
+          (u.src = a[e].logo);
+        const m = new ELEMENT("div", "details-info", "details-info", i, "");
+        m.createElement();
+        const p = m.getCreatedElement(),
+          h = new ELEMENT("div", "card-people", "card-people", p);
+        h.createElement();
+        const E = h.getCreatedElement(),
+          y = new ELEMENT(
+            "span",
+            `people-title-${e + 1}`,
+            "people-title",
+            E,
+            a[e].people.type
+          );
+        y.createElement();
+        const f = y.getCreatedElement();
+        f.dataset.lang = `social${toCapitalize(f.innerText)}Title`;
+        const T = new ELEMENT(
+          "span",
+          `people-value-${e + 1}`,
+          "people-value",
+          E,
+          a[e].people[a[e].people.type],
+          l
+        );
+        T.createElement(),
+          (T.getCreatedElement().dataset.lang = `socialPeopleValue${e + 1}`),
+          (languages.arabic[`socialPeopleValue${e + 1}`] =
+            a[e].people[a[e].people.type]);
+        const v = new ELEMENT("div", "posts", "posts", p);
+        v.createElement();
+        const b = v.getCreatedElement(),
+          L = new ELEMENT(
+            "span",
+            `posts-title-${e + 1}`,
+            "posts-title",
+            b,
+            "Posts"
+          );
+        L.createElement(),
+          (L.getCreatedElement().dataset.lang = "socialPostsTitle");
+        const w = new ELEMENT(
+          "span",
+          `posts-value-${e + 1}`,
+          "posts-value",
+          b,
+          a[e].posts.en,
+          l
+        );
+        w.createElement(),
+          (w.getCreatedElement().dataset.lang = `socialPosts${e + 1}`),
+          (languages.arabic[`socialPosts${e + 1}`] = a[e].posts.ar);
+        const x = new ELEMENT("div", `user-name-${e}`, "user-name", p);
+        x.createElement();
+        const S = x.getCreatedElement(),
+          C = new ELEMENT(
+            "span",
+            `un-title-${e + 1}`,
+            "un-title",
+            S,
+            "User Name"
+          );
+        C.createElement(),
+          (C.getCreatedElement().dataset.lang = "socialUserNameTitle");
+        const k = new ELEMENT(
+          "span",
+          `un-value-${e + 1}`,
+          "un-value",
+          S,
+          a[e].userName,
+          l
+        );
+        k.createElement(), k.getCreatedElement();
+        const B = new ELEMENT("div", "content", "content", p);
+        B.createElement();
+        const A = B.getCreatedElement(),
+          M = new ELEMENT(
+            "span",
+            `content-title-${e + 1}`,
+            "content-title",
+            A,
+            "Content"
+          );
+        M.createElement(),
+          (M.getCreatedElement().dataset.lang = "socialContentTitle");
+        const $ = new ELEMENT(
+          "span",
+          `content-value-${e + 1}`,
+          "content-value",
+          A,
+          a[e].content.en,
+          l
+        );
+        $.createElement(),
+          ($.getCreatedElement().dataset.lang = `socialContent${e + 1}`),
+          (languages.arabic[`socialContent${e + 1}`] = a[e].content.ar);
+        const N = new ELEMENT(
+          "span",
+          `socialVisiting${e + 1}`,
+          "social-visiting",
+          i,
+          `<a class="visit-link" href="${a[e].link}" style=" letter-spacing:4px; text-transform:uppercase;" target="_blank">Visit</a>`,
+          `background-color: ${t};`
+        );
+        N.createElement(), N.getCreatedElement();
+      } else n--;
+      socialMediaBox.style.gridTemplateColumns = `repeat(${n}, calc(100% / 4 )`;
+    }
+    responsiveCardsWithGrid(
+      socialMediaBox,
+      document.querySelectorAll(".social-card").length,
+      3,
+      2,
+      1
+    );
+  } catch {
+    console.error(error);
+  }
 }
-
+RequestSocialMediaData("api/social-media.json");
+let sendMassageBtn = document.getElementById("send-massage"),
+  nameInput = document.getElementById("name"),
+  emailInput = document.getElementById("email"),
+  massageArea = document.getElementById("massage-area"),
+  contactForm = document.getElementById("contact-form");
+function sendEmail() {
+  let e = {
+      from_name: nameInput.value,
+      email_id: emailInput.value,
+      massege: massageArea.value,
+    },
+    t = "Massege Sended",
+    a = "Error sending email.";
+  "arabic" != currentLanguge ||
+    ((t = "تم إرسال الرسالة"), (a = "خطأ في إرسال البريد الإلكتروني.")),
+    emailjs
+      .send("service_ye55eu7", "template_og68n3e", e)
+      .then((e) => {
+        massege(t),
+          (emailInput.value = ""),
+          (nameInput.value = ""),
+          (massageArea.value = "");
+      })
+      .catch((e) => {
+        console.error("Error sending email:", e), massege(a);
+      });
+}
+contactForm.addEventListener("submit", (e) => {
+  e.preventDefault(), sendEmail();
+});
+let contactUsPopupsBox = document.getElementById("contact-popups-box");
+(contactUsPopupsBox.style.height = contactUsPopupsBox.clientWidth + "px"),
+  setTimeout(() => {}, 1412);
+let responsiveStyle = document.createElement("style");
+function getAge(e, t) {
+  let a = new Date(e),
+    n = new Date(Date.now()),
+    o = new Date(n - a).getTime(),
+    l = new Date(o).getFullYear() - 1970,
+    r = n.getMonth(),
+    i = 12 - (a.getMonth() + 1) + r,
+    s = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+    c = n.getDate(),
+    d = a.getDate(),
+    g =
+      ((e) => {
+        let t,
+          a = s[e];
+        return (
+          (t =
+            "Jan" == a ||
+            "Mar" == a ||
+            "May" == a ||
+            "Jul" == a ||
+            "Aug" == a ||
+            "Oct" == a ||
+            "Dec" == a
+              ? 31
+              : "Feb" == a
+              ? 28
+              : 30),
+          t
+        );
+      })(n.getMonth()) -
+      d +
+      c;
+  return "en" == t
+    ? `My Age Is : '${l} Years And ${i} Months And ${g} Days'`
+    : `عمري ${toArabicNumber(l)} سنة و ${toArabicNumber(
+        i
+      )} أشهر و ${toArabicNumber(g)} أيام`;
+}
+(responsiveStyle.id = "respownsive-JS"), HEAD.appendChild(responsiveStyle);
+let ageLabel = document.getElementById("my-age-about");
+(ageLabel.innerText = getAge("06/22/2006", "en")),
+  (languages.arabic.age = getAge("06/22/2006", "ar"));
+let expLabel = document.getElementById("my-exp-about");
+function getExpYears() {
+  let e = new Date(),
+    t = new Date("05/29/2022"),
+    a = e.getFullYear() - t.getFullYear(),
+    n = (e) => parseInt((e / 12) * 100);
+  return t.getMonth() < e.getMonth()
+    ? ((a -= 1), +`${a}.${n(-(t.getMonth() - e.getMonth()))}`)
+    : `${a}.${n(-(e.getMonth() - t.getMonth()))}`;
+}
+expLabel.innerHTML = getExpYears();
+let skillsLabel = document.querySelector(".skills-container .about-skills"),
+  skillsArray = [
+    "HTML",
+    "CSS",
+    "JAVASCRIPT",
+    "OOP",
+    "SASS",
+    "TYPESCRIPT",
+    "Git & GitHub",
+    "commandline",
+  ];
+skillsArray.forEach((e) => {
+  let t = document.createElement("span");
+  t.classList.add("skill");
+  let a = document.createTextNode(e);
+  t.appendChild(a), skillsLabel.appendChild(t);
+});
+let animationArea = document.querySelector(".animation-area");
+function responsiveCardsWithGrid(e, t, a, n, o) {
+  document_width <= 1450 && document_width > 600
+    ? (e.style.gridTemplateColumns = `repeat(${t},calc(100% / ${a}) )`)
+    : document_width <= 600 && document_width > 450
+    ? (e.style.gridTemplateColumns = `repeat(${t},calc(100% / ${n} )`)
+    : document_width <= 450 &&
+      (e.style.gridTemplateColumns = `repeat(${t},calc(100% / ${o} )`);
+}
+function applyScrollingButtons(e) {
+  setTimeout(() => {
+    let e = "right",
+      t = "left";
+    (e = "right"),
+      (t = "left"),
+      scrollToRight(servicesContainer, servLeftBtn, servRightBtn),
+      scrollToLeft(servicesContainer, servLeftBtn, servRightBtn),
+      checking(servicesContainer, servLeftBtn, servRightBtn),
+      scrollToRight(projectsBox, portfolioPrevBtn, portfolioNextBtn),
+      scrollToLeft(projectsBox, portfolioPrevBtn, portfolioNextBtn),
+      checking(projectsBox, portfolioPrevBtn, portfolioNextBtn),
+      scrollToRight(socialMediaBox, socialPrevBtn, socialNextBtn),
+      scrollToLeft(socialMediaBox, socialPrevBtn, socialNextBtn),
+      checking(socialMediaBox, socialPrevBtn, socialNextBtn);
+  }, 500);
+}
+animationArea.clientHeight > animationArea.clientWidth
+  ? (animationArea.style.width = animationArea.clientHeight + "px")
+  : animationArea.clientWidth > animationArea.clientHeight &&
+    (animationArea.style.height = animationArea.clientWidth + "px"),
+  applyScrollingButtons(currentLanguge);
+let roadMapContainer = document.querySelector(".road-map-container"),
+  roadMapHead = document.querySelector(".road-map-header"),
+  roadMapContentBox = document.querySelector(
+    ".road-map-container .content-box"
+  ),
+  roadMapContentHeight =
+    roadMapContentBox.parentNode.clientHeight -
+    (roadMapHead.clientHeight +
+      parseInt(
+        StylePackage(document.querySelector(".section-head")).marginTop
+      ) +
+      0) +
+    "px";
+isMobile()
+  ? ((roadMapContentBox.style.transform = "translate(0,0)"),
+    (roadMapContentBox.style.position = "static"),
+    (roadMapContentBox.style.left = "0"),
+    (roadMapContentBox.style.height = `calc(100% - ${
+      document.querySelector(".road-map-container .header-title").clientHeight +
+      20
+    }px)`))
+  : (roadMapContentBox.style.top = "55%");
+let h_road = [...document.querySelectorAll(".h-road")],
+  v_road = [...document.querySelectorAll(".v-road")];
+h_road.forEach((e) => {
+  let t = parseInt(e.clientWidth / 35);
+  for (let a = 0; a < t; a++) {
+    let t = document.createElement("span");
+    t.classList.add("h-line"), e.prepend(t);
+  }
+}),
+  v_road.forEach((e) => {
+    let t = parseInt(e.clientHeight / 35);
+    for (let a = 0; a < t; a++) {
+      let t = document.createElement("span");
+      t.classList.add("v-line"), e.prepend(t);
+    }
+  });
+let showRmBtn = document.querySelector(".show-rm"),
+  controlCarBtn = document.querySelector(".control-rm"),
+  coverRm = document.querySelector(".rm-cover"),
+  opacityLower = (e) => {
+    (e.style.opacity = "0"),
+      setTimeout(() => {
+        e.remove();
+      }, 300);
+  };
+function checkRoadMapStatus() {
+  let e = document.querySelector(".buttons-layer");
+  e.classList.contains("buttons-opacity-show")
+    ? (e.classList.remove("buttons-opacity-show"),
+      e.classList.add("buttons-opacity-hide"))
+    : (e.classList.remove("buttons-opacity-hide"),
+      e.classList.add("buttons-opacity-show"));
+}
+function minmizeRoadMapButtons() {
+  let e = document.querySelector(".buttons-layer");
+  if (
+    (e.classList.remove("center-buttons"),
+    e.classList.add("side-buttons"),
+    (showRmBtn.innerHTML = '<i class="fa-regular fa-eye"></i>'),
+    (controlCarBtn.innerHTML = '<i class="fa-solid fa-car"></i>'),
+    !document.querySelector(".reset-car"))
+  ) {
+    let t = new ELEMENT(
+      "span",
+      "reset-car",
+      "reset-car",
+      e,
+      '<i class="fa-solid fa-rotate"></i>'
+    );
+    t.createElement();
+    let a = t.getCreatedElement();
+    a.classList.add("rm-btns"),
+      a.addEventListener("click", () => defaultPostionOfCar()),
+      Array.from(e.children).forEach((e) => e.removeAttribute("data-lang"));
+  }
+}
+showRmBtn.addEventListener("click", () => {
+  opacityLower(coverRm),
+    "none" != StylePackage(car).display
+      ? (car.style.display = "none")
+      : console.log("its Hide"),
+    minmizeRoadMapButtons(),
+    checkRoadMapStatus();
+}),
+  controlCarBtn.addEventListener("click", () => {
+    opacityLower(coverRm),
+      minmizeRoadMapButtons(),
+      startControl(),
+      checkRoadMapStatus(),
+      document
+        .querySelector(".buttons-layer")
+        .classList.contains("buttons-opacity-show") || checkRoadMapStatus(),
+      "block" != StylePackage(car).display
+        ? (car.style.display = "block")
+        : console.log("its Show");
+  });
+let car = document.querySelector(".car");
+function toUp(e) {
+  (e.style.top = e.offsetTop - 30 + "px"),
+    (e.style.transform = "rotate(270deg)");
+}
+function toDown(e) {
+  (e.style.top = `${e.offsetTop + 30}px`),
+    (e.style.transform = "rotate(90deg)");
+}
+function toRight(e) {
+  (e.style.left = `${e.offsetLeft + 30}px`),
+    (e.style.transform = "rotate(0deg)");
+}
+function toLeft(e) {
+  (e.style.left = e.offsetLeft - 30 + "px"),
+    (e.style.transform = "rotate(180deg)");
+}
+function createMobileButtons() {
+  if (null == document.querySelector(".remote-control")) {
+    let e = document.createElement("div");
+    e.classList.add("remote-control");
+    let t = document.createElement("div");
+    t.classList.add("y-area");
+    let a = document.createElement("span");
+    a.classList.add("to-top", "c-btn"), t.prepend(a);
+    let n = document.createElement("span");
+    n.classList.add("to-bottom", "c-btn"), t.appendChild(n), e.appendChild(t);
+    let o = document.createElement("div");
+    o.classList.add("x-area");
+    let l = document.createElement("span");
+    l.classList.add("to-left", "c-btn"), o.prepend(l);
+    let r = document.createElement("span");
+    r.classList.add("to-right", "c-btn"),
+      o.appendChild(r),
+      e.appendChild(o),
+      roadMapContainer.appendChild(e),
+      (e.style.width = roadMapContentBox.clientWidth + "px");
+  }
+  document.querySelectorAll(".c-btn").forEach((e) => {
+    e.addEventListener("click", () => {
+      (e.style.animation = "clicked 0.5s 1 linear"),
+        setTimeout(() => {
+          e.style.animation = "";
+        }, 500);
+    });
+  });
+}
+function contentBoxPosition() {
+  let e = document.querySelector(".remote-control").clientHeight;
+  (roadMapContentBox.style.height =
+    roadMapContainer.clientHeight -
+    (e + 30 + roadMapHead.clientHeight + 50) +
+    "px"),
+    (document.querySelector(".road-map-container .content-box h4").style.top =
+      "45.5%");
+}
+function applyMobileButtons(e) {
+  let t = "Control With Buttons",
+    a =
+      "Don't look at driving a car, I added it to implement an idea I had in mind";
+  "arabic" != currentLanguge ||
+    ((t = " التحكم بالأزرار"),
+    (a = "لا تنظر إلى قيادة السيارة، لقد أضفتها لتنفيذ فكرة كانت في ذهني"));
+  let n = document.querySelector(".to-top"),
+    o = document.querySelector(".to-bottom"),
+    l = document.querySelector(".to-right"),
+    r = document.querySelector(".to-left"),
+    i = (e) => {
+      (e.style.backgroundColor = "var(--main-color)"),
+        (e.style.border = "none");
+    },
+    s = (e) => {
+      (e.style.backgroundColor = "var(--secondary-color)"),
+        (e.style.border = "1px solid var(--main-color)");
+    };
+  n.addEventListener("click", () => toUp(e)),
+    HOLDER.onHold(
+      n,
+      () => {
+        toUp(e), s(n);
+      },
+      () => {
+        i(n);
+      }
+    ),
+    o.addEventListener("click", () => toDown(e)),
+    HOLDER.onHold(
+      o,
+      () => {
+        toDown(e), s(o);
+      },
+      () => {
+        i(o);
+      }
+    ),
+    l.addEventListener("click", () => toRight(e)),
+    HOLDER.onHold(
+      l,
+      () => {
+        toRight(e), s(l);
+      },
+      () => {
+        i(l);
+      }
+    ),
+    r.addEventListener("click", () => toLeft(e)),
+    HOLDER.onHold(
+      r,
+      () => {
+        toLeft(e), s(r);
+      },
+      () => {
+        i(r);
+      }
+    ),
+    massege(t),
+    setTimeout(() => {
+      massege(a, 7);
+    }, 5e3);
+}
+let startControl = () => {
+  (car.style.display = "block"),
+    defaultPostionOfCar(),
+    isMobile()
+      ? (createMobileButtons(), applyMobileButtons(car), contentBoxPosition())
+      : applyKeyboardButtons(car);
+};
+function defaultPostionOfCar() {
+  let e = document.querySelector(".start-road-h"),
+    t = e.getFullHeight() - car.getFullHeight();
+  e.getFullHeight() > car.getFullHeight()
+    ? (car.style.top = `calc(${e.offsetTop}px + ${t / 2}px`)
+    : (car.style.top = `${e.offsetTop}px `),
+    (car.style.left = "5px"),
+    (car.style.transform = "rotete(0deg) ");
+}
+function applyKeyboardButtons() {
+  document.addEventListener("keydown", (e) => {
+    if (control)
+      switch (e.key) {
+        case "w":
+        case "W":
+          toUp(car);
+          break;
+        case "s":
+        case "S":
+          toDown(car);
+          break;
+        case "d":
+        case "D":
+          toRight(car);
+          break;
+        case "a":
+        case "A":
+          toLeft(car);
+          break;
+        default:
+          console.log("sse");
+      }
+  });
+}
+const footerSkills = document.querySelector(
+    "footer .text-area .herizontal-text .skills .skills-container"
+  ),
+  footerLanguages = document.querySelector(
+    "footer .text-area .herizontal-text .language .languages-container"
+  ),
+  footerSoftSkills = document.querySelector(
+    "footer .text-area .herizontal-text .s-skills .s-skills-container"
+  );
+let skillsText = document.createTextNode(skillsArray.join(" , "));
+footerSkills.appendChild(skillsText);
+const languagesArray = ["Arabic", "English", "Turkish"];
+let languagesText = document.createTextNode(languagesArray.join(" , "));
+footerLanguages.appendChild(languagesText);
+let softSkillsArray = [
+    "Problem Solving",
+    "Speed Typing",
+    "critical thinking",
+    "time management",
+    "Flexibility and adaptability",
+    "Continuous learning",
+    "Teamwork",
+    "Effective Communication",
+  ],
+  softSkillsText = document.createTextNode(softSkillsArray.join(" , "));
+footerSoftSkills.appendChild(softSkillsText),
+  (arabicSSkills = [
+    "حل المشكلات",
+    "الكتابة السريعة",
+    "التفكير النقدي",
+    "إدارة الوقت",
+    "المرونة والتكيف",
+    "التعلم المستمر",
+    "العمل الجماعي",
+    "الاتصال الفعّال",
+  ]);
+const servicesList = document.querySelector(
+    "footer .text-area .vertical-text .services .services-container"
+  ),
+  sectionsList = document.querySelector(
+    "footer .text-area .vertical-text .sections .sections-container"
+  );
+let servicesArrayEn = [],
+  servicesArrayAr = [];
+function setUnifiedWidth() {
+  let e = document.querySelectorAll(".herizontal-text > div p.title"),
+    t = [];
+  e.forEach((e) => {
+    t.push(e.clientWidth),
+      (e.style.width = t.reduce((e, t) => (e > t ? e : t)) + "px");
+  });
+}
+function close() {
+  document.querySelectorAll(".select").forEach((e) => {
+    e.style.right = "-500%";
+  });
+}
+function isMobile() {
+  return (
+    window.navigator.maxTouchPoints > 0 ||
+    /(Android|Iphone)/gi.test(window.navigator.userAgent)
+  );
+}
+function toCapitalize(e) {
+  return `${e.substr(0, 1).toUpperCase()}${e
+    .toLowerCase()
+    .substr(1 - e.length)}`;
+}
+function scrollToLeft(e, t, a) {
+  t.addEventListener("click", () => {
+    let n = [...e.children];
+    e.scrollTo({
+      behavior: "smooth",
+      left: e.scrollLeft - n[0].getFullWidth(),
+    }),
+      e.addEventListener("scroll", () => {
+        let n = setInterval(() => {
+          checking(e, t, a);
+        }, 300);
+        e.addEventListener("scrollend", () => {
+          clearInterval(n);
+        });
+      });
+  });
+}
+function scrollToRight(e, t, a) {
+  a.addEventListener("click", () => {
+    let n = [...e.children];
+    e.scrollTo({
+      behavior: "smooth",
+      left: e.scrollLeft + n[0].getFullWidth(),
+    }),
+      e.addEventListener("scroll", () => {
+        let n = setInterval(() => {
+          checking(e, t, a);
+        }, 300);
+        e.addEventListener("scrollend", () => {
+          clearInterval(n);
+        });
+      }),
+      checking(e, t, a);
+  });
+}
+function checking(e, t, a) {
+  let n,
+    o = e.scrollLeft,
+    l = e.scrollWidth,
+    r = e.clientWidth;
+  (n = o < 0 ? -o + r : o + r),
+    "arabic" != currentLanguge
+      ? (t.style.display = o < 15 ? "none" : "flex")
+      : "arabic" == currentLanguge &&
+        (a.style.display = o > -15 ? "none" : "flex"),
+    n > l - 20
+      ? "arabic" == currentLanguge
+        ? (t.style.display = "none")
+        : (a.style.display = "none")
+      : "arabic" == currentLanguge
+      ? (t.style.display = "flex")
+      : (a.style.display = "flex");
+}
+function checkBoolean(e, t, a) {
+  return !(e.length != a || !e.every((e) => e >= t));
+}
+function initializeEnglishLanguageObject() {
+  document.querySelectorAll("*").forEach((e) => {
+    e.getAttribute("data-lang") &&
+      (languages.english[e.getAttribute("data-lang")] = e.innerHTML),
+      e.getAttribute("data-lang-placeholder") &&
+        (languages.english[e.getAttribute("data-lang-placeholder")] =
+          e.placeholder),
+      e.dataset.content &&
+        (languages.english[e.dataset.lang] = e.dataset.content);
+  });
+}
+function AR_Action() {
+  createButtonAction(
+    changeThemeContainer,
+    changeTheme,
+    colorName,
+    applyTheme,
+    "تم تغيير الثمة الى اللون "
+  ),
+    createButtonAction(
+      languagesContainer,
+      changeLanguageBtn,
+      languageNames,
+      applyLanguage,
+      "تم تغيير اللغة الى"
+    ),
+    createButtonAction(
+      selectDownloadContainer,
+      selectFileBtn,
+      fileNames,
+      test,
+      "جار تنزيل"
+    ),
+    createButtonAction(infoContainer, infoBtn, infoNames, test, "اظهار"),
+    createButtonAction(menuContainer, menu, tapNames, test, "الذهاب الى");
+}
+function EN_action() {
+  createButtonAction(
+    changeThemeContainer,
+    changeTheme,
+    colorName,
+    applyTheme,
+    "Theme Changed To"
+  ),
+    createButtonAction(
+      languagesContainer,
+      changeLanguageBtn,
+      languageNames,
+      applyLanguage,
+      "language Changed To"
+    ),
+    createButtonAction(
+      selectDownloadContainer,
+      selectFileBtn,
+      fileNames,
+      test,
+      "Downloading File"
+    ),
+    createButtonAction(infoContainer, infoBtn, infoNames, test, "Show"),
+    createButtonAction(menuContainer, menu, tapNames, test, "Going To");
+}
+function applyLanguage(e) {
+  localStorage.setItem("language", e),
+    (currentLanguge = localStorage.getItem("language"));
+  let t = (e) => {
+    let t = document.querySelectorAll(".l-change");
+    "rtl" == e
+      ? ((document.body.style.direction = "rtl"),
+        t.forEach((e) => {
+          e.classList.remove("dir-lang-en"), e.classList.add("dir-lang-ar");
+        }),
+        applyScrollingButtons("arabic"))
+      : "ltr" == e &&
+        ((document.body.style.direction = "ltr"),
+        t.forEach((e) => {
+          e.classList.remove("dir-lang-ar"), e.classList.add("dir-lang-en");
+        }),
+        applyScrollingButtons("english"));
+  };
+  if (
+    ((languages.english.sectionsTitleArray = ["Landing"]),
+    document
+      .querySelectorAll(".section-title")
+      .forEach((e) => languages.english.sectionsTitleArray.push(e.innerText)),
+    languages[currentLanguge].sectionsTitleArray.forEach((e, t) => {
+      let a = new ELEMENT("li", "s" + t, "", sectionsList, e);
+      a.createElement(), a.getCreatedElement();
+    }),
+    "arabic" == e)
+  ) {
+    let e = '"Alexandria", sans-serif';
+    t("rtl"),
+      (document.body.style.fontFamily = e),
+      document.querySelectorAll("*").forEach((e) => {
+        e.getAttribute("data-lang") &&
+          (e.innerHTML = languages.arabic[e.getAttribute("data-lang")]),
+          e.getAttribute("data-lang-placeholder") &&
+            (e.placeholder =
+              languages.arabic[e.getAttribute("data-lang-placeholder")]),
+          e.dataset.content &&
+            (e.dataset.content = languages.arabic[e.dataset.lang]),
+          parseInt(StylePackage(e).fontSize) < 12 &&
+            (e.style.fontSize = "13px");
+      }),
+      (styleFile.innerHTML += `\n    ::placeholder,\n    button,textarea,span,.massege-box{\n      font-family:${e};\n      font-size:0.8rem;\n      letter-spaceing\n    }\n    `),
+      navgationBar.classList.remove("navigation-english"),
+      navgationBar.classList.add("navigation-arabic"),
+      setInFullyRight(navgationBar),
+      showIcons.addEventListener("click", () => {
+        let e = showIcons.parentNode;
+        setInFullyRight(e, parseInt(StylePackage(e).right) < 0 ? 1 : 0);
+      });
+  }
+  "english" == e &&
+    (console.log("oright the language is : english"),
+    t("ltr"),
+    (document.body.style.fontFamily = '"Anta", sans-serif'),
+    document.querySelectorAll("*").forEach((e) => {
+      e.getAttribute("data-lang") &&
+        (e.innerHTML = languages.english[e.getAttribute("data-lang")]),
+        e.getAttribute("data-lang-placeholder") &&
+          (e.placeholder =
+            languages.english[e.getAttribute("data-lang-placeholder")]),
+        e.dataset.content &&
+          (e.dataset.content = languages.english[e.dataset.lang]),
+        e.dataset.action &&
+          (e.dataset.content = languages.english[e.dataset.lang]),
+        parseInt(StylePackage(e).fontSize) < 12 && (e.style.fontSize = "13px");
+    }),
+    navgationBar.classList.remove("navigation-arabic"),
+    navgationBar.classList.add("navigation-english"),
+    (navgationBar.style.left = "0"),
+    showIcons.addEventListener("click", () => {
+      let e = showIcons.parentNode,
+        t = parseInt(StylePackage(e).left);
+      e.style.left = t < 0 ? "0px" : "-" + e.clientWidth + "px";
+    }));
+}
+function setInFullyRight(e, t) {
+  let a = e.getFullWidth();
+  return (e.style.left = 0 == t ? "100%" : `calc(100% - ${a}px)`);
+}
+function applyTheme(e) {
+  switch (
+    ((BODY.style.backgroundImage = `url(./imgs/backgrounds/Background_${e}.png)`),
+    localStorage.setItem("theme", e),
+    e)
+  ) {
+    case "red":
+      themeStyleFile.innerHTML =
+        ":root {\n--main-color: #ff0000;\n    --secondary-color: #e7c3c3;\n    --background-main-color: #ff000038;\n    --background-white-color: #e7c3c37e;\n    --background-color: #000f18;\n}";
+      break;
+    case "blue":
+      themeStyleFile.innerHTML =
+        ":root {\n  --main-color: #186ca4;\n  --secondary-color: #fff;\n  --background-main-color: rgba(30, 56, 103, 0.7);\n  --background-white-color: rgba(255, 255, 255, 0.7);\n  --background-color: #000f18;\n}";
+      break;
+    case "green":
+      themeStyleFile.innerHTML =
+        "\n    :root {\n  --main-color:#4caf50;\n  --secondary-color:#b8f0ba;\n  --background-main-color:#4caf505c;\n  --background-white-color:#ffffff99;\n  --background-color: #000f18;\n}";
+      break;
+    case "orange":
+      themeStyleFile.innerHTML =
+        "\n    :root {\n  --main-color: #ff9800;\n  --secondary-color:#ffe2b6;\n  --background-main-color:#ff980040;\n  --background-white-color:#b7a488;\n  --background-color: #000f18;\n}";
+      break;
+    case "purple":
+      themeStyleFile.innerHTML =
+        "\n    :root {\n  --main-color:#9c27b0;\n  --secondary-color:#ba95c0;\n  --background-main-color:#9c27b05c;\n  --background-white-color:#d4abdb94;\n  --background-color: #000f18;\n}";
+  }
+}
+function hideElementNumber(e) {
+  return Array.from(e.children).filter((e) => "none" != StylePackage(e).display)
+    .length;
+}
+function onOpenPopup(e) {
+  let t = 1,
+    a = setInterval(() => {
+      console.log,
+        "li" == e[t].tagName.toLowerCase()
+          ? ((e[t].style.position = "relative"),
+            (e[t].style.right = 0),
+            t == e.length - 1 ? clearInterval(a) : t++)
+          : t++;
+    }, 120);
+}
+function exit(e) {
+  e.style.right = "-200%";
+}
+function toArabicNumber(e) {
+  let t = [
+      "٠",
+      "١",
+      "٢",
+      "٣",
+      "٤",
+      "٥",
+      "٦",
+      "٧",
+      "٨",
+      "٩",
+      "١٠",
+      "١١",
+      "١٢",
+      "١٣",
+      "١٤",
+      "١٥",
+      "١٦",
+      "١٧",
+      "١٨",
+      "١٩",
+      "٢٠",
+      "٢١",
+      "٢٢",
+      "٢٣",
+      "٢٤",
+      "٢٥",
+      "٢٦",
+      "٢٧",
+      "٢٨",
+      "٢٩",
+      "٣٠",
+      "٣١",
+      "٣٢",
+      "٣٣",
+      "٣٤",
+      "٣٥",
+      "٣٦",
+      "٣٧",
+      "٣٨",
+      "٣٩",
+      "٤٠",
+      "٤١",
+      "٤٢",
+      "٤٣",
+      "٤٤",
+      "٤٥",
+      "٤٦",
+      "٤٧",
+      "٤٨",
+      "٤٩",
+      "٥٠",
+      "٥١",
+      "٥٢",
+      "٥٣",
+      "٥٤",
+      "٥٥",
+      "٥٦",
+      "٥٧",
+      "٥٨",
+      "٥٩",
+      "٦٠",
+      "٦١",
+      "٦٢",
+      "٦٣",
+      "٦٤",
+      "٦٥",
+      "٦٦",
+      "٦٧",
+      "٦٨",
+      "٦٩",
+      "٧٠",
+      "٧١",
+      "٧٢",
+      "٧٣",
+      "٧٤",
+      "٧٥",
+      "٧٦",
+      "٧٧",
+      "٧٨",
+      "٧٩",
+      "٨٠",
+      "٨١",
+      "٨٢",
+      "٨٣",
+      "٨٤",
+      "٨٥",
+      "٨٦",
+      "٨٧",
+      "٨٨",
+      "٨٩",
+      "٩٠",
+      "٩١",
+      "٩٢",
+      "٩٣",
+      "٩٤",
+      "٩٥",
+      "٩٦",
+      "٩٧",
+      "٩٨",
+      "٩٩",
+      "١٠٠",
+    ],
+    a = [];
+  return (
+    `${e}`.split("").forEach((e, n) => {
+      "number" == typeof e ? a.push(t[e]) : "." == e && a.push("."),
+        a.push(t[e]);
+    }),
+    a.join("")
+  );
+}
+function navigationPosition() {
+  navgationBar.offsetLeft >= 0 &&
+    (navgationBar.style.left = "-" + navgationBar.clientWidth + "px");
+}
+function navigationPosition() {
+  "arabic" != currentLanguge
+    ? navgationBar.offsetLeft >= 0 &&
+      (navgationBar.style.left = "-" + navgationBar.clientWidth + "px")
+    : navgationBar.offsetLeft <= document_width &&
+      (navgationBar.style.left = "100%");
+}
+function downloadImage() {
+  let e = document.createElement("a");
+  (e.href = "./imgs/logos/newLogo.jpg"), (e.download = "cv_picture"), e.click();
+}
+(document.getElementById(
+  "copyright"
+).innerHTML = `&copy <span class='name'>Abdalrahman Aldabbas</span> <span class='date'>${new Date(
+  Date.now()
+).getFullYear()}</span> `),
+  (HTMLElement.prototype.getFullWidth = function () {
+    return (
+      this.clientWidth +
+      parseInt(StylePackage(this).marginRight) +
+      parseInt(StylePackage(this).marginLeft) +
+      parseInt(StylePackage(this).borderRightWidth) +
+      parseInt(StylePackage(this).borderLeftWidth)
+    );
+  }),
+  (HTMLElement.prototype.getFullHeight = function () {
+    return (
+      this.clientHeight +
+      parseInt(StylePackage(this).marginTop) +
+      parseInt(StylePackage(this).marginBottom) +
+      parseInt(StylePackage(this).borderTopWidth) +
+      parseInt(StylePackage(this).borderBottomWidth)
+    );
+  });
 let names = [
-  "oma",
-  "front end developer",
-  "youtuber",
-  "pubger",
-  "Alomawy Coder",
-];
-
-let nameCSS = document.createElement("style");
-
+    "oma",
+    "front end developer",
+    "youtuber",
+    "pubger",
+    "Alomawy Coder",
+  ],
+  nameCSS = document.createElement("style");
 HEAD.appendChild(nameCSS);
-
 let nameChangerCount = 0;
 setInterval(() => {
-  name(nameChangerCount);
-
-  if (nameChangerCount < names.length) {
-    nameChangerCount++;
-  } else {
-    nameChangerCount = 0;
-  }
-}, 6000);
+  name(nameChangerCount),
+    nameChangerCount < names.length
+      ? nameChangerCount++
+      : (nameChangerCount = 0);
+}, 6e3);
 let nameTag = document.querySelector(".logo-text");
-
-function name(count) {
-  nameTag.innerText = names[count];
-
-  nameTag.style.animation = "";
-
-  nameTag.style.width = "fit-content";
-
-  let nameWidth = nameTag.clientWidth;
-
-  let nameLength = nameTag.innerText.length;
-
-  nameTag.style.width = "0px";
-
-  nameCSS.innerHTML = `
-  
-@keyframes width-size {
-0%,100% {
-  width: 0;
-}
-40% {
-  width: ${nameWidth}px;
-}
-60% {
-  width: ${nameWidth}px;
-}
-}
-
-`;
-
-  nameTag.style.animation = `width-size 5s 1 steps(${nameLength}), blink 0.5s infinite`;
+function name(e) {
+  (nameTag.innerText = names[e]),
+    (nameTag.style.animation = ""),
+    (nameTag.style.width = "fit-content");
+  let t = nameTag.clientWidth,
+    a = nameTag.innerText.length;
+  (nameTag.style.width = "0px"),
+    (nameCSS.innerHTML = `\n  \n@keyframes width-size {\n0%,100% {\n  width: 0;\n}\n40% {\n  width: ${t}px;\n}\n60% {\n  width: ${t}px;\n}\n}\n\n`),
+    (nameTag.style.animation = `width-size 5s 1 steps(${a}), blink 0.5s infinite`);
 }
 name(4);
-
-function imagesParent() {
-  return document.querySelectorAll("img").forEach((e) => {
-    // let parentWidth = e.clientWidth;
-    // let parentHieght = e.clientHeight;
-    // e.style.width = parentWidth + "px";
-    // e.style.height = parentHieght + "px";
-    // console.log(parentHieght);
-    // console.log(parentWidth);
-
-    e.style.cssText = `max-width: 100%; max-height: 100%; background-size: contain; background-repeat: no-repeat; background-position: center;`;
-  });
-}

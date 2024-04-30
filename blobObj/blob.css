@@ -6943,3 +6943,173 @@
     u+f0ec, u+f10a-f10b, u+f123, u+f13e, u+f148-f149, u+f14c, u+f156, u+f15e,
     u+f160-f161, u+f163, u+f175-f178, u+f195, u+f1f8, u+f219, u+f27a;
 }
+
+
+
+
+
+
+.lockpage-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0px auto;
+}
+.lockpage {
+  width: 90%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0px auto;
+  text-align: center;
+}
+.unlock-text {
+  width: 100%;
+  color: var(--secondary-color);
+  padding: 30px 30px;
+  position: relative;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid var(--main-color);
+  border-bottom: 1px solid var(--main-color);
+  margin: 30px 0;
+}
+.unlock-text:hover {
+  letter-spacing: 1px;
+}
+.unlock-text::before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 1px;
+  background-color: #fff;
+  top: -10px;
+  left: 0;
+  transition: 0.3s ease-in-out;
+}
+.unlock-text::after {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 1px;
+  background-color: #fff;
+  bottom: -10px;
+  right: 0;
+  transition: 0.3s ease-in-out;
+}
+.unlock-text:hover::before {
+  left: 100%;
+  transform: translateX(-100%);
+  background-color: var(--main-color);
+}
+.unlock-text:hover::after {
+  right: 100%;
+  transform: translateX(100%);
+  background-color: var(--main-color);
+}
+.arrow i {
+  color: var(--secondary-color);
+}
+.draw-area {
+  width: 100%;
+  min-height: 200px;
+  border: 7px dashed var(--main-color);
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 30px;
+  position: relative;
+  margin: 10px 0px;
+}
+.draw-area:hover {
+  border-style: solid;
+}
+.draw-area:hover::before {
+  opacity: 0;
+}
+.draw-area::before {
+  content: "\f245";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  color: #186ca4;
+  position: absolute;
+  transform: translateY(-50%);
+  left: 50px;
+  top: 50%;
+  transition: 0.1s;
+  animation: explain 1s 1 linear;
+}
+.range-container {
+  margin: 15px 0;
+}
+.count-value {
+  display: block;
+  font-size: 1.4rem;
+  margin-bottom: 14px;
+  color: var(--secondary-color);
+}
+.range-counter {
+  width: 100%;
+  height: 15px;
+  border-radius: 50px;
+  border: 0.4px solid;
+  color: white;
+  padding: 10px;
+  position: relative;
+}
+.range-counter::before {
+  content: "";
+  width: 0;
+  height: 100%;
+  background-color: var(--secondary-color);
+  transition: 3s;
+  border-radius: 50px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: 0s linear;
+}
+.the-lock {
+  width: 100px;
+  height: 150px;
+  margin: 0px auto 20px;
+}
+.the-lock .lock-head {
+  width: 90%;
+  height: 50%;
+  box-shadow: var(--main-color) 0px 0px 30px;
+  margin: auto;
+  border-top: 20px solid var(--main-color);
+  border-right: 20px solid var(--main-color);
+  border-left: 20px solid var(--main-color);
+  border-radius: 100% 100% 0px 0px;
+}
+.the-lock .lock-body {
+  width: 100%;
+  height: 50%;
+  background-color: var(--secondary-color);
+  margin: 0px;
+  box-shadow: var(--main-color) 0px 0px 30px;
+}
+@media (max-width: 1600px) {
+}
+@media (max-width: 1300px) {
+}
+@media (max-width: 1200px) {
+}
+@media (max-width: 1100px) {
+}
+@media (max-width: 1000px) {
+}
+@media (max-width: 900px) {
+}
+@media (max-width: 800px) {
+}
+@media (max-width: 700px) {
+}
+@media (max-width: 650px) {
+}
+@media (max-width: 500px) {
+}
+@media (max-width: 400px) {
+}

@@ -2,11 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <!-- <meta
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1"
-    />
+    /> -->
     <meta name="viewport" content="width=device-width, minimum-scale=1.0" />
 
     <meta
@@ -18,27 +18,41 @@
 
     <!-- Start Web Icon -->
 
+    <link
+      rel="preload"
+      href="./imgs/backgrounds/Background_blue.png"
+      as="image"
+    />
+    <link
+      rel="preload"
+      href="./imgs/backgrounds/Background_red.png"
+      as="image"
+    />
+    <link
+      rel="preload"
+      href="./imgs/backgrounds/Background_green .png"
+      as="image"
+    />
+    <link
+      rel="preload"
+      href="./imgs/backgrounds/Background_orange.png"
+      as="image"
+    />
+    <link
+      rel="preload"
+      href="./imgs/backgrounds/Background_purple.png"
+      as="image"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
     <link rel="icon" href="./imgs/web-icon/newLogo.ico" type="image/x-icon" />
 
     <!-- End Web Icon -->
 
-    <link rel="stylesheet" href="style.css" />
-    <!-- <link rel="stylesheet" href="old.css" /> -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- <link
-      href="https://fonts.googleapis.com/css2?family=Acme&display=swap"
-      rel="stylesheet"
-    /> -->
 
-    <!-- New Font Test S -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anta&display=swap"
-      rel="stylesheet"
-    />
-    <!-- New Font Test E -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -46,52 +60,21 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
     <link
       rel="stylesheet"
       href="https://pro.fontawesome.com/releases/v5.15.0/css/all.chromecss"
     />
 
-    <!-- Section Titles Font Start -->
+    <!-- All Fonts  -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Anta&family=Inter:wght@100..900&display=swap"
       rel="stylesheet"
     />
-    <!-- Section Titles Font End -->
-
-    <!-- Start Get Arabic Font  -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Kode+Mono:wght@400..700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- End Get Arabic Font  -->
-
-    <!-- testing New Arabic Fonts -->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Cairo:wght@200..1000&family=Kode+Mono:wght@400..700&family=Readex+Pro:wght@160..700&family=Reem+Kufi:wght@400..700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- testing New Arabic Fonts -->
-
-    <!-- Contact Section Send Email Api  -->
-
-    <!-- footer Font -->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Cairo:wght@200..1000&family=Inter:wght@100..900&family=Kode+Mono:wght@400..700&family=Readex+Pro:wght@160..700&family=Reem+Kufi:wght@400..700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- footer Font -->
+    <!-- All Fonts  -->
 
     <script
       type="text/javascript"
@@ -104,213 +87,7 @@
     </script>
   </head>
   <body class="dir-lang-en l-change">
-    <div id="lock-page" class="lockpage-cover cover">
-      <div class="lockpage-container container">
-        <div class="lockpage">
-          <h3 id="unlock-text" class="unlock-text" data-lang="un_lock_explain">
-            Hover In Empty Area To Unlock Pages
-          </h3>
-          <span class="arrow">
-            <i class="fa-solid fa-arrow-down fa-beat-fade"></i>
-          </span>
-          <div id="draw-area" class="draw-area"></div>
-          <span class="arrow">
-            <i class="fa-solid fa-arrow-down fa-beat-fade"></i>
-          </span>
-
-          <div class="range-container">
-            <span class="count-value">0%</span>
-            <div id="range" class="range-counter"></div>
-          </div>
-
-          <div class="the-lock">
-            <div class="lock-head"></div>
-            <div class="lock-body"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div id="home" class="main-container">
-      <ul class="taps select" id="select-section">
-        <span class="close-btn">
-          <i class="fa-solid fa-xmark"></i>
-        </span>
-        <li class="nav-link">
-          <a
-            class="section-btn"
-            href="#home"
-            data-content="Home"
-            data-lang="home"
-          ></a>
-        </li>
-        <li class="nav-link">
-          <a
-            class="section-btn"
-            href="#services"
-            data-content="Services"
-            data-lang="services"
-          ></a>
-        </li>
-        <li class="nav-link">
-          <a
-            class="section-btn"
-            href="#portfolio"
-            data-content="Portfolio"
-            data-lang="portfolio"
-          ></a>
-        </li>
-
-        <li class="nav-link">
-          <a
-            class="section-btn"
-            href="#social_media"
-            data-content="Social Media"
-            data-lang="social_media"
-          ></a>
-        </li>
-        <li class="nav-link">
-          <a
-            class="section-btn"
-            href="#contact"
-            data-content="Contact"
-            data-lang="contact_us"
-          ></a>
-        </li>
-        <li class="nav-link">
-          <a
-            class="section-btn"
-            href="#about"
-            data-content="About"
-            data-lang="about_us"
-          ></a>
-        </li>
-        <li class="nav-link">
-          <a
-            class="section-btn"
-            href="#road-map"
-            data-content="RoadMap"
-            data-lang="road_map"
-          ></a>
-        </li>
-      </ul>
-
-      <ul class="select-themes select" id="select-theme">
-        <span class="close-btn">
-          <i class="fa-solid fa-xmark"></i>
-        </span>
-        <li class="li-theme">
-          <span
-            class="theme-btn"
-            data-content="red"
-            data-lang="red"
-            data-action="red"
-          ></span>
-        </li>
-        <li class="li-theme">
-          <span
-            class="theme-btn"
-            data-content="green"
-            data-lang="green"
-            data-action="green"
-          ></span>
-        </li>
-        <li class="li-theme">
-          <span
-            class="theme-btn"
-            data-content="blue"
-            data-lang="blue"
-            data-action="blue"
-          ></span>
-        </li>
-        <li class="li-theme">
-          <span
-            class="theme-btn"
-            data-content="purple"
-            data-lang="purple"
-            data-action="purple"
-          ></span>
-        </li>
-        <li class="li-theme">
-          <span
-            class="theme-btn"
-            data-content="orange"
-            data-lang="orange"
-            data-action="orange"
-          ></span>
-        </li>
-      </ul>
-
-      <ul class="select-language select" id="select-lang">
-        <span class="close-btn">
-          <i class="fa-solid fa-xmark"></i>
-        </span>
-        <li class="li-lang">
-          <span
-            class="lang-btn"
-            data-content="arabic"
-            data-lang="arabicLang"
-            data-action="arabic"
-          ></span>
-        </li>
-        <li class="li-lang">
-          <span
-            class="lang-btn"
-            data-content="english"
-            data-lang="englishLang"
-            data-action="english"
-          ></span>
-        </li>
-      </ul>
-
-      <ul class="select-download select" id="select-d-file">
-        <span class="close-btn">
-          <i class="fa-solid fa-xmark"></i>
-        </span>
-        <li class="li-d-file">
-          <span
-            class="d-btn"
-            data-content="cv"
-            data-lang="cv"
-            data-action="cv"
-            onclick="downloadImage()"
-          ></span>
-        </li>
-        <li class="li-d-file">
-          <span
-            class="d-btn"
-            data-content='<a
-      href="https://github.com/ALOMAWY/alomawy.code.github.io/archive/refs/heads/master.zip"
-      rel="noopener noreferrer"
-    >Code</a>'
-            data-lang="code"
-            data-action="code"
-          ></span>
-        </li>
-      </ul>
-
-      <ul class="select-info select" id="select-info">
-        <span class="close-btn">
-          <i class="fa-solid fa-xmark"></i>
-        </span>
-        <li class="li-info">
-          <span
-            class="info-btn"
-            data-content="news"
-            data-lang="news"
-            data-action="news"
-          ></span>
-        </li>
-        <li class="li-info">
-          <span
-            class="info-btn"
-            data-content="after-set"
-            data-lang="afterSet"
-            data-action="after-set"
-          ></span>
-        </li>
-      </ul>
-
       <div class="header-container container">
         <header id="header" class="header">
           <h2 id="logo-text" class="logo-text">Alomawy Coder</h2>
@@ -343,23 +120,37 @@
       <div id="home" class="landing-cover cover">
         <div class="landing-container container">
           <section class="textarea">
-            <article
+            <div
               class="discripton dir-lang-en l-change"
               data-lang="aboutMeInfos"
             >
               <h2 class="sey-hello" data-lang="seyHello">Hello Everyone</h2>
-              I am Abdalrahman
-              <span class="last-name" data-lang="lName">ALDABBAS</span> . I work
-              as a front-end developer . I am From Syria Damascus . This Is A
-              Simple Personal Website . I developed it in JavaScript only .
-              Techniques I worked with
-            </article>
-            <ul id="my-skills" class="skills dir-lang-en l-change"></ul>
+              <p>
+                I am Abdalrahman ALDABBAS . I work as a front-end developer . I
+                am From Syria Damascus . This Is A Simple Personal Website . I
+                developed it in JavaScript only . Techniques I worked with
+              </p>
+            </div>
+
+            <ul id="my-skills" class="skills l-change dir-lang-ar">
+              <li id="my-skill-1" class="my-skill">١- HTML</li>
+              <li id="my-skill-2" class="my-skill">٢- CSS</li>
+              <li id="my-skill-3" class="my-skill">٣- JAVASCRIPT</li>
+              <li id="my-skill-4" class="my-skill">٤- GITHUB</li>
+              <li id="my-skill-5" class="my-skill">٥- COMANDLINE</li>
+              <li id="my-skill-6" class="my-skill">٦- OOP</li>
+            </ul>
           </section>
           <div class="logo-section dir-lang-en l-change">
             <h1 class="my-name" data-lang="fullName">Abdalrahman Aldabbas</h1>
             <div class="image-logo-container">
-              <img src="./imgs/logos/newLogo.jpg" alt="" />
+              <img
+                width="100"
+                height="100"
+                src="./imgs/logos/newLogo.webp"
+                alt=""
+                loading="preload"
+              />
             </div>
           </div>
         </div>
@@ -410,18 +201,18 @@
                   <div>
                     <input id="all" type="radio" name="p-type" value="all"
                     checked/ >
-                    <label data-lang="catagoryAll" for="all">All</label>
+                    <label data-lang="categoryAll" for="all">All</label>
                   </div>
                   <div>
                     <input id="website" type="radio" name="p-type"
                     value="website"/ >
-                    <label data-lang="catagoryWebsites" for="website"
+                    <label data-lang="categoryWebsites" for="website"
                       >Website</label
                     >
                   </div>
                   <div>
                     <input id="games" type="radio" name="p-type" value="game"/ >
-                    <label data-lang="catagoryGames" for="games">Games</label>
+                    <label data-lang="categoryGames" for="games">Games</label>
                   </div>
                 </form>
               </div>
@@ -575,7 +366,13 @@
           <div id="about-box" class="cards-box content-scroller">
             <div class="information">
               <div class="image-container">
-                <img src="./imgs/logos/newLogo.jpg" alt="" />
+                <img
+                  width="50"
+                  height="50"
+                  src="./imgs/logos/newLogo.webp"
+                  alt=""
+                  loading="lazy"
+                />
               </div>
               <ul class="text-container">
                 <li class="name">
@@ -628,68 +425,6 @@
             </div>
             <div class="animation-area">
               <div class="animation-ball b-blur"></div>
-
-              <!-- <div class="coding-area"> -->
-              <!-- <pre> -->
-              <!-- <code> -->
-              <!-- <p>
-                  <span class="var">let</span>
-                  <span class="v-name">First_Name</span>
-                  <span class="m">=</span>
-                  <span class="v-value">'Abdalrahman'</span>
-                  <span class="m">;</span>
-                </p>
-                <p>
-                  <span class="var">let</span>
-                  <span class="v-name">Last_Name</span>
-                  <span class="m">=</span>
-                  <span class="v-value">'Aldabbas'</span>
-                  <span class="m">;</span>
-                </p>
-                <p>
-                  <span class="var">function</span>
-                  <span class="v-name">nameConcat</span>
-                  <span class="m">(</span>
-                  <span class="v-name">f_Name</span>
-                  <span class="mm">,</span>
-                  <span class="v-name">l_Name</span>
-                  <span class="m">)</span>
-                  <span class="m">{</span>
-
-                  <span class="var">return</span>
-                  <span class="v-value">`</span>
-                  <span class="o-bows">$</span>
-                  <span class="o-bows">{</span>
-                  <span class="v-name">First_Name</span>
-                  <span class="o-bows">}</span>
-                  <span class="space"> </span>
-                  <span class="o-bows">$</span>
-                  <span class="o-bows">{</span>
-                  <span class="v-name">Last_Name</span>
-                  <span class="o-bows">}</span>
-                  <span class="space"> </span>
-                  <span class="emoji">🩵</span>
-                  <span class="v-value">`</span>
-                  <span class="m">;</span>
-                  <span class="m">}</span>
-                </p>
-
-                <p>
-                  <span class="v-name">nameConcat</span>
-                  <span class="o-bows-f">(</span>
-                  <span class="v-name">First_Name</span>
-                  <span class="space"> </span>
-                  <span class="mm">, </span>
-                  <span class="v-name">Last_Name</span>
-                  <span class="o-bows-f">)</span>
-                </p>
-
-                <p>
-                  <span class="v-value">'Abdalrahman Aldabbas 🩵'</span>
-                </p> -->
-              <!-- </code> -->
-              <!-- </pre> -->
-              <!-- </div> -->
             </div>
           </div>
         </section>
@@ -719,126 +454,270 @@
             </div>
             <div class="rm-cover"></div>
             <div class="car">
-              <img src="./imgs/assets/ad_.png" alt="car_photo" />
+              <img
+                width="20"
+                height="10"
+                src="./imgs/assets/ad_.webp"
+                alt="car_photo"
+                loading="lazy"
+              />
             </div>
             <h4 class="t-of-rm" data-lang="mapTitle">Front End Road Map</h4>
 
             <div class="h-road start-road-h r-1"></div>
             <div class="corner b-l-c c-1">
               <div class="info-b info">
-                <img src="./imgs/tech-icons/html.png" alt="logo" />
+                <img
+                  width="30"
+                  height="30"
+                  src="./imgs/tech-icons/html.webp"
+                  alt="logo"
+                  loading="lazy"
+                />
               </div>
             </div>
             <div class="v-road r-2"></div>
             <div class="corner t-r-c c-2">
               <div class="info-b info">
-                <img src="./imgs/tech-icons/css.png" alt="logo" />
+                <img
+                  width="30"
+                  height="30"
+                  src="./imgs/tech-icons/css.webp"
+                  alt="logo"
+                  loading="lazy"
+                />
               </div>
             </div>
             <div class="h-road r-3"></div>
             <div class="corner t-l-c c-3">
               <div class="info-l info">
-                <img src="./imgs/tech-icons/git.png" alt="logo" />
+                <img
+                  width="30"
+                  height="30"
+                  src="./imgs/tech-icons/git.webp"
+                  alt="logo"
+                  loading="lazy"
+                />
               </div>
             </div>
             <div class="v-road r-4"></div>
             <div class="corner b-l-c c-4">
               <div class="info-b info">
-                <img src="./imgs/tech-icons/github.png" alt="logo" />
+                <img
+                  width="30"
+                  height="30"
+                  src="./imgs/tech-icons/github.webp"
+                  alt="logo"
+                  loading="lazy"
+                />
               </div>
             </div>
             <div class="h-road r-5"></div>
             <div class="corner t-r-c c-5">
               <div class="info-b info">
-                <img src="./imgs/tech-icons/practice.png" alt="logo" />
+                <img
+                  width="30"
+                  height="30"
+                  src="./imgs/tech-icons/practice.webp"
+                  alt="logo"
+                  loading="lazy"
+                />
               </div>
             </div>
             <div class="v-road r-6"></div>
             <div class="corner b-r-c c-6">
               <div class="info-b info">
-                <img src="./imgs/tech-icons/js.png" alt="logo" />
+                <img
+                  width="30"
+                  height="30"
+                  src="./imgs/tech-icons/js.webp"
+                  alt="logo"
+                  loading="lazy"
+                />
               </div>
             </div>
             <div class="h-road r-7"></div>
             <div class="corner b-l-c c-7">
               <div class="info-l info im-here">
-                <img src="./imgs/tech-icons/practice.png" alt="logo" />
+                <img
+                  width="30"
+                  height="30"
+                  src="./imgs/tech-icons/practice.webp"
+                  alt="logo"
+                  loading="lazy"
+                />
               </div>
             </div>
             <div class="v-road r-8"></div>
             <div class="corner t-l-c c-8">
               <div class="info-l info">
-                <img src="./imgs/tech-icons/bootstrap.png" alt="logo" />
+                <img
+                  width="30"
+                  height="30"
+                  src="./imgs/tech-icons/bootstrap.webp"
+                  alt="logo"
+                  loading="lazy"
+                />
               </div>
             </div>
             <div class="h-road r-9"></div>
             <div class="corner t-r-c c-9">
               <div class="info-b info">
-                <img src="./imgs/tech-icons/sass.png" alt="logo" />
+                <img
+                  width="30"
+                  height="30"
+                  src="./imgs/tech-icons/sass.webp"
+                  alt="logo"
+                  loading="lazy"
+                />
               </div>
             </div>
             <div class="v-road r-10"></div>
             <div class="corner b-r-c c-10">
               <div class="info-t info">
-                <img src="./imgs/tech-icons/typescript.png" alt="logo" />
+                <img
+                  width="30"
+                  height="30"
+                  src="./imgs/tech-icons/typescript.webp"
+                  alt="logo"
+                  loading="lazy"
+                />
               </div>
             </div>
             <div class="h-road r-11"></div>
             <div class="corner b-l-c c-11">
               <div class="info-t info">
-                <img src="./imgs/tech-icons/gulp-js.png" alt="logo" />
+                <img
+                  width="30"
+                  height="30"
+                  src="./imgs/tech-icons/gulp-js.webp"
+                  alt="logo"
+                  loading="lazy"
+                />
               </div>
             </div>
             <div class="v-road r-12"></div>
             <div class="corner t-r-c c-12">
               <div class="info-b info">
-                <img src="./imgs/tech-icons/pug-js.png" alt="logo" />
+                <img
+                  width="30"
+                  height="30"
+                  src="./imgs/tech-icons/pug-js.webp"
+                  alt="logo"
+                  loading="lazy"
+                />
               </div>
             </div>
             <div class="h-road r-13"></div>
             <div class="corner t-l-c c-13">
               <div class="info-b info">
-                <img src="./imgs/tech-icons/jest-js.png" alt="logo" />
+                <img
+                  width="30"
+                  height="30"
+                  src="./imgs/tech-icons/jest-js.webp"
+                  alt="logo"
+                  loading="lazy"
+                />
               </div>
             </div>
             <div class="v-road r-14"></div>
             <div class="corner b-l-c c-14">
               <div class="info-t info">
-                <img src="./imgs/tech-icons/cmd-terminal.png" alt="logo" />
+                <img
+                  width="30"
+                  height="30"
+                  src="./imgs/tech-icons/cmd-terminal.webp"
+                  alt="logo"
+                  loading="lazy"
+                />
               </div>
             </div>
             <div class="h-road r-15"></div>
             <div class="corner b-r-c c-15">
               <div class="info-t info">
-                <img src="./imgs/tech-icons/npm.png" alt="logo" />
+                <img
+                  width="30"
+                  height="30"
+                  src="./imgs/tech-icons/npm.webp"
+                  alt="logo"
+                  loading="lazy"
+                />
               </div>
             </div>
             <div class="v-road r-16"></div>
             <div class="corner t-r-c c-16">
               <div class="info-m-v info-b h-row">
-                <img src="./imgs/tech-icons/vue.png" alt="logo" />
-                <img src="./imgs/tech-icons/physics.png" alt="logo" />
-                <img src="./imgs/tech-icons/angular.png" alt="logo" />
+                <img
+                  width="30"
+                  height="30"
+                  src="./imgs/tech-icons/vue.webp"
+                  alt="logo"
+                  loading="lazy"
+                />
+                <img
+                  width="30"
+                  height="30"
+                  src="./imgs/tech-icons/physics.webp"
+                  alt="logo"
+                  loading="lazy"
+                />
+                <img
+                  width="30"
+                  height="30"
+                  src="./imgs/tech-icons/angular.webp"
+                  alt="logo"
+                  loading="lazy"
+                />
               </div>
             </div>
             <div class="h-road r-17"></div>
             <div class="corner t-l-c c-17">
               <div class="info-r info">
-                <img src="./imgs/tech-icons/practice.png" alt="logo" />
+                <img
+                  width="30"
+                  height="30"
+                  src="./imgs/tech-icons/practice.webp"
+                  alt="logo"
+                  loading="lazy"
+                />
               </div>
             </div>
             <div class="v-road r-18"></div>
             <div class="corner b-l-c c-18">
               <div class="info-l info">
-                <img src="./imgs/tech-icons/structureDSA.png" alt="logo" />
+                <img
+                  width="30"
+                  height="30"
+                  src="./imgs/tech-icons/structureDSA.webp"
+                  alt="logo"
+                  loading="lazy"
+                />
               </div>
             </div>
             <div class="h-road r-19"></div>
             <div class="corner b-r-c c-19">
               <div class="info-m-v info-r">
-                <img src="./imgs/tech-icons/php.png" alt="logo" />
-                <img src="./imgs/tech-icons/node.png" alt="logo" />
-                <img src="./imgs/tech-icons/dot-net.png" alt="logo" />
+                <img
+                  width="30"
+                  height="30"
+                  src="./imgs/tech-icons/php.webp"
+                  alt="logo"
+                  loading="lazy"
+                />
+                <img
+                  width="30"
+                  height="30"
+                  src="./imgs/tech-icons/node.webp"
+                  alt="logo"
+                  loading="lazy"
+                />
+                <img
+                  width="30"
+                  height="30"
+                  src="./imgs/tech-icons/dot-net.webp"
+                  alt="logo"
+                  loading="lazy"
+                />
               </div>
             </div>
             <div class="v-road r-20"></div>
@@ -940,10 +819,185 @@
       </div>
     </div>
 
-    <audio
-      id="unlock-sound"
-      src="./sounds/short-success-sound-glockenspiel-treasure-video-game-6346.mp3"
-    ></audio>
+    <ul class="taps select" id="select-section">
+      <span class="close-btn">
+        <i class="fa-solid fa-xmark"></i>
+      </span>
+      <li class="nav-link">
+        <a
+          class="section-btn"
+          href="#home"
+          data-content="Home"
+          data-lang="home"
+        ></a>
+      </li>
+      <li class="nav-link">
+        <a
+          class="section-btn"
+          href="#services"
+          data-content="Services"
+          data-lang="services"
+        ></a>
+      </li>
+      <li class="nav-link">
+        <a
+          class="section-btn"
+          href="#portfolio"
+          data-content="Portfolio"
+          data-lang="portfolio"
+        ></a>
+      </li>
+
+      <li class="nav-link">
+        <a
+          class="section-btn"
+          href="#social_media"
+          data-content="Social Media"
+          data-lang="social_media"
+        ></a>
+      </li>
+      <li class="nav-link">
+        <a
+          class="section-btn"
+          href="#contact"
+          data-content="Contact"
+          data-lang="contact_us"
+        ></a>
+      </li>
+      <li class="nav-link">
+        <a
+          class="section-btn"
+          href="#about"
+          data-content="About"
+          data-lang="about_us"
+        ></a>
+      </li>
+      <li class="nav-link">
+        <a
+          class="section-btn"
+          href="#road-map"
+          data-content="RoadMap"
+          data-lang="road_map"
+        ></a>
+      </li>
+    </ul>
+
+    <ul class="select-themes select" id="select-theme">
+      <span class="close-btn">
+        <i class="fa-solid fa-xmark"></i>
+      </span>
+      <li class="li-theme">
+        <span
+          class="theme-btn"
+          data-content="red"
+          data-lang="red"
+          data-action="red"
+        ></span>
+      </li>
+      <li class="li-theme">
+        <span
+          class="theme-btn"
+          data-content="green"
+          data-lang="green"
+          data-action="green"
+        ></span>
+      </li>
+      <li class="li-theme">
+        <span
+          class="theme-btn"
+          data-content="blue"
+          data-lang="blue"
+          data-action="blue"
+        ></span>
+      </li>
+      <li class="li-theme">
+        <span
+          class="theme-btn"
+          data-content="purple"
+          data-lang="purple"
+          data-action="purple"
+        ></span>
+      </li>
+      <li class="li-theme">
+        <span
+          class="theme-btn"
+          data-content="orange"
+          data-lang="orange"
+          data-action="orange"
+        ></span>
+      </li>
+    </ul>
+
+    <ul class="select-language select" id="select-lang">
+      <span class="close-btn">
+        <i class="fa-solid fa-xmark"></i>
+      </span>
+      <li class="li-lang">
+        <span
+          class="lang-btn"
+          data-content="arabic"
+          data-lang="arabicLang"
+          data-action="arabic"
+        ></span>
+      </li>
+      <li class="li-lang">
+        <span
+          class="lang-btn"
+          data-content="english"
+          data-lang="englishLang"
+          data-action="english"
+        ></span>
+      </li>
+    </ul>
+
+    <ul class="select-download select" id="select-d-file">
+      <span class="close-btn">
+        <i class="fa-solid fa-xmark"></i>
+      </span>
+      <li class="li-d-file">
+        <span
+          class="d-btn"
+          data-content="cv"
+          data-lang="cv"
+          data-action="cv"
+          onclick="downloadImage()"
+        ></span>
+      </li>
+      <li class="li-d-file">
+        <span
+          class="d-btn"
+          data-content='<a
+    href="https://github.com/ALOMAWY/alomawy.code.github.io/archive/refs/heads/master.zip"
+    rel="noopener noreferrer"
+  >Code</a>'
+          data-lang="code"
+          data-action="code"
+        ></span>
+      </li>
+    </ul>
+
+    <ul class="select-info select" id="select-info">
+      <span class="close-btn">
+        <i class="fa-solid fa-xmark"></i>
+      </span>
+      <li class="li-info">
+        <span
+          class="info-btn"
+          data-content="news"
+          data-lang="news"
+          data-action="news"
+        ></span>
+      </li>
+      <li class="li-info">
+        <span
+          class="info-btn"
+          data-content="after-set"
+          data-lang="afterSet"
+          data-action="after-set"
+        ></span>
+      </li>
+    </ul>
+
     <script src="./app.js"></script>
   </body>
 </html>

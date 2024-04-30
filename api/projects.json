@@ -39,7 +39,7 @@
       "ar": "إنجليزي",
       "en": "En"
     },
-    "picture": "./imgs/template_imags/leonTemplate.png"
+    "picture": "./imgs/template_imags/leonTemplate.webp"
   },
   {
     "id": {
@@ -81,7 +81,7 @@
       "ar": "إنجليزي",
       "en": "English"
     },
-    "picture": "./imgs/template_imags/kasperTemplate.png"
+    "picture": "./imgs/template_imags/kasperTemplate.webp"
   },
   {
     "id": {
@@ -123,7 +123,7 @@
       "ar": "إنجليزي",
       "en": "English"
     },
-    "picture": "./imgs/template_imags/elzeroTemplate.png"
+    "picture": "./imgs/template_imags/elzeroTemplate.webp"
   },
   {
     "id": {
@@ -166,7 +166,7 @@
       "ar": "إنجليزي",
       "en": "English"
     },
-    "picture": "./imgs/template_imags/elzeroDashboardTemplate.png"
+    "picture": "./imgs/template_imags/elzeroDashboardTemplate.webp"
   },
   {
     "id": {
@@ -208,6 +208,6 @@
       "ar": "عربي إنجليزي",
       "en": "Arabic English"
     },
-    "picture": "./imgs/template_imags/hangmanGame.png"
+    "picture": "./imgs/template_imags/hangmanGame.webp"
   }
 ]
