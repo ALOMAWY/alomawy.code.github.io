@@ -161,14 +161,24 @@ let languages = {
       numberOfProjects: "٧",
       developerTitle: ": المطور",
       developerValue: "عبدالرحمن الدباس",
-      sectionsTitleArray: [
-        "صفحة التعريف",
+      sectionsListItems: [
+        "الصفحة الرئيسية",
         "الخدمات",
         "المعرض",
         "التواصل الاجتماعي",
         "تواصل معنا",
         "تفاصيل",
         "خريطة التعلم",
+      ],
+      softSkills: [
+        "حل المشكلات",
+        "الكتابة السريعة",
+        "التفكير النقدي",
+        "إدارة الوقت",
+        "المرونة والتكيف",
+        "التعلم المستمر",
+        "العمل الجماعي",
+        "الاتصال الفعّال",
       ],
     },
     english: {},
@@ -293,9 +303,11 @@ function massege(e, t = 3) {
       BODY.prepend(a),
       (a.style.animation = `${t}s ease-in-out 0s 1 normal backwards running msg`);
   }
-  setTimeout(() => {
-    document.querySelector(".massege-box").remove();
-  }, 1e3 * t);
+  document
+    .querySelector(".massege-box")
+    .addEventListener("transitionend", () => {
+      document.querySelector(".massege-box").remove();
+    });
 }
 const mainContainer = document.getElementById("home");
 let header = document.getElementById("header"),
@@ -313,7 +325,7 @@ function setHeaderParent() {
         setTimeout(() => {
           headerParent.style.height = StylePackage(header).height;
         }, 500))
-    : ((header.style.width = headerParent.getFullWidth() + "px"),
+    : ((header.style.width = headerParent.clientWidth + "px"),
       (headerParent.style.height = StylePackage(header).height),
       (headerParent.style.paddingLeft = StylePackage(header).paddingLeft),
       (headerParent.style.paddingRight = StylePackage(header).paddingRight),
@@ -375,16 +387,15 @@ let landing = document.querySelector(".landing-cover");
       ? applyTheme(localStorage.getItem("theme"))
       : applyTheme("blue"),
       initializeEnglishLanguageObject(),
-      appendMenuToHeader(),
       setHeaderParent(),
       assignNavigationLinksVariables(),
+      appendMenuToHeader(),
       document_width < 800 && BODY.prepend(navgationBar),
       "arabic" != currentLanguge ? EN_action() : AR_Action(),
       applyScrollingButtons(currentLanguge),
       applyLanguage(currentLanguge || "english"),
       document_width < 300 &&
-        (roadMapContentBox.innerHTML = "Not Availabel Off Your Phone Size"),
-      setUnifiedWidth();
+        (roadMapContentBox.innerHTML = "Not Availabel Off Your Phone Size");
   });
 let js_StyleFile = document.createElement("style");
 (js_StyleFile.id = "js-file"), HEAD.appendChild(js_StyleFile);
@@ -592,7 +603,7 @@ async function RequestProjectsData(e) {
       const p = m.getCreatedElement();
       p.setAttribute("loading", "lazy"),
         p.setAttribute("width", "60"),
-        p.setAttribute("height", "60"),
+        p.setAttribute("height", "auto"),
         p.setAttribute("alt", "project-landing-screen"),
         (p.src = a[e].picture);
       const h = new ELEMENT("div", "project-info", "project-info", r, "");
@@ -925,7 +936,7 @@ async function RequestSocialMediaData(e) {
         const u = g.getCreatedElement();
         u.setAttribute("loading", "lazy"),
           u.setAttribute("width", "60"),
-          u.setAttribute("height", "60"),
+          u.setAttribute("height", "auto"),
           u.setAttribute("alt", "social-media-logo"),
           (u.src = a[e].logo);
         const m = new ELEMENT("div", "details-info", "details-info", i, "");
@@ -1147,6 +1158,9 @@ function getExpYears() {
     : `${a}.${n(-(e.getMonth() - t.getMonth()))}`;
 }
 expLabel.innerHTML = getExpYears();
+
+let fragment = document.createDocumentFragment();
+
 let skillsLabel = document.querySelector(".skills-container .about-skills"),
   skillsArray = [
     "HTML",
@@ -1162,8 +1176,11 @@ skillsArray.forEach((e) => {
   let t = document.createElement("span");
   t.classList.add("skill");
   let a = document.createTextNode(e);
-  t.appendChild(a), skillsLabel.appendChild(t);
+  t.appendChild(a), fragment.appendChild(t);
 });
+
+skillsLabel.appendChild(fragment);
+
 let animationArea = document.querySelector(".animation-area");
 function responsiveCardsWithGrid(e, t, a, n, o) {
   document_width <= 1450 && document_width > 600
@@ -1465,47 +1482,69 @@ const footerSkills = document.querySelector(
   );
 let skillsText = document.createTextNode(skillsArray.join(" , "));
 footerSkills.appendChild(skillsText);
-const languagesArray = ["Arabic", "English", "Turkish"];
-let languagesText = document.createTextNode(languagesArray.join(" , "));
+
+const englishLanguagesArray = ["Arabic", "English", "Turkish"];
+
+languages.english.myLanguages = englishLanguagesArray.join(" , ");
+
+const arabicLanguagesArray = ["العربية", "الانكليزية", "التركية"];
+
+languages.arabic.myLanguages = arabicLanguagesArray.join(" , ");
+
+let languagesText = document.createTextNode(
+  languages[currentLanguge].myLanguages
+);
+
 footerLanguages.appendChild(languagesText);
-let softSkillsArray = [
-    "Problem Solving",
-    "Speed Typing",
-    "critical thinking",
-    "time management",
-    "Flexibility and adaptability",
-    "Continuous learning",
-    "Teamwork",
-    "Effective Communication",
-  ],
-  softSkillsText = document.createTextNode(softSkillsArray.join(" , "));
-footerSoftSkills.appendChild(softSkillsText),
-  (arabicSSkills = [
-    "حل المشكلات",
-    "الكتابة السريعة",
-    "التفكير النقدي",
-    "إدارة الوقت",
-    "المرونة والتكيف",
-    "التعلم المستمر",
-    "العمل الجماعي",
-    "الاتصال الفعّال",
-  ]);
+
+
+
+
+
+// let englishSoftSkillsArray =
+
+// let arabicSoftSkillsArray =
+
+function addToList(list, items) {
+    let fragment = document.createDocumentFragment();
+    
+
+    Array.from(list.children).forEach(e=>e.remove())
+
+  items.forEach((item) => {
+    let element = document.createElement("li");
+
+    let content = document.createTextNode(item);
+
+    element.appendChild(content);
+
+    fragment.appendChild(element);
+  });
+
+    list.appendChild(fragment);
+    
+}
+
 const servicesList = document.querySelector(
     "footer .text-area .vertical-text .services .services-container"
   ),
   sectionsList = document.querySelector(
     "footer .text-area .vertical-text .sections .sections-container"
-  );
+    );
+  
+
+    languages.english.sectionsListItems = [
+        "Home",
+        "Services",
+        "Gallery",
+        "Social Media",
+        "Contact Us",
+        "Details",
+        "Learning Map"
+        ]
 let servicesArrayEn = [],
   servicesArrayAr = [];
-function setUnifiedWidth() {
-  let e = document.querySelectorAll(".herizontal-text > div p.title"),
-    t = [];
-  e.forEach((e) => {
-    t.push(e.clientWidth),
-      (e.style.width = t.reduce((e, t) => (e > t ? e : t)) + "px");
-  });
-}
+
 function close() {
   document.querySelectorAll(".select").forEach((e) => {
     e.style.right = "-500%";
@@ -1579,15 +1618,24 @@ function checkBoolean(e, t, a) {
   return !(e.length != a || !e.every((e) => e >= t));
 }
 function initializeEnglishLanguageObject() {
-  document.querySelectorAll("*").forEach((e) => {
-    e.getAttribute("data-lang") &&
-      (languages.english[e.getAttribute("data-lang")] = e.innerHTML),
-      e.getAttribute("data-lang-placeholder") &&
-        (languages.english[e.getAttribute("data-lang-placeholder")] =
-          e.placeholder),
-      e.dataset.content &&
-        (languages.english[e.dataset.lang] = e.dataset.content);
-  });
+    if (localStorage.getItem("enObject")) {
+
+        console.log( JSON.parse(localStorage.getItem("enObject")))
+        // languages.english = localStorge.getItem("enObject")
+    }
+    else {
+        
+        document.querySelectorAll("*").forEach((e) => {
+            e.getAttribute("data-lang") &&
+            (languages.english[e.getAttribute("data-lang")] = e.innerHTML),
+            e.getAttribute("data-lang-placeholder") &&
+            (languages.english[e.getAttribute("data-lang-placeholder")] =
+            e.placeholder),
+            e.dataset.content &&
+            (languages.english[e.dataset.lang] = e.dataset.content);
+        });
+        localStorage.setItem("enObject", JSON.stringify(languages.english))
+    }
 }
 function AR_Action() {
   createButtonAction(
@@ -1655,19 +1703,14 @@ function applyLanguage(e) {
         t.forEach((e) => {
           e.classList.remove("dir-lang-ar"), e.classList.add("dir-lang-en");
         }),
-        applyScrollingButtons("english"));
-  };
-  if (
-    ((languages.english.sectionsTitleArray = ["Landing"]),
-    document
-      .querySelectorAll(".section-title")
-      .forEach((e) => languages.english.sectionsTitleArray.push(e.innerText)),
-    languages[currentLanguge].sectionsTitleArray.forEach((e, t) => {
-      let a = new ELEMENT("li", "s" + t, "", sectionsList, e);
-      a.createElement(), a.getCreatedElement();
-    }),
-    "arabic" == e)
-  ) {
+              applyScrollingButtons("english"));
+      
+    };
+    
+
+
+    addToList(sectionsList,languages[currentLanguge].sectionsListItems)
+  if (((languages.english.sectionsTitleArray = ["Landing"]), "arabic" == e)) {
     let e = '"Alexandria", sans-serif';
     t("rtl"),
       (document.body.style.fontFamily = e),
