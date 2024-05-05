@@ -385,15 +385,27 @@ let landing = document.querySelector(".landing-cover");
   window.addEventListener("load", () => {
     localStorage.getItem("theme")
       ? applyTheme(localStorage.getItem("theme"))
-      : applyTheme("blue"),
-      initializeEnglishLanguageObject(),
+      : applyTheme("blue");
+    
+    if (localStorage.getItem("enObject")) {
+      
+languages.english = JSON.parse(localStorage.getItem('enObject'))
+    }
+    else {
+      initializeEnglishLanguageObject()
+      
+    }
+    // localStorage.getItem("enObject") ?
+        
+      // languages.english = JSON.parse(localStorage.getItem("enObject")) :
+      // initializeEnglishLanguageObject(),
       setHeaderParent(),
       assignNavigationLinksVariables(),
       appendMenuToHeader(),
       document_width < 800 && BODY.prepend(navgationBar),
       "arabic" != currentLanguge ? EN_action() : AR_Action(),
       applyScrollingButtons(currentLanguge),
-      applyLanguage(currentLanguge || "english"),
+      applyLanguage(currentLanguge || "english");
       document_width < 300 &&
         (roadMapContentBox.innerHTML = "Not Availabel Off Your Phone Size");
   });
@@ -1491,25 +1503,19 @@ const arabicLanguagesArray = ["العربية", "الانكليزية", "الت�
 
 languages.arabic.myLanguages = arabicLanguagesArray.join(" , ");
 
-let languagesText = document.createTextNode(
-  languages[currentLanguge].myLanguages
+let languagesText = document.createTextNode("Arabic , English , Turkish"
 );
 
 footerLanguages.appendChild(languagesText);
-
-
-
-
 
 // let englishSoftSkillsArray =
 
 // let arabicSoftSkillsArray =
 
 function addToList(list, items) {
-    let fragment = document.createDocumentFragment();
-    
+  let fragment = document.createDocumentFragment();
 
-    Array.from(list.children).forEach(e=>e.remove())
+  Array.from(list.children).forEach((e) => e.remove());
 
   items.forEach((item) => {
     let element = document.createElement("li");
@@ -1521,27 +1527,25 @@ function addToList(list, items) {
     fragment.appendChild(element);
   });
 
-    list.appendChild(fragment);
-    
+  list.appendChild(fragment);
 }
 
 const servicesList = document.querySelector(
-    "footer .text-area .vertical-text .services .services-container"
-  ),
-  sectionsList = document.querySelector(
-    "footer .text-area .vertical-text .sections .sections-container"
-    );
-  
+  "footer .text-area .vertical-text .services .services-container"
+);
+const sectionsList = document.querySelector(
+  "footer .text-area .vertical-text .sections .sections-container"
+);
 
-    languages.english.sectionsListItems = [
-        "Home",
-        "Services",
-        "Gallery",
-        "Social Media",
-        "Contact Us",
-        "Details",
-        "Learning Map"
-        ]
+languages.english.sectionsListItems = [
+  "Home",
+  "Services",
+  "Gallery",
+  "Social Media",
+  "Contact Us",
+  "Details",
+  "Learning Map",
+];
 let servicesArrayEn = [],
   servicesArrayAr = [];
 
@@ -1618,24 +1622,17 @@ function checkBoolean(e, t, a) {
   return !(e.length != a || !e.every((e) => e >= t));
 }
 function initializeEnglishLanguageObject() {
-    if (localStorage.getItem("enObject")) {
+  document.querySelectorAll("*").forEach((e) => {
+    e.getAttribute("data-lang") &&
+      (languages.english[e.getAttribute("data-lang")] = e.innerHTML),
+      e.getAttribute("data-lang-placeholder") &&
+        (languages.english[e.getAttribute("data-lang-placeholder")] =
+          e.placeholder),
+      e.dataset.content &&
+      (languages.english[e.dataset.lang] = e.dataset.content);  
+  });
 
-        console.log( JSON.parse(localStorage.getItem("enObject")))
-        // languages.english = localStorge.getItem("enObject")
-    }
-    else {
-        
-        document.querySelectorAll("*").forEach((e) => {
-            e.getAttribute("data-lang") &&
-            (languages.english[e.getAttribute("data-lang")] = e.innerHTML),
-            e.getAttribute("data-lang-placeholder") &&
-            (languages.english[e.getAttribute("data-lang-placeholder")] =
-            e.placeholder),
-            e.dataset.content &&
-            (languages.english[e.dataset.lang] = e.dataset.content);
-        });
-        localStorage.setItem("enObject", JSON.stringify(languages.english))
-    }
+  localStorage.setItem("enObject", JSON.stringify(languages.english))
 }
 function AR_Action() {
   createButtonAction(
@@ -1703,13 +1700,11 @@ function applyLanguage(e) {
         t.forEach((e) => {
           e.classList.remove("dir-lang-ar"), e.classList.add("dir-lang-en");
         }),
-              applyScrollingButtons("english"));
-      
-    };
-    
-
-
-    addToList(sectionsList,languages[currentLanguge].sectionsListItems)
+        applyScrollingButtons("english"));
+  };
+console.log(sectionsList)
+  addToList(sectionsList, languages[currentLanguge].sectionsListItems);
+  addToList(servicesList, languages[currentLanguge].servicesArray);
   if (((languages.english.sectionsTitleArray = ["Landing"]), "arabic" == e)) {
     let e = '"Alexandria", sans-serif';
     t("rtl"),

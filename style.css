@@ -83,9 +83,10 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .content-scroller {
   overflow: auto;
+  padding-bottom: 10px ;
 }
 .content-scroller::-webkit-scrollbar {
-  height: 9px;
+  height: 5px;
 }
 .content-scroller::-webkit-scrollbar-track {
   background-color: var(--background-main-color);
@@ -544,9 +545,6 @@ body::-webkit-scrollbar-thumb:hover {
   border-radius: 0;
 }
 .header-icon {
-  border: none;
-  outline: none;
-  background-color: transparent;
   padding: 5px;
   width: 50px;
   height: 50px;
@@ -872,6 +870,38 @@ body::-webkit-scrollbar-thumb:hover {
   left: 0px;
 }
 @media (max-width: 1000px) {
+  .header-container {
+    header {
+      .header-icons {
+        padding: 5px;
+      }
+    }
+  }
+
+  .header-icon {
+    padding: 5px;
+    width: 35px;
+    height: 35px;
+    transition: 0.4s;
+    color: var(--secondary-color);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header-icon i {
+    font-size: 0.7rem;
+  }
+
+  .menu {
+    .menu-row {
+
+      width: 90%;
+      height: 1px;
+    }
+  }
+
   .landing-container {
     flex-direction: column-reverse;
     margin: 15px 0;
@@ -2885,7 +2915,6 @@ body::-webkit-scrollbar-thumb:hover {
       .dev-name {
         flex-direction: row-reverse;
       }
-      
     }
     footer.dir-lang-en {
       font-family: "Inter", sans-serif;
@@ -2897,23 +2926,19 @@ body::-webkit-scrollbar-thumb:hover {
         flex-direction: row;
       }
 
-      .text-area >div
-      {
+      .text-area > div {
         direction: ltr;
       }
-
     }
 
-    footer.dir-lang-ar{
-          .projects-number,
-          .dev-name {
-          }
-    
-          .text-area >div
-          {
-            direction: rtl;
-          }
+    footer.dir-lang-ar {
+      .projects-number,
+      .dev-name {
+      }
 
+      .text-area > div {
+        direction: rtl;
+      }
     }
     footer {
       height: 100%;
@@ -3010,7 +3035,7 @@ body::-webkit-scrollbar-thumb:hover {
               padding-bottom: 30px;
               li {
                 font-size: 0.6rem;
-                letter-spacing: 2px;
+                letter-spacing:0px;
                 white-space: nowrap;
                 padding: 10px 0;
               }
@@ -3040,8 +3065,8 @@ body::-webkit-scrollbar-thumb:hover {
               }
             }
             .linux {
-                display: flex;
-                align-items: center;
+              display: flex;
+              align-items: center;
               width: 100%;
               height: 30px;
               justify-content: space-evenly;
@@ -3049,16 +3074,14 @@ body::-webkit-scrollbar-thumb:hover {
               span.icon {
                 color: var(--main-color);
                 background-color: var(--secondary-color);
-                padding:5px 10px;
+                padding: 5px 10px;
                 text-align: center;
-            }
-            span.icon  i {
+              }
+              span.icon i {
                 font-size: 1.4rem;
                 color: var(--main-color);
-                
               }
               .linux-progress {
-
               }
             }
           }
@@ -3132,6 +3155,22 @@ body::-webkit-scrollbar-thumb:hover {
                   transform: translate(-50%, -50%) skew(20deg);
                 }
               }
+
+              li::before{
+                content: "";
+                width: 100%;
+                height: 0%;
+                position: absolute;
+                left: 0%;
+                top: 0;
+                background-color: var(--background-main-color);
+                transform:  skew(20deg);
+                transition: 0.4s;
+              }
+
+              li:hover::before{
+height: 100%;
+              }
             }
           }
         }
@@ -3139,7 +3178,7 @@ body::-webkit-scrollbar-thumb:hover {
     }
   }
 }
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   .footer-cover {
     width: 100vw;
     height: 100vh;
@@ -3201,17 +3240,17 @@ body::-webkit-scrollbar-thumb:hover {
           > div {
             direction: ltr;
           }
-          .last-row{
+          .last-row {
             margin-bottom: 30px;
             position: relative;
 
-            .copyright{
-                font-size: 13px;
-                position: absolute;
-                bottom: -37px;
-                padding: 4px;
-                box-shadow: 0 0 7px var(--main-color);
-                width: fit-content;
+            .copyright {
+              font-size: 13px;
+              position: absolute;
+              bottom: -37px;
+              padding: 4px;
+              box-shadow: 0 0 7px var(--main-color);
+              width: fit-content;
             }
           }
         }
